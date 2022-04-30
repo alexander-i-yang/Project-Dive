@@ -10,6 +10,7 @@ public class PlayerController : Actor {
     public int JumpV;
     public int DoubleJumpV;
     public int CoyoteTime;
+    public int DiveVelocity;
     private PlayerStateMachine _mySM;
     protected void Start() {
         _mySM = GetComponent<PlayerStateMachine>();
@@ -20,6 +21,7 @@ public class PlayerController : Actor {
     void Update()
     {
         _mySM.JumpPressed(Input.GetKeyDown(KeyCode.Z));
+        _mySM.DivePressed(Input.GetKeyDown(KeyCode.X));
 
         if (Input.GetKey(KeyCode.LeftArrow)) {
             velocityX = HSpeed*-1;
@@ -27,11 +29,6 @@ public class PlayerController : Actor {
             velocityX = HSpeed*1;
         } else {
             velocityX = 0;
-        }
-
-        if (Input.GetKeyDown(KeyCode.X)) {
-            transform.position = new Vector3(0, 0);
-            velocity = Vector2.zero;
         }
 
         // GetComponent<SpriteRenderer>().color = CheckCollisions(Vector2.down, e => true) ? Color.red : Color.blue;
@@ -48,6 +45,7 @@ public class PlayerController : Actor {
     }
     
     public void DoubleJump() {
+        print("Double Jump");
         velocity = new Vector2(velocity.x, DoubleJumpV);
     }
 
@@ -57,6 +55,11 @@ public class PlayerController : Actor {
     }
 
     public void Land() {
-        velocity = new Vector2(velocity.x, 0);
+        velocityY = 0;
+    }
+
+    public void Dive() {
+        print("Dive");
+        velocityY = DiveVelocity;
     }
 }

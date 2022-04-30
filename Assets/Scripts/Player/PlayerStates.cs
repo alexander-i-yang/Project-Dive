@@ -7,14 +7,20 @@ namespace Player {
         public override void Enter(PlayerStateInput i) {
             MySM.JumpedFromGround = false;
             MySM.P.Land();
+            MySM.DoubleJumpLeft = true;
+            MySM.DiveLeft = true;
         }
 
-        public override void SetZPressed(bool z) {
-            if (z) {
+        public override void SetJumpPressed(bool pressed) {
+            if (pressed) {
                 MySM.P.Jump();
                 MySM.JumpedFromGround = true;
             }
         }
+
+        public override void SetDivePressed(bool pressed) {
+        }
+
 
         public override void SetGrounded(bool isGrounded) {
             if (!isGrounded) MySM.Transition<Airborne>();
@@ -32,8 +38,8 @@ namespace Player {
             }
         }
 
-        public override void SetZPressed(bool z) {
-            if (z) {
+        public override void SetJumpPressed(bool pressed) {
+            if (pressed) {
                 //Just left the ground
                 if (MySM.CoyoteTime > 0 && !MySM.JumpedFromGround) {
                     MySM.P.Jump();
@@ -41,6 +47,13 @@ namespace Player {
                     //Otherwise, double jump
                     MySM.Transition<DoubleJumping>();
                 }
+            }
+        }
+
+        public override void SetDivePressed(bool pressed) {
+            if (pressed && MySM.DiveLeft) {
+                Debug.Log("Dive");
+                MySM.Transition<Diving>();
             }
         }
 
@@ -58,10 +71,17 @@ namespace Player {
     public class DoubleJumping : PlayerState {
         public override void Enter(PlayerStateInput i) {
             MySM.P.DoubleJump();
+            MySM.DoubleJumpLeft = false;
         }
 
-        public override void SetZPressed(bool z) {
+        public override void SetJumpPressed(bool pressed) {
             
+        }
+        
+        public override void SetDivePressed(bool pressed) {
+            if (pressed && MySM.DiveLeft) {
+                MySM.Transition<Diving>();
+            }
         }
 
         public override void SetGrounded(bool isGrounded) {
@@ -72,6 +92,26 @@ namespace Player {
 
         public override void FixedUpdate() {
             MySM.P.Fall();
+        }
+    }
+
+    public class Diving : PlayerState {
+        public override void Enter(PlayerStateInput i) {
+            MySM.P.Dive();
+            MySM.DiveLeft = false;
+        }
+        
+        public override void SetJumpPressed(bool pressed) {
+            if (pressed && MySM.DoubleJumpLeft) {
+                MySM.Transition<DoubleJumping>();
+            }
+        }
+
+        public override void SetDivePressed(bool pressed) {
+        }
+
+        public override void SetGrounded(bool isGrounded) {
+            if (isGrounded) MySM.Transition<Grounded>();
         }
     }
 }

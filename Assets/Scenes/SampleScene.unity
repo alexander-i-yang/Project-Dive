@@ -278,7 +278,9 @@ MonoBehaviour:
   MaxFall: -400
   HSpeed: 100
   JumpV: 275
+  DoubleJumpV: 225
   CoyoteTime: 4
+  DiveVelocity: -400
 --- !u!61 &1480864326
 BoxCollider2D:
   m_ObjectHideFlags: 0
