@@ -43,7 +43,7 @@ namespace Player {
                 //Just left the ground
                 if (MySM.CoyoteTime > 0 && !MySM.JumpedFromGround) {
                     MySM.P.Jump();
-                } else {
+                } else if (MySM.DoubleJumpLeft) {
                     //Otherwise, double jump
                     MySM.Transition<DoubleJumping>();
                 }
@@ -99,10 +99,16 @@ namespace Player {
             MySM.P.Dive();
             MySM.DiveLeft = false;
         }
-        
+
         public override void SetJumpPressed(bool pressed) {
             if (pressed && MySM.DoubleJumpLeft) {
                 MySM.Transition<DoubleJumping>();
+            }
+        }
+
+        public override void FixedUpdate() {
+            if (MySM.P.DiveDecelUpdate()) {
+                MySM.Transition<Airborne>();
             }
         }
 

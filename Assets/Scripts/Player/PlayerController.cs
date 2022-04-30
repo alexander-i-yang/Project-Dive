@@ -11,6 +11,7 @@ public class PlayerController : Actor {
     public int DoubleJumpV;
     public int CoyoteTime;
     public int DiveVelocity;
+    public int DiveDecel;
     private PlayerStateMachine _mySM;
     protected void Start() {
         _mySM = GetComponent<PlayerStateMachine>();
@@ -62,9 +63,21 @@ public class PlayerController : Actor {
 
     public void Dive() {
         velocityY = DiveVelocity;
+        print("Dive");
+        print(velocityY);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns>true if done diving</returns>
+    public bool DiveDecelUpdate() {
+        velocityY += DiveDecel;
+        return velocityY > MaxFall;
     }
 
     public void Die() {
-        transform.position = Vector2.zero;
+        transform.position = new Vector2(0, 60);
+        velocity = Vector2.zero;
     }
 }

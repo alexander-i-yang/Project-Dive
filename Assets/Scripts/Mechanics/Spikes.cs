@@ -4,7 +4,6 @@ using UnityEngine;
 namespace Mechanics {
     public class Spikes : Solid {
         public override bool OnCollide(PhysObj p) {
-            Debug.Log("nah");
             return false;
         }
 

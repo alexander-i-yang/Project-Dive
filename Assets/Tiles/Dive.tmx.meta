@@ -11,8 +11,7 @@ ScriptedImporter:
   missingFiles: []
   errors: []
   warnings: []
-  missingSortingLayers:
-  - Interactable
+  missingSortingLayers: []
   missingLayers: []
   missingTags: []
   importerVersion: 24
