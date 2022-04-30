@@ -48,7 +48,7 @@ public class PlayerController : Actor {
     }
     
     public void DoubleJump() {
-        velocity = new Vector2(velocity.x, JumpV);
+        velocity = new Vector2(velocity.x, DoubleJumpV);
     }
 
 
