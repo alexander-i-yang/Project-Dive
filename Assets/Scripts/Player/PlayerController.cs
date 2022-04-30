@@ -45,13 +45,15 @@ public class PlayerController : Actor {
     }
     
     public void DoubleJump() {
-        print("Double Jump");
         velocity = new Vector2(velocity.x, DoubleJumpV);
     }
-
-
+    
     public override bool OnCollide(PhysObj p) {
-        return true;
+        return p.PlayerCollide(this);
+    }
+
+    public override bool PlayerCollide(PlayerController p) {
+        return false;
     }
 
     public void Land() {
@@ -59,7 +61,10 @@ public class PlayerController : Actor {
     }
 
     public void Dive() {
-        print("Dive");
         velocityY = DiveVelocity;
+    }
+
+    public void Die() {
+        transform.position = Vector2.zero;
     }
 }

@@ -52,7 +52,6 @@ namespace Player {
 
         public override void SetDivePressed(bool pressed) {
             if (pressed && MySM.DiveLeft) {
-                Debug.Log("Dive");
                 MySM.Transition<Diving>();
             }
         }

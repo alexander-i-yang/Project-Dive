@@ -37,19 +37,16 @@ namespace Phys {
         public override void Move(Vector2 vel) {
             int moveX = (int) Math.Abs(vel.x);
             if (moveX != 0) {
-                Vector2 xDir = new Vector2(vel.x/moveX, 0);
+                Vector2 xDir = new Vector2(vel.x / moveX, 0);
                 MoveGeneral(xDir, moveX, OnCollide);
             }
 
             int moveY = (int) Math.Abs(vel.y);
             if (moveY != 0) {
-                Vector2 yDir = new Vector2(0, vel.y/moveY);
+                Vector2 yDir = new Vector2(0, vel.y / moveY);
                 MoveGeneral(yDir, moveY, OnCollide);
             }
         }
-
-        public abstract bool OnCollide(PhysObj p);
-
 
         public void Fall() {
             velocityY = Math.Max(MaxFall, velocityY + (velocityY > 0 ? GravityUp : GravityDown) * Game.FixedDeltaTime);
@@ -60,7 +57,9 @@ namespace Phys {
         }
 
         public bool IsGrounded() {
-            return CheckCollisions(Vector2.down, e => true);
+            return CheckCollisions(Vector2.down, e => {
+                return e.IsGround(this);
+            });
         }
     }
 }

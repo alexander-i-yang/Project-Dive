@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using DefaultNamespace;
 using Helpers;
 using UnityEditor;
 using UnityEngine;
 
 namespace Phys {
-    [RequireComponent(typeof(BoxCollider2D))]
+    [RequireComponent(typeof(Collider2D))]
     public abstract class PhysObj : MonoBehaviour {
         protected BoxCollider2D myCollider { get; private set; }
         protected Vector2 velocity = Vector2.zero;
@@ -29,26 +30,33 @@ namespace Phys {
         }
 
         /// <summary>
-        /// Checks the interactable layer for any collisions.
+        /// Checks the interactable layer for any collisions. Will call OnCollide if it hits anything.
         /// </summary>
         /// <param name="direction"><b>MUST</b> be a cardinal direction with a <b>magnitude of one.</b></param>
-        /// <param name="OnCollide"></param>
+        /// <param name="onCollide"></param>
         /// <returns></returns>
-        public bool CheckCollisions(Vector2 direction, Func<PhysObj, bool> OnCollide) {
+        public bool CheckCollisions(Vector2 direction, Func<PhysObj, bool> onCollide) {
             Vector2 colliderSize = myCollider.size;
             Vector2 sizeMult = colliderSize*0.97f;
-            RaycastHit2D hit = Physics2D.BoxCast(
-                origin: (Vector2) transform.position,
-                size: new Vector2(1, 1) * sizeMult,
-                direction: direction,
-                distance: 0.3f,
-                angle: 0,
-                layerMask: LayerMask.GetMask("Interactable")
-            );
-            return hit.collider;
+            List<RaycastHit2D> hits = new List<RaycastHit2D>();
+            ContactFilter2D filter = new ContactFilter2D();
+            filter.layerMask = LayerMask.GetMask("Interactable");
+            filter.useLayerMask = true;
+            int numHits = Physics2D.BoxCast(transform.position, sizeMult, 0, direction, filter, hits, 0.3f);
+            if (numHits != 0) {
+                foreach (var hit in hits) {
+                    if (onCollide.Invoke(hit.transform.GetComponent<PhysObj>())) {
+                        return true;
+                    }
+                }
+
+                return false;
+            } else {
+                return false;
+            }
         }
 
-        private void OnDrawGizmosSelected() {
+        /*private void OnDrawGizmosSelected() {
             Vector2 direction = Vector2.left;
             Vector2 colliderSize = GetComponent<BoxCollider2D>().size;
             Vector2 sizeMult = colliderSize*0.97f;
@@ -60,8 +68,14 @@ namespace Phys {
                 angle: 0,
                 color: Color.blue
             );
-        }
+        }*/
 
         public abstract void Move(Vector2 velocity);
+        public abstract bool OnCollide(PhysObj p);
+        public abstract bool PlayerCollide(PlayerController p);
+        
+        public virtual bool IsGround(PhysObj whosAsking) {
+            return true;
+        }
     }
 }
