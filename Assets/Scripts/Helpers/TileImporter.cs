@@ -5,6 +5,7 @@ using Mechanics;
 using SuperTiled2Unity;
 using SuperTiled2Unity.Editor;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 namespace Helpers {
 
@@ -16,6 +17,8 @@ namespace Helpers {
         };
         
         public override void TmxAssetImported(TmxAssetImportedArgs data) {
+            ShadowCaster2DFromCollider s = new ShadowCaster2DFromCollider();
+            
             SuperMap map = data.ImportedSuperMap;
             var args = data.AssetImporter;
             var layers = map.GetComponentsInChildren<SuperLayer>();
@@ -24,16 +27,27 @@ namespace Helpers {
                 var props = GetLayerProps(doc, layer);
                 if (props != null) {
                     string component = GetProp(props, "unity:Component");
-                    AddToChunk(layer.transform, component);
+                    if (component != null) AddToChunk(layer.transform, component);
+
+                    string castShadows = GetProp(props, "unity:CastShadows");
+                    if (castShadows == "true") GenerateShadows(layer.transform);
                 }
             }
         }
 
+        public void GenerateShadows(Transform layer) {
+            for (int i = 0; i < layer.childCount; ++i) {
+                layer.GetChild(i).gameObject.AddComponent<CompositeShadowCaster2D>();
+                var obj = layer.GetChild(i).GetChild(0).gameObject;
+                ShadowCaster2DFromCollider.Execute(obj);
+            }
+
+            layer.gameObject.AddComponent<CompositeShadowCaster2D>();
+        }
+
         public void AddToChunk(Transform layer, string component) {
-            if (component != null) {
-                for (int i = 0; i < layer.childCount; ++i) {
-                    layer.GetChild(i).GetChild(0).gameObject.AddComponent(typings[component]);
-                }
+            for (int i = 0; i < layer.childCount; ++i) {
+                layer.GetChild(i).GetChild(0).gameObject.AddComponent(typings[component]);
             }
         }
 

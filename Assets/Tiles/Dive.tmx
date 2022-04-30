@@ -4,6 +4,7 @@
  <tileset firstgid="37" source="Spikes.tsx"/>
  <layer id="1" name="Ground" width="100" height="100">
   <properties>
+   <property name="unity:CastShadows" type="bool" value="true"/>
    <property name="unity:Component" value="Wall"/>
    <property name="unity:SortingLayer" value="Interactable"/>
   </properties>
@@ -120,7 +121,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,38,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,38,0,0,0,0,0,37,37,37,37,37,37,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
