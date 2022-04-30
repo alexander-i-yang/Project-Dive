@@ -54,7 +54,6 @@ namespace Phys {
             if (velocityY < 50 && velocityY > VelocityDownImmediate) {
                 velocityY = VelocityDownImmediate;
             }
-            print(velocityY);
         }
 
         public bool IsGrounded() {

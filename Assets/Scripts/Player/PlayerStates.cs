@@ -1,4 +1,5 @@
 ﻿using DefaultNamespace;
+using Mechanics;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 
@@ -24,6 +25,10 @@ namespace Player {
 
         public override void SetGrounded(bool isGrounded) {
             if (!isGrounded) MySM.Transition<Airborne>();
+        }
+
+        public override bool EnterCrystal(Crystal c) {
+            return false;
         }
     }
 
@@ -65,6 +70,10 @@ namespace Player {
         public override void FixedUpdate() {
             MySM.P.Fall();
         }
+
+        public override bool EnterCrystal(Crystal c) {
+            return false;
+        }
     }
 
     public class DoubleJumping : PlayerState {
@@ -92,12 +101,18 @@ namespace Player {
         public override void FixedUpdate() {
             MySM.P.Fall();
         }
+
+        public override bool EnterCrystal(Crystal c) {
+            return false;
+        }
     }
 
     public class Diving : PlayerState {
+        private bool _diveDone = false;
         public override void Enter(PlayerStateInput i) {
             MySM.P.Dive();
             MySM.DiveLeft = false;
+            _diveDone = false;
         }
 
         public override void SetJumpPressed(bool pressed) {
@@ -107,9 +122,20 @@ namespace Player {
         }
 
         public override void FixedUpdate() {
-            if (MySM.P.DiveDecelUpdate()) {
-                MySM.Transition<Airborne>();
+            if (_diveDone) {
+                MySM.P.Fall();
+            } else {
+                _diveDone = MySM.P.DiveDecelUpdate();
             }
+        }
+
+        public override bool EnterCrystal(Crystal c) {
+            MySM.Transition<Airborne>();
+            MySM.P.Jump();
+            MySM.DoubleJumpLeft = true;
+            MySM.DiveLeft = true;
+            c.Break();
+            return false;
         }
 
         public override void SetDivePressed(bool pressed) {

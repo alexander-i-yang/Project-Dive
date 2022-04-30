@@ -1,4 +1,5 @@
 ﻿using System;
+using Mechanics;
 
 namespace Player {
     public class PlayerStateMachine : StateMachine<PlayerStateMachine, PlayerState, PlayerStateInput> {
@@ -28,6 +29,10 @@ namespace Player {
         private void FixedUpdate() {
             CurState.FixedUpdate();
         }
+
+        public bool EnterCrystal(Crystal c) {
+            return CurState.EnterCrystal(c);
+        }
     }
 
     public abstract class PlayerState : State<PlayerStateMachine, PlayerState, PlayerStateInput> {
@@ -36,6 +41,7 @@ namespace Player {
 
         public abstract void SetGrounded(bool isGrounded);
         public virtual void FixedUpdate() { }
+        public abstract bool EnterCrystal(Crystal c);
     }
 
     public class PlayerStateInput : StateInput {

@@ -1,4 +1,5 @@
 using System;
+using Mechanics;
 using Phys;
 using Player;
 using UnityEngine;
@@ -79,5 +80,9 @@ public class PlayerController : Actor {
     public void Die() {
         transform.position = new Vector2(0, 60);
         velocity = Vector2.zero;
+    }
+
+    public bool EnterCrystal(Crystal c) {
+        return _mySM.EnterCrystal(c);
     }
 }
