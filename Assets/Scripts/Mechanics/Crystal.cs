@@ -17,11 +17,11 @@ namespace Mechanics {
             base.Start();
         }
 
-        public override bool OnCollide(PhysObj p) {
+        public override bool OnCollide(PhysObj p, Vector2 direction) {
             return false;
         }
 
-        public override bool PlayerCollide(PlayerController p) {
+        public override bool PlayerCollide(PlayerController p, Vector2 direction) {
             if (!_broken) return p.EnterCrystal(this);
             return false;
         }

@@ -28,6 +28,9 @@ namespace Helpers {
                 if (props != null) {
                     string component = GetProp(props, "unity:Component");
                     if (component != null) AddComponentToLayer(layer.transform, component);
+                    
+                    string layerName = GetProp(props, "unity:Layer");
+                    if (layerName != null) SetLayer(layer.transform, layerName);
 
                     string castShadows = GetProp(props, "unity:CastShadows");
                     if (castShadows == "true") GenerateShadows(layer.transform);
@@ -44,19 +47,47 @@ namespace Helpers {
             }
         }
 
-        public void GenerateShadows(Transform layer) {
+        public List<Transform> GetEdges(Transform layer) {
+            List<Transform> ret = new List<Transform>();
             for (int i = 0; i < layer.childCount; ++i) {
-                layer.GetChild(i).gameObject.AddComponent<CompositeShadowCaster2D>();
-                var obj = layer.GetChild(i).GetChild(0).gameObject;
-                ShadowCaster2DFromCollider.Execute(obj);
+                var parent = layer.GetChild(i).GetChild(0);
+                for(int j = 0; j<parent.childCount; ++j) {
+                    ret.Add(parent.GetChild(j));
+                }
             }
+            return ret;
+        }
+
+        public void GenerateShadows(Transform layer) {
+            foreach (var edgeObj in GetEdges(layer)) {
+                ShadowCaster2DFromCollider.Execute(edgeObj.gameObject);
+            }
+            /*for (int i = 0; i < layer.childCount; ++i) {
+                layer.GetChild(i).gameObject.AddComponent<CompositeShadowCaster2D>();
+                var parent = layer.GetChild(i).GetChild(0);
+                for(int j = 0; j<parent.childCount; ++j) {
+                    ShadowCaster2DFromCollider.Execute(parent.GetChild(j));
+                }
+            }*/
 
             layer.gameObject.AddComponent<CompositeShadowCaster2D>();
         }
 
         public void AddComponentToLayer(Transform layer, string component) {
             for (int i = 0; i < layer.childCount; ++i) {
-                layer.GetChild(i).GetChild(0).gameObject.AddComponent(typings[component]);
+                var parent = layer.GetChild(i).GetChild(0);
+                for(int j = 0; j<parent.childCount; ++j) {
+                    parent.GetChild(j).gameObject.AddComponent(typings[component]);
+                }
+            }
+        }
+
+        public void SetLayer(Transform layer, string layerName) {
+            for (int i = 0; i < layer.childCount; ++i) {
+                var parent = layer.GetChild(i).GetChild(0);
+                for(int j = 0; j<parent.childCount; ++j) {
+                    parent.GetChild(j).gameObject.layer = LayerMask.NameToLayer(layerName);
+                }
             }
         }
 

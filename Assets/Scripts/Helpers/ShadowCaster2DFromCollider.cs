@@ -59,24 +59,24 @@ public class ShadowCaster2DFromCollider {
         typeof(ShadowCaster2D).GetMethod("OnEnable", accessFlagsPrivate);
 
     public static void Execute(GameObject g, bool selfShadows = false) {
-        var shadowCaster = g.AddComponent<ShadowCaster2D>();
+        var addedCaster = g.AddComponent<ShadowCaster2D>();
+        var polygon = g.GetComponent<EdgeCollider2D>();
+        addedCaster = g.GetComponent<UnityEngine.Experimental.Rendering.Universal.ShadowCaster2D>();
+        addedCaster.selfShadows = selfShadows;
+        
+        Vector3[] positions = new Vector3[polygon.points.Length];
 
-        var Polygon = g.GetComponent<PolygonCollider2D>();
-
-        shadowCaster = g.GetComponent<UnityEngine.Experimental.Rendering.Universal.ShadowCaster2D>();
-
-        shadowCaster.selfShadows = selfShadows;
-
-        Vector3[] positions = new Vector3[Polygon.GetTotalPointCount()];
-
-        for (int i = 0; i < Polygon.GetTotalPointCount(); i++) {
-            positions[i] = new Vector3(Polygon.points[i].x, Polygon.points[i].y, 0);
+        for (int i = 0; i < polygon.points.Length; i++) {
+            positions[i] = new Vector3(
+                polygon.points[i].x,
+                polygon.points[i].y, 
+            0);
         }
 
-        shapePathField.SetValue(shadowCaster, positions);
+        shapePathField.SetValue(addedCaster, positions);
 
-        meshField.SetValue(shadowCaster, null);
+        meshField.SetValue(addedCaster, null);
 
-        onEnableMethod.Invoke(shadowCaster, new object[0]);
+        onEnableMethod.Invoke(addedCaster, new object[0]);
     }
 }

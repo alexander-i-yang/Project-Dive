@@ -50,11 +50,11 @@ public class PlayerController : Actor {
         velocity = new Vector2(velocity.x, DoubleJumpV);
     }
     
-    public override bool OnCollide(PhysObj p) {
-        return p.PlayerCollide(this);
+    public override bool OnCollide(PhysObj p, Vector2 direction) {
+        return p.PlayerCollide(this, direction);
     }
 
-    public override bool PlayerCollide(PlayerController p) {
+    public override bool PlayerCollide(PlayerController p, Vector2 direction) {
         return false;
     }
 
@@ -64,8 +64,6 @@ public class PlayerController : Actor {
 
     public void Dive() {
         velocityY = DiveVelocity;
-        print("Dive");
-        print(velocityY);
     }
 
     /// <summary>
@@ -84,5 +82,9 @@ public class PlayerController : Actor {
 
     public bool EnterCrystal(Crystal c) {
         return _mySM.EnterCrystal(c);
+    }
+
+    public void BonkHead() {
+        velocityY = Math.Min(100, velocityY);
     }
 }

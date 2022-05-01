@@ -35,7 +35,7 @@ namespace Phys {
         /// <param name="direction"><b>MUST</b> be a cardinal direction with a <b>magnitude of one.</b></param>
         /// <param name="onCollide"></param>
         /// <returns></returns>
-        public bool CheckCollisions(Vector2 direction, Func<PhysObj, bool> onCollide) {
+        public bool CheckCollisions(Vector2 direction, Func<PhysObj, Vector2, bool> onCollide) {
             Vector2 colliderSize = myCollider.size;
             Vector2 sizeMult = colliderSize*0.97f;
             List<RaycastHit2D> hits = new List<RaycastHit2D>();
@@ -45,7 +45,8 @@ namespace Phys {
             int numHits = Physics2D.BoxCast(transform.position, sizeMult, 0, direction, filter, hits, 0.3f);
             if (numHits != 0) {
                 foreach (var hit in hits) {
-                    if (onCollide.Invoke(hit.transform.GetComponent<PhysObj>())) {
+                    var p = hit.transform.GetComponent<PhysObj>();
+                    if (onCollide.Invoke(p, direction)){
                         return true;
                     }
                 }
@@ -71,8 +72,8 @@ namespace Phys {
         }*/
 
         public abstract void Move(Vector2 velocity);
-        public abstract bool OnCollide(PhysObj p);
-        public abstract bool PlayerCollide(PlayerController p);
+        public abstract bool OnCollide(PhysObj p, Vector2 direction);
+        public abstract bool PlayerCollide(PlayerController p, Vector2 direction);
         
         public virtual bool IsGround(PhysObj whosAsking) {
             return true;

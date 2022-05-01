@@ -17,7 +17,7 @@ namespace Phys {
         /// <param name="magnitude">Must be <b>non-negative</b> amount of pixels to move.</param>
         /// <param name="OnCollide">Collision function that determines how to behave when colliding with an object</param>
         /// <returns>True if it needs to stop on a collision, false otherwise</returns>
-        public bool MoveGeneral(Vector2 direction, int magnitude, Func<PhysObj, bool> OnCollide) {
+        public bool MoveGeneral(Vector2 direction, int magnitude, Func<PhysObj, Vector2, bool> OnCollide) {
             if (magnitude < 0) throw new ArgumentException("Magnitude must be >0");
 
             int remainder = magnitude;
@@ -51,14 +51,14 @@ namespace Phys {
         public void Fall() {
             velocityY = Math.Max(MaxFall, velocityY + (velocityY > 0 ? GravityUp : GravityDown) * Game.FixedDeltaTime);
             //Stops the stalling problem
-            if (velocityY < 50 && velocityY > VelocityDownImmediate) {
+            if (velocityY < 0 && velocityY > VelocityDownImmediate) {
                 velocityY = VelocityDownImmediate;
             }
         }
 
         public bool IsGrounded() {
-            return CheckCollisions(Vector2.down, e => {
-                return e.IsGround(this);
+            return CheckCollisions(Vector2.down, (p, d) => {
+                return p.IsGround(this);
             });
         }
     }
