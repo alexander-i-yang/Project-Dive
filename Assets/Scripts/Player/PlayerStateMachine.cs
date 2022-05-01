@@ -1,9 +1,11 @@
 ﻿using System;
+using DefaultNamespace;
 using Mechanics;
 
 namespace Player {
     public class PlayerStateMachine : StateMachine<PlayerStateMachine, PlayerState, PlayerStateInput> {
         [NonSerialized] public double CoyoteTime = 0;
+        [NonSerialized] public double JJP = 0; //Jump input buffer
         [NonSerialized] public PlayerController P;
         [NonSerialized] public bool JumpedFromGround;
 
@@ -16,6 +18,7 @@ namespace Player {
 
         public void JumpPressed(bool pressed) {
             CurState.SetJumpPressed(pressed);
+            if (pressed) JJP = P.JJP;
         }
         
         public void DivePressed(bool pressed) {
@@ -28,6 +31,9 @@ namespace Player {
 
         private void FixedUpdate() {
             CurState.FixedUpdate();
+            if (JJP > 0) {
+                JJP = Math.Max(0, JJP - Game.FixedDeltaTime);
+            }
         }
 
         public bool EnterCrystal(Crystal c) {

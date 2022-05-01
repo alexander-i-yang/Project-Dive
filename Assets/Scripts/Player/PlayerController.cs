@@ -11,7 +11,8 @@ public class PlayerController : Actor {
     public int HSpeed;
     public int JumpV;
     public int DoubleJumpV;
-    public int CoyoteTime;
+    public double CoyoteTime;
+    public double JJP;
     public int DiveVelocity;
     public int DiveDecel;
     private PlayerStateMachine _mySM;

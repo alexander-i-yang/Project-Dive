@@ -1,4 +1,5 @@
-﻿using DefaultNamespace;
+﻿using System;
+using DefaultNamespace;
 using Mechanics;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
@@ -10,12 +11,20 @@ namespace Player {
             MySM.P.Land();
             MySM.DoubleJumpLeft = true;
             MySM.DiveLeft = true;
+
+            if (MySM.JJP > 0) {
+                Jump();
+            }
+        }
+
+        private void Jump() {
+            MySM.P.Jump();
+            MySM.JumpedFromGround = true;
         }
 
         public override void SetJumpPressed(bool pressed) {
             if (pressed) {
-                MySM.P.Jump();
-                MySM.JumpedFromGround = true;
+                Jump();
             }
         }
 
@@ -35,12 +44,6 @@ namespace Player {
     public class Airborne : PlayerState {
         public override void Enter(PlayerStateInput i) {
             MySM.CoyoteTime = MySM.P.CoyoteTime;
-        }
-
-        public override void Update(PlayerStateInput i) {
-            if (MySM.CoyoteTime > 0) {
-                MySM.CoyoteTime--;
-            }
         }
 
         public override void SetJumpPressed(bool pressed) {
@@ -69,6 +72,9 @@ namespace Player {
 
         public override void FixedUpdate() {
             MySM.P.Fall();
+            if (MySM.CoyoteTime > 0) {
+                MySM.CoyoteTime = Math.Max(0, MySM.CoyoteTime - Game.FixedDeltaTime);
+            }
         }
 
         public override bool EnterCrystal(Crystal c) {

@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace Mechanics {
     public class MovingBlock : Solid {
-        private int _startX;
-        public int vx;
+        private Vector2 _startX;
         void Start() {
             _startX = (int) transform.position.y;
             base.Start();
