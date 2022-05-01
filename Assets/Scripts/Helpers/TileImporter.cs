@@ -27,11 +27,20 @@ namespace Helpers {
                 var props = GetLayerProps(doc, layer);
                 if (props != null) {
                     string component = GetProp(props, "unity:Component");
-                    if (component != null) AddToChunk(layer.transform, component);
+                    if (component != null) AddComponentToLayer(layer.transform, component);
 
                     string castShadows = GetProp(props, "unity:CastShadows");
                     if (castShadows == "true") GenerateShadows(layer.transform);
+
+                    string offset = GetProp(props, "unity:anchorOffset");
+                    if (offset != null) AnchorOffset(layer.transform, Int32.Parse(offset));
                 }
+            }
+        }
+
+        public void AnchorOffset(Transform layer, int o) {
+            for (int i = 0; i < layer.childCount; ++i) {
+                layer.GetChild(i).position += new Vector3(o, o, 0);
             }
         }
 
@@ -45,7 +54,7 @@ namespace Helpers {
             layer.gameObject.AddComponent<CompositeShadowCaster2D>();
         }
 
-        public void AddToChunk(Transform layer, string component) {
+        public void AddComponentToLayer(Transform layer, string component) {
             for (int i = 0; i < layer.childCount; ++i) {
                 layer.GetChild(i).GetChild(0).gameObject.AddComponent(typings[component]);
             }

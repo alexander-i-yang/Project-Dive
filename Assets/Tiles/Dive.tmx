@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="8" tileheight="8" infinite="1" nextlayerid="3" nextobjectid="1">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="8" tileheight="8" infinite="1" nextlayerid="4" nextobjectid="29">
  <tileset firstgid="1" source="Rocks.tsx"/>
  <tileset firstgid="37" source="Spikes.tsx"/>
+ <tileset firstgid="53" source="Mechanics.tsx"/>
  <layer id="1" name="Ground" width="100" height="100">
   <properties>
    <property name="unity:CastShadows" type="bool" value="true"/>
@@ -127,4 +128,15 @@
 </chunk>
   </data>
  </layer>
+ <objectgroup id="3" name="Mechanics">
+  <properties>
+   <property name="unity:anchorOffset" type="int" value="4"/>
+  </properties>
+  <object id="22" gid="53" x="64" y="-64" width="8" height="8"/>
+  <object id="23" gid="53" x="112" y="-32" width="8" height="8"/>
+  <object id="24" gid="53" x="16" y="-32" width="8" height="8"/>
+  <object id="25" gid="53" x="-8" y="-72" width="8" height="8"/>
+  <object id="27" gid="53" x="-112.667" y="-72.6667" width="8" height="8"/>
+  <object id="28" gid="53" x="-62" y="-91.3333" width="8" height="8"/>
+ </objectgroup>
 </map>

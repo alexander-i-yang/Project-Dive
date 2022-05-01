@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff72ddc2da234e244a8e96eb44e4c03d, type: 3}
   m_Name: ST2U Settings
   m_EditorClassIdentifier: 
-  m_PixelsPerUnit: 100
+  m_PixelsPerUnit: 1
   m_EdgesPerEllipse: 32
-  m_AnimationFramerate: 20
+  m_AnimationFramerate: 12
   m_DefaultMaterial: {fileID: 0}
   m_MaterialMatchings: []
   m_ObjectTypesXml: {fileID: 0}
@@ -54,4 +54,6 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 1, a: 1}
   - {r: 0.7372549, g: 0.56078434, b: 0.56078434, a: 1}
   m_CustomObjectTypes: []
-  m_PrefabReplacements: []
+  m_PrefabReplacements:
+  - m_TypeName: Blue Crystal
+    m_Prefab: {fileID: 929138509278991383, guid: 968e9a9234b749f48b71b53290ecac08, type: 3}
