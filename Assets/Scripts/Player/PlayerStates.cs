@@ -11,7 +11,6 @@ namespace Player {
             MySM.P.Land();
             MySM.DoubleJumpLeft = true;
             MySM.DiveLeft = true;
-
             if (MySM.JJP > 0) {
                 Jump();
             }
@@ -148,7 +147,9 @@ namespace Player {
         }
 
         public override void SetGrounded(bool isGrounded) {
-            if (isGrounded) MySM.Transition<Grounded>();
+            if (isGrounded) {
+                MySM.Transition<Grounded>();
+            }
         }
     }
 }

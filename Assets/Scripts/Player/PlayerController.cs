@@ -44,7 +44,6 @@ public class PlayerController : Actor {
     }
 
     void FixedUpdate() {
-        _mySM.SetGrounded(IsGrounded());
         base.FixedUpdate();
         if (ShouldBreak) {
             MoveRight = true;
@@ -52,9 +51,13 @@ public class PlayerController : Actor {
         }
     }
 
+    public void SetGrounded() {
+        _mySM.SetGrounded(true);
+    }
 
     public void Jump() {
         velocity = new Vector2(velocity.x, JumpV);
+        _mySM.SetGrounded(false);
     }
     
     public void DoubleJump() {
@@ -62,6 +65,10 @@ public class PlayerController : Actor {
     }
     
     public override bool OnCollide(PhysObj p, Vector2 direction) {
+        if (direction.y < 0 && p.IsGround(this)) {
+            SetGrounded();
+        }
+
         return p.PlayerCollide(this, direction);
     }
 
@@ -108,5 +115,9 @@ public class PlayerController : Actor {
             Die();
         }
         return false;
+    }
+
+    public bool IsDiving() {
+        return _mySM.IsOnState<Diving>();
     }
 }

@@ -16,15 +16,15 @@ namespace Phys {
         /// </summary>
         /// <param name="direction"><b>MUST</b> be a cardinal direction with a <b>magnitude of one.</b></param>
         /// <param name="magnitude">Must be <b>non-negative</b> amount of pixels to move.</param>
-        /// <param name="OnCollide">Collision function that determines how to behave when colliding with an object</param>
+        /// <param name="onCollide">Collision function that determines how to behave when colliding with an object</param>
         /// <returns>True if it needs to stop on a collision, false otherwise</returns>
-        public override bool MoveGeneral(Vector2 direction, int magnitude, Func<PhysObj, Vector2, bool> OnCollide) {
+        public override bool MoveGeneral(Vector2 direction, int magnitude, Func<PhysObj, Vector2, bool> onCollide) {
             if (magnitude < 0) throw new ArgumentException("Magnitude must be >0");
 
             int remainder = magnitude;
             // If the actor moves at least 1 pixel, Move one pixel at a time
             while (remainder > 0) {
-                bool collision = CheckCollisions(direction, OnCollide);
+                bool collision = CheckCollisions(direction, onCollide);
                 if (collision) {
                     return true;
                 }
@@ -42,12 +42,6 @@ namespace Phys {
             if (velocityY < 0 && velocityY > VelocityDownImmediate) {
                 velocityY = VelocityDownImmediate;
             }
-        }
-
-        public bool IsGrounded() {
-            return CheckCollisions(Vector2.down, (p, d) => {
-                return p.IsGround(this);
-            });
         }
 
         public bool IsRiding(Solid s) {

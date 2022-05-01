@@ -10,7 +10,7 @@ namespace Phys {
         protected BoxCollider2D myCollider { get; private set; }
         protected Vector2 velocity = Vector2.zero;
 
-        public Vector2 nextFrameOffset = Vector2.zero;
+        [NonSerialized] public Vector2 nextFrameOffset = Vector2.zero;
 
         protected float velocityY {
             get { return velocity.y; }
@@ -32,12 +32,14 @@ namespace Phys {
         }
 
         /// <summary>
-        /// Checks the interactable layer for any collisions. Will call OnCollide if it hits anything.
+        /// Checks the interactable layer for any collisions. Will call onCollide if it hits anything.
         /// </summary>
         /// <param name="direction"><b>MUST</b> be a cardinal direction with a <b>magnitude of one.</b></param>
         /// <param name="onCollide"></param>
         /// <returns></returns>
         public bool CheckCollisions(Vector2 direction, Func<PhysObj, Vector2, bool> onCollide) {
+            if (myCollider == null) { return true; }
+
             Vector2 colliderSize = myCollider.size;
             Vector2 sizeMult = colliderSize*0.97f;
             List<RaycastHit2D> hits = new List<RaycastHit2D>();
@@ -85,7 +87,7 @@ namespace Phys {
                 MoveGeneral(yDir, moveY, OnCollide);
             }
         }
-        public abstract bool MoveGeneral(Vector2 direction, int magnitude, Func<PhysObj, Vector2, bool> OnCollide);
+        public abstract bool MoveGeneral(Vector2 direction, int magnitude, Func<PhysObj, Vector2, bool> onCollide);
 
         public abstract bool OnCollide(PhysObj p, Vector2 direction);
 
