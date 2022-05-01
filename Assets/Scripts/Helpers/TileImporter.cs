@@ -62,13 +62,6 @@ namespace Helpers {
             foreach (var edgeObj in GetEdges(layer)) {
                 ShadowCaster2DFromCollider.Execute(edgeObj.gameObject);
             }
-            /*for (int i = 0; i < layer.childCount; ++i) {
-                layer.GetChild(i).gameObject.AddComponent<CompositeShadowCaster2D>();
-                var parent = layer.GetChild(i).GetChild(0);
-                for(int j = 0; j<parent.childCount; ++j) {
-                    ShadowCaster2DFromCollider.Execute(parent.GetChild(j));
-                }
-            }*/
 
             layer.gameObject.AddComponent<CompositeShadowCaster2D>();
         }

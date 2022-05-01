@@ -1,5 +1,6 @@
 ﻿using System;
 using DefaultNamespace;
+using Mechanics;
 using UnityEngine;
 
 namespace Phys {
@@ -17,7 +18,7 @@ namespace Phys {
         /// <param name="magnitude">Must be <b>non-negative</b> amount of pixels to move.</param>
         /// <param name="OnCollide">Collision function that determines how to behave when colliding with an object</param>
         /// <returns>True if it needs to stop on a collision, false otherwise</returns>
-        public bool MoveGeneral(Vector2 direction, int magnitude, Func<PhysObj, Vector2, bool> OnCollide) {
+        public override bool MoveGeneral(Vector2 direction, int magnitude, Func<PhysObj, Vector2, bool> OnCollide) {
             if (magnitude < 0) throw new ArgumentException("Magnitude must be >0");
 
             int remainder = magnitude;
@@ -28,24 +29,11 @@ namespace Phys {
                     return true;
                 }
                 transform.position += new Vector3((int)direction.x, (int)direction.y, 0);
-                remainder -= 1;
+                nextFrameOffset += direction;
+                remainder--;
             }
-
+            
             return false;
-        }
-
-        public override void Move(Vector2 vel) {
-            int moveX = (int) Math.Abs(vel.x);
-            if (moveX != 0) {
-                Vector2 xDir = new Vector2(vel.x / moveX, 0);
-                MoveGeneral(xDir, moveX, OnCollide);
-            }
-
-            int moveY = (int) Math.Abs(vel.y);
-            if (moveY != 0) {
-                Vector2 yDir = new Vector2(0, vel.y / moveY);
-                MoveGeneral(yDir, moveY, OnCollide);
-            }
         }
 
         public void Fall() {
@@ -59,6 +47,12 @@ namespace Phys {
         public bool IsGrounded() {
             return CheckCollisions(Vector2.down, (p, d) => {
                 return p.IsGround(this);
+            });
+        }
+
+        public bool IsRiding(Solid s) {
+            return CheckCollisions(Vector2.down, (p, d) => {
+                return p == s;
             });
         }
     }

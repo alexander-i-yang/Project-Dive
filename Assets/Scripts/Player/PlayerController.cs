@@ -1,4 +1,5 @@
 using System;
+using Helpers;
 using Mechanics;
 using Phys;
 using Player;
@@ -14,6 +15,9 @@ public class PlayerController : Actor {
     public int DiveVelocity;
     public int DiveDecel;
     private PlayerStateMachine _mySM;
+
+    public bool ShouldBreak;
+    public bool MoveRight;
     protected void Start() {
         _mySM = GetComponent<PlayerStateMachine>();
         _mySM.P = this;
@@ -33,12 +37,18 @@ public class PlayerController : Actor {
             velocityX = 0;
         }
 
+        if (MoveRight) velocityX = HSpeed;
+
         // GetComponent<SpriteRenderer>().color = CheckCollisions(Vector2.down, e => true) ? Color.red : Color.blue;
     }
 
     void FixedUpdate() {
         _mySM.SetGrounded(IsGrounded());
         base.FixedUpdate();
+        if (ShouldBreak) {
+            MoveRight = true;
+            Debug.Break();
+        }
     }
 
 
@@ -55,6 +65,10 @@ public class PlayerController : Actor {
     }
 
     public override bool PlayerCollide(PlayerController p, Vector2 direction) {
+        return false;
+    }
+
+    public override bool IsGround(PhysObj whosAsking) {
         return false;
     }
 
@@ -86,5 +100,12 @@ public class PlayerController : Actor {
 
     public void BonkHead() {
         velocityY = Math.Min(100, velocityY);
+    }
+
+    public override bool Squish(PhysObj p, Vector2 d) {
+        if (OnCollide(p, d)) {
+            Die();
+        }
+        return false;
     }
 }
