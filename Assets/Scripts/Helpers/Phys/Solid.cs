@@ -25,13 +25,17 @@ namespace Phys {
                     if (p == this) {
                         return false;
                     }
-
+                    
                     if (ridingActors.Contains(p)) {
                         ridingActors.Remove((Actor)p);
-                    } else if (!allActors.Contains(p)) {
+                    }
+                    
+                    if (!allActors.Contains(p)) {
                         if (onCollide(p, d)) {
                             return true;
                         }
+                    } else {
+                        p.MoveGeneral(direction, 1, p.Squish);
                     }
 
                     return false;

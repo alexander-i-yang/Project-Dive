@@ -22,6 +22,7 @@
             if (MySM.M.PositionedAtEnd()) {
                 MySM.Transition<Returning>();
             }
+            // MySM.M.Decel();
         }
 
         public override void Zoom() {

@@ -51,7 +51,6 @@ namespace Mechanics {
         }
         
         public bool PositionedAtEnd() {
-            print(DistanceFromStart());
             return DistanceFromStart() >= 16;
         }
 
