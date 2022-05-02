@@ -68,7 +68,7 @@ public abstract class StateMachine<M, S, I> : MonoBehaviour
         return CurState.GetType() == typeof(CheckStateType);
     }
 
-    protected virtual void Init() { }
+    public virtual void Init() { }
     protected abstract void SetInitialState();
 }
 

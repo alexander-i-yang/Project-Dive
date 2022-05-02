@@ -6,6 +6,7 @@ using Player;
 using UnityEngine;
 using UnityEngine.Experimental.Audio;
 
+[RequireComponent(typeof(PlayerStateMachine))]
 public class PlayerController : Actor {
     [Header("Controls")]
     public int HSpeed;
@@ -44,6 +45,10 @@ public class PlayerController : Actor {
     }
 
     void FixedUpdate() {
+        if (!IsGrounded()) {
+            SetGrounded(false);
+        }
+
         base.FixedUpdate();
         if (ShouldBreak) {
             MoveRight = true;
@@ -51,8 +56,8 @@ public class PlayerController : Actor {
         }
     }
 
-    public void SetGrounded() {
-        _mySM.SetGrounded(true);
+    public void SetGrounded(bool b) {
+        _mySM.SetGrounded(b);
     }
 
     public void Jump() {
@@ -65,11 +70,12 @@ public class PlayerController : Actor {
     }
     
     public override bool OnCollide(PhysObj p, Vector2 direction) {
+        bool col = p.PlayerCollide(this, direction);
         if (direction.y < 0 && p.IsGround(this)) {
-            SetGrounded();
+            SetGrounded(true);
         }
 
-        return p.PlayerCollide(this, direction);
+        return col;
     }
 
     public override bool PlayerCollide(PlayerController p, Vector2 direction) {

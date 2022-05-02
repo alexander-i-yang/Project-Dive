@@ -49,5 +49,11 @@ namespace Phys {
                 return p == s;
             });
         }
+        
+        public bool IsGrounded() {
+            return CheckCollisions(Vector2.down, (p, d) => {
+                return p.IsGround(this);
+            });
+        }
     }
 }
