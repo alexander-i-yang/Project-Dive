@@ -104,7 +104,7 @@ public class PlayerController : Actor {
     }
 
     public void Die() {
-        transform.position = new Vector2(0, 60);
+        transform.position = new Vector2(-109, 23);
         velocity = Vector2.zero;
     }
 

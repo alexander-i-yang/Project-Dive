@@ -11,7 +11,7 @@ namespace Player {
             MySM.P.Land();
             MySM.DoubleJumpLeft = true;
             MySM.DiveLeft = true;
-            if (MySM.JJP > 0) {
+            if (MySM.JJP > 0 && !MySM.PrevStateEquals<Diving>()) {
                 Jump();
             }
         }

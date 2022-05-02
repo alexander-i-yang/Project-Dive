@@ -18,12 +18,15 @@ public abstract class StateMachine<M, S, I> : MonoBehaviour
     where I : StateInput
 {
     public Dictionary<Type, S> StateMap { get; private set; }
-    public S CurState { get; protected set; }
+    public S CurState { get; private set; }
+    public S PrevState { get; private set; }
     public I CurInput { get; private set; }
 
     protected void SetCurState<T>() where T : S {
         if (StateMap.ContainsKey(typeof(T))) {
+            PrevState = CurState;
             CurState = StateMap[typeof(T)];
+            if (PrevState == null) PrevState = CurState;
         } else {
             Debug.LogError("Error: state machine doesn't include type " + typeof(T));
             Debug.Break();
@@ -31,6 +34,10 @@ public abstract class StateMachine<M, S, I> : MonoBehaviour
     }
 
     void InitStateInput() { CurInput = (I) Activator.CreateInstance(typeof(I)); }
+
+    public bool PrevStateEquals<T>() where T : S {
+        return typeof(T) == PrevState.GetType();
+    }
 
     // Start is called before the first frame update
     void Start() {
