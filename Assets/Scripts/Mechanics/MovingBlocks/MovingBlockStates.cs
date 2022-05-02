@@ -1,4 +1,6 @@
-﻿namespace Mechanics.MovingBlocks {
+﻿using System.Numerics;
+
+namespace Mechanics.MovingBlocks {
     public class Idle : MovingBlockState {
         public override void Enter(MovingBlockInput i) {
             MySM.M.Stop();
@@ -8,8 +10,8 @@
             
         }
         
-        public override void Zoom() {
-            MySM.Transition<Zooming>();
+        public override void HitWall() {
+            // MySM.Transition<Zooming>();
         }
     }
     
@@ -19,14 +21,14 @@
         }
 
         public override void FixedUpdate() {
-            if (MySM.M.PositionedAtEnd()) {
+            if (MySM.M.PositionedAtZoomEnd()) {
                 MySM.Transition<Returning>();
             }
             // MySM.M.Decel();
         }
 
-        public override void Zoom() {
-            MySM.Transition<Zooming>();
+        public override void HitWall() {
+            MySM.Transition<Returning>();
         }
     }
     
@@ -38,8 +40,8 @@
             }
         }
         
-        public override void Zoom() {
-            MySM.Transition<Zooming>();
+        public override void HitWall() {
+            MySM.Transition<Idle>();
         }
     }
 }

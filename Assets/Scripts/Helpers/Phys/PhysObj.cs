@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DefaultNamespace;
-using Mechanics;
+using Helpers;
 using UnityEngine;
 
 namespace Phys {
@@ -10,7 +10,7 @@ namespace Phys {
         protected BoxCollider2D myCollider { get; private set; }
         protected Vector2 velocity = Vector2.zero;
 
-        [NonSerialized] public Vector2 nextFrameOffset = Vector2.zero;
+        [NonSerialized] public Vector2 NextFrameOffset = Vector2.zero;
 
         protected float velocityY {
             get { return velocity.y; }
@@ -27,7 +27,7 @@ namespace Phys {
         }
 
         public void FixedUpdate() {
-            nextFrameOffset = Vector2.zero;
+            NextFrameOffset = Vector2.zero;
             Move(velocity * Game.FixedDeltaTime);
         }
 
@@ -41,16 +41,24 @@ namespace Phys {
             if (myCollider == null) { return true; }
 
             Vector2 colliderSize = myCollider.size;
-            Vector2 sizeMult = colliderSize*0.97f;
+            Vector2 sizeMult = colliderSize - Vector2.one;
             List<RaycastHit2D> hits = new List<RaycastHit2D>();
             ContactFilter2D filter = new ContactFilter2D();
             filter.layerMask = LayerMask.GetMask("Interactable");
             filter.useLayerMask = true;
             Physics2D.BoxCast(transform.position, sizeMult, 0, direction, filter, hits, 8f);
+
             foreach (var hit in hits) {
                 var p = hit.transform.GetComponent<PhysObj>();
 
-                bool proactiveCollision = ProactiveBoxCast(p.transform, p.nextFrameOffset, sizeMult, direction, filter);
+                bool proactiveCollision = ProactiveBoxCast(
+                    p.transform, 
+                    p.NextFrameOffset,
+                    sizeMult,
+                    1,
+                    direction, 
+                    filter
+                );
                 if (proactiveCollision) {
                     if (onCollide.Invoke(p, direction)){
                         return true;
@@ -61,17 +69,38 @@ namespace Phys {
             return false;
         }
 
-        public bool ProactiveBoxCast(Transform checkAgainst, Vector3 nextFrameOffset, Vector2 sizeMult, Vector2 direction, ContactFilter2D filter) {
+        public bool ProactiveBoxCast(Transform checkAgainst, Vector3 nextFrameOffset, Vector2 sizeMult, float dist, Vector2 direction, ContactFilter2D filter) {
             List<RaycastHit2D> hits = new List<RaycastHit2D>();
             int numHits = Physics2D.BoxCast(
                 transform.position - nextFrameOffset,
-                sizeMult, 0, direction, filter, hits, 0.3f);
+                size: sizeMult, 
+                angle: 0, 
+                direction: direction, 
+                distance: dist,
+                results: hits, 
+                contactFilter: filter
+            );
             foreach (var hit in hits) {
                 if (hit.transform == checkAgainst) {
                     return true;
                 }
             }
             return false;
+        }
+        
+        private void OnDrawGizmosSelected() {
+            Vector2 direction = velocity == Vector2.zero ? Vector2.up : velocity.normalized;
+            Vector2 colliderSize = GetComponent<BoxCollider2D>().size;
+            Vector2 sizeMult = colliderSize - Vector2.one;
+            // Vector2 sizeMult = colliderSize;
+            BoxDrawer.DrawBoxCast2D(
+                origin: (Vector2) transform.position,
+                size: sizeMult,
+                direction: direction,
+                distance: 1,
+                angle: 0,
+                color: Color.blue
+            );
         }
 
         public void Move(Vector2 vel) {

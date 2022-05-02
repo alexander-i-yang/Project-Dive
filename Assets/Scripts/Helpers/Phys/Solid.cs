@@ -14,13 +14,16 @@ namespace Phys {
             
             // If the actor moves at least 1 pixel, Move one pixel at a time
             while (remainder > 0) {
-                if (CheckCollisions(Vector2.zero, (p, d) => {
-                    return p != this && onCollide(p, d);
-                })) {
-                    Debug.LogError("Stuck");
-                }
+                CheckCollisions(Vector2.zero, (p, d) => {
+                    bool ret = p != this && onCollide(p, d);
+                    if (ret) {
+                        Debug.LogError("Stuck against" + p);
+                    }
 
-                List<Actor> ridingActors = GetRidingActors(allActors);
+                    return ret;
+                });
+
+                    List<Actor> ridingActors = GetRidingActors(allActors);
                 bool collision = CheckCollisions(direction, (p, d) => {
                     if (p == this) {
                         return false;
@@ -29,7 +32,6 @@ namespace Phys {
                     if (ridingActors.Contains(p)) {
                         ridingActors.Remove((Actor)p);
                     }
-                    
                     if (!allActors.Contains(p)) {
                         if (onCollide(p, d)) {
                             return true;
@@ -47,7 +49,7 @@ namespace Phys {
                 if (collision) return true;
                 
                 transform.position += new Vector3((int)direction.x, (int)direction.y, 0);
-                nextFrameOffset += direction;
+                NextFrameOffset += direction;
                 remainder -= 1;
             }
             

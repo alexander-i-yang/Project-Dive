@@ -29,7 +29,7 @@ namespace Phys {
                     return true;
                 }
                 transform.position += new Vector3((int)direction.x, (int)direction.y, 0);
-                nextFrameOffset += direction;
+                NextFrameOffset += direction;
                 remainder--;
             }
             

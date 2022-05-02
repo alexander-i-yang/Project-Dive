@@ -17,14 +17,14 @@ namespace Mechanics {
             CurState.FixedUpdate();
         }
 
-        public void Zoom() {
-            CurState.Zoom();
+        public void HitWall() {
+            CurState.HitWall();
         }
     }
 
     public abstract class MovingBlockState : State<MovingBlockSM, MovingBlockState, MovingBlockInput> {
         public abstract void FixedUpdate();
-        public abstract void Zoom();
+        public abstract void HitWall();
     }
 
     public class MovingBlockInput : StateInput { }
