@@ -20,7 +20,7 @@ public class PlayerController : Actor {
 
     public bool ShouldBreak;
     public bool MoveRight;
-    protected void Start() {
+    protected new void Start() {
         _mySM = GetComponent<PlayerStateMachine>();
         _mySM.P = this;
         base.Start();
@@ -44,7 +44,7 @@ public class PlayerController : Actor {
         // GetComponent<SpriteRenderer>().color = CheckCollisions(Vector2.down, e => true) ? Color.red : Color.blue;
     }
 
-    void FixedUpdate() {
+    new void FixedUpdate() {
         if (!IsGrounded()) {
             SetGrounded(false);
         }

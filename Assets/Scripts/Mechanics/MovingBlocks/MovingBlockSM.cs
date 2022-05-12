@@ -1,5 +1,5 @@
-﻿using System;
-using Mechanics.MovingBlocks;
+﻿using Mechanics.MovingBlocks;
+using UnityEngine;
 
 namespace Mechanics {
     public class MovingBlockSM : StateMachine<MovingBlockSM, MovingBlockState, MovingBlockInput> {
@@ -14,6 +14,11 @@ namespace Mechanics {
         }
 
         public void FixedUpdate() {
+            if (CurState == null) {
+                Debug.LogError("Curstate null");
+                SetInitialState();
+            }
+
             CurState.FixedUpdate();
         }
 

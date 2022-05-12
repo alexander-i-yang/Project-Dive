@@ -11,6 +11,7 @@ namespace Phys {
         protected Vector2 velocity = Vector2.zero;
 
         [NonSerialized] public Vector2 NextFrameOffset = Vector2.zero;
+        [NonSerialized] private Vector2 MoveRemainder = Vector2.zero;
 
         protected float velocityY {
             get { return velocity.y; }
@@ -90,7 +91,9 @@ namespace Phys {
         
         private void OnDrawGizmosSelected() {
             Vector2 direction = velocity == Vector2.zero ? Vector2.up : velocity.normalized;
-            Vector2 colliderSize = GetComponent<BoxCollider2D>().size;
+            var col = GetComponent<BoxCollider2D>();
+            if (col == null) return;
+            Vector2 colliderSize = col.size;
             Vector2 sizeMult = colliderSize - Vector2.one;
             // Vector2 sizeMult = colliderSize;
             BoxDrawer.DrawBoxCast2D(
@@ -104,6 +107,7 @@ namespace Phys {
         }
 
         public void Move(Vector2 vel) {
+            vel += MoveRemainder;
             int moveX = (int) Math.Abs(vel.x);
             if (moveX != 0) {
                 Vector2 xDir = new Vector2(vel.x / moveX, 0);
@@ -115,6 +119,9 @@ namespace Phys {
                 Vector2 yDir = new Vector2(0, vel.y / moveY);
                 MoveGeneral(yDir, moveY, OnCollide);
             }
+
+            Vector2 truncVel = new Vector2((int) vel.x, (int) vel.y);
+            MoveRemainder = vel - truncVel;
         }
         public abstract bool MoveGeneral(Vector2 direction, int magnitude, Func<PhysObj, Vector2, bool> onCollide);
 

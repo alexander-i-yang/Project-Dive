@@ -2,6 +2,7 @@
 using DefaultNamespace;
 using Mechanics.MovingBlocks;
 using Phys;
+using UnityEditor;
 using UnityEngine;
 
 namespace Mechanics {
@@ -62,12 +63,18 @@ namespace Mechanics {
             return (int) (d.x + d.y);
         }
 
-        public void Decel() {
-            velocity += _direction * _decel;
+        public void Return() {
+            velocity = _direction * -_magnitude;
         }
 
         public void Stop() {
             velocity = Vector2.zero;
+        }
+
+        public void OnDrawGizmosSelected() {
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.red; 
+            Handles.Label(transform.position, "" + velocity, style);
         }
     }
 }

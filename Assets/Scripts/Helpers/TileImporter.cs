@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Xml;
 using System.Xml.Linq;
 using Mechanics;
 using SuperTiled2Unity;
@@ -36,15 +38,33 @@ namespace Helpers {
                     if (castShadows == "true") GenerateShadows(layer.transform);
 
                     string offset = GetProp(props, "unity:anchorOffset");
-                    if (offset != null) AnchorOffset(layer.transform, Int32.Parse(offset));
+                    if (offset == "true") AnchorOffset(layer.transform, GetLayer(doc, layer));
                 }
             }
         }
 
-        public void AnchorOffset(Transform layer, int o) {
-            for (int i = 0; i < layer.childCount; ++i) {
-                layer.GetChild(i).position += new Vector3(o, o, 0);
+        public void AnchorOffset(Transform layer, XElement docLayer) {
+            int i = 0;
+            foreach (var xElement in docLayer.Elements()) {
+                Vector2 size = WidthAndHeight(xElement);
+                string templatePath = xElement.GetAttributeAs<string>("template");
+                Transform transformObj = FindObjByID(layer, xElement.GetAttributeAs<string>("id"));
+                if (size != Vector2.zero && transformObj != null) {
+                    
+                } else if (templatePath != null) {
+                    XElement templateX = XElementFromTemplatePath(templatePath);
+                    size = WidthAndHeight(templateX);
+                    size.y *= -1;
+                }
+                transformObj.position += new Vector3(size.x/2, size.y/2, 0);
+
+                // layer.GetChild(i).position += new Vector3(s.x, -s.y, 0);
+                ++i;
             }
+        }
+
+        public Vector2 WidthAndHeight(XElement o) {
+            return new Vector2(o.GetAttributeAs<Int16>("width"), o.GetAttributeAs<Int16>("width"));
         }
 
         public List<Transform> GetEdges(Transform layer) {
@@ -95,14 +115,32 @@ namespace Helpers {
         }
 
         public XElement GetLayerProps(XDocument doc, SuperLayer layer) {
+            return GetLayer(doc, layer).Element("properties");
+        }
+
+        public XElement GetLayer(XDocument doc, SuperLayer layer) {
             foreach (XElement xNode in doc.Element("map").Elements()) {
                 XAttribute curName = xNode.Attribute("name");
                 if (curName != null && curName.Value == layer.name) {
-                    return xNode.Element("properties");
+                    return xNode;
                 }
             }
 
             return null;
+        }
+
+        public Transform FindObjByID(Transform parent, string id) {
+            for (var i=0; i < parent.childCount; i++){
+                if(parent.GetChild(i).name.Contains("Object_" + id)) {
+                    return parent.GetChild(i);
+                }
+            }
+
+            return null;
+        }
+
+        public XElement XElementFromTemplatePath(String path) {
+            return XDocument.Load("Assets/Tiles/" + path).Descendants("object").First();
         }
     }
 }

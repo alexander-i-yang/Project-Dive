@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+﻿using UnityEngine;
 
 namespace Mechanics.MovingBlocks {
     public class Idle : MovingBlockState {
@@ -24,6 +24,7 @@ namespace Mechanics.MovingBlocks {
             if (MySM.M.PositionedAtZoomEnd()) {
                 MySM.Transition<Returning>();
             }
+            Debug.Break();
             // MySM.M.Decel();
         }
 
@@ -33,8 +34,12 @@ namespace Mechanics.MovingBlocks {
     }
     
     public class Returning : MovingBlockState {
+        public override void Enter(MovingBlockInput i) {
+            MySM.M.Return();
+        }
+
         public override void FixedUpdate() {
-            MySM.M.Decel();
+            Debug.Break();
             if (MySM.M.PositionedAtStart()) {
                 MySM.Transition<Idle>();
             }
