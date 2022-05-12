@@ -40,7 +40,7 @@ public abstract class StateMachine<M, S, I> : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start() {
+    protected void Start() {
         InitStateInput();
         
         //The below code was provided by Side By Side (Producer: Yoon Lee), who got it from Brandon Shockley
@@ -61,8 +61,16 @@ public abstract class StateMachine<M, S, I> : MonoBehaviour
         SetInitialState();
     }
 
-    protected void Update() {
-        CurState.Update(CurInput);
+    public void Update() {
+        CurState.Update();
+    }
+    
+    public virtual void FixedUpdate() {
+        if (CurState == null) {
+            Debug.LogError("Curstate null");
+            Start();
+        }
+        CurState.FixedUpdate();
     }
 
     public void Transition<NextStateType>() where NextStateType : S {
@@ -89,7 +97,8 @@ public abstract class State <M, S, I>
     public virtual void Enter(I i) { }
     public virtual void Exit(I i) { }
 
-    public virtual void Update(I i) { }
+    public virtual void Update() { }
+    public virtual void FixedUpdate() { }
 
     public void Transition() { }
 }

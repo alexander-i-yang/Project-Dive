@@ -44,11 +44,10 @@ public class PlayerController : Actor {
         // GetComponent<SpriteRenderer>().color = CheckCollisions(Vector2.down, e => true) ? Color.red : Color.blue;
     }
 
-    new void FixedUpdate() {
+    public override void FixedUpdate() {
         if (!IsGrounded()) {
             SetGrounded(false);
         }
-
         base.FixedUpdate();
         if (ShouldBreak) {
             MoveRight = true;

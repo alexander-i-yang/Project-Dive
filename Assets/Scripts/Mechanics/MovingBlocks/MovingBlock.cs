@@ -42,14 +42,6 @@ namespace Mechanics {
             velocity = _direction*_magnitude;
         }
 
-        public new void FixedUpdate() {
-            /*if (velocity != Vector2.zero) {
-                velocity += _direction * (_decel * Game.FixedDeltaTime);
-            }*/
-            _mySM.FixedUpdate();
-            base.FixedUpdate();
-        }
-
         public bool PositionedAtStart() {
             return DistanceFromPos(_startPos) <= 0;
         }

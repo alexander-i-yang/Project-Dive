@@ -27,7 +27,7 @@ namespace Phys {
             myCollider = GetComponent<BoxCollider2D>();
         }
 
-        public void FixedUpdate() {
+        public virtual void FixedUpdate() {
             NextFrameOffset = Vector2.zero;
             Move(velocity * Game.FixedDeltaTime);
         }
@@ -104,6 +104,7 @@ namespace Phys {
                 angle: 0,
                 color: Color.blue
             );
+            Helper.DrawText(transform.position, "" + velocity.x + " " + MoveRemainder.x);
         }
 
         public void Move(Vector2 vel) {

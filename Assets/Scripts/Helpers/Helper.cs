@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
+using UnityEditor;
 using UnityEngine;
 
 namespace Helpers {
@@ -114,6 +115,12 @@ namespace Helpers {
             }
 
             t.localPosition = origPos;
+        }
+
+        public static void DrawText(Vector3 pos, string text, Color col = default) {
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = col == default ? Color.white : col; 
+            Handles.Label(pos, text, style);
         }
     }
 }

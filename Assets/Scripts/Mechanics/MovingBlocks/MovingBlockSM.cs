@@ -13,12 +13,8 @@ namespace Mechanics {
             SetCurState<Idle>();
         }
 
-        public void FixedUpdate() {
-            if (CurState == null) {
-                Debug.LogError("Curstate null");
-                SetInitialState();
-            }
-
+        public override void FixedUpdate() {
+            base.FixedUpdate();
             CurState.FixedUpdate();
         }
 

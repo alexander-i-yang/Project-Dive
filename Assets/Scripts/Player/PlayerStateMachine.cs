@@ -30,11 +30,11 @@ namespace Player {
             CurState.SetGrounded(isGrounded);
         }
 
-        private void FixedUpdate() {
-            CurState.FixedUpdate();
+        public override void FixedUpdate() {
             if (JJP > 0) {
                 JJP = Math.Max(0, JJP - Game.FixedDeltaTime);
             }
+            base.FixedUpdate();
         }
 
         public bool EnterCrystal(Crystal c) {
@@ -47,7 +47,6 @@ namespace Player {
         public abstract void SetDivePressed(bool pressed);
 
         public abstract void SetGrounded(bool isGrounded);
-        public virtual void FixedUpdate() { }
         public abstract bool EnterCrystal(Crystal c);
     }
 

@@ -24,8 +24,6 @@ namespace Mechanics.MovingBlocks {
             if (MySM.M.PositionedAtZoomEnd()) {
                 MySM.Transition<Returning>();
             }
-            Debug.Break();
-            // MySM.M.Decel();
         }
 
         public override void HitWall() {
@@ -39,7 +37,6 @@ namespace Mechanics.MovingBlocks {
         }
 
         public override void FixedUpdate() {
-            Debug.Break();
             if (MySM.M.PositionedAtStart()) {
                 MySM.Transition<Idle>();
             }
