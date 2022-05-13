@@ -107,7 +107,6 @@ namespace Phys {
                 angle: 0,
                 color: Color.blue
             );
-            Helper.DrawText(transform.position, "" + velocity.x + " " + MoveRemainder.x);
         }
 
         public void Move(Vector2 vel) {

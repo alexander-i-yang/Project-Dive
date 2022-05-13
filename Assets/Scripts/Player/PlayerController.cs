@@ -3,6 +3,7 @@ using Helpers;
 using Mechanics;
 using Phys;
 using Player;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Experimental.Audio;
 
@@ -71,6 +72,8 @@ public class PlayerController : Actor {
         bool col = p.PlayerCollide(this, direction);
         if (direction.y < 0 && p.IsGround(this)) {
             SetGrounded(true);
+        } else if (direction.y > 0 && col) {
+            BonkHead();
         }
 
         return col;
@@ -124,5 +127,9 @@ public class PlayerController : Actor {
 
     public bool IsDiving() {
         return _mySM.IsOnState<Diving>();
+    }
+
+    private void OnDrawGizmosSelected() {
+        Handles.Label(new Vector3(0, 56, 0) , "" + velocity.y);
     }
 }
