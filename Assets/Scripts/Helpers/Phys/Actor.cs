@@ -1,12 +1,10 @@
 ﻿using System;
-using DefaultNamespace;
 using Mechanics;
 using UnityEngine;
 
 namespace Phys {
     public abstract class Actor : PhysObj {
         [Header("Gravity")]
-        public int VelocityDownImmediate;
         public int GravityDown;
         public int GravityUp;
         public int MaxFall;
@@ -29,7 +27,7 @@ namespace Phys {
                     return true;
                 }
                 transform.position += new Vector3((int)direction.x, (int)direction.y, 0);
-                NextFrameOffset += direction;
+                NextFrameOffset += new Vector2((int)direction.x, (int)direction.y);;
                 remainder--;
             }
             
@@ -38,10 +36,6 @@ namespace Phys {
 
         public void Fall() {
             velocityY = Math.Max(MaxFall, velocityY + (velocityY > 0 ? GravityUp : GravityDown) * Game.FixedDeltaTime);
-            //Stops the stalling problem
-            if (velocityY < 0 && velocityY > VelocityDownImmediate) {
-                velocityY = VelocityDownImmediate;
-            }
         }
 
         public bool IsRiding(Solid s) {

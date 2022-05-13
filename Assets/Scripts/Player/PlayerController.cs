@@ -22,7 +22,6 @@ public class PlayerController : Actor {
     public bool MoveRight;
     protected new void Start() {
         _mySM = GetComponent<PlayerStateMachine>();
-        _mySM.P = this;
         base.Start();
     }
 
@@ -112,11 +111,12 @@ public class PlayerController : Actor {
     }
 
     public void BonkHead() {
-        velocityY = Math.Min(100, velocityY);
+        velocityY = Math.Min(10, velocityY);
     }
 
     public override bool Squish(PhysObj p, Vector2 d) {
         if (OnCollide(p, d)) {
+            Debug.Log("Squish " + p);
             Die();
         }
         return false;

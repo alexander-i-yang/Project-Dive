@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using DefaultNamespace;
 using Helpers;
 using UnityEngine;
 
@@ -17,7 +16,7 @@ namespace Phys {
             get { return velocity.y; }
             set { velocity = new Vector2(velocity.x, value); }
         }
-        
+
         protected float velocityX {
             get { return velocity.x; }
             set { velocity = new Vector2(value, velocity.y); }
@@ -25,11 +24,15 @@ namespace Phys {
 
         protected void Start() {
             myCollider = GetComponent<BoxCollider2D>();
+            Game.ResetNextFrameOffset += ResetNextFrameOffset;
         }
 
         public virtual void FixedUpdate() {
-            NextFrameOffset = Vector2.zero;
             Move(velocity * Game.FixedDeltaTime);
+        }
+
+        private void ResetNextFrameOffset() {
+            NextFrameOffset = Vector2.zero;
         }
 
         /// <summary>

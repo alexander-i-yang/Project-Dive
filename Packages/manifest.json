@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.aarthificial.pixelgraphics": "https://github.com/aarthificial/pixelgraphics.git",
     "com.unity.2d.animation": "5.0.10",
     "com.unity.2d.pixel-perfect": "4.0.1",
     "com.unity.2d.psdimporter": "4.1.3",

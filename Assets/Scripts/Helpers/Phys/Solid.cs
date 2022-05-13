@@ -28,6 +28,8 @@ namespace Phys {
                     if (p == this) {
                         return false;
                     }
+
+                    // Debug.Break();
                     
                     if (ridingActors.Contains(p)) {
                         ridingActors.Remove((Actor)p);
@@ -37,7 +39,10 @@ namespace Phys {
                             return true;
                         }
                     } else {
-                        p.MoveGeneral(direction, 1, p.Squish);
+                        p.MoveGeneral(direction, 1, (ps, ds) => {
+                            if (ps != this) return p.Squish(ps, ds);
+                            return false;
+                        });
                     }
 
                     return false;
@@ -49,7 +54,7 @@ namespace Phys {
                 if (collision) return true;
                 
                 transform.position += new Vector3((int)direction.x, (int)direction.y, 0);
-                NextFrameOffset += direction;
+                NextFrameOffset += new Vector2((int)direction.x, (int)direction.y);
                 remainder -= 1;
             }
             

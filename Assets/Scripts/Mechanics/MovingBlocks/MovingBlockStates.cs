@@ -21,6 +21,10 @@ namespace Mechanics.MovingBlocks {
         }
 
         public override void FixedUpdate() {
+            if (MySM.M.PositionedAtDecelStart()) {
+                MySM.M.Decel();
+            }
+
             if (MySM.M.PositionedAtZoomEnd()) {
                 MySM.Transition<Returning>();
             }

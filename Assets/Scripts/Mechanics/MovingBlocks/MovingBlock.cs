@@ -1,5 +1,5 @@
 ﻿using System;
-using DefaultNamespace;
+using Helpers;
 using Mechanics.MovingBlocks;
 using Phys;
 using UnityEditor;
@@ -9,12 +9,14 @@ namespace Mechanics {
     [RequireComponent(typeof(MovingBlockSM))]
     public class MovingBlock : Solid {
         [SerializeField] private Vector2 _direction = new Vector2(1, 0);
-        [SerializeField] private int _magnitude = 100;
-        [SerializeField] private int _decel = -10;
+        [SerializeField] private int _zoomVelocity = 100;
+        [SerializeField] private int _returnVelocity = 25;
+        [SerializeField] private int _decel = 10;
+        [SerializeField] private int _distance = 16;
         private MovingBlockSM _mySM;
         private Vector2 _zoomStartPos;
         private Vector2 _startPos;
-        
+
         new void Start() {
             _startPos = transform.position;
             _mySM = GetComponent<MovingBlockSM>();
@@ -27,6 +29,7 @@ namespace Mechanics {
                 _mySM.HitWall();
                 return true;
             }
+
             return false;
         }
 
@@ -34,20 +37,25 @@ namespace Mechanics {
             if (direction.y < 0 && p.IsDiving()) {
                 _mySM.Transition<Zooming>();
             }
+
             return true;
         }
 
         public void Zoom() {
             _zoomStartPos = transform.position;
-            velocity = _direction*_magnitude;
+            velocity = _direction * _zoomVelocity;
         }
 
         public bool PositionedAtStart() {
             return DistanceFromPos(_startPos) <= 0;
         }
-        
+
         public bool PositionedAtZoomEnd() {
-            return DistanceFromPos(_zoomStartPos) >= 16;
+            return DistanceFromPos(_zoomStartPos) >= _distance;
+        }
+        
+        public bool PositionedAtDecelStart() {
+            return DistanceFromPos(_zoomStartPos) >= 12;
         }
 
         private int DistanceFromPos(Vector2 p) {
@@ -56,17 +64,15 @@ namespace Mechanics {
         }
 
         public void Return() {
-            velocity = _direction * -_magnitude;
+            velocity = _direction * -_returnVelocity;
         }
 
         public void Stop() {
             velocity = Vector2.zero;
         }
 
-        public void OnDrawGizmosSelected() {
-            GUIStyle style = new GUIStyle();
-            style.normal.textColor = Color.red; 
-            Handles.Label(transform.position, "" + velocity, style);
+        public void Decel() {
+            velocity -= _direction * _decel;
         }
     }
 }

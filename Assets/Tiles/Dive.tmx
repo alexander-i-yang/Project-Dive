@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="8" tileheight="8" infinite="1" nextlayerid="4" nextobjectid="56">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="8" tileheight="8" infinite="1" nextlayerid="4" nextobjectid="57">
  <tileset firstgid="1" source="Rocks.tsx"/>
  <tileset firstgid="37" source="Spikes.tsx"/>
  <tileset firstgid="53" source="Mechanics.tsx"/>
@@ -57,8 +57,8 @@
 21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-21,0,0,0,0,0,0,0,0,0,0,21,21,21,0,0,
-21,0,0,0,0,0,0,0,0,0,0,21,21,21,0,0,
+21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 21,0,0,0,0,0,0,0,0,0,0,21,21,21,0,0,
 21,0,0,0,0,0,0,0,0,0,0,21,21,21,0,0,
 21,0,0,0,0,0,0,0,0,0,0,21,21,21,0,0,
@@ -80,12 +80,12 @@
 0,0,0,0,0,21,21,0,0,0,0,0,0,0,0,21,
 0,0,0,0,0,0,21,0,0,0,0,0,0,0,0,21,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,
-0,0,21,21,21,21,0,0,0,0,0,0,0,0,0,21,
+0,21,21,21,21,21,0,0,0,0,0,0,0,0,0,21,
 21,21,21,21,21,21,21,21,21,21,21,0,0,0,21,0
 </chunk>
   </data>
  </layer>
- <layer id="2" name="Spikes" width="100" height="100">
+ <layer id="2" name="Spikes" width="100" height="100" visible="0">
   <properties>
    <property name="unity:Component" value="Spikes"/>
    <property name="unity:Layer" value="Interactable"/>
@@ -99,7 +99,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,37,37,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,37,37,37,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -139,6 +139,5 @@
   <object id="48" gid="53" x="16" y="-32" width="8" height="8"/>
   <object id="49" gid="53" x="-112" y="-72" width="8" height="8"/>
   <object id="50" gid="53" x="-112" y="-32" width="8" height="8"/>
-  <object id="51" gid="53" x="-48" y="-72" width="8" height="8"/>
  </objectgroup>
 </map>

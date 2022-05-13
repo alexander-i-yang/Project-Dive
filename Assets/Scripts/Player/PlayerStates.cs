@@ -1,5 +1,4 @@
 ﻿using System;
-using DefaultNamespace;
 using Mechanics;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;

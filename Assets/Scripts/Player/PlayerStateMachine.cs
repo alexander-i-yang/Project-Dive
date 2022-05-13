@@ -1,5 +1,4 @@
 ﻿using System;
-using DefaultNamespace;
 using Mechanics;
 using UnityEngine;
 
@@ -15,6 +14,10 @@ namespace Player {
         
         protected override void SetInitialState() {
             SetCurState<Grounded>();
+        }
+
+        public override void Init() {
+            P = GetComponent<PlayerController>();
         }
 
         public void JumpPressed(bool pressed) {
