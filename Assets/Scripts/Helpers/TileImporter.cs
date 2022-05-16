@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml;
 using System.Xml.Linq;
 using Mechanics;
 using SuperTiled2Unity;
@@ -25,6 +24,9 @@ namespace Helpers {
             var args = data.AssetImporter;
             var layers = map.GetComponentsInChildren<SuperLayer>();
             var doc = XDocument.Load(args.assetPath);
+
+            AddColliderToMap(map.transform.GetChild(0));
+            
             foreach (SuperLayer layer in layers) {
                 var props = GetLayerProps(doc, layer);
                 if (props != null) {
@@ -41,6 +43,12 @@ namespace Helpers {
                     if (offset == "true") AnchorOffset(layer.transform, GetLayer(doc, layer));
                 }
             }
+        }
+
+        public void AddColliderToMap(Transform t) {
+            BoxCollider2D b = t.gameObject.AddComponent<BoxCollider2D>();
+            b.size = new Vector2(256, 144);
+            b.offset = new Vector2(0, 72);
         }
 
         public void AnchorOffset(Transform layer, XElement docLayer) {
