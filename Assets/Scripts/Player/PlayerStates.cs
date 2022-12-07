@@ -41,7 +41,7 @@ namespace Player {
 
     public class Airborne : PlayerState {
         public override void Enter(PlayerStateInput i) {
-            MySM.jumpCoyoteTimer = MySM.pActor.jumpCoyoteTime;
+            MySM.jumpCoyoteTimer = MySM.pActor.JumpCoyoteTime;
         }
 
         public override void SetJumpPressed(bool pressed) {

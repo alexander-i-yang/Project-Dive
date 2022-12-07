@@ -3,23 +3,37 @@ using Helpers;
 using Mechanics;
 using Phys;
 using Player;
+
+using MyBox;
+
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Experimental.Audio;
 
 [RequireComponent(typeof(PlayerStateMachine))]
+[RequireComponent(typeof(PlayerInputController))]
 public class PlayerActor : Actor {
-    [Header("Controls")]
-    public int HSpeed;
-    public int JumpV;
-    public int DoubleJumpV;
-    public double jumpCoyoteTime;
-    public double jumpBufferTime;
-    public int DiveVelocity;
-    public int DiveDecel;
+
+    [Foldout("Move", true)]
+    [SerializeField] private int MoveSpeed;
+    [SerializeField] private int maxAcceleration;
+    [SerializeField] private int maxAirAcceleration;
+    [SerializeField] private int maxDeceleration;
+    
+    [Foldout("Jump", true)]
+    [SerializeField] private int JumpV;
+    [SerializeField] private int DoubleJumpV;
+    [SerializeField] public double JumpCoyoteTime;
+    [SerializeField] public double JumpBufferTime;
+
+    [Foldout("Dive", true)]
+    [SerializeField] private int DiveVelocity;
+    [SerializeField] private int DiveDeceleration;
 
     private PlayerInputController _input;
     private PlayerStateMachine _stateMachine;
+
+    private int _moveDirection;
 
     private void Awake()
     {
@@ -32,16 +46,28 @@ public class PlayerActor : Actor {
         _stateMachine.JumpPressed(_input.JumpStarted());
         _stateMachine.DivePressed(_input.DiveStarted());
 
-        velocityX = HSpeed * _input.GetMovementInput();
+        _moveDirection = _input.GetMovementInput();
 
         // GetComponent<SpriteRenderer>().color = CheckCollisions(Vector2.down, e => true) ? Color.red : Color.blue;
     }
 
     public override void FixedUpdate() {
-        if (!IsGrounded()) {
-            SetGrounded(false);
-        }
         base.FixedUpdate();
+
+        int effectiveAcceleration;
+        if (IsGrounded())
+        {
+            effectiveAcceleration = _moveDirection == 0 ? maxDeceleration : maxAcceleration;
+        }
+        else
+        {
+            SetGrounded(false);
+            effectiveAcceleration = maxAirAcceleration;
+        }
+
+        int targetVelocityX = _moveDirection * MoveSpeed;
+        int maxSpeedChange = (int) (effectiveAcceleration * Time.deltaTime);
+        velocityX = Mathf.MoveTowards(velocityX, targetVelocityX, maxSpeedChange);
     }
 
     public void SetGrounded(bool b) {
@@ -89,7 +115,7 @@ public class PlayerActor : Actor {
     /// </summary>
     /// <returns>true if done diving</returns>
     public bool DiveDecelUpdate() {
-        velocityY += DiveDecel;
+        velocityY += DiveDeceleration;
         return velocityY > MaxFall;
     }
 

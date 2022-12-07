@@ -22,7 +22,7 @@ namespace Player {
 
         public void JumpPressed(bool pressed) {
             CurState.SetJumpPressed(pressed);
-            if (pressed) jumpBufferTimer = pActor.jumpBufferTime;
+            if (pressed) jumpBufferTimer = pActor.JumpBufferTime;
         }
         
         public void DivePressed(bool pressed) {
