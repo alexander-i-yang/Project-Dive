@@ -7,7 +7,7 @@ namespace Mechanics {
             return false;
         }
         
-        public override bool PlayerCollide(PlayerController p, Vector2 direction) {
+        public override bool PlayerCollide(PlayerActor p, Vector2 direction) {
             if (direction.y > 0) {
                 p.BonkHead();
             }

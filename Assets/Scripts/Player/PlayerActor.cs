@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Experimental.Audio;
 
 [RequireComponent(typeof(PlayerStateMachine))]
-public class PlayerController : Actor {
+public class PlayerActor : Actor {
     [Header("Controls")]
     public int HSpeed;
     public int JumpV;
@@ -79,7 +79,7 @@ public class PlayerController : Actor {
         return col;
     }
 
-    public override bool PlayerCollide(PlayerController p, Vector2 direction) {
+    public override bool PlayerCollide(PlayerActor p, Vector2 direction) {
         return false;
     }
 

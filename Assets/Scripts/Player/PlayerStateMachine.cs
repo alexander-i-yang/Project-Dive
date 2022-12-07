@@ -6,7 +6,7 @@ namespace Player {
     public class PlayerStateMachine : StateMachine<PlayerStateMachine, PlayerState, PlayerStateInput> {
         [NonSerialized] public double CoyoteTime = 0;
         [NonSerialized] public double JJP = 0; //Jump input buffer
-        [NonSerialized] public PlayerController P;
+        [NonSerialized] public PlayerActor P;
         [NonSerialized] public bool JumpedFromGround;
 
         [NonSerialized] public bool DoubleJumpLeft;
@@ -17,7 +17,7 @@ namespace Player {
         }
 
         public override void Init() {
-            P = GetComponent<PlayerController>();
+            P = GetComponent<PlayerActor>();
         }
 
         public void JumpPressed(bool pressed) {
