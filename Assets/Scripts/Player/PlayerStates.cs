@@ -7,35 +7,28 @@ namespace Player {
     public class Grounded : PlayerState {
         public override void Enter(PlayerStateInput i) {
             MySM.JumpedFromGround = false;
+            MySM.JumpBeingHeld = false;
             MySM.pActor.Land();
             MySM.DoubleJumpLeft = true;
             MySM.DiveLeft = true;
             if (MySM.jumpBufferTimer > 0 && !MySM.PrevStateEquals<Diving>()) {
-                Jump();
+                JumpFromGround();
             }
         }
 
-        private void Jump() {
-            MySM.pActor.Jump();
-            MySM.JumpedFromGround = true;
+        public override void JumpPressed() {
+            JumpFromGround();
         }
-
-        public override void SetJumpPressed(bool pressed) {
-            if (pressed) {
-                Jump();
-            }
-        }
-
-        public override void SetDivePressed(bool pressed) {
-        }
-
 
         public override void SetGrounded(bool isGrounded) {
             if (!isGrounded) MySM.Transition<Airborne>();
         }
 
-        public override bool EnterCrystal(Crystal c) {
-            return false;
+        private void JumpFromGround()
+        {
+            MySM.pActor.Jump();
+            MySM.JumpedFromGround = true;
+            MySM.JumpBeingHeld = true;
         }
     }
 
@@ -44,20 +37,23 @@ namespace Player {
             MySM.jumpCoyoteTimer = MySM.pActor.JumpCoyoteTime;
         }
 
-        public override void SetJumpPressed(bool pressed) {
-            if (pressed) {
-                //Just left the ground
-                if (MySM.jumpCoyoteTimer > 0 && !MySM.JumpedFromGround) {
-                    MySM.pActor.Jump();
-                } else if (MySM.DoubleJumpLeft) {
-                    //Otherwise, double jump
-                    MySM.Transition<DoubleJumping>();
-                }
+        public override void JumpPressed() {
+            bool justLeftGround = MySM.jumpCoyoteTimer > 0 && !MySM.JumpedFromGround;
+            if (justLeftGround) {
+                MySM.pActor.Jump();
+                MySM.JumpBeingHeld = true;
+            } else if (MySM.DoubleJumpLeft) {
+                MySM.Transition<DoubleJumping>();
             }
         }
 
-        public override void SetDivePressed(bool pressed) {
-            if (pressed && MySM.DiveLeft) {
+        public override void JumpReleased()
+        {
+            MySM.JumpCut();
+        }
+
+        public override void DivePressed() {
+            if (MySM.DiveLeft) {
                 MySM.Transition<Diving>();
             }
         }
@@ -74,24 +70,22 @@ namespace Player {
                 MySM.jumpCoyoteTimer = Math.Max(0, MySM.jumpCoyoteTimer - Game.FixedDeltaTime);
             }
         }
-
-        public override bool EnterCrystal(Crystal c) {
-            return false;
-        }
     }
 
     public class DoubleJumping : PlayerState {
         public override void Enter(PlayerStateInput i) {
             MySM.pActor.DoubleJump();
             MySM.DoubleJumpLeft = false;
+            MySM.JumpBeingHeld = true;
         }
 
-        public override void SetJumpPressed(bool pressed) {
-            
+        public override void JumpReleased()
+        {
+            MySM.JumpCut();
         }
-        
-        public override void SetDivePressed(bool pressed) {
-            if (pressed && MySM.DiveLeft) {
+
+        public override void DivePressed() {
+            if (MySM.DiveLeft) {
                 MySM.Transition<Diving>();
             }
         }
@@ -105,23 +99,28 @@ namespace Player {
         public override void FixedUpdate() {
             MySM.pActor.Fall();
         }
-
-        public override bool EnterCrystal(Crystal c) {
-            return false;
-        }
     }
 
     public class Diving : PlayerState {
         private bool _diveDone = false;
+
         public override void Enter(PlayerStateInput i) {
             MySM.pActor.Dive();
             MySM.DiveLeft = false;
             _diveDone = false;
         }
 
-        public override void SetJumpPressed(bool pressed) {
-            if (pressed && MySM.DoubleJumpLeft) {
+        public override void JumpPressed() {
+            if (MySM.DoubleJumpLeft) {
                 MySM.Transition<DoubleJumping>();
+            }
+        }
+
+        public override void SetGrounded(bool isGrounded)
+        {
+            if (isGrounded)
+            {
+                MySM.Transition<Grounded>();
             }
         }
 
@@ -133,22 +132,12 @@ namespace Player {
             }
         }
 
-        public override bool EnterCrystal(Crystal c) {
+        public override void EnterCrystal(Crystal c) {
             MySM.Transition<Airborne>();
             MySM.pActor.Jump();
             MySM.DoubleJumpLeft = true;
             MySM.DiveLeft = true;
             c.Break();
-            return false;
-        }
-
-        public override void SetDivePressed(bool pressed) {
-        }
-
-        public override void SetGrounded(bool isGrounded) {
-            if (isGrounded) {
-                MySM.Transition<Grounded>();
-            }
         }
     }
 }

@@ -4,10 +4,13 @@ using UnityEngine;
 
 namespace Player {
     public class PlayerStateMachine : StateMachine<PlayerStateMachine, PlayerState, PlayerStateInput> {
-        [NonSerialized] public double jumpCoyoteTimer = 0;
-        [NonSerialized] public double jumpBufferTimer = 0;
         [NonSerialized] public PlayerActor pActor;
+
+        [NonSerialized] public float jumpCoyoteTimer = 0f;
+        [NonSerialized] public float jumpBufferTimer = 0f;
         [NonSerialized] public bool JumpedFromGround;
+        [NonSerialized] public bool JumpBeingHeld;
+
 
         [NonSerialized] public bool DoubleJumpLeft;
         [NonSerialized] public bool DiveLeft;
@@ -20,13 +23,18 @@ namespace Player {
             pActor = GetComponent<PlayerActor>();
         }
 
-        public void JumpPressed(bool pressed) {
-            CurState.SetJumpPressed(pressed);
-            if (pressed) jumpBufferTimer = pActor.JumpBufferTime;
+        public void JumpPressed() {
+            CurState.JumpPressed();
+            jumpBufferTimer = pActor.JumpBufferTime;
+        }
+
+        public void JumpReleased()
+        {
+            CurState.JumpReleased();
         }
         
-        public void DivePressed(bool pressed) {
-            CurState.SetDivePressed(pressed);
+        public void DivePressed() {
+            CurState.DivePressed();
         }
 
         public void SetGrounded(bool isGrounded) {
@@ -40,17 +48,28 @@ namespace Player {
             base.FixedUpdate();
         }
 
-        public bool EnterCrystal(Crystal c) {
-            return CurState.EnterCrystal(c);
+        public void JumpCut()
+        {
+            if (JumpBeingHeld)
+            {
+                JumpBeingHeld = false;
+                pActor.JumpCut();
+            }
+        }
+
+        public bool EnterCrystal(Crystal c)
+        {
+            CurState.EnterCrystal(c);
+            return false;
         }
     }
 
     public abstract class PlayerState : State<PlayerStateMachine, PlayerState, PlayerStateInput> {
-        public abstract void SetJumpPressed(bool pressed);
-        public abstract void SetDivePressed(bool pressed);
-
-        public abstract void SetGrounded(bool isGrounded);
-        public abstract bool EnterCrystal(Crystal c);
+        public virtual void JumpPressed() { }
+        public virtual void JumpReleased() { }
+        public virtual void DivePressed() { }
+        public virtual void SetGrounded(bool isGrounded) { }
+        public virtual void EnterCrystal(Crystal c) { }
     }
 
     public class PlayerStateInput : StateInput {

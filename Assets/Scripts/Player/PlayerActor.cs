@@ -21,10 +21,11 @@ public class PlayerActor : Actor {
     [SerializeField] private int maxDeceleration;
     
     [Foldout("Jump", true)]
-    [SerializeField] private int JumpV;
-    [SerializeField] private int DoubleJumpV;
-    [SerializeField] public double JumpCoyoteTime;
-    [SerializeField] public double JumpBufferTime;
+    [SerializeField] private int JumpHeight;
+    [SerializeField] private int DoubleJumpHeight;
+    [SerializeField] public float JumpCoyoteTime;
+    [SerializeField] public float JumpBufferTime;
+    [SerializeField, Range(0f, 1f)] public float JumpCutMultiplier;
 
     [Foldout("Dive", true)]
     [SerializeField] private int DiveVelocity;
@@ -43,12 +44,29 @@ public class PlayerActor : Actor {
 
     void Update()
     {
-        _stateMachine.JumpPressed(_input.JumpStarted());
-        _stateMachine.DivePressed(_input.DiveStarted());
-
-        _moveDirection = _input.GetMovementInput();
+        UpdateInputs();
 
         // GetComponent<SpriteRenderer>().color = CheckCollisions(Vector2.down, e => true) ? Color.red : Color.blue;
+    }
+
+    private void UpdateInputs()
+    {
+        if (_input.JumpStarted())
+        {
+            _stateMachine.JumpPressed();
+        }
+
+        if (_input.JumpFinished())
+        {
+            _stateMachine.JumpReleased();
+        }
+
+        if (_input.DiveStarted())
+        {
+            _stateMachine.DivePressed();
+        }
+
+        _moveDirection = _input.GetMovementInput();
     }
 
     public override void FixedUpdate() {
@@ -75,12 +93,20 @@ public class PlayerActor : Actor {
     }
 
     public void Jump() {
-        velocityY = JumpV;
+        velocityY = GetJumpSpeedFromHeight(JumpHeight);
         _stateMachine.SetGrounded(false);
     }
-    
+
+    public void JumpCut()
+    {
+        if (velocityY > 0f)
+        {
+            velocityY *= JumpCutMultiplier;
+        }
+    }
+
     public void DoubleJump() {
-        velocityY = DoubleJumpV;
+        velocityY = GetJumpSpeedFromHeight(DoubleJumpHeight);
     }
     
     public override bool OnCollide(PhysObj p, Vector2 direction) {
@@ -142,6 +168,11 @@ public class PlayerActor : Actor {
 
     public bool IsDiving() {
         return _stateMachine.IsOnState<Diving>();
+    }
+
+    private float GetJumpSpeedFromHeight(float jumpHeight)
+    {
+        return Mathf.Sqrt(-2f * GravityUp * jumpHeight);
     }
 
     private void OnDrawGizmosSelected() {

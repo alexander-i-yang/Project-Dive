@@ -38,7 +38,12 @@ namespace Phys {
         }
 
         public void Fall() {
-            velocityY = Math.Max(MaxFall, velocityY + (velocityY > 0 ? GravityUp : GravityDown) * Game.FixedDeltaTime);
+            velocityY = Math.Max(MaxFall, velocityY + EffectiveGravity() * Game.FixedDeltaTime);
+        }
+
+        public int EffectiveGravity()
+        {
+            return (velocityY > 0 ? GravityUp : GravityDown);
         }
 
         public bool IsRiding(Solid s) {
