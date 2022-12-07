@@ -65,6 +65,7 @@ namespace Player {
     }
 
     public abstract class PlayerState : State<PlayerStateMachine, PlayerState, PlayerStateInput> {
+        //L: Changed from abstract functions to virtual bc not every state needs to implement
         public virtual void JumpPressed() { }
         public virtual void JumpReleased() { }
         public virtual void DivePressed() { }
