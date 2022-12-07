@@ -7,16 +7,16 @@ namespace Player {
     public class Grounded : PlayerState {
         public override void Enter(PlayerStateInput i) {
             MySM.JumpedFromGround = false;
-            MySM.P.Land();
+            MySM.pActor.Land();
             MySM.DoubleJumpLeft = true;
             MySM.DiveLeft = true;
-            if (MySM.JJP > 0 && !MySM.PrevStateEquals<Diving>()) {
+            if (MySM.jumpBufferTimer > 0 && !MySM.PrevStateEquals<Diving>()) {
                 Jump();
             }
         }
 
         private void Jump() {
-            MySM.P.Jump();
+            MySM.pActor.Jump();
             MySM.JumpedFromGround = true;
         }
 
@@ -41,14 +41,14 @@ namespace Player {
 
     public class Airborne : PlayerState {
         public override void Enter(PlayerStateInput i) {
-            MySM.CoyoteTime = MySM.P.CoyoteTime;
+            MySM.jumpCoyoteTimer = MySM.pActor.jumpCoyoteTime;
         }
 
         public override void SetJumpPressed(bool pressed) {
             if (pressed) {
                 //Just left the ground
-                if (MySM.CoyoteTime > 0 && !MySM.JumpedFromGround) {
-                    MySM.P.Jump();
+                if (MySM.jumpCoyoteTimer > 0 && !MySM.JumpedFromGround) {
+                    MySM.pActor.Jump();
                 } else if (MySM.DoubleJumpLeft) {
                     //Otherwise, double jump
                     MySM.Transition<DoubleJumping>();
@@ -69,9 +69,9 @@ namespace Player {
         }
 
         public override void FixedUpdate() {
-            MySM.P.Fall();
-            if (MySM.CoyoteTime > 0) {
-                MySM.CoyoteTime = Math.Max(0, MySM.CoyoteTime - Game.FixedDeltaTime);
+            MySM.pActor.Fall();
+            if (MySM.jumpCoyoteTimer > 0) {
+                MySM.jumpCoyoteTimer = Math.Max(0, MySM.jumpCoyoteTimer - Game.FixedDeltaTime);
             }
         }
 
@@ -82,7 +82,7 @@ namespace Player {
 
     public class DoubleJumping : PlayerState {
         public override void Enter(PlayerStateInput i) {
-            MySM.P.DoubleJump();
+            MySM.pActor.DoubleJump();
             MySM.DoubleJumpLeft = false;
         }
 
@@ -103,7 +103,7 @@ namespace Player {
         }
 
         public override void FixedUpdate() {
-            MySM.P.Fall();
+            MySM.pActor.Fall();
         }
 
         public override bool EnterCrystal(Crystal c) {
@@ -114,7 +114,7 @@ namespace Player {
     public class Diving : PlayerState {
         private bool _diveDone = false;
         public override void Enter(PlayerStateInput i) {
-            MySM.P.Dive();
+            MySM.pActor.Dive();
             MySM.DiveLeft = false;
             _diveDone = false;
         }
@@ -127,15 +127,15 @@ namespace Player {
 
         public override void FixedUpdate() {
             if (_diveDone) {
-                MySM.P.Fall();
+                MySM.pActor.Fall();
             } else {
-                _diveDone = MySM.P.DiveDecelUpdate();
+                _diveDone = MySM.pActor.DiveDecelUpdate();
             }
         }
 
         public override bool EnterCrystal(Crystal c) {
             MySM.Transition<Airborne>();
-            MySM.P.Jump();
+            MySM.pActor.Jump();
             MySM.DoubleJumpLeft = true;
             MySM.DiveLeft = true;
             c.Break();

@@ -13,33 +13,26 @@ public class PlayerActor : Actor {
     public int HSpeed;
     public int JumpV;
     public int DoubleJumpV;
-    public double CoyoteTime;
-    public double JJP;
+    public double jumpCoyoteTime;
+    public double jumpBufferTime;
     public int DiveVelocity;
     public int DiveDecel;
-    private PlayerStateMachine _mySM;
 
-    public bool ShouldBreak;
-    public bool MoveRight;
-    protected new void Start() {
-        _mySM = GetComponent<PlayerStateMachine>();
-        base.Start();
+    private PlayerInputController _input;
+    private PlayerStateMachine _stateMachine;
+
+    private void Awake()
+    {
+        _input = GetComponent<PlayerInputController>();
+        _stateMachine = GetComponent<PlayerStateMachine>();
     }
 
     void Update()
     {
-        _mySM.JumpPressed(Input.GetKeyDown(KeyCode.Z));
-        _mySM.DivePressed(Input.GetKeyDown(KeyCode.X));
+        _stateMachine.JumpPressed(_input.JumpStarted());
+        _stateMachine.DivePressed(_input.DiveStarted());
 
-        if (Input.GetKey(KeyCode.LeftArrow)) {
-            velocityX = HSpeed*-1;
-        } else if (Input.GetKey(KeyCode.RightArrow)) {
-            velocityX = HSpeed*1;
-        } else {
-            velocityX = 0;
-        }
-
-        if (MoveRight) velocityX = HSpeed;
+        velocityX = HSpeed * _input.GetMovementInput();
 
         // GetComponent<SpriteRenderer>().color = CheckCollisions(Vector2.down, e => true) ? Color.red : Color.blue;
     }
@@ -49,23 +42,19 @@ public class PlayerActor : Actor {
             SetGrounded(false);
         }
         base.FixedUpdate();
-        if (ShouldBreak) {
-            MoveRight = true;
-            Debug.Break();
-        }
     }
 
     public void SetGrounded(bool b) {
-        _mySM.SetGrounded(b);
+        _stateMachine.SetGrounded(b);
     }
 
     public void Jump() {
-        velocity = new Vector2(velocity.x, JumpV);
-        _mySM.SetGrounded(false);
+        velocityY = JumpV;
+        _stateMachine.SetGrounded(false);
     }
     
     public void DoubleJump() {
-        velocity = new Vector2(velocity.x, DoubleJumpV);
+        velocityY = DoubleJumpV;
     }
     
     public override bool OnCollide(PhysObj p, Vector2 direction) {
@@ -110,7 +99,7 @@ public class PlayerActor : Actor {
     }
 
     public bool EnterCrystal(Crystal c) {
-        return _mySM.EnterCrystal(c);
+        return _stateMachine.EnterCrystal(c);
     }
 
     public void BonkHead() {
@@ -126,7 +115,7 @@ public class PlayerActor : Actor {
     }
 
     public bool IsDiving() {
-        return _mySM.IsOnState<Diving>();
+        return _stateMachine.IsOnState<Diving>();
     }
 
     private void OnDrawGizmosSelected() {

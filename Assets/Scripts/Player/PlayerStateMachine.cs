@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Player {
     public class PlayerStateMachine : StateMachine<PlayerStateMachine, PlayerState, PlayerStateInput> {
-        [NonSerialized] public double CoyoteTime = 0;
-        [NonSerialized] public double JJP = 0; //Jump input buffer
-        [NonSerialized] public PlayerActor P;
+        [NonSerialized] public double jumpCoyoteTimer = 0;
+        [NonSerialized] public double jumpBufferTimer = 0;
+        [NonSerialized] public PlayerActor pActor;
         [NonSerialized] public bool JumpedFromGround;
 
         [NonSerialized] public bool DoubleJumpLeft;
@@ -17,12 +17,12 @@ namespace Player {
         }
 
         public override void Init() {
-            P = GetComponent<PlayerActor>();
+            pActor = GetComponent<PlayerActor>();
         }
 
         public void JumpPressed(bool pressed) {
             CurState.SetJumpPressed(pressed);
-            if (pressed) JJP = P.JJP;
+            if (pressed) jumpBufferTimer = pActor.jumpBufferTime;
         }
         
         public void DivePressed(bool pressed) {
@@ -34,8 +34,8 @@ namespace Player {
         }
 
         public override void FixedUpdate() {
-            if (JJP > 0) {
-                JJP = Math.Max(0, JJP - Game.FixedDeltaTime);
+            if (jumpBufferTimer > 0) {
+                jumpBufferTimer = Math.Max(0, jumpBufferTimer - Game.FixedDeltaTime);
             }
             base.FixedUpdate();
         }
