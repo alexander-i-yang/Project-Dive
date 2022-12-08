@@ -135,13 +135,13 @@ namespace Player {
 
         public class Diving : PlayerState
         {
-            private bool _diveDone = false;
+            private bool _diveDecelerationDone = false;
 
             public override void Enter(PlayerStateInput i)
             {
                 MySM._player.Dive();
                 MySM._canDive = false;
-                _diveDone = false;
+                _diveDecelerationDone = false;
             }
 
             public override void JumpPressed()
@@ -166,18 +166,19 @@ namespace Player {
 
             public override void FixedUpdate()
             {
-                if (_diveDone)
+                if (_diveDecelerationDone)
                 {
                     MySM._player.Fall();
                 }
                 else
                 {
-                    _diveDone = MySM._player.DiveDecelUpdate();
+                    _diveDecelerationDone = MySM._player.DiveDecelUpdate();
                 }
             }
 
             public override bool EnterCrystal(Crystal c)
             {
+                Debug.Log("Entered Crystal");
                 MySM.Transition<Airborne>();
                 MySM._player.Jump();
                 MySM._canDoubleJump = true;
