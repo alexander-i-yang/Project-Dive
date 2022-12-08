@@ -35,6 +35,7 @@ public class PlayerActor : Actor {
     private PlayerStateMachine _stateMachine;
 
     private int _moveDirection;
+    private bool _lastJumpBeingHeld;
 
     private void Awake()
     {
@@ -53,17 +54,18 @@ public class PlayerActor : Actor {
     {
         if (_input.JumpStarted())
         {
-            _stateMachine.JumpPressed();
+            _stateMachine.CurState.JumpPressed();
         }
 
         if (_input.JumpFinished())
         {
-            _stateMachine.JumpReleased();
+            _stateMachine.CurState.JumpReleased();
+            _lastJumpBeingHeld = false;
         }
 
         if (_input.DiveStarted())
         {
-            _stateMachine.DivePressed();
+            _stateMachine.CurState.DivePressed();
         }
 
         _moveDirection = _input.GetMovementInput();
@@ -73,13 +75,14 @@ public class PlayerActor : Actor {
         base.FixedUpdate();
 
         int effectiveAcceleration;
-        if (IsGrounded())
+        bool grounded = IsGrounded();
+        _stateMachine.CurState.SetGrounded(grounded);
+        if (grounded)
         {
             effectiveAcceleration = _moveDirection == 0 ? maxDeceleration : maxAcceleration;
         }
         else
         {
-            SetGrounded(false);
             effectiveAcceleration = maxAirAcceleration;
         }
 
@@ -88,44 +91,49 @@ public class PlayerActor : Actor {
         velocityX = Mathf.MoveTowards(velocityX, targetVelocityX, maxSpeedChange);
     }
 
-    public void SetGrounded(bool b) {
-        _stateMachine.SetGrounded(b);
-    }
-
-    public void Jump() {
-        velocityY = GetJumpSpeedFromHeight(JumpHeight);
-        _stateMachine.SetGrounded(false);
-    }
-
-    public void JumpCut()
+    public override bool OnCollide(PhysObj p, Vector2 direction)
     {
-        if (velocityY > 0f)
-        {
-            velocityY *= JumpCutMultiplier;
-        }
-    }
-
-    public void DoubleJump() {
-        velocityY = GetJumpSpeedFromHeight(DoubleJumpHeight);
-    }
-    
-    public override bool OnCollide(PhysObj p, Vector2 direction) {
         bool col = p.PlayerCollide(this, direction);
-        if (direction.y < 0 && p.IsGround(this)) {
-            SetGrounded(true);
-        } else if (direction.y > 0 && col) {
+        if (direction.y < 0 && p.IsGround(this))
+        {
+            //SetGrounded(true);
+        }
+        else if (direction.y > 0 && col)
+        {
             BonkHead();
         }
 
         return col;
     }
 
-    public override bool PlayerCollide(PlayerActor p, Vector2 direction) {
+    public override bool PlayerCollide(PlayerActor p, Vector2 direction)
+    {
         return false;
     }
 
-    public override bool IsGround(PhysObj whosAsking) {
+    public override bool IsGround(PhysObj whosAsking)
+    {
         return false;
+    }
+
+    public void Jump() {
+        velocityY = GetJumpSpeedFromHeight(JumpHeight);
+        _stateMachine.CurState.SetGrounded(false);
+        _lastJumpBeingHeld = true;
+    }
+
+    public void TryJumpCut()
+    {
+        if (_lastJumpBeingHeld && velocityY > 0f)
+        {
+            velocityY *= JumpCutMultiplier;
+        }
+
+        _lastJumpBeingHeld = false;
+    }
+
+    public void DoubleJump() {
+        velocityY = GetJumpSpeedFromHeight(DoubleJumpHeight);
     }
 
     public void Land() {
@@ -151,7 +159,7 @@ public class PlayerActor : Actor {
     }
 
     public bool EnterCrystal(Crystal c) {
-        return _stateMachine.EnterCrystal(c);
+        return _stateMachine.CurState.EnterCrystal(c);
     }
 
     public void BonkHead() {
@@ -167,7 +175,7 @@ public class PlayerActor : Actor {
     }
 
     public bool IsDiving() {
-        return _stateMachine.IsOnState<Diving>();
+        return _stateMachine.IsOnState<PlayerStateMachine.Diving>();
     }
 
     private float GetJumpSpeedFromHeight(float jumpHeight)
