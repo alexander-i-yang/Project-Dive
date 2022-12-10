@@ -1,13 +1,16 @@
 ﻿using System;
 using Mechanics;
+
+using MyBox;
+
 using UnityEngine;
 
 namespace Phys {
     public abstract class Actor : PhysObj {
-        [Header("Gravity")]
-        public int GravityDown;
-        public int GravityUp;
-        public int MaxFall;
+
+        [SerializeField, Foldout("Gravity")] protected int GravityDown;
+        [SerializeField, Foldout("Gravity")] protected int GravityUp;
+        [SerializeField, Foldout("Gravity")] protected int MaxFall;
         
         /// <summary>
         /// Moves this actor a specified number of pixels.
@@ -35,7 +38,12 @@ namespace Phys {
         }
 
         public void Fall() {
-            velocityY = Math.Max(MaxFall, velocityY + (velocityY > 0 ? GravityUp : GravityDown) * Game.FixedDeltaTime);
+            velocityY = Math.Max(MaxFall, velocityY + EffectiveGravity() * Game.FixedDeltaTime);
+        }
+
+        private int EffectiveGravity()
+        {
+            return (velocityY > 0 ? GravityUp : GravityDown);
         }
 
         public bool IsRiding(Solid s) {

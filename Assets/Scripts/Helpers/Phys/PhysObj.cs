@@ -130,7 +130,7 @@ namespace Phys {
 
         public abstract bool OnCollide(PhysObj p, Vector2 direction);
 
-        public abstract bool PlayerCollide(PlayerController p, Vector2 direction);
+        public abstract bool PlayerCollide(PlayerActor p, Vector2 direction);
 
         public virtual bool IsGround(PhysObj whosAsking) {
             return true;

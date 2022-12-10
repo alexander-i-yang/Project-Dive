@@ -24,7 +24,6 @@ namespace Mechanics {
     }
 
     public abstract class MovingBlockState : State<MovingBlockSM, MovingBlockState, MovingBlockInput> {
-        public abstract void FixedUpdate();
         public abstract void HitWall();
     }
 
