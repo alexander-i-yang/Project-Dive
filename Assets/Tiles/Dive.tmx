@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="8" tileheight="8" infinite="1" nextlayerid="4" nextobjectid="57">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="8" tileheight="8" infinite="1" nextlayerid="4" nextobjectid="60">
  <tileset firstgid="1" source="Rocks.tsx"/>
  <tileset firstgid="37" source="Spikes.tsx"/>
  <tileset firstgid="53" source="Mechanics.tsx"/>
@@ -132,7 +132,7 @@
  </layer>
  <objectgroup id="3" name="Mechanics">
   <properties>
-   <property name="unity:anchorOffset" type="bool" value="true"/>
+   <property name="unity:AnchorOffset" type="bool" value="true"/>
   </properties>
   <object id="46" gid="53" x="88" y="-40" width="8" height="8"/>
   <object id="47" gid="54" x="-72" y="-40" width="24" height="24"/>
