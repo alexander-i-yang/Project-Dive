@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
+
 
 /// <summary>
 /// unitytips: ShadowCaster2DFromCollider Component
@@ -50,18 +50,18 @@ public class ShadowCaster2DFromCollider {
         BindingFlags.NonPublic | BindingFlags.Instance;
 
     private static FieldInfo meshField =
-        typeof(ShadowCaster2D).GetField("m_Mesh", accessFlagsPrivate);
+        typeof(UnityEngine.Rendering.Universal.ShadowCaster2D).GetField("m_Mesh", accessFlagsPrivate);
 
     private static FieldInfo shapePathField =
-        typeof(ShadowCaster2D).GetField("m_ShapePath", accessFlagsPrivate);
+        typeof(UnityEngine.Rendering.Universal.ShadowCaster2D).GetField("m_ShapePath", accessFlagsPrivate);
 
     private static MethodInfo onEnableMethod =
-        typeof(ShadowCaster2D).GetMethod("OnEnable", accessFlagsPrivate);
+        typeof(UnityEngine.Rendering.Universal.ShadowCaster2D).GetMethod("OnEnable", accessFlagsPrivate);
 
     public static void Execute(GameObject g, bool selfShadows = false) {
-        var addedCaster = g.AddComponent<ShadowCaster2D>();
+        var addedCaster = g.AddComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>();
         var polygon = g.GetComponent<EdgeCollider2D>();
-        addedCaster = g.GetComponent<UnityEngine.Experimental.Rendering.Universal.ShadowCaster2D>();
+        addedCaster = g.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>();
         addedCaster.selfShadows = selfShadows;
         
         Vector3[] positions = new Vector3[polygon.points.Length];

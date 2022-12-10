@@ -6,7 +6,7 @@ using Mechanics;
 using SuperTiled2Unity;
 using SuperTiled2Unity.Editor;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
+
 
 namespace Helpers {
 
@@ -91,7 +91,7 @@ namespace Helpers {
                 ShadowCaster2DFromCollider.Execute(edgeObj.gameObject);
             }
 
-            layer.gameObject.AddComponent<CompositeShadowCaster2D>();
+            layer.gameObject.AddComponent<UnityEngine.Rendering.Universal.CompositeShadowCaster2D>();
         }
 
         public void AddComponentToLayer(Transform layer, string component) {

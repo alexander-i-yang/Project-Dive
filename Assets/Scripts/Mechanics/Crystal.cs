@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using Phys;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
+
 
 namespace Mechanics {
     public class Crystal : Solid {
         private bool _broken = false;
         public double rechargeTime = 1;
         private SpriteRenderer _mySR;
-        private Light2D _light;
+        private UnityEngine.Rendering.Universal.Light2D _light;
         
         new void Start() {
             _mySR = GetComponent<SpriteRenderer>();
-            _light = GetComponentInChildren<Light2D>();
+            _light = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
             base.Start();
         }
 
