@@ -167,7 +167,7 @@ public class PlayerActor : Actor {
     }
 
     public void Die() {
-        transform.position = new Vector2(-109, 23);
+        transform.position = new Vector2(36, -118);
         velocity = Vector2.zero;
     }
 

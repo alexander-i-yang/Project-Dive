@@ -1,2 +1,1 @@
 automap.tmx
-automap inside.tmx

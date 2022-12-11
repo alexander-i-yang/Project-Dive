@@ -12,13 +12,12 @@ namespace Helpers {
 
     [AutoCustomTmxImporter()]
     public class TileImporter : CustomTmxImporter {
-        Dictionary<string, Type> typings = new Dictionary<string, Type> {
+        Dictionary<string, Type> typings = new() {
             {"Wall", typeof(Wall)},
             {"Spikes", typeof(Spikes)},
         };
         
         public override void TmxAssetImported(TmxAssetImportedArgs data) {
-            
             SuperMap map = data.ImportedSuperMap;
             var args = data.AssetImporter;
             var layers = map.GetComponentsInChildren<SuperLayer>();
@@ -26,8 +25,9 @@ namespace Helpers {
             var doc = XDocument.Load(args.assetPath);
 
             AddColliderToMap(map.transform.GetChild(0));
-            
+            Debug.Log(map);
             foreach (SuperLayer layer in layers) {
+                Debug.Log(layer);
                 AddCustomPropertiesToLayer(layer, GetLayerXNode(doc, layer));
             }
         }
@@ -82,7 +82,7 @@ namespace Helpers {
         public void AddColliderToMap(Transform t) {
             BoxCollider2D b = t.gameObject.AddComponent<BoxCollider2D>();
             b.size = new Vector2(256, 144);
-            b.offset = new Vector2(0, 72);
+            b.offset = new Vector2(128, -72);
         }
 
         public void AnchorOffset(SuperLayer layer, XElement docLayer) {
@@ -125,13 +125,6 @@ namespace Helpers {
         }
 
         public EdgeCollider2D[] GetEdges(Transform layer) {
-            //List<Transform> ret = new List<Transform>();
-            //for (int i = 0; i < layer.childCount; ++i) {
-            //    var parent = layer.GetChild(i).GetChild(0);
-            //    for(int j = 0; j<parent.childCount; ++j) {
-            //        ret.Add(parent.GetChild(j));
-            //    }
-            //}
             return layer.GetComponentsInChildren<EdgeCollider2D>();
         }
 
