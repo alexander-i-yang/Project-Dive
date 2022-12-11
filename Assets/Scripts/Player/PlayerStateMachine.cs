@@ -47,6 +47,7 @@ namespace Player {
             public virtual void DivePressed() { }
             public virtual void SetGrounded(bool isGrounded) { }
             public virtual bool EnterCrystal(Crystal c) { return false; }
+            public virtual void MoveX(bool grounded) {MySM._player.MoveX(grounded);}
         }
 
         public class Grounded : PlayerState
@@ -159,7 +160,7 @@ namespace Player {
                 base.SetGrounded(isGrounded);
                 if (isGrounded)
                 {
-                    MySM.Transition<Grounded>();
+                    MySM.Transition<Dogoing>();
                 }
             }
 
@@ -182,6 +183,23 @@ namespace Player {
                 MySM.refill();
                 c.Break();
                 return false;
+            }
+        }
+
+        public class Dogoing : PlayerState {
+            public override void Enter(PlayerStateInput i) {
+                MySM._player.StopX();
+            }
+
+            public override void JumpPressed()
+            {
+                base.JumpPressed();
+                print("Dogo jump");
+                MySM._player.DogoJump();
+                MySM.Transition<Airborne>();
+            }
+
+            public override void MoveX(bool grounded) {
             }
         }
 

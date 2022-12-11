@@ -1,0 +1,74 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "Tiles/Dive.tmx",
+    "automapping.whileDrawing": true,
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        ":/automap-tiles.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "Tiles/Dive.tmx": {
+            "scale": 4,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 125,
+                "y": 71.5
+            }
+        },
+        "Tiles/Logan_Test.tmx": {
+            "scale": 4.1384375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 97.37974779128598,
+                "y": 68.62493392735786
+            }
+        },
+        "Tiles/Mechanics.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "Tiles/Rocks.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 4
+        },
+        "Tiles/Spikes.tsx": {
+            "scaleInDock": 1
+        },
+        "Tiles/automap inside.tmx": {
+            "scale": 4.1384375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 120.09363437287621,
+                "y": 80.22351430944649
+            }
+        },
+        "Tiles/automap.tmx": {
+            "scale": 8,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 99.5,
+                "y": 129
+            }
+        }
+    },
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 8,
+    "map.tileWidth": 8,
+    "openFiles": [
+        "Tiles/Dive.tmx",
+        "Tiles/automap.tmx"
+    ],
+    "project": "Project.tiled-project",
+    "recentFiles": [
+        "Tiles/Dive.tmx",
+        "Tiles/Logan_Test.tmx",
+        "Tiles/automap.tmx",
+        "Tiles/automap inside.tmx"
+    ]
+}

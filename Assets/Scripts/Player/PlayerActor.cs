@@ -26,6 +26,7 @@ public class PlayerActor : Actor {
     [SerializeField] public float JumpCoyoteTime;
     [SerializeField] public float JumpBufferTime;
     [SerializeField, Range(0f, 1f)] public float JumpCutMultiplier;
+    [SerializeField] private float DogoJumpV;
 
     [Foldout("Dive", true)]
     [SerializeField] private int DiveVelocity;
@@ -73,24 +74,25 @@ public class PlayerActor : Actor {
 
     public override void FixedUpdate() {
         base.FixedUpdate();
-
-        int effectiveAcceleration;
         bool grounded = IsGrounded();
         _stateMachine.CurState.SetGrounded(grounded);
-        if (grounded)
-        {
+        _stateMachine.CurState.MoveX(grounded);
+    }
+
+    public void MoveX(bool grounded) {
+        int effectiveAcceleration;
+        if (grounded) {
             effectiveAcceleration = _moveDirection == 0 ? maxDeceleration : maxAcceleration;
-        }
-        else
-        {
+        } else {
             effectiveAcceleration = maxAirAcceleration;
         }
 
         int targetVelocityX = _moveDirection * MoveSpeed;
         int maxSpeedChange = (int) (effectiveAcceleration * Time.deltaTime);
         velocityX = Mathf.MoveTowards(velocityX, targetVelocityX, maxSpeedChange);
-        print(velocityY);
     }
+
+    public void StopX() { velocityX = 0; }
 
     public override bool OnCollide(PhysObj p, Vector2 direction)
     {
@@ -142,6 +144,11 @@ public class PlayerActor : Actor {
         _lastJumpBeingHeld = true;
     }
 
+    public void DogoJump() {
+        velocityX = _moveDirection * DogoJumpV;
+        print(velocityX);
+    }
+
     public void Land() {
         velocityY = 0;
     }
@@ -190,6 +197,6 @@ public class PlayerActor : Actor {
     }
 
     private void OnDrawGizmosSelected() {
-        Handles.Label(new Vector3(0, 56, 0) , "" + velocity.y);
+        Handles.Label(new Vector3(0, 56, 0) , "" + velocityY);
     }
 }
