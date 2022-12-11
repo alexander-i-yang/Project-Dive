@@ -22,9 +22,9 @@ namespace Player {
             _player = GetComponent<PlayerActor>();
         }
 
-        private void JumpFromGround()
+        private void JumpFromInput()
         {
-            _player.Jump();
+            _player.JumpFromInput();
             _jumpedFromGround = true;
         }
 
@@ -54,20 +54,19 @@ namespace Player {
             public override void Enter(PlayerStateInput i)
             {
                 MySM._jumpedFromGround = false;
-                MySM._canDoubleJump = true;
-                MySM._canDive = true;
+                MySM.refill();
 
                 MySM._player.Land();
                 if (MySM._jumpBufferTimer > 0 && !MySM.PrevStateEquals<Diving>())
                 {
-                    MySM.JumpFromGround();
+                    MySM.JumpFromInput();
                 }
             }
 
             public override void JumpPressed()
             {
                 base.JumpPressed();
-                MySM.JumpFromGround();
+                MySM.JumpFromInput();
             }
 
             public override void SetGrounded(bool isGrounded)
@@ -90,7 +89,7 @@ namespace Player {
                 bool justLeftGround = MySM._jumpCoyoteTimer > 0 && !MySM._jumpedFromGround;
                 if (justLeftGround)
                 {
-                    MySM.JumpFromGround();
+                    MySM.JumpFromInput();
                 }
                 else if (MySM._canDoubleJump)
                 {
@@ -178,14 +177,17 @@ namespace Player {
 
             public override bool EnterCrystal(Crystal c)
             {
-                Debug.Log("Entered Crystal");
                 MySM.Transition<Airborne>();
                 MySM._player.Jump();
-                MySM._canDoubleJump = true;
-                MySM._canDive = true;
+                MySM.refill();
                 c.Break();
                 return false;
             }
+        }
+
+        private void refill() {
+            _canDoubleJump = true;
+            _canDive = true;
         }
     }
 

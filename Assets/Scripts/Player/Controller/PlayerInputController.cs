@@ -24,9 +24,9 @@ public class PlayerInputController : InputController
 
     public override int GetMovementInput()
     {
+        
         int rightInput = inputActions.MoveRight.IsPressed() ? 1 : 0;
         int leftInput = inputActions.MoveLeft.IsPressed() ? 1 : 0;
-
         return rightInput - leftInput;
     }
 

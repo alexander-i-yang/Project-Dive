@@ -89,6 +89,7 @@ public class PlayerActor : Actor {
         int targetVelocityX = _moveDirection * MoveSpeed;
         int maxSpeedChange = (int) (effectiveAcceleration * Time.deltaTime);
         velocityX = Mathf.MoveTowards(velocityX, targetVelocityX, maxSpeedChange);
+        print(velocityY);
     }
 
     public override bool OnCollide(PhysObj p, Vector2 direction)
@@ -119,7 +120,11 @@ public class PlayerActor : Actor {
     public void Jump() {
         velocityY = GetJumpSpeedFromHeight(JumpHeight);
         _stateMachine.CurState.SetGrounded(false);
+    }
+
+    public void JumpFromInput() {
         _lastJumpBeingHeld = true;
+        Jump();
     }
 
     public void TryJumpCut()
@@ -134,6 +139,7 @@ public class PlayerActor : Actor {
 
     public void DoubleJump() {
         velocityY = GetJumpSpeedFromHeight(DoubleJumpHeight);
+        _lastJumpBeingHeld = true;
     }
 
     public void Land() {
