@@ -13,19 +13,62 @@
             "dynamicWrapping": false,
             "scaleInDock": 1
         },
-        "Tiles/Dive.tmx": {
-            "scale": 4,
+        "Tiles/Dive - Copy.tmx": {
+            "scale": 4.598263888888889,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 83.75,
-                "y": 76.25
+                "x": 128.09182209469154,
+                "y": 72.20116287850186
+            }
+        },
+        "Tiles/Dive.tmx": {
+            "scale": 3,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 94.99999999999997,
+                "y": 32.66666666666667
+            }
+        },
+        "Tiles/Empty.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 130.66666666666666,
+                "y": 87
+            }
+        },
+        "Tiles/Level1 - Copy.tmx": {
+            "scale": 4.598263888888889,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.09182209469154,
+                "y": 72.20116287850186
+            }
+        },
+        "Tiles/Level1.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 4.598263888888889,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 90.90387374461982,
+                "y": 77.6379974326059
+            }
+        },
+        "Tiles/Level2.tmx": {
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 159.16666666666666,
+                "y": 74.16666666666666
             }
         },
         "Tiles/Logan_Test.tmx": {
             "scale": 4.1384375,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 117.91890055123463,
+                "x": 118.40217473382162,
                 "y": 78.04878048780488
             }
         },
@@ -50,16 +93,18 @@
         },
         "Tiles/automap.tmx": {
             "scale": 8,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 118.875,
-                "y": 78.875
+                "x": 119.9375,
+                "y": 79.9375
             }
         }
     },
+    "map.height": 18,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 8,
     "map.tileWidth": 8,
+    "map.width": 32,
     "openFiles": [
         "Tiles/Dive.tmx",
         "Tiles/automap.tmx",
@@ -68,6 +113,9 @@
     ],
     "project": "Project.tiled-project",
     "recentFiles": [
+        "Tiles/Level1 - Copy.tmx",
+        "Tiles/Dive - Copy.tmx",
+        "Tiles/Empty.tmx",
         "Tiles/automap inside.tmx",
         "Tiles/Logan_Test.tmx",
         "Tiles/automap.tmx",

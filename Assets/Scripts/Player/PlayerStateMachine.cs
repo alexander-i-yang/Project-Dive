@@ -55,7 +55,7 @@ namespace Player {
             public override void Enter(PlayerStateInput i)
             {
                 MySM._jumpedFromGround = false;
-                MySM.refill();
+                MySM.Refill();
 
                 MySM._player.Land();
                 if (MySM._jumpBufferTimer > 0 && !MySM.PrevStateEquals<Diving>())
@@ -179,31 +179,42 @@ namespace Player {
             public override bool EnterCrystal(Crystal c)
             {
                 MySM.Transition<Airborne>();
-                MySM._player.Jump();
-                MySM.refill();
+                MySM._player.CrystalJump();
+                MySM.Refill();
                 c.Break();
                 return false;
             }
         }
 
         public class Dogoing : PlayerState {
+            private double _oldVelocity;
+            private double _dogoXVBufferTimer;
             public override void Enter(PlayerStateInput i) {
-                MySM._player.StopX();
+                _oldVelocity = MySM._player.Dogo();
+                _dogoXVBufferTimer = MySM._player.DogoXVBufferTime;
             }
 
             public override void JumpPressed()
             {
                 base.JumpPressed();
-                print("Dogo jump");
-                MySM._player.DogoJump();
+                MySM._player.DogoJump(_dogoXVBufferTimer > 0, _oldVelocity);
+                MySM.Refill();
                 MySM.Transition<Airborne>();
+            }
+
+            public override void FixedUpdate() {
+                if (_dogoXVBufferTimer > 0) {
+                    _dogoXVBufferTimer = Math.Max(0, _dogoXVBufferTimer - Game.FixedDeltaTime);
+                }
+
+                base.FixedUpdate();
             }
 
             public override void MoveX(bool grounded) {
             }
         }
 
-        private void refill() {
+        private void Refill() {
             _canDoubleJump = true;
             _canDive = true;
         }

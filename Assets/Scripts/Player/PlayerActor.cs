@@ -19,18 +19,23 @@ public class PlayerActor : Actor {
     [SerializeField] private int maxAcceleration;
     [SerializeField] private int maxAirAcceleration;
     [SerializeField] private int maxDeceleration;
-    
+
     [Foldout("Jump", true)]
     [SerializeField] private int JumpHeight;
+    [SerializeField] private int CrystalJumpHeight;
     [SerializeField] private int DoubleJumpHeight;
     [SerializeField] public float JumpCoyoteTime;
     [SerializeField] public float JumpBufferTime;
     [SerializeField, Range(0f, 1f)] public float JumpCutMultiplier;
-    [SerializeField] private float DogoJumpV;
 
     [Foldout("Dive", true)]
     [SerializeField] private int DiveVelocity;
     [SerializeField] private int DiveDeceleration;
+    
+    [Foldout("Dogo", true)]
+    [SerializeField] private float DogoXJumpV;
+    [SerializeField] private float DogoYJumpHeight;
+    [SerializeField] public double DogoXVBufferTime;
 
     private PlayerInputController _input;
     private PlayerStateMachine _stateMachine;
@@ -92,7 +97,11 @@ public class PlayerActor : Actor {
         velocityX = Mathf.MoveTowards(velocityX, targetVelocityX, maxSpeedChange);
     }
 
-    public void StopX() { velocityX = 0; }
+    public double Dogo() {
+        double v = velocityX;
+        velocityX = 0;
+        return v;
+    }
 
     public override bool OnCollide(PhysObj p, Vector2 direction)
     {
@@ -128,6 +137,12 @@ public class PlayerActor : Actor {
         _lastJumpBeingHeld = true;
         Jump();
     }
+    
+    public void CrystalJump() {
+        velocityY = GetJumpSpeedFromHeight(CrystalJumpHeight);
+        _stateMachine.CurState.SetGrounded(false);
+        _lastJumpBeingHeld = false;
+    }
 
     public void TryJumpCut()
     {
@@ -142,11 +157,28 @@ public class PlayerActor : Actor {
     public void DoubleJump() {
         velocityY = GetJumpSpeedFromHeight(DoubleJumpHeight);
         _lastJumpBeingHeld = true;
+        // If the player is trying to go in the opposite direction of their x velocity, instantly switch direction.
+        if (_moveDirection != 0 && _moveDirection != Math.Sign(velocityX)) {
+            velocityX = 0;
+            print("lmao");
+        }
     }
 
-    public void DogoJump() {
-        velocityX = _moveDirection * DogoJumpV;
-        print(velocityX);
+    public void DogoJump(bool conserveMomentum, double oldXV) {
+        if (conserveMomentum) {
+            if (_moveDirection == 1) {
+                velocityX = (float)Math.Max(oldXV+DogoXJumpV, DogoXJumpV);
+                print(oldXV);
+            } else if (_moveDirection == -1) {
+                velocityX = (float)Math.Min(oldXV-DogoXJumpV, -DogoXJumpV);
+            }
+        } else {
+            velocityX = _moveDirection * DogoXJumpV;
+            if (_moveDirection == 0) {
+                velocityY = GetJumpSpeedFromHeight(DogoYJumpHeight);
+                _lastJumpBeingHeld = false;
+            }
+        }
     }
 
     public void Land() {
