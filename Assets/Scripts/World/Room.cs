@@ -8,6 +8,8 @@ using UnityEngine;
 
 namespace World {
     public class Room : MonoBehaviour {
+        [SerializeField, MustBeAssigned] private Transform respawn;
+        public Transform Respawn => respawn;
         [SerializeField, AutoProperty(AutoPropertyMode.Children)] private CinemachineVirtualCamera vCamera;
         [SerializeField, AutoProperty(AutoPropertyMode.Scene)] private PlayerActor _player;
         [SerializeField, AutoProperty(AutoPropertyMode.Scene)] private CinemachineBrain _cmBrain;
