@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
+
 using Helpers;
 using Mechanics;
 using Phys;
 using Player;
+using World;
 
 using MyBox;
 
@@ -12,7 +15,11 @@ using UnityEngine.Experimental.Audio;
 
 [RequireComponent(typeof(PlayerStateMachine))]
 [RequireComponent(typeof(PlayerInputController))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class PlayerActor : Actor {
+    [SerializeField, AutoProperty] private PlayerInputController _input;
+    [SerializeField, AutoProperty] private PlayerStateMachine _stateMachine;
+    [SerializeField, AutoProperty] private BoxCollider2D _collider;
 
     [Foldout("Move", true)]
     [SerializeField] private int MoveSpeed;
@@ -37,19 +44,38 @@ public class PlayerActor : Actor {
     [SerializeField] private float DogoYJumpHeight;
     [SerializeField] public double DogoXVBufferTime;
 
-    private PlayerInputController _input;
-    private PlayerStateMachine _stateMachine;
+    [Foldout("Misc", true)]
+    [SerializeField, Range(0f, 1f)] private float roomTransitionVCutX = 0.5f;
+    [SerializeField, Range(0f, 1f)] private float roomTransitionVCutY = 0.5f;
 
+    private Room _currentRoom;
     private int _moveDirection;
     private bool _lastJumpBeingHeld;
 
-    private void Awake()
+    public Room CurrentRoom
     {
-        _input = GetComponent<PlayerInputController>();
-        _stateMachine = GetComponent<PlayerStateMachine>();
+        get
+        {
+            if (_currentRoom == null)
+            {
+                _currentRoom = FindCurrentRoom();
+            }
+
+            return _currentRoom;
+        }
     }
 
-    void Update()
+    private void OnEnable()
+    {
+        Room.RoomTransitionEvent += OnRoomTransition;
+    }
+
+    private void OnDisable()
+    {
+        Room.RoomTransitionEvent -= OnRoomTransition;
+    }
+
+    private void Update()
     {
         UpdateInputs();
 
@@ -199,7 +225,7 @@ public class PlayerActor : Actor {
     }
 
     public void Die() {
-        transform.position = new Vector2(36, -118);
+        transform.position = CurrentRoom.Respawn.position;
         velocity = Vector2.zero;
     }
 
@@ -221,6 +247,31 @@ public class PlayerActor : Actor {
 
     public bool IsDiving() {
         return _stateMachine.IsOnState<PlayerStateMachine.Diving>();
+    }
+
+    private void OnRoomTransition(Room roomEntering)
+    {
+        _currentRoom = roomEntering;
+        velocityX *= roomTransitionVCutX;
+        velocityY *= roomTransitionVCutY;
+    }
+
+    private Room FindCurrentRoom()
+    {
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.useTriggers = true;
+        List<Collider2D> contacts = new List<Collider2D>();
+        _collider.GetContacts(filter, contacts);
+        foreach (Collider2D contact in contacts)
+        {
+            Room room = contact.GetComponent<Room>();
+            if (room != null)
+            {
+                return room;
+            }
+        }
+
+        return null;
     }
 
     private float GetJumpSpeedFromHeight(float jumpHeight)
