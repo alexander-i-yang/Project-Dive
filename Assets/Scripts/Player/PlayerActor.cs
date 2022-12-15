@@ -3,6 +3,7 @@ using Helpers;
 using Mechanics;
 using Phys;
 using Player;
+using World;
 
 using MyBox;
 
@@ -37,6 +38,10 @@ public class PlayerActor : Actor {
     [SerializeField] private float DogoYJumpHeight;
     [SerializeField] public double DogoXVBufferTime;
 
+    [Foldout("Misc", true)]
+    [SerializeField, Range(0f, 1f)] private float roomTransitionVCutX = 0.5f;
+    [SerializeField, Range(0f, 1f)] private float roomTransitionVCutY = 0.5f;
+
     private PlayerInputController _input;
     private PlayerStateMachine _stateMachine;
 
@@ -49,7 +54,17 @@ public class PlayerActor : Actor {
         _stateMachine = GetComponent<PlayerStateMachine>();
     }
 
-    void Update()
+    private void OnEnable()
+    {
+        Room.RoomTransitionEvent += OnRoomTransition;
+    }
+
+    private void OnDisable()
+    {
+        Room.RoomTransitionEvent -= OnRoomTransition;
+    }
+
+    private void Update()
     {
         UpdateInputs();
 
@@ -221,6 +236,12 @@ public class PlayerActor : Actor {
 
     public bool IsDiving() {
         return _stateMachine.IsOnState<PlayerStateMachine.Diving>();
+    }
+
+    private void OnRoomTransition(Room roomEntering)
+    {
+        velocityX *= roomTransitionVCutX;
+        velocityY *= roomTransitionVCutY;
     }
 
     private float GetJumpSpeedFromHeight(float jumpHeight)
