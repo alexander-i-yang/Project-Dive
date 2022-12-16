@@ -49,6 +49,7 @@ public class PlayerActor : Actor {
     [SerializeField, Range(0f, 1f)] private float roomTransitionVCutY = 0.5f;
 
     private Room _currentRoom;
+    private Spawn _currentSpawnPoint;
     private int _moveDirection;
     private bool _lastJumpBeingHeld;
 
@@ -62,6 +63,18 @@ public class PlayerActor : Actor {
             }
 
             return _currentRoom;
+        }
+    }
+
+    public Spawn CurrentSpawnPoint
+    {
+        get
+        {
+            if (_currentSpawnPoint == null)
+            {
+                _currentSpawnPoint = FindClosestSpawnPoint();
+            }
+            return _currentSpawnPoint;
         }
     }
 
@@ -225,7 +238,7 @@ public class PlayerActor : Actor {
     }
 
     public void Die() {
-        transform.position = CurrentRoom.Respawn.position;
+        transform.position = CurrentSpawnPoint.transform.position;
         velocity = Vector2.zero;
     }
 
@@ -252,6 +265,7 @@ public class PlayerActor : Actor {
     private void OnRoomTransition(Room roomEntering)
     {
         _currentRoom = roomEntering;
+        _currentSpawnPoint = FindClosestSpawnPoint();
         velocityX *= roomTransitionVCutX;
         velocityY *= roomTransitionVCutY;
     }
@@ -272,6 +286,27 @@ public class PlayerActor : Actor {
         }
 
         return null;
+    }
+
+    private Spawn FindClosestSpawnPoint()
+    {
+        float closestDist = float.MaxValue;
+        Spawn closest = null;
+        foreach (Spawn spawn in CurrentRoom.Spawns)
+        {
+            float newDist = Vector2.Distance(transform.position, spawn.transform.position);
+            if (newDist < closestDist)
+            {
+                closestDist = newDist;
+                closest = spawn;
+            }
+        }
+
+        if (closest == null)
+        {
+            Debug.LogError("No spawn point was found for the player. Every room must have at least one Spawn.");
+        }
+        return closest;
     }
 
     private float GetJumpSpeedFromHeight(float jumpHeight)

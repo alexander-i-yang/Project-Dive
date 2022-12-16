@@ -8,11 +8,22 @@ using UnityEngine;
 
 namespace World {
     public class Room : MonoBehaviour {
-        [SerializeField, MustBeAssigned] private Transform respawn;
-        public Transform Respawn => respawn;
         [SerializeField, AutoProperty(AutoPropertyMode.Children)] private CinemachineVirtualCamera vCamera;
         [SerializeField, AutoProperty(AutoPropertyMode.Scene)] private PlayerActor _player;
         [SerializeField, AutoProperty(AutoPropertyMode.Scene)] private CinemachineBrain _cmBrain;
+
+        private Spawn[] _spawns;
+        public Spawn[] Spawns
+        {
+            get
+            {
+                if (_spawns == null)
+                {
+                    _spawns = GetComponentsInChildren<Spawn>();
+                }
+                return _spawns;
+            }
+        }
 
         private static Room[] _roomList;
         private static Coroutine _transitionRoutine;
@@ -26,6 +37,15 @@ namespace World {
             {
                 _roomList = FindObjectsOfType<Room>();
                 Debug.Log($"Initialized Room List: Found {_roomList.Length} rooms.");
+            }
+        }
+
+        private void OnValidate()
+        {
+            Spawn spawn = GetComponentInChildren<Spawn>();
+            if (spawn == null)
+            {
+                Debug.LogWarning($"The room {gameObject.name} does not have a spawn point. Every room should have at least one spawn point.");
             }
         }
 

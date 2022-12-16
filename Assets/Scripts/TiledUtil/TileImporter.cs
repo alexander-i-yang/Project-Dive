@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+
 using Mechanics;
+
 using SuperTiled2Unity;
 using SuperTiled2Unity.Editor;
-using UnityEngine;
 
+using UnityEngine;
+using UnityEngine.Tilemaps;
+
+using World;
 
 namespace Helpers {
 
@@ -24,12 +29,59 @@ namespace Helpers {
             var objects = map.GetComponentsInChildren<SuperObject>();
             var doc = XDocument.Load(args.assetPath);
 
-            AddColliderToMap(map.transform.GetChild(0));
+            AddMapComponents(map.transform);
+            //AddColliderToMap(map.transform.GetChild(0));
             Debug.Log(map);
             foreach (SuperLayer layer in layers) {
                 Debug.Log(layer);
                 AddCustomPropertiesToLayer(layer, GetLayerXNode(doc, layer));
             }
+        }
+
+        private void AddMapComponents(Transform parent)
+        {
+
+            //Find the main tilemap
+            Tilemap mainTilemap = FindGroundLayerTilemap(parent);
+            if (mainTilemap == null)
+            {
+                Debug.LogError("Creating a room collider requires a Tiled layer named 'Ground'. This should probably be fixed in Tiled (or Logan screwed up *wink*).");
+                return;
+            }
+
+            mainTilemap.CompressBounds();
+            Bounds colliderBounds = mainTilemap.localBounds;
+
+            //Add Polygon Collider
+            PolygonCollider2D roomCollider = parent.gameObject.AddComponent<PolygonCollider2D>();
+            roomCollider.pathCount = 0;
+            Vector2 boundsMin = colliderBounds.min;
+            Vector2 boundsMax = colliderBounds.max;
+            roomCollider.SetPath(0, new Vector2[]
+            {
+                boundsMin,
+                boundsMin + Vector2.right * colliderBounds.extents.x * 2,
+                boundsMax,
+                boundsMin + Vector2.up * colliderBounds.extents.y * 2,
+            });
+            roomCollider.offset = mainTilemap.transform.position;
+
+            //Add Room Component
+            parent.gameObject.AddComponent<Room>();
+        }
+
+        private Tilemap FindGroundLayerTilemap(Transform parent)
+        {
+            SuperTileLayer[] layers = parent.GetComponentsInChildren<SuperTileLayer>();
+            foreach (SuperTileLayer layer in layers)
+            {
+                if (layer.gameObject.name.Equals("Ground"))
+                {
+                    return layer.GetComponent<Tilemap>();
+                }
+            }
+
+            return null;
         }
 
         private void AddCustomPropertiesToLayer(SuperLayer layer, XElement layerNode)
@@ -60,23 +112,7 @@ namespace Helpers {
                 {
                     if (anchorOffset.GetValueAsBool()) AnchorOffset(layer, layerNode);
                 }
-            }
-
-            //var props = GetLayerProps(doc, layer);
-            //if (props != null) {
-            //    string component = GetProp(props, "unity:Component");
-            //    if (component != null) AddComponentToLayer(layer.transform, component);
-
-            //    string layerName = GetProp(props, "unity:Layer");
-            //    if (layerName != null) SetLayer(layer.transform, layerName);
-
-            //    string castShadows = GetProp(props, "unity:CastShadows");
-            //    if (castShadows == "true") GenerateShadows(layer.transform);
-
-            //    string offset = GetProp(props, "unity:anchorOffset");
-            //    if (offset == "true") AnchorOffset(layer.transform, GetLayer(doc, layer));
-            //}
-            
+            }   
         }
 
         public void AddColliderToMap(Transform t) {
@@ -86,19 +122,6 @@ namespace Helpers {
         }
 
         public void AnchorOffset(SuperLayer layer, XElement docLayer) {
-            //SuperObject[] objs = layer.GetComponentsInChildren<SuperObject>();
-            //foreach (var obj in objs) {
-            //    Vector2 size = new Vector2(obj.m_Width, obj.m_Height);
-            //    if (size == Vector2.zero && obj.m_Template != null) {
-            //        XElement templateX = XElementFromTemplatePath(obj.m_Template);
-            //        size = WidthAndHeight(templateX);
-            //        size.y *= -1;
-            //    }
-            //    obj.transform.position += new Vector3(size.x/2, size.y/2, 0);
-
-            //    // layer.GetChild(i).position += new Vector3(s.x, -s.y, 0);
-            //}
-
             foreach (var xElement in docLayer.Elements())
             {
                 Vector2 size = WidthAndHeight(xElement);
@@ -141,12 +164,6 @@ namespace Helpers {
             {
                 edge.gameObject.AddComponent(typings[component]);
             }
-            //for (int i = 0; i < layer.childCount; ++i) {
-            //    var parent = layer.GetChild(i).GetChild(0);
-            //    for(int j = 0; j<parent.childCount; ++j) {
-            //        parent.GetChild(j).gameObject.AddComponent(typings[component]);
-            //    }
-            //}
         }
 
         public void SetLayer(Transform layer, string layerName) {
@@ -154,12 +171,6 @@ namespace Helpers {
             {
                 edge.gameObject.layer = LayerMask.NameToLayer(layerName);
             }
-            //for (int i = 0; i < layer.childCount; ++i) {
-            //    var parent = layer.GetChild(i).GetChild(0);
-            //    for(int j = 0; j<parent.childCount; ++j) {
-            //        parent.GetChild(j).gameObject.layer = LayerMask.NameToLayer(layerName);
-            //    }
-            //}
         }
 
         private string GetProp(XElement props, String propName) {
@@ -171,10 +182,6 @@ namespace Helpers {
 
             return null;
         }
-        
-        //public XElement GetLayerProps(XDocument doc, SuperLayer layer) {
-        //    return GetLayer(doc, layer).Element("properties");
-        //}
 
         public XElement GetLayerXNode(XDocument doc, SuperLayer layer) {
             foreach (XElement xNode in doc.Element("map").Elements()) {
