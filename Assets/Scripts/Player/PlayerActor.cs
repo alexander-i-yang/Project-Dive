@@ -199,7 +199,6 @@ public class PlayerActor : Actor {
         // If the player is trying to go in the opposite direction of their x velocity, instantly switch direction.
         if (_moveDirection != 0 && _moveDirection != Math.Sign(velocityX)) {
             velocityX = 0;
-            print("lmao");
         }
     }
 

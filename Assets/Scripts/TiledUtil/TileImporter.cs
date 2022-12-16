@@ -25,7 +25,8 @@ namespace Helpers {
             {"Spikes", typeof(Spikes)},
         };
         
-        public override void TmxAssetImported(TmxAssetImportedArgs data) {
+        public override void TmxAssetImported(TmxAssetImportedArgs data)
+        {
             SuperMap map = data.ImportedSuperMap;
             var args = data.AssetImporter;
             var layers = map.GetComponentsInChildren<SuperLayer>();
@@ -36,7 +37,6 @@ namespace Helpers {
             //AddColliderToMap(map.transform.GetChild(0));
             Debug.Log(map);
             foreach (SuperLayer layer in layers) {
-                Debug.Log(layer);
                 AddCustomPropertiesToLayer(layer, GetLayerXNode(doc, layer));
             }
         }
@@ -150,7 +150,7 @@ namespace Helpers {
                     size = WidthAndHeight(templateX);
                     size.y *= -1;
                 }
-                transformObj.position += new Vector3(size.x / 2, size.y / 2, 0);
+                if (transformObj != null) transformObj.position += new Vector3(size.x / 2, size.y / 2, 0);
 
                 // layer.GetChild(i).position += new Vector3(s.x, -s.y, 0);
             }

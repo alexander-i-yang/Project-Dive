@@ -24,7 +24,7 @@ namespace SuperTiled2Unity.Editor
 
         private GlobalTileDatabase m_GlobalTileDatabase;
         private Dictionary<uint, TilePolygonCollection> m_TilePolygonDatabase;
-        private int m_ObjectIdCounter = 0;
+        private int m_NextTileAsObjectId;
 
         [SerializeField]
         private bool m_TilesAsObjects = false;
@@ -76,7 +76,6 @@ namespace SuperTiled2Unity.Editor
             Assert.IsNull(m_GlobalTileDatabase);
 
             m_TilePolygonDatabase = new Dictionary<uint, TilePolygonCollection>();
-            m_ObjectIdCounter = 0;
             RendererSorter.SortingMode = m_SortingMode;
 
             // Create our map and fill it out
@@ -137,6 +136,7 @@ namespace SuperTiled2Unity.Editor
             m_MapComponent.m_NextObjectId = xMap.GetAttributeAs<int>("nextobjectid");
 
             m_IsIsometric = m_MapComponent.m_Orientation == MapOrientation.Isometric;
+            m_NextTileAsObjectId = m_MapComponent.m_NextObjectId;
 
             return true;
         }
@@ -395,6 +395,9 @@ namespace SuperTiled2Unity.Editor
         {
             // Should any of our objects (from Tiled) be replaced by instantiated prefabs?
             var supers = m_MapComponent.GetComponentsInChildren<SuperObject>();
+            var objectsById = supers.ToDictionary(so => so.m_Id, so => so.gameObject);
+            var goToDestroy = new List<GameObject>();
+
             foreach (var so in supers)
             {
                 var prefab = SuperImportContext.Settings.GetPrefabReplacement(so.m_Type);
@@ -406,21 +409,34 @@ namespace SuperTiled2Unity.Editor
                     instance.transform.position = so.transform.position + prefab.transform.localPosition;
                     instance.transform.rotation = so.transform.rotation;
 
-                    // Apply custom properties as messages to the instanced prefab
-                    var props = so.GetComponent<SuperCustomProperties>();
-                    if (props != null)
-                    {
-                        foreach (var p in props.m_Properties)
-                        {
-                            instance.gameObject.BroadcastProperty(p);
-                        }
-                    }
-
                     // Keep the name from Tiled.
-                    string name = so.gameObject.name;
-                    DestroyImmediate(so.gameObject);
-                    instance.name = name;
+                    instance.name = so.gameObject.name;
+
+                    // Update bookkeeping for later custom property replacement.
+                    goToDestroy.Add(so.gameObject);
+                    objectsById[so.m_Id] = instance;
                 }
+            }
+
+            // Now that all the replacements have been instantiated, apply custom properties
+            // where object references can now also point to the new replacement instances.
+            foreach (var so in supers)
+            {
+                // Apply custom properties as messages to the instanced prefab
+                var props = so.GetComponent<SuperCustomProperties>();
+                if (props != null)
+                {
+                    foreach (var p in props.m_Properties)
+                    {
+                        objectsById[so.m_Id].BroadcastProperty(p, objectsById);
+                    }
+                }
+            }
+
+            // Finally, destroy replaced game objects.
+            foreach (var go in goToDestroy)
+            {
+                DestroyImmediate(go);
             }
         }
 
@@ -484,8 +500,7 @@ namespace SuperTiled2Unity.Editor
             catch (Exception e)
             {
                 ReportError("Custom importer '{0}' threw an exception. Message = '{1}', Stack:\n{2}", customImporter.GetType().Name, e.Message, e.StackTrace);
-                Debug.LogException(e);
-                // Debug.LogErrorFormat("Custom importer general exception: {0}", e.Message);
+                Debug.LogErrorFormat("Custom importer general exception: {0}", e.Message);
             }
         }
     }

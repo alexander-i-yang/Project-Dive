@@ -25,8 +25,8 @@
             "scale": 3,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 94.99999999999997,
-                "y": 32.66666666666667
+                "x": 156.33333333333331,
+                "y": 77.33333333333331
             }
         },
         "Tiles/Empty.tmx": {
@@ -52,8 +52,8 @@
             "scale": 4.598263888888889,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 90.90387374461982,
-                "y": 77.6379974326059
+                "x": 90.25145359812733,
+                "y": 76.98557728611341
             }
         },
         "Tiles/Level2.tmx": {
@@ -100,6 +100,7 @@
             }
         }
     },
+    "last.imagePath": "C:/Users/uncle/Unity/Project-Dive/Assets/Sprites",
     "map.height": 18,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 8,
