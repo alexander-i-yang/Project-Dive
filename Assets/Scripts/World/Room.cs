@@ -9,8 +9,8 @@ using UnityEngine;
 namespace World {
     public class Room : MonoBehaviour {
         [SerializeField, AutoProperty(AutoPropertyMode.Children)] private CinemachineVirtualCamera vCamera;
-        [SerializeField, AutoProperty(AutoPropertyMode.Scene)] private PlayerActor _player;
-        [SerializeField, AutoProperty(AutoPropertyMode.Scene)] private CinemachineBrain _cmBrain;
+        [SerializeField, AutoProperty(AutoPropertyMode.Scene)] private PlayerActor player;
+        [SerializeField, AutoProperty(AutoPropertyMode.Scene)] private CinemachineBrain cmBrain;
 
         private Spawn[] _spawns;
         public Spawn[] Spawns
@@ -36,8 +36,10 @@ namespace World {
             if (_roomList == null || _roomList.Length == 0)
             {
                 _roomList = FindObjectsOfType<Room>();
-                Debug.Log($"Initialized Room List: Found {_roomList.Length} rooms.");
+                //Debug.Log($"Initialized Room List: Found {_roomList.Length} rooms.");
             }
+
+            vCamera.Follow = player.transform;
         }
 
         private void OnValidate()
@@ -50,7 +52,7 @@ namespace World {
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
-            Debug.Log($"Transitioned to room: {this.transform.parent.name}");
+            Debug.Log($"Transitioned to room: {gameObject.name}");
             TransitionTo(this);
         }
 
@@ -68,7 +70,7 @@ namespace World {
         {
             Time.timeScale = 0f;
             StartCameraSwitch();
-            yield return new WaitForSecondsRealtime(_cmBrain.m_DefaultBlend.BlendTime);
+            yield return new WaitForSecondsRealtime(cmBrain.m_DefaultBlend.BlendTime);
             Time.timeScale = 1f;
             RoomTransitionEvent?.Invoke(this);
         }

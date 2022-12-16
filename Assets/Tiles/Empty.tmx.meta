@@ -13,11 +13,11 @@ ScriptedImporter:
   - "Custom importer 'TileImporter' threw an exception. Message = 'Object reference
     not set to an instance of an object', Stack:\n  at Helpers.TileImporter.AnchorOffset
     (SuperTiled2Unity.SuperLayer layer, System.Xml.Linq.XElement docLayer) [0x00098]
-    in C:\\Dev\\UnityProjects\\Project-Dive\\Assets\\Scripts\\TiledUtil\\TileImporter.cs:140
+    in C:\\Dev\\UnityProjects\\Project-Dive\\Assets\\Scripts\\TiledUtil\\TileImporter.cs:153
     \r\n  at Helpers.TileImporter.AddCustomPropertiesToLayer (SuperTiled2Unity.SuperLayer
-    layer, System.Xml.Linq.XElement layerNode) [0x000b7] in C:\\Dev\\UnityProjects\\Project-Dive\\Assets\\Scripts\\TiledUtil\\TileImporter.cs:113
+    layer, System.Xml.Linq.XElement layerNode) [0x000b7] in C:\\Dev\\UnityProjects\\Project-Dive\\Assets\\Scripts\\TiledUtil\\TileImporter.cs:126
     \r\n  at Helpers.TileImporter.TmxAssetImported (SuperTiled2Unity.Editor.TmxAssetImportedArgs
-    data) [0x00057] in C:\\Dev\\UnityProjects\\Project-Dive\\Assets\\Scripts\\TiledUtil\\TileImporter.cs:37
+    data) [0x00057] in C:\\Dev\\UnityProjects\\Project-Dive\\Assets\\Scripts\\TiledUtil\\TileImporter.cs:40
     \r\n  at SuperTiled2Unity.Editor.TmxAssetImporter.RunCustomImporterType (System.Type
     type) [0x00050] in C:\\Dev\\UnityProjects\\Project-Dive\\Assets\\SuperTiled2Unity\\Scripts\\Editor\\Importers\\TmxAssetImporter.cs:477 "
   warnings: []

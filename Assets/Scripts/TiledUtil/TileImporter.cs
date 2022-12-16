@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Cinemachine;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
@@ -8,6 +10,7 @@ using Mechanics;
 using SuperTiled2Unity;
 using SuperTiled2Unity.Editor;
 
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -38,11 +41,11 @@ namespace Helpers {
             }
         }
 
-        private void AddMapComponents(Transform parent)
+        private void AddMapComponents(Transform map)
         {
 
             //Find the main tilemap
-            Tilemap mainTilemap = FindGroundLayerTilemap(parent);
+            Tilemap mainTilemap = FindGroundLayerTilemap(map);
             if (mainTilemap == null)
             {
                 Debug.LogError("Creating a room collider requires a Tiled layer named 'Ground'. This should probably be fixed in Tiled (or Logan screwed up *wink*).");
@@ -53,7 +56,7 @@ namespace Helpers {
             Bounds colliderBounds = mainTilemap.localBounds;
 
             //Add Polygon Collider
-            PolygonCollider2D roomCollider = parent.gameObject.AddComponent<PolygonCollider2D>();
+            PolygonCollider2D roomCollider = map.gameObject.AddComponent<PolygonCollider2D>();
             roomCollider.pathCount = 0;
             Vector2 boundsMin = colliderBounds.min;
             Vector2 boundsMax = colliderBounds.max;
@@ -65,9 +68,19 @@ namespace Helpers {
                 boundsMin + Vector2.up * colliderBounds.extents.y * 2,
             });
             roomCollider.offset = mainTilemap.transform.position;
+            roomCollider.isTrigger = true;
+
+            //Add VCam
+            string[] guids = AssetDatabase.FindAssets("t:prefab VCam_Room", new string[] { "Assets/Prefabs" });
+            GameObject vcamObject = AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(guids[0]));
+            GameObject instance = InstantiationExtension.InstantiateKeepPrefab(vcamObject);
+            instance.transform.SetParent(map);
+
+            var confiner = instance.GetComponent<CinemachineConfiner2D>();
+            confiner.m_BoundingShape2D = roomCollider;
 
             //Add Room Component
-            parent.gameObject.AddComponent<Room>();
+            map.gameObject.AddComponent<Room>();
         }
 
         private Tilemap FindGroundLayerTilemap(Transform parent)

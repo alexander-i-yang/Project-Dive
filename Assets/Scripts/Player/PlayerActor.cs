@@ -292,6 +292,8 @@ public class PlayerActor : Actor {
     {
         float closestDist = float.MaxValue;
         Spawn closest = null;
+        Debug.Log($"CurrentRoom: {CurrentRoom}");
+        Debug.Log($"Spawns: {CurrentRoom.Spawns}");
         foreach (Spawn spawn in CurrentRoom.Spawns)
         {
             float newDist = Vector2.Distance(transform.position, spawn.transform.position);
