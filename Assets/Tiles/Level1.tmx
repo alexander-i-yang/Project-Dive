@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="8" tileheight="8" infinite="0" nextlayerid="4" nextobjectid="62">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="8" tileheight="8" infinite="0" nextlayerid="4" nextobjectid="64">
  <tileset firstgid="1" source="Rocks.tsx"/>
  <tileset firstgid="37" source="Spikes.tsx"/>
  <tileset firstgid="53" source="Mechanics.tsx"/>
@@ -65,5 +65,6 @@
   <object id="46" gid="53" x="40" y="80" width="8" height="8"/>
   <object id="60" gid="53" x="136" y="112" width="8" height="8"/>
   <object id="61" gid="53" x="200" y="112" width="8" height="8"/>
+  <object id="63" gid="56" x="40" y="120" width="8" height="16"/>
  </objectgroup>
 </map>

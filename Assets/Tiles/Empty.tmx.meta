@@ -9,22 +9,12 @@ ScriptedImporter:
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
   missingFiles: []
-  errors:
-  - "Custom importer 'TileImporter' threw an exception. Message = 'Object reference
-    not set to an instance of an object', Stack:\n  at Helpers.TileImporter.AnchorOffset
-    (SuperTiled2Unity.SuperLayer layer, System.Xml.Linq.XElement docLayer) [0x00098]
-    in C:\\Dev\\UnityProjects\\Project-Dive\\Assets\\Scripts\\TiledUtil\\TileImporter.cs:117
-    \r\n  at Helpers.TileImporter.AddCustomPropertiesToLayer (SuperTiled2Unity.SuperLayer
-    layer, System.Xml.Linq.XElement layerNode) [0x000b7] in C:\\Dev\\UnityProjects\\Project-Dive\\Assets\\Scripts\\TiledUtil\\TileImporter.cs:61
-    \r\n  at Helpers.TileImporter.TmxAssetImported (SuperTiled2Unity.Editor.TmxAssetImportedArgs
-    data) [0x0005d] in C:\\Dev\\UnityProjects\\Project-Dive\\Assets\\Scripts\\TiledUtil\\TileImporter.cs:31
-    \r\n  at SuperTiled2Unity.Editor.TmxAssetImporter.RunCustomImporterType (System.Type
-    type) [0x00050] in C:\\Dev\\UnityProjects\\Project-Dive\\Assets\\SuperTiled2Unity\\Scripts\\Editor\\Importers\\TmxAssetImporter.cs:477 "
+  errors: []
   warnings: []
   missingSortingLayers: []
   missingLayers: []
   missingTags: []
-  importerVersion: 24
+  importerVersion: 26
   pixelsPerUnit: 1
   edgesPerEllipse: 32
   numberOfObjectsImported: 2
