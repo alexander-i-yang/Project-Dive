@@ -9,6 +9,7 @@ ScriptedImporter:
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
   missingFiles: []
+<<<<<<< HEAD
   errors:
   - "Custom importer 'TileImporter' threw an exception. Message = 'Object reference
     not set to an instance of an object', Stack:\n  at Helpers.TileImporter.AnchorOffset
@@ -20,11 +21,14 @@ ScriptedImporter:
     data) [0x00057] in C:\\Dev\\UnityProjects\\Project-Dive\\Assets\\Scripts\\TiledUtil\\TileImporter.cs:40
     \r\n  at SuperTiled2Unity.Editor.TmxAssetImporter.RunCustomImporterType (System.Type
     type) [0x00050] in C:\\Dev\\UnityProjects\\Project-Dive\\Assets\\SuperTiled2Unity\\Scripts\\Editor\\Importers\\TmxAssetImporter.cs:477 "
+=======
+  errors: []
+>>>>>>> 1506edc8bcd34ce6f4e9dd6509c65c2926ec0bfe
   warnings: []
   missingSortingLayers: []
   missingLayers: []
   missingTags: []
-  importerVersion: 24
+  importerVersion: 26
   pixelsPerUnit: 1
   edgesPerEllipse: 32
   numberOfObjectsImported: 2
