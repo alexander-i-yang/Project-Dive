@@ -49,6 +49,16 @@ namespace World {
             {
                 Debug.LogWarning($"The room {gameObject.name} does not have a spawn point. Every room should have at least one spawn point.");
             }
+
+            if (vCamera == null)
+            {
+                vCamera = GetComponentInChildren<CinemachineVirtualCamera>();
+            }
+            if (player == null)
+            {
+                player = FindObjectOfType<PlayerActor>();
+            }
+            vCamera.Follow = player.transform;
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
@@ -78,11 +88,13 @@ namespace World {
         private void StartCameraSwitch()
         {
             //L: Inefficient but not terrible
+            this.vCamera.gameObject.SetActive(true);
             foreach (Room room in _roomList)
             {
-                bool isCorrectRoom = (this == room);
-                room.vCamera.gameObject.SetActive(isCorrectRoom);
-                room.vCamera.enabled = isCorrectRoom;
+                if (room != this)
+                {
+                    room.vCamera.gameObject.SetActive(false);
+                }
             }
         }
     }
