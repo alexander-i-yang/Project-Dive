@@ -35,7 +35,6 @@ namespace Helpers {
 
             AddMapComponents(map.transform);
             //AddColliderToMap(map.transform.GetChild(0));
-            Debug.Log(map);
             foreach (SuperLayer layer in layers) {
                 AddCustomPropertiesToLayer(layer, GetLayerXNode(doc, layer));
             }
