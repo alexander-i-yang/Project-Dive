@@ -69,15 +69,6 @@ namespace Helpers {
             roomCollider.offset = mainTilemap.transform.position;
             roomCollider.isTrigger = true;
 
-            //Add VCam
-            string[] guids = AssetDatabase.FindAssets("t:prefab VCam_Room", new string[] { "Assets/Prefabs" });
-            GameObject vcamObject = AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(guids[0]));
-            GameObject instance = InstantiationExtension.InstantiateKeepPrefab(vcamObject);
-            instance.transform.SetParent(map);
-
-            var confiner = instance.GetComponent<CinemachineConfiner2D>();
-            confiner.m_BoundingShape2D = roomCollider;
-
             //Add Room Component
             map.gameObject.AddComponent<Room>();
         }
