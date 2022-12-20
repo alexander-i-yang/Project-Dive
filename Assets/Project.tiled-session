@@ -3,9 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Tiles/Dive.tmx",
+    "activeFile": "Tiles/Level3.tmx",
     "automapping.whileDrawing": true,
     "expandedProjectPaths": [
+        "Tiles",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -25,16 +27,16 @@
             "scale": 3,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 156.33333333333331,
-                "y": 77.33333333333331
+                "x": 127.83333333333333,
+                "y": 71.83333333333333
             }
         },
         "Tiles/Empty.tmx": {
             "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 130.66666666666666,
-                "y": 87
+                "x": 16.333333333333343,
+                "y": 110.83333333333333
             }
         },
         "Tiles/Level1 - Copy.tmx": {
@@ -49,11 +51,19 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 4.598263888888889,
-            "selectedLayer": 2,
+            "scale": 4,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 90.25145359812733,
-                "y": 76.98557728611341
+                "x": 127.875,
+                "y": 72.125
+            }
+        },
+        "Tiles/Level2 - Copy.tmx": {
+            "scale": 6.0100694444444445,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.1183199491594,
+                "y": 72.04575654283899
             }
         },
         "Tiles/Level2.tmx": {
@@ -64,24 +74,39 @@
                 "y": 74.16666666666666
             }
         },
+        "Tiles/Level3.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 4,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 142.5,
+                "y": 74.125
+            }
+        },
         "Tiles/Logan_Test.tmx": {
             "scale": 4.1384375,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 118.40217473382162,
-                "y": 78.04878048780488
+                "x": 119.97281582722948,
+                "y": 80.10269576379973
             }
         },
         "Tiles/Mechanics.tsx": {
             "dynamicWrapping": true,
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 3
         },
         "Tiles/Rocks.tsx": {
             "dynamicWrapping": false,
-            "scaleInDock": 4
+            "scaleInDock": 4,
+            "scaleInEditor": 3
         },
         "Tiles/Spikes.tsx": {
-            "scaleInDock": 1
+            "dynamicWrapping": false,
+            "scaleInDock": 4,
+            "scaleInEditor": 3
         },
         "Tiles/automap inside.tmx": {
             "scale": 4.1384375,
@@ -110,16 +135,27 @@
         "Tiles/Dive.tmx",
         "Tiles/automap.tmx",
         "Tiles/Logan_Test.tmx",
-        "Tiles/automap inside.tmx"
+        "Tiles/Level1.tmx",
+        "Tiles/Mechanics.tsx",
+        "Tiles/Empty.tmx",
+        "Tiles/Rocks.tsx",
+        "Tiles/Level3.tmx",
+        "Tiles/Spikes.tsx"
     ],
     "project": "Project.tiled-project",
+    "property.type": "object",
     "recentFiles": [
-        "Tiles/Level1 - Copy.tmx",
-        "Tiles/Dive - Copy.tmx",
-        "Tiles/Empty.tmx",
-        "Tiles/automap inside.tmx",
-        "Tiles/Logan_Test.tmx",
+        "Tiles/Dive.tmx",
         "Tiles/automap.tmx",
-        "Tiles/Dive.tmx"
+        "Tiles/Logan_Test.tmx",
+        "Tiles/Level1.tmx",
+        "Tiles/Mechanics.tsx",
+        "Tiles/Empty.tmx",
+        "Tiles/Rocks.tsx",
+        "Tiles/Spikes.tsx",
+        "Tiles/Level3.tmx",
+        "Tiles/Level2 - Copy.tmx",
+        "Tiles/Level1 - Copy.tmx",
+        "Tiles/Dive - Copy.tmx"
     ]
 }
