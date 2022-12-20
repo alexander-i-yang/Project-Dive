@@ -193,7 +193,6 @@ public class PlayerActor : Actor {
         if (conserveMomentum) {
             if (_moveDirection == 1) {
                 velocityX = (float)Math.Max(oldXV+DogoXJumpV, DogoXJumpV);
-                print(oldXV);
             } else if (_moveDirection == -1) {
                 velocityX = (float)Math.Min(oldXV-DogoXJumpV, -DogoXJumpV);
             }
@@ -224,12 +223,21 @@ public class PlayerActor : Actor {
     }
 
     public void Die() {
-        transform.position = CurrentRoom.Respawn.position;
-        velocity = Vector2.zero;
+        if (CurrentRoom != null) {
+            transform.position = CurrentRoom.Respawn.position;
+            velocity = Vector2.zero;
+        } else {
+            Debug.LogError("Update room prefab");
+            transform.position = new Vector2(24, -34);
+        }
     }
 
     public bool EnterCrystal(Crystal c) {
         return _stateMachine.CurState.EnterCrystal(c);
+    }
+    
+    public bool EnterSpike(Spike s) {
+        return _stateMachine.CurState.EnterSpike(s);
     }
 
     public void BonkHead() {

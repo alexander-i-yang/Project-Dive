@@ -15,7 +15,7 @@ namespace Helpers {
     public class TileImporter : CustomTmxImporter {
         Dictionary<string, Type> typings = new() {
             {"Wall", typeof(Wall)},
-            {"Spikes", typeof(Spikes)},
+            {"Spikes", typeof(Spike)},
         };
         
         public override void TmxAssetImported(TmxAssetImportedArgs data)

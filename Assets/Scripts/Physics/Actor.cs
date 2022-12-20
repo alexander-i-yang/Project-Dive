@@ -38,7 +38,7 @@ namespace Phys {
         }
 
         public void Fall() {
-            velocityY = Math.Max(MaxFall, velocityY + EffectiveGravity() * Game.FixedDeltaTime);
+            velocityY = Math.Max(MaxFall, velocityY + EffectiveGravity() * Game.Instance.FixedDeltaTime);
         }
 
         private int EffectiveGravity()

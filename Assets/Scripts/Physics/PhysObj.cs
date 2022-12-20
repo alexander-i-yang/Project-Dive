@@ -24,11 +24,11 @@ namespace Phys {
 
         protected void Start() {
             myCollider = GetComponent<BoxCollider2D>();
-            Game.ResetNextFrameOffset += ResetNextFrameOffset;
+            Game.Instance.ResetNextFrameOffset += ResetNextFrameOffset;
         }
 
         public virtual void FixedUpdate() {
-            Move(velocity * Game.FixedDeltaTime);
+            Move(velocity * Game.Instance.FixedDeltaTime);
         }
 
         private void ResetNextFrameOffset() {

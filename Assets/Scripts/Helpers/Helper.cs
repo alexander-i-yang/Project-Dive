@@ -18,7 +18,6 @@ namespace Helpers {
             return new Vector3(ActualLerp(a.x, b.x, t), ActualLerp(a.y, b.y, t), ActualLerp(a.z, b.z, t));
         }
 
-        //https://forum.unity.com/threads/debug-drawarrow.85980/
         public static void DrawArrow(Vector3 pos, Vector3 direction, Color color, float arrowHeadLength = 0.25f,
             float arrowHeadAngle = 20.0f) {
             if (direction.Equals(Vector2.zero)) {
@@ -99,7 +98,7 @@ namespace Helpers {
     
         public static IEnumerator Fade(SpriteRenderer sr, float time, Color newColor, Action<int> done = null) {
             Color origColor = sr.color;
-            for (float ft = 0; ft < time; ft += Game.IsPaused ? 0 : Time.deltaTime) {
+            for (float ft = 0; ft < time; ft += Game.Instance.IsPaused ? 0 : Time.deltaTime) {
                 sr.color = ColorLerp(origColor, newColor, ft/time);
                 yield return null;
             }
@@ -108,7 +107,7 @@ namespace Helpers {
 
         public static IEnumerator Shake(Transform t, float duration=0.5f, float speed=100f, float amount=0.05f) {
             Vector3 origPos = t.localPosition;
-            for (float ft = 0; ft < duration; ft += Game.IsPaused ? 0 : Time.deltaTime) {
+            for (float ft = 0; ft < duration; ft += Game.Instance.IsPaused ? 0 : Time.deltaTime) {
                 t.localPosition = origPos + new Vector3(Mathf.Sin(ft/duration * speed) * amount, Mathf.Sin(ft * speed) * amount);
                 yield return null;
             }
@@ -120,6 +119,14 @@ namespace Helpers {
             GUIStyle style = new GUIStyle();
             style.normal.textColor = col == default ? Color.white : col; 
             Handles.Label(pos, text, style);
+        }
+
+        public static IEnumerator DelayAction(float delayTime, Action act) {
+            //Wait for the specified delay time before continuing.
+            yield return new WaitForSeconds(delayTime/Game.Instance.TimeScale);
+ 
+            //Do the action after the delay time has finished.
+            act();
         }
     }
 }

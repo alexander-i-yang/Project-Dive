@@ -3,9 +3,7 @@
  <image source="Rocks.png" width="48" height="48"/>
  <tile id="0">
   <objectgroup draworder="index" id="3">
-   <object id="2" x="0" y="0" width="8" height="8"/>
-   <object id="3" x="0" y="0" width="8" height="8"/>
-   <object id="4" x="0" y="0" width="8" height="8"/>
+   <object id="9" x="0" y="0" width="8" height="8"/>
   </objectgroup>
  </tile>
  <tile id="1">
@@ -70,7 +68,7 @@
  </tile>
  <tile id="12">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="8" height="8"/>
+   <object id="2" x="0" y="0" width="8" height="8"/>
   </objectgroup>
  </tile>
  <tile id="13">
@@ -85,16 +83,6 @@
   </objectgroup>
  </tile>
  <tile id="16">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="8" height="8"/>
-  </objectgroup>
- </tile>
- <tile id="18">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="8" height="8"/>
-  </objectgroup>
- </tile>
- <tile id="19">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="8" height="8"/>
   </objectgroup>
@@ -119,12 +107,6 @@
  <tile id="24">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="8" height="8"/>
-   <object id="2" x="0" y="0" width="8" height="8"/>
-  </objectgroup>
- </tile>
- <tile id="25">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="8" height="8"/>
   </objectgroup>
  </tile>
  <tile id="28">
@@ -145,6 +127,7 @@
  <tile id="35">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="8" height="8"/>
+   <object id="2" x="0" y="0" width="8" height="8"/>
   </objectgroup>
  </tile>
 </tileset>

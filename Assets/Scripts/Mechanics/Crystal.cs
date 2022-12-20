@@ -38,7 +38,7 @@ namespace Mechanics {
             _mySR.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
             var oldLightIntensity = _light.intensity;
             _light.intensity = 0;
-            for (double i = 0; i < rechargeTime; i += Game.DeltaTime) {
+            for (double i = 0; i < rechargeTime; i += Game.Instance.DeltaTime) {
                 yield return null;
             }
             _mySR.color = Color.white;

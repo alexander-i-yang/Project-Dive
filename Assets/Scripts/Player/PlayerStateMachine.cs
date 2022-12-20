@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Mechanics;
 using UnityEngine;
 
@@ -13,7 +14,8 @@ namespace Player {
 
         private bool _canDoubleJump;
         private bool _canDive;
-        
+        private HashSet<Spike> _dogoDisableSpikes;
+
         protected override void SetInitialState() {
             SetCurState<Grounded>();
         }
@@ -30,7 +32,7 @@ namespace Player {
 
         public override void FixedUpdate() {
             if (_jumpBufferTimer > 0) {
-                _jumpBufferTimer = Math.Max(0, _jumpBufferTimer - Game.FixedDeltaTime);
+                _jumpBufferTimer = Math.Max(0, _jumpBufferTimer - Game.Instance.FixedDeltaTime);
             }
             base.FixedUpdate();
         }
@@ -48,6 +50,13 @@ namespace Player {
             public virtual void SetGrounded(bool isGrounded) { }
             public virtual bool EnterCrystal(Crystal c) { return false; }
             public virtual void MoveX(bool grounded) {MySM._player.MoveX(grounded);}
+
+            public virtual bool EnterSpike(Spike spike) {
+                if (spike.Collidable) {
+                    MySM._player.Die();
+                }
+                return false;
+            }
         }
 
         public class Grounded : PlayerState
@@ -126,9 +135,8 @@ namespace Player {
             public override void FixedUpdate()
             {
                 MySM._player.Fall();
-                if (MySM._jumpCoyoteTimer > 0)
-                {
-                    MySM._jumpCoyoteTimer = Math.Max(0, MySM._jumpCoyoteTimer - Game.FixedDeltaTime);
+                if (MySM._jumpCoyoteTimer > 0) {
+                    MySM._jumpCoyoteTimer = Math.Max(0, MySM._jumpCoyoteTimer - Game.Instance.FixedDeltaTime);
                 }
             }
         }
@@ -136,11 +144,12 @@ namespace Player {
         public class Diving : PlayerState
         {
             private bool _diveDecelerationDone = false;
-
+            
             public override void Enter(PlayerStateInput i)
             {
                 MySM._player.Dive();
                 MySM._canDive = false;
+                MySM._dogoDisableSpikes = new HashSet<Spike>();
                 _diveDecelerationDone = false;
             }
 
@@ -158,8 +167,7 @@ namespace Player {
             public override void SetGrounded(bool isGrounded)
             {
                 base.SetGrounded(isGrounded);
-                if (isGrounded)
-                {
+                if (isGrounded) {
                     MySM.Transition<Dogoing>();
                 }
             }
@@ -184,6 +192,12 @@ namespace Player {
                 c.Break();
                 return false;
             }
+
+            public override bool EnterSpike(Spike s) {
+                MySM._dogoDisableSpikes.Add(s);
+                s.DiveEnter();
+                return false;
+            }
         }
 
         public class Dogoing : PlayerState {
@@ -198,13 +212,17 @@ namespace Player {
             {
                 base.JumpPressed();
                 MySM._player.DogoJump(_dogoXVBufferTimer > 0, _oldVelocity);
+                foreach (Spike spike in MySM._dogoDisableSpikes) {
+                    spike.DiveReEnable();
+                    print(spike);
+                }
                 MySM.Refill();
                 MySM.Transition<Airborne>();
             }
 
             public override void FixedUpdate() {
                 if (_dogoXVBufferTimer > 0) {
-                    _dogoXVBufferTimer = Math.Max(0, _dogoXVBufferTimer - Game.FixedDeltaTime);
+                    _dogoXVBufferTimer = Math.Max(0, _dogoXVBufferTimer - Game.Instance.FixedDeltaTime);
                 }
 
                 base.FixedUpdate();
@@ -221,5 +239,6 @@ namespace Player {
     }
 
     public class PlayerStateInput : StateInput {
+        public List<Spike> DogoDisabledSpikes;
     }
 }
