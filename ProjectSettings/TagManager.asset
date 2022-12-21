@@ -14,7 +14,7 @@ TagManager:
   - Bg
   - Light
   - Velocity
-  - 
+  - PlayerLight
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Bg
     uniqueID: 1802803875
+    locked: 0
+  - name: Player
+    uniqueID: 2971613433
     locked: 0
   - name: Interactable
     uniqueID: 4131624623
