@@ -9,6 +9,7 @@ using UnityEngine.Tilemaps;
 namespace Mechanics {
     public class Spike : Solid {
         public bool Collidable { get; private set; } = true;
+        public float RechargeTime = 0.5f;
         private Tilemap _tilemap;
         private Vector3Int _currentCell;
         private Coroutine _reEnableCoroutine;
@@ -67,7 +68,7 @@ namespace Mechanics {
 
         public void DiveReEnable() {
             print("Reenable");
-            _reEnableCoroutine = StartCoroutine(Helper.DelayAction(0.2f, () => {
+            _reEnableCoroutine = StartCoroutine(Helper.DelayAction(RechargeTime, () => {
                 Collidable = true;
                 _tilemap.SetColor(_currentCell, Color.white);
             }));

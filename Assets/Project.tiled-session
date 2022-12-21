@@ -35,8 +35,8 @@
             "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 16.333333333333343,
-                "y": 110.83333333333333
+                "x": 128.66666666666666,
+                "y": 72.16666666666666
             }
         },
         "Tiles/Level1 - Copy.tmx": {
@@ -79,9 +79,9 @@
                 3
             ],
             "scale": 4,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 142.5,
+                "x": 142.25,
                 "y": 74.125
             }
         },
@@ -145,12 +145,12 @@
     "project": "Project.tiled-project",
     "property.type": "object",
     "recentFiles": [
+        "Tiles/Empty.tmx",
         "Tiles/Dive.tmx",
         "Tiles/automap.tmx",
         "Tiles/Logan_Test.tmx",
         "Tiles/Level1.tmx",
         "Tiles/Mechanics.tsx",
-        "Tiles/Empty.tmx",
         "Tiles/Rocks.tsx",
         "Tiles/Spikes.tsx",
         "Tiles/Level3.tmx",

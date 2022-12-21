@@ -129,9 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d607afa3638cab4aba1e52424d4c999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GravityDown: -600
-  GravityUp: -400
-  MaxFall: -400
+  GravityDown: -450
+  GravityUp: -350
+  MaxFall: -350
   _input: {fileID: 2234600854425113958}
   _stateMachine: {fileID: 2234600854425113957}
   _collider: {fileID: 2234600854425113962}
@@ -149,7 +149,8 @@ MonoBehaviour:
   DiveDeceleration: 30
   DogoXJumpV: 250
   DogoYJumpHeight: 48
-  DogoXVBufferTime: 0.2
+  DogoConserveXV: 0.2
+  DogoJumpGrace: 0.04
   roomTransitionVCutX: 0.5
   roomTransitionVCutY: 0.5
 --- !u!114 &2234600854425113958
@@ -222,7 +223,7 @@ MonoBehaviour:
   - {x: -4, y: 5, z: 0}
   m_ShapePathHash: 138024101
   m_Mesh: {fileID: 0}
-  m_InstanceId: -2076
+  m_InstanceId: -2096
 --- !u!1 &5389357683659332391
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +272,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.8490566, g: 0.58531785, b: 0.25952294, a: 1}
+  m_Color: {r: 0.9245283, g: 0.690433, b: 0.40469912, a: 1}
   m_Intensity: 1.5
   m_LightVolumeIntensity: 0.1
   m_LightVolumeIntensityEnabled: 1

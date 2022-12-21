@@ -205,7 +205,7 @@ namespace Player {
             private double _dogoXVBufferTimer;
             public override void Enter(PlayerStateInput i) {
                 _oldVelocity = MySM._player.Dogo();
-                _dogoXVBufferTimer = MySM._player.DogoXVBufferTime;
+                _dogoXVBufferTimer = MySM._player.DogoConserveXV;
             }
 
             public override void JumpPressed()
