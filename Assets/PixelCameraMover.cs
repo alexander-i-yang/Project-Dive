@@ -24,7 +24,7 @@ public class PixelCameraMover : MonoBehaviour
         secondOrderDynamics = new SecondOrderDynamics2D(followSpeed, 3f, initialResponse, followTarget.position);
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         float dt = useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
         Vector2 newPos = secondOrderDynamics.Update(dt, followTarget.position);

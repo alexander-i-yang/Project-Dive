@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-using Helpers;
+using Core;
 using Mechanics;
 using Phys;
 using Player;
@@ -12,7 +12,6 @@ using MyBox;
 
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Experimental.Audio;
 
 [RequireComponent(typeof(PlayerStateMachine))]
 [RequireComponent(typeof(PlayerInputController))]
@@ -46,14 +45,14 @@ public class PlayerActor : Actor {
     [SerializeField] public double DogoConserveXV;
     [SerializeField] public double DogoJumpGrace;
 
-    [Foldout("Misc", true)]
+    [Foldout("RoomTransitions", true)]
     [SerializeField, Range(0f, 1f)] private float roomTransitionVCutX = 0.5f;
     [SerializeField, Range(0f, 1f)] private float roomTransitionVCutY = 0.5f;
-    private int _facing = 1;
 
     private Room _currentRoom;
     private Spawn _currentSpawnPoint;
     private int _moveDirection;
+    private int _lastMoveDirection = 1;
     private bool _lastJumpBeingHeld;
 
     public Room CurrentRoom
@@ -117,7 +116,7 @@ public class PlayerActor : Actor {
         }
 
         _moveDirection = _input.GetMovementInput();
-        if (_moveDirection != 0) _facing = _moveDirection;
+        if (_moveDirection != 0) _lastMoveDirection = _moveDirection;
     }
 
     public override void FixedUpdate() {

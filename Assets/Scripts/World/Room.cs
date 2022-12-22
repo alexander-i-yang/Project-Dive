@@ -2,13 +2,17 @@
 using Cinemachine;
 using MyBox;
 
+using Helpers;
+
 using System.Collections;
 
 using UnityEngine;
 
 namespace World {
-    public class Room : MonoBehaviour {
-        private PlayerActor _player;
+    public class Room : MonoBehaviour, IFilterLoggerTarget {
+        [SerializeField, AutoProperty(AutoPropertyMode.Children)] private CinemachineVirtualCamera _vCam;
+        [SerializeField, AutoProperty(AutoPropertyMode.Scene)] private PlayerActor _player;
+        [SerializeField, AutoProperty(AutoPropertyMode.Scene)] private CinemachineBrain _cmBrain;
 
         private Spawn[] _spawns;
         public Spawn[] Spawns
@@ -37,7 +41,7 @@ namespace World {
                 //Debug.Log($"Initialized Room List: Found {_roomList.Length} rooms.");
             }
 
-            _player = FindObjectOfType<PlayerActor>();
+            _vCam.Follow = _player.transform;
         }
 
         private void OnValidate()
@@ -45,12 +49,12 @@ namespace World {
             Spawn spawn = GetComponentInChildren<Spawn>();
             if (spawn == null)
             {
-                Debug.LogWarning($"The room {gameObject.name} does not have a spawn point. Every room should have at least one spawn point.");
+                FilterLogger.LogWarning(this, $"The room {gameObject.name} does not have a spawn point. Every room should have at least one spawn point.");
             }
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
-            Debug.Log($"Transitioned to room: {gameObject.name}");
+            FilterLogger.Log(this, $"Transitioned to room: {gameObject.name}");
             TransitionTo(this);
         }
 
@@ -68,8 +72,7 @@ namespace World {
         {
             Time.timeScale = 0f;
             StartCameraSwitch();
-            yield return null;
-            //yield return new WaitForSecondsRealtime(cmBrain.m_DefaultBlend.BlendTime);
+            yield return new WaitForSecondsRealtime(_cmBrain.m_DefaultBlend.BlendTime);
             Time.timeScale = 1f;
             RoomTransitionEvent?.Invoke(this);
         }
@@ -77,14 +80,19 @@ namespace World {
         private void StartCameraSwitch()
         {
             //L: Inefficient but not terrible
-            //this.vCamera.gameObject.SetActive(true);
-            //foreach (Room room in _roomList)
-            //{
-            //    if (room != this)
-            //    {
-            //        room.vCamera.gameObject.SetActive(false);
-            //    }
-            //}
+            this._vCam.gameObject.SetActive(true);
+            foreach (Room room in _roomList)
+            {
+                if (room != this)
+                {
+                    room._vCam.gameObject.SetActive(false);
+                }
+            }
+        }
+
+        public LogLevel GetLogLevel()
+        {
+            return LogLevel.Error;
         }
     }
 }

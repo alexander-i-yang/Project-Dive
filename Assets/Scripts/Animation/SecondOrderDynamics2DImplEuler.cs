@@ -34,7 +34,6 @@ namespace Animation
         {
             Vector2 dInput = ApproxDInput(deltaTime, input, dInputOpt);
 
-
             float tCrit = GetCriticalTimestep();
             int iterations = Mathf.CeilToInt(deltaTime / tCrit);
             float timestepDivision = deltaTime / iterations;
