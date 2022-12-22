@@ -17,9 +17,10 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInputController))]
 [RequireComponent(typeof(BoxCollider2D))]
 public class PlayerActor : Actor {
-    [SerializeField, AutoProperty] private PlayerInputController _input;
-    [SerializeField, AutoProperty] private PlayerStateMachine _stateMachine;
-    [SerializeField, AutoProperty] private BoxCollider2D _collider;
+    [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private PlayerInputController _input;
+    [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private PlayerStateMachine _stateMachine;
+    [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private BoxCollider2D _collider;
+    [SerializeField, AutoProperty(AutoPropertyMode.Children)] private PlayerRoomManager _roomManager;
 
     [Foldout("Move", true)]
     [SerializeField] private int MoveSpeed;
@@ -49,36 +50,9 @@ public class PlayerActor : Actor {
     [SerializeField, Range(0f, 1f)] private float roomTransitionVCutX = 0.5f;
     [SerializeField, Range(0f, 1f)] private float roomTransitionVCutY = 0.5f;
 
-    private Room _currentRoom;
-    private Spawn _currentSpawnPoint;
     private int _moveDirection;
     private int _lastMoveDirection = 1;
     private bool _lastJumpBeingHeld;
-
-    public Room CurrentRoom
-    {
-        get
-        {
-            if (_currentRoom == null)
-            {
-                _currentRoom = FindCurrentRoom();
-            }
-
-            return _currentRoom;
-        }
-    }
-
-    public Spawn CurrentSpawnPoint
-    {
-        get
-        {
-            if (_currentSpawnPoint == null)
-            {
-                _currentSpawnPoint = FindClosestSpawnPoint();
-            }
-            return _currentSpawnPoint;
-        }
-    }
 
     private void OnEnable()
     {
@@ -117,6 +91,12 @@ public class PlayerActor : Actor {
 
         _moveDirection = _input.GetMovementInput();
         if (_moveDirection != 0) _lastMoveDirection = _moveDirection;
+    }
+
+    private void OnRoomTransition(Room roomEntering)
+    {
+        velocityX *= roomTransitionVCutX;
+        velocityY *= roomTransitionVCutY;
     }
 
     public override void FixedUpdate() {
@@ -268,8 +248,8 @@ public class PlayerActor : Actor {
     }
 
     public void Die() {
-        if (CurrentRoom != null) {
-            transform.position = CurrentSpawnPoint.transform.position;
+        if (_roomManager.CurrentRoom != null) {
+            transform.position = _roomManager.CurrentSpawnPoint.transform.position;
             velocity = Vector2.zero;
         } else {
             Debug.LogError("Update room prefab");
@@ -299,54 +279,6 @@ public class PlayerActor : Actor {
 
     public bool IsDiving() {
         return _stateMachine.IsOnState<PlayerStateMachine.Diving>();
-    }
-
-    private void OnRoomTransition(Room roomEntering)
-    {
-        _currentRoom = roomEntering;
-        _currentSpawnPoint = FindClosestSpawnPoint();
-        velocityX *= roomTransitionVCutX;
-        velocityY *= roomTransitionVCutY;
-    }
-
-    private Room FindCurrentRoom()
-    {
-        ContactFilter2D filter = new ContactFilter2D();
-        filter.useTriggers = true;
-        List<Collider2D> contacts = new List<Collider2D>();
-        _collider.GetContacts(filter, contacts);
-        foreach (Collider2D contact in contacts)
-        {
-            Room room = contact.GetComponent<Room>();
-            if (room != null) {
-                return room;
-            }
-        }
-
-        return null;
-    }
-
-    private Spawn FindClosestSpawnPoint()
-    {
-        float closestDist = float.MaxValue;
-        Spawn closest = null;
-        Debug.Log($"CurrentRoom: {CurrentRoom}");
-        Debug.Log($"Spawns: {CurrentRoom.Spawns}");
-        foreach (Spawn spawn in CurrentRoom.Spawns)
-        {
-            float newDist = Vector2.Distance(transform.position, spawn.transform.position);
-            if (newDist < closestDist)
-            {
-                closestDist = newDist;
-                closest = spawn;
-            }
-        }
-
-        if (closest == null)
-        {
-            Debug.LogError("No spawn point was found for the player. Every room must have at least one Spawn.");
-        }
-        return closest;
     }
 
     private float GetJumpSpeedFromHeight(float jumpHeight)
