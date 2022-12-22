@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="8" tileheight="8" infinite="0" nextlayerid="7" nextobjectid="1">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="8" tileheight="8" infinite="0" nextlayerid="10" nextobjectid="7">
  <properties>
   <property name="MatchOutsideMap" type="bool" value="true"/>
   <property name="OverflowBorder" type="bool" value="true"/>
  </properties>
  <tileset firstgid="1" source=":/automap-tiles.tsx"/>
  <tileset firstgid="6" source="Rocks.tsx"/>
+ <tileset firstgid="42" source="Mechanics.tsx"/>
  <layer id="2" name="regions" width="30" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -30,7 +31,7 @@
 0,27,27,27,0,27,27,27,0,27,27,27,0,0,27,27,0,27,27,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="3" name="input_Ground" width="30" height="20">
+ <layer id="3" name="input_Ground" width="30" height="20" opacity="0.9">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,4,0,0,0,4,0,0,0,4,0,0,0,4,0,0,0,4,0,0,0,4,0,0,0,0,0,0,0,
@@ -78,4 +79,5 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="8" name="output_Mechanics"/>
 </map>

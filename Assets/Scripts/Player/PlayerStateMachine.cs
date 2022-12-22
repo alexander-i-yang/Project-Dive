@@ -52,7 +52,7 @@ namespace Player {
             public virtual void MoveX(bool grounded) {MySM._player.MoveX(grounded);}
 
             public virtual bool EnterSpike(Spike spike) {
-                if (spike.Collidable) {
+                if (spike.Charged) {
                     MySM._player.Die();
                 }
                 return false;
@@ -213,8 +213,7 @@ namespace Player {
                 base.JumpPressed();
                 MySM._player.DogoJump(_dogoXVBufferTimer > 0, _oldVelocity);
                 foreach (Spike spike in MySM._dogoDisableSpikes) {
-                    spike.DiveReEnable();
-                    print(spike);
+                    spike.Recharge();
                 }
                 MySM.Refill();
                 MySM.Transition<Airborne>();
