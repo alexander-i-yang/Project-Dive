@@ -3,16 +3,36 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Tiles/Level3.tmx",
+    "activeFile": "",
     "automapping.whileDrawing": true,
     "expandedProjectPaths": [
-        "Tiles",
-        "."
+        ".",
+        "Tiles"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         ":/automap-tiles.tsx": {
             "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "SuperTiled2Unity/Examples/Overhead/Maps/TestOverhead.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 113.33333333333331,
+                "y": 185
+            }
+        },
+        "SuperTiled2Unity/Examples/Overhead/Maps/Zoria Tileset/overhead-objects.tsx": {
+            "scaleInDock": 1
+        },
+        "SuperTiled2Unity/Examples/Overhead/Maps/Zoria Tileset/scraps.tsx": {
+            "scaleInDock": 1
+        },
+        "SuperTiled2Unity/Examples/Overhead/Maps/Zoria Tileset/tiles.tsx": {
+            "scaleInDock": 1
+        },
+        "SuperTiled2Unity/Examples/Overhead/Maps/Zoria Tileset/water.tsx": {
             "scaleInDock": 1
         },
         "Tiles/Dive - Copy.tmx": {
@@ -25,18 +45,18 @@
         },
         "Tiles/Dive.tmx": {
             "scale": 3,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 127.83333333333333,
+                "x": 127.99999999999997,
                 "y": 71.83333333333333
             }
         },
         "Tiles/Empty.tmx": {
-            "scale": 3,
-            "selectedLayer": 0,
+            "scale": 5.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 128.66666666666666,
-                "y": 72.16666666666666
+                "x": 46.18181818181819,
+                "y": 118.63636363636364
             }
         },
         "Tiles/Level1 - Copy.tmx": {
@@ -54,7 +74,7 @@
             "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 127.875,
+                "x": 128,
                 "y": 72.125
             }
         },
@@ -70,7 +90,7 @@
             "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 159.16666666666666,
+                "x": 159.33333333333331,
                 "y": 74.16666666666666
             }
         },
@@ -81,15 +101,15 @@
             "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 142.25,
-                "y": 74.125
+                "x": 154.5,
+                "y": 95.375
             }
         },
         "Tiles/Logan_Test.tmx": {
             "scale": 4.1384375,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 119.97281582722948,
+                "x": 120.09363437287621,
                 "y": 80.10269576379973
             }
         },
@@ -106,7 +126,7 @@
         "Tiles/Spikes.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 4,
-            "scaleInEditor": 3
+            "scaleInEditor": 11
         },
         "Tiles/automap inside.tmx": {
             "scale": 4.1384375,
@@ -117,11 +137,25 @@
             }
         },
         "Tiles/automap.tmx": {
+            "expandedObjectLayers": [
+                8
+            ],
             "scale": 8,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
                 "x": 119.9375,
                 "y": 79.9375
+            }
+        },
+        "Tiles/automapSpikes.tmx": {
+            "expandedObjectLayers": [
+                6
+            ],
+            "scale": 8,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 55.75,
+                "y": 34.8125
             }
         }
     },
@@ -132,30 +166,21 @@
     "map.tileWidth": 8,
     "map.width": 32,
     "openFiles": [
-        "Tiles/Dive.tmx",
-        "Tiles/automap.tmx",
-        "Tiles/Logan_Test.tmx",
-        "Tiles/Level1.tmx",
-        "Tiles/Mechanics.tsx",
-        "Tiles/Empty.tmx",
-        "Tiles/Rocks.tsx",
-        "Tiles/Level3.tmx",
-        "Tiles/Spikes.tsx"
     ],
     "project": "Project.tiled-project",
     "property.type": "object",
     "recentFiles": [
-        "Tiles/Empty.tmx",
-        "Tiles/Dive.tmx",
-        "Tiles/automap.tmx",
-        "Tiles/Logan_Test.tmx",
-        "Tiles/Level1.tmx",
-        "Tiles/Mechanics.tsx",
-        "Tiles/Rocks.tsx",
-        "Tiles/Spikes.tsx",
         "Tiles/Level3.tmx",
-        "Tiles/Level2 - Copy.tmx",
-        "Tiles/Level1 - Copy.tmx",
-        "Tiles/Dive - Copy.tmx"
+        "Tiles/automap.tmx",
+        "Tiles/Spikes.tsx",
+        "Tiles/automapSpikes.tmx",
+        "Tiles/Mechanics.tsx",
+        "SuperTiled2Unity/Examples/Overhead/Maps/TestOverhead.tmx",
+        "Tiles/Level2.tmx",
+        "Tiles/Rocks.tsx",
+        "Tiles/Empty.tmx",
+        "Tiles/Level1.tmx",
+        "Tiles/Dive.tmx",
+        "Tiles/Logan_Test.tmx"
     ]
 }

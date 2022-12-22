@@ -8,19 +8,14 @@ using UnityEngine.Tilemaps;
 
 namespace Mechanics {
     public class Spike : Solid {
-        public bool Collidable { get; private set; } = true;
+        public bool Charged { get; private set; } = true;
         public float RechargeTime = 0.5f;
-        private Tilemap _tilemap;
-        private Vector3Int _currentCell;
         private Coroutine _reEnableCoroutine;
+        private SpriteRenderer _mySR; // for some reason autoProperty wasn't working for this
 
         protected new void Start() {
-            _tilemap = transform.parent.parent.GetComponent<Tilemap>();
-            Vector2 tilePosition = GetComponent<EdgeCollider2D>().points[0];
-            _currentCell = _tilemap.WorldToCell(tilePosition);
-            _currentCell.y -= 1;
-            
             base.Start();
+            _mySR = GetComponent<SpriteRenderer>();
         }
 
         public override bool OnCollide(PhysObj p, Vector2 direction) {
@@ -36,41 +31,23 @@ namespace Mechanics {
         }
 
         /*public void OnDrawGizmosSelected() {
-            Vector2[] points = GetComponent<EdgeCollider2D>().points;
-            Vector2 avg = Vector2.zero;
-            for (int i = 0; i < points.Length-1; ++i) {
-                var p = points[i];
-                avg += p;
-            }
-            avg /= points.Length-1;
-            avg.y -= 8;
             
-            _tilemap = transform.parent.parent.GetComponent<Tilemap>();
-            Vector2 tilePosition = GetComponent<EdgeCollider2D>().points[0];
-            _currentCell = (Vector2Int)_tilemap.WorldToCell(tilePosition);
-            _currentCell.y -= 1;
-
-            Vector2 cellCenter = new Vector2(_currentCell.x, _currentCell.y)*8+new Vector2(4, -4);
-            Vector2 directionV = cellCenter - avg;
-            double directionAngle = Math.Ceiling(Vector2.SignedAngle(directionV, Vector2.right));
-            Helper.DrawText(avg, directionAngle+"");
-            Helper.DrawArrow(avg, cellCenter-avg , Color.green);
         }*/
 
         public void DiveEnter() {
-            Collidable = false;
-            _tilemap.SetColor(_currentCell, new Color(1,1, 1, 0.5f));
+            Charged = false;
+            _mySR.SetAlpha(0.2f);
+            // _mySR.color = Color.red;
             if (_reEnableCoroutine != null) {
                 StopCoroutine(_reEnableCoroutine);
                 _reEnableCoroutine = null;
             }
         }
 
-        public void DiveReEnable() {
-            print("Reenable");
+        public void Recharge() {
             _reEnableCoroutine = StartCoroutine(Helper.DelayAction(RechargeTime, () => {
-                Collidable = true;
-                _tilemap.SetColor(_currentCell, Color.white);
+                Charged = true;
+                _mySR.SetAlpha(1);
             }));
         }
     }

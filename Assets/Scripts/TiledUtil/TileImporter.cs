@@ -50,7 +50,7 @@ namespace Helpers {
             Tilemap mainTilemap = FindGroundLayerTilemap(room);
             if (mainTilemap == null)
             {
-                Debug.LogError("Creating a room collider requires a Tiled layer named 'Ground'. This should probably be fixed in Tiled (or Logan screwed up *wink*).");
+                Debug.LogError($"Creating a room collider in map {map.name} requires a Tiled layer named 'Ground'. This should probably be fixed in Tiled (or Logan screwed up *wink*).");
                 return;
             }
             mainTilemap.CompressBounds();
@@ -113,9 +113,35 @@ namespace Helpers {
         private void AddCustomPropertiesToLayer(SuperLayer layer, XElement layerNode)
         {
             var customProps = layer.GetComponent<SuperCustomProperties>();
-            if (customProps != null)
-            {
-                CustomProperty component;
+            if (customProps != null) {
+                Dictionary<String, Action<CustomProperty>> PropActions = new() {
+                    {"Component", (prop) => {
+                        AddComponentToCollidersInLayer(layer.transform, prop.GetValueAsString());
+                    }},
+                    {"Layer", (prop) => {
+                        SetLayer(layer.transform, prop.GetValueAsString());
+                    }},
+                    {"CastShadows", (prop) => {
+                        if (prop.GetValueAsBool()) GenerateShadows(layer.transform);
+                    }},
+                    {"AnchorOffset", (prop) => {
+                        if (prop.GetValueAsBool()) AnchorOffset(layer, layerNode);
+                    }}, 
+                    {"WriteTileCoords", (prop) => {
+                        if (prop.GetValueAsBool()) WriteTileCoords(layer, layerNode);
+                    }}
+                };
+
+                foreach (var kv in PropActions) {
+                    string propName = kv.Key;
+                    Action<CustomProperty> act = kv.Value;
+                    CustomProperty prop;
+                    if (customProps.TryGetCustomProperty("unity:" + propName, out prop)) {
+                        act(prop);
+                    }
+                }
+
+                /*CustomProperty component;
                 if (customProps.TryGetCustomProperty("unity:Component", out component))
                 {
                     AddComponentToCollidersInLayer(layer.transform, component.GetValueAsString());
@@ -137,7 +163,7 @@ namespace Helpers {
                 if (customProps.TryGetCustomProperty("unity:AnchorOffset", out anchorOffset))
                 {
                     if (anchorOffset.GetValueAsBool()) AnchorOffset(layer, layerNode);
-                }
+                }*/
             }   
         }
 
@@ -167,6 +193,10 @@ namespace Helpers {
 
                 // layer.GetChild(i).position += new Vector3(s.x, -s.y, 0);
             }
+        }
+
+        public void WriteTileCoords(SuperLayer layer, XElement docLayer) {
+            Debug.Log(docLayer.Element("data"));
         }
 
         public Vector2 WidthAndHeight(XElement xNode) {

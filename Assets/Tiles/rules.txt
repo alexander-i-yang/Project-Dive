@@ -1,1 +1,2 @@
+automapSpikes.tmx
 automap.tmx

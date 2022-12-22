@@ -61,3 +61,11 @@ MonoBehaviour:
     m_Prefab: {fileID: 4997218929975561094, guid: 6c98e429c92798242bee43a316268452, type: 3}
   - m_TypeName: Spawn
     m_Prefab: {fileID: 8494943140775078179, guid: 96135c2b97cba5647a346c65e93cf101, type: 3}
+  - m_TypeName: SpikeDown
+    m_Prefab: {fileID: 1714830696444730741, guid: 554b9bb52b7f23e41ac4e0d62dd3a6d5, type: 3}
+  - m_TypeName: SpikeUp
+    m_Prefab: {fileID: 7611356121602088944, guid: 6278efff5cc41bb41b418ce868a7184d, type: 3}
+  - m_TypeName: SpikeLeft
+    m_Prefab: {fileID: 8339257288543612629, guid: dd9d0fcea0ac47444a0af35c0df21787, type: 3}
+  - m_TypeName: SpikeRight
+    m_Prefab: {fileID: 1345018767946929279, guid: 08480c95fe5ebf248ba877bdd44b0465, type: 3}
