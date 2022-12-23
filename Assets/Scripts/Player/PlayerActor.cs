@@ -248,11 +248,11 @@ public class PlayerActor : Actor {
     }
 
     public void Die() {
-        if (_roomManager.CurrentRoom != null) {
+        if (_roomManager.CurrentSpawnPoint != null) {
             transform.position = _roomManager.CurrentSpawnPoint.transform.position;
             velocity = Vector2.zero;
         } else {
-            Debug.LogError("Update room prefab");
+            Debug.LogError("Room Spawn Point Not Found..");
             transform.position = new Vector2(24, -34);
         }
     }

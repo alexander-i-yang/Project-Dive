@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="8" tileheight="8" infinite="0" nextlayerid="4" nextobjectid="64">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="8" tileheight="8" infinite="0" nextlayerid="4" nextobjectid="77">
  <tileset firstgid="1" source="Rocks.tsx"/>
  <tileset firstgid="37" source="Spikes.tsx"/>
  <tileset firstgid="53" source="Mechanics.tsx"/>
@@ -36,6 +36,7 @@
    <property name="unity:Component" value="Spikes"/>
    <property name="unity:Layer" value="Interactable"/>
    <property name="unity:SortingLayer" value="Interactable"/>
+   <property name="unity:ignore" type="bool" value="true"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -43,8 +44,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,37,37,37,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,38,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45,45,45,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -53,7 +54,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,37,37,37,37,37,37,0,0,0,37,37,37,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45,45,45,45,45,45,0,0,0,45,45,45,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
@@ -66,5 +67,18 @@
   <object id="60" gid="53" x="136" y="112" width="8" height="8"/>
   <object id="61" gid="53" x="200" y="112" width="8" height="8"/>
   <object id="63" gid="56" x="40" y="120" width="8" height="16"/>
+  <object id="64" gid="38" x="144" y="56" width="8" height="8"/>
+  <object id="65" gid="37" x="152" y="48" width="8" height="8"/>
+  <object id="66" gid="37" x="160" y="48" width="8" height="8"/>
+  <object id="67" gid="37" x="168" y="48" width="8" height="8"/>
+  <object id="68" gid="37" x="120" y="128" width="8" height="8"/>
+  <object id="69" gid="37" x="128" y="128" width="8" height="8"/>
+  <object id="70" gid="37" x="136" y="128" width="8" height="8"/>
+  <object id="71" gid="37" x="144" y="128" width="8" height="8"/>
+  <object id="72" gid="37" x="152" y="128" width="8" height="8"/>
+  <object id="73" gid="37" x="160" y="128" width="8" height="8"/>
+  <object id="74" gid="37" x="192" y="128" width="8" height="8"/>
+  <object id="75" gid="37" x="200" y="128" width="8" height="8"/>
+  <object id="76" gid="37" x="208" y="128" width="8" height="8"/>
  </objectgroup>
 </map>

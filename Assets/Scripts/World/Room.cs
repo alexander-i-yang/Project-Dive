@@ -64,18 +64,18 @@ namespace World {
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            ////This is a failsafe in case the player is between two rooms and exits one of them while the camera is still on it.
-            //var playerTrigger = other.GetComponent<PlayerRoomManager>();
-            //if (playerTrigger != null && playerTrigger.CurrentRoom == this)
-            //{
-            //    foreach(Room room in playerTrigger.FindRoomsTouching())
-            //    {
-            //        if (room != this)
-            //        {
-            //            room.TransitionToThisRoom();
-            //        }
-            //    }
-            //}
+            //This is a failsafe in case the player is between two rooms and exits one of them while the camera is still on it.
+            var playerTrigger = other.GetComponent<PlayerRoomManager>();
+            if (playerTrigger != null && playerTrigger.CurrentRoom == this)
+            {
+                foreach (Room room in playerTrigger.FindRoomsTouching())
+                {
+                    if (room != this)
+                    {
+                        room.TransitionToThisRoom();
+                    }
+                }
+            }
         }
 
         public void TransitionToThisRoom()
@@ -90,8 +90,8 @@ namespace World {
 
         private IEnumerator TransitionRoutine()
         {
-            //Time.timeScale = 0f;
             SwitchCamera();
+            Time.timeScale = 0f;
             yield return new WaitForSecondsRealtime(_cmBrain.m_DefaultBlend.BlendTime);
             Time.timeScale = 1f;
             _transitionRoutine = null;

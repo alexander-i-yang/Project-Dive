@@ -19,7 +19,7 @@ namespace Helpers
         private static Dictionary<LogLevel, DebugLogMethod> DebugLogMethods = new Dictionary<LogLevel, DebugLogMethod>
         {
             { LogLevel.Error, Debug.LogError },
-            { LogLevel.Warning, Debug.LogWarning},
+            { LogLevel.Warning, Debug.LogWarning },
             { LogLevel.Info, Debug.Log },
         };
 

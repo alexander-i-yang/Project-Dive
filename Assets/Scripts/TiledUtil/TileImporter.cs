@@ -18,7 +18,7 @@ using World;
 namespace Helpers {
 
     [AutoCustomTmxImporter()]
-    public class TileImporter : CustomTmxImporter {
+    public class TileImporter : CustomTmxImporter, IFilterLoggerTarget {
 
         private readonly string vcamPrefabName = "VCam_Room";
         private readonly string vcamPrefabPath = "Assets/Prefabs";
@@ -50,12 +50,27 @@ namespace Helpers {
             Tilemap mainTilemap = FindGroundLayerTilemap(room);
             if (mainTilemap == null)
             {
-                Debug.LogError($"Creating a room collider in map {map.name} requires a Tiled layer named 'Ground'. This should probably be fixed in Tiled (or Logan screwed up *wink*).");
+                FilterLogger.LogWarning(this,   $"Room bounds and components not added to tiled map {room.gameObject.name} " +
+                                                $"because it does not contain a Tiled layer named 'Ground'.");
                 return;
             }
             mainTilemap.CompressBounds();
             PolygonCollider2D bounds = AddPolygonColliderToRoom(room, mainTilemap);
             AddVCamToRoom(room, bounds);
+        }
+
+        private Tilemap FindGroundLayerTilemap(Transform parent)
+        {
+            SuperTileLayer[] layers = parent.GetComponentsInChildren<SuperTileLayer>();
+            foreach (SuperTileLayer layer in layers)
+            {
+                if (layer.gameObject.name.Equals("Ground"))
+                {
+                    return layer.GetComponent<Tilemap>();
+                }
+            }
+
+            return null;
         }
 
         private PolygonCollider2D AddPolygonColliderToRoom(Transform room, Tilemap mainTilemap)
@@ -94,20 +109,6 @@ namespace Helpers {
 
             var confiner = instance.GetComponent<CinemachineConfiner2D>();
             confiner.m_BoundingShape2D = boundingShape;
-        }
-
-        private Tilemap FindGroundLayerTilemap(Transform parent)
-        {
-            SuperTileLayer[] layers = parent.GetComponentsInChildren<SuperTileLayer>();
-            foreach (SuperTileLayer layer in layers)
-            {
-                if (layer.gameObject.name.Equals("Ground"))
-                {
-                    return layer.GetComponent<Tilemap>();
-                }
-            }
-
-            return null;
         }
 
         private void AddCustomPropertiesToLayer(SuperLayer layer, XElement layerNode)
@@ -263,6 +264,11 @@ namespace Helpers {
 
         public XElement XElementFromTemplatePath(String path) {
             return XDocument.Load("Assets/Tiles/" + path).Descendants("object").First();
+        }
+
+        public LogLevel GetLogLevel()
+        {
+            return LogLevel.Warning;
         }
     }
 }
