@@ -1,6 +1,4 @@
-﻿using Cinemachine;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
@@ -10,6 +8,7 @@ using Mechanics;
 using SuperTiled2Unity;
 using SuperTiled2Unity.Editor;
 
+using Cinemachine;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -19,8 +18,12 @@ using World;
 namespace Helpers {
 
     [AutoCustomTmxImporter()]
-    public class TileImporter : CustomTmxImporter {
-        Dictionary<string, Type> typings = new() {
+    public class TileImporter : CustomTmxImporter, IFilterLoggerTarget {
+
+        private readonly string vcamPrefabName = "VCam_Room";
+        private readonly string vcamPrefabPath = "Assets/Prefabs";
+
+        private static Dictionary<string, Type> typings = new() {
             {"Wall", typeof(Wall)},
             {"Spikes", typeof(Spike)},
         };
@@ -33,53 +36,27 @@ namespace Helpers {
             var objects = map.GetComponentsInChildren<SuperObject>();
             var doc = XDocument.Load(args.assetPath);
 
-            AddMapComponents(map.transform);
+            AddRoomComponents(map.transform);
             //AddColliderToMap(map.transform.GetChild(0));
             foreach (SuperLayer layer in layers) {
                 AddCustomPropertiesToLayer(layer, GetLayerXNode(doc, layer));
             }
         }
 
-        private void AddMapComponents(Transform map)
+        private void AddRoomComponents(Transform room)
         {
+            room.gameObject.AddComponent<Room>();
 
-            //Find the main tilemap
-            Tilemap mainTilemap = FindGroundLayerTilemap(map);
+            Tilemap mainTilemap = FindGroundLayerTilemap(room);
             if (mainTilemap == null)
             {
-                Debug.LogError($"Creating a room collider in map {map.name} requires a Tiled layer named 'Ground'. This should probably be fixed in Tiled (or Logan screwed up *wink*).");
+                FilterLogger.LogWarning(this,   $"Room bounds and components not added to tiled map {room.gameObject.name} " +
+                                                $"because it does not contain a Tiled layer named 'Ground'.");
                 return;
             }
-
             mainTilemap.CompressBounds();
-            Bounds colliderBounds = mainTilemap.localBounds;
-
-            //Add Polygon Collider
-            PolygonCollider2D roomCollider = map.gameObject.AddComponent<PolygonCollider2D>();
-            roomCollider.pathCount = 0;
-            Vector2 boundsMin = colliderBounds.min;
-            Vector2 boundsMax = colliderBounds.max;
-            roomCollider.SetPath(0, new Vector2[]
-            {
-                boundsMin,
-                boundsMin + Vector2.right * colliderBounds.extents.x * 2,
-                boundsMax,
-                boundsMin + Vector2.up * colliderBounds.extents.y * 2,
-            });
-            roomCollider.offset = mainTilemap.transform.position;
-            roomCollider.isTrigger = true;
-
-            //Add VCam
-            string[] guids = AssetDatabase.FindAssets("t:prefab VCam_Room", new string[] { "Assets/Prefabs" });
-            GameObject vcamObject = AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(guids[0]));
-            GameObject instance = InstantiationExtension.InstantiateKeepPrefab(vcamObject);
-            instance.transform.SetParent(map);
-
-            var confiner = instance.GetComponent<CinemachineConfiner2D>();
-            confiner.m_BoundingShape2D = roomCollider;
-
-            //Add Room Component
-            map.gameObject.AddComponent<Room>();
+            PolygonCollider2D bounds = AddPolygonColliderToRoom(room, mainTilemap);
+            AddVCamToRoom(room, bounds);
         }
 
         private Tilemap FindGroundLayerTilemap(Transform parent)
@@ -94,6 +71,44 @@ namespace Helpers {
             }
 
             return null;
+        }
+
+        private PolygonCollider2D AddPolygonColliderToRoom(Transform room, Tilemap mainTilemap)
+        {
+            Bounds colliderBounds = mainTilemap.localBounds;
+
+            PolygonCollider2D roomCollider = room.gameObject.AddComponent<PolygonCollider2D>();
+            roomCollider.pathCount = 0;
+            Vector2 boundsMin = colliderBounds.min;
+            Vector2 boundsMax = colliderBounds.max;
+            roomCollider.SetPath(0, new Vector2[]
+            {
+                boundsMin,
+                boundsMin + Vector2.right * colliderBounds.extents.x * 2,
+                boundsMax,
+                boundsMin + Vector2.up * colliderBounds.extents.y * 2,
+            });
+            roomCollider.offset = mainTilemap.transform.position;
+            roomCollider.isTrigger = true;
+
+            return roomCollider;
+        }
+
+        private void AddVCamToRoom(Transform room, PolygonCollider2D boundingShape)
+        {
+            string[] guids = AssetDatabase.FindAssets("t:prefab " + vcamPrefabName, new string[] { vcamPrefabPath });
+            if (guids.Length == 0)
+            {
+                Debug.LogError("Could not find VCam_Room Prefab. Make sure the prefab exists in the Assets/Prefabs directory and is named correctly.");
+                return;
+            }
+
+            GameObject vcamPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(guids[0]));
+            GameObject instance = InstantiationExtension.InstantiateKeepPrefab(vcamPrefab);
+            instance.transform.SetParent(room);
+
+            var confiner = instance.GetComponent<CinemachineConfiner2D>();
+            confiner.m_BoundingShape2D = boundingShape;
         }
 
         private void AddCustomPropertiesToLayer(SuperLayer layer, XElement layerNode)
@@ -249,6 +264,11 @@ namespace Helpers {
 
         public XElement XElementFromTemplatePath(String path) {
             return XDocument.Load("Assets/Tiles/" + path).Descendants("object").First();
+        }
+
+        public LogLevel GetLogLevel()
+        {
+            return LogLevel.Warning;
         }
     }
 }

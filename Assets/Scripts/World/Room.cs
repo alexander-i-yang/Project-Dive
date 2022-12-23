@@ -1,16 +1,16 @@
-﻿
-using Cinemachine;
-using MyBox;
+﻿using Cinemachine;
+
+using Helpers;
 
 using System.Collections;
 
 using UnityEngine;
 
 namespace World {
-    public class Room : MonoBehaviour {
-        [SerializeField, AutoProperty(AutoPropertyMode.Children)] private CinemachineVirtualCamera vCamera;
-        [SerializeField, AutoProperty(AutoPropertyMode.Scene)] private PlayerActor player;
-        [SerializeField, AutoProperty(AutoPropertyMode.Scene)] private CinemachineBrain cmBrain;
+    public class Room : MonoBehaviour, IFilterLoggerTarget {
+        private CinemachineVirtualCamera _vCam;
+        private PlayerActor _player;
+        private CinemachineBrain _cmBrain;
 
         private Spawn[] _spawns;
         public Spawn[] Spawns
@@ -33,13 +33,17 @@ namespace World {
 
         private void Awake()
         {
+            _vCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
+            _player = FindObjectOfType<PlayerActor>(true);
+            _cmBrain = FindObjectOfType<CinemachineBrain>(true);
+
             if (_roomList == null || _roomList.Length == 0)
             {
-                _roomList = FindObjectsOfType<Room>();
-                //Debug.Log($"Initialized Room List: Found {_roomList.Length} rooms.");
+                _roomList = FindObjectsOfType<Room>(true);
+                FilterLogger.Log(this, $"Initialized Room List: Found {_roomList.Length} rooms.");
             }
 
-            vCamera.Follow = player.transform;
+            _vCam.Follow = _player.transform;
         }
 
         private void OnValidate()
@@ -47,55 +51,69 @@ namespace World {
             Spawn spawn = GetComponentInChildren<Spawn>();
             if (spawn == null)
             {
-                Debug.LogWarning($"The room {gameObject.name} does not have a spawn point. Every room should have at least one spawn point.");
+                FilterLogger.LogWarning(this, $"The room {gameObject.name} does not have a spawn point. Every room should have at least one spawn point.");
             }
-
-            if (vCamera == null)
-            {
-                vCamera = GetComponentInChildren<CinemachineVirtualCamera>();
-            }
-            if (player == null)
-            {
-                player = FindObjectOfType<PlayerActor>();
-            }
-            vCamera.Follow = player.transform;
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
-            Debug.Log($"Transitioned to room: {gameObject.name}");
-            TransitionTo(this);
+            if (other.GetComponent<PlayerRoomManager>() != null)
+            {
+                TransitionToThisRoom();
+            }
         }
 
-        public static void TransitionTo(Room roomToTransition)
+        private void OnTriggerExit2D(Collider2D other)
         {
+            //This is a failsafe in case the player is between two rooms and exits one of them while the camera is still on it.
+            var playerTrigger = other.GetComponent<PlayerRoomManager>();
+            if (playerTrigger != null && playerTrigger.CurrentRoom == this)
+            {
+                foreach (Room room in playerTrigger.FindRoomsTouching())
+                {
+                    if (room != this)
+                    {
+                        room.TransitionToThisRoom();
+                    }
+                }
+            }
+        }
+
+        public void TransitionToThisRoom()
+        {
+            FilterLogger.Log(this, $"Transitioned to room: {gameObject.name}");
             if (_transitionRoutine != null)
             {
-                roomToTransition.StopCoroutine(_transitionRoutine);
+                StopCoroutine(_transitionRoutine);
             }
-
-            roomToTransition.StartCoroutine(roomToTransition.TransitionRoutine());
+            _transitionRoutine = StartCoroutine(TransitionRoutine());
         }
 
         private IEnumerator TransitionRoutine()
         {
+            SwitchCamera();
             Time.timeScale = 0f;
-            StartCameraSwitch();
-            yield return new WaitForSecondsRealtime(cmBrain.m_DefaultBlend.BlendTime);
+            yield return new WaitForSecondsRealtime(_cmBrain.m_DefaultBlend.BlendTime);
             Time.timeScale = 1f;
+            _transitionRoutine = null;
             RoomTransitionEvent?.Invoke(this);
         }
 
-        private void StartCameraSwitch()
+        private void SwitchCamera()
         {
-            //L: Inefficient but not terrible
-            this.vCamera.gameObject.SetActive(true);
+            //L: Inefficient, but not terrible?
+            this._vCam.gameObject.SetActive(true);
             foreach (Room room in _roomList)
             {
                 if (room != this)
                 {
-                    room.vCamera.gameObject.SetActive(false);
+                    room._vCam.gameObject.SetActive(false);
                 }
             }
+        }
+
+        public LogLevel GetLogLevel()
+        {
+            return LogLevel.Error;
         }
     }
 }
