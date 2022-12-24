@@ -56,7 +56,6 @@ namespace Phys {
 
             foreach (var hit in hits) {
                 var p = hit.transform.GetComponent<PhysObj>();
-
                 bool proactiveCollision = ProactiveBoxCast(
                     p.transform, 
                     p.NextFrameOffset,

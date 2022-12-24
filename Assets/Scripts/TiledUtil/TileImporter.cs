@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Xml.Linq;
 
 using Mechanics;
@@ -14,6 +15,8 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 using World;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Helpers {
 
@@ -26,11 +29,13 @@ namespace Helpers {
         private static Dictionary<string, Type> typings = new() {
             {"Wall", typeof(Wall)},
             {"Spikes", typeof(Spike)},
+            {"Lava", typeof(Lava)},
         };
         
         public override void TmxAssetImported(TmxAssetImportedArgs data)
         {
             SuperMap map = data.ImportedSuperMap;
+            Debug.Log(map);
             var args = data.AssetImporter;
             var layers = map.GetComponentsInChildren<SuperLayer>();
             var objects = map.GetComponentsInChildren<SuperObject>();
@@ -81,12 +86,13 @@ namespace Helpers {
             roomCollider.pathCount = 0;
             Vector2 boundsMin = colliderBounds.min;
             Vector2 boundsMax = colliderBounds.max;
+            float alpha = 0.01f;
             roomCollider.SetPath(0, new Vector2[]
             {
-                boundsMin,
-                boundsMin + Vector2.right * colliderBounds.extents.x * 2,
-                boundsMax,
-                boundsMin + Vector2.up * colliderBounds.extents.y * 2,
+                boundsMin - Vector2.one * alpha,
+                boundsMin + Vector2.right * colliderBounds.extents.x * 2 + new Vector2(alpha, -alpha),
+                boundsMax + Vector2.one * alpha,
+                boundsMin + Vector2.up * colliderBounds.extents.y * 2 + new Vector2(-alpha, alpha),
             });
             roomCollider.offset = mainTilemap.transform.position;
             roomCollider.isTrigger = true;

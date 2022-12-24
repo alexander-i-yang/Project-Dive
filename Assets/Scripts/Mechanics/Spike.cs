@@ -1,10 +1,7 @@
-﻿using System;
-using System.Linq;
-using Helpers;
+﻿using Helpers;
 using MyBox;
 using Phys;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace Mechanics {
     public class Spike : Solid {

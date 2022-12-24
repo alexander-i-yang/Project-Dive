@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="8" tileheight="8" infinite="0" nextlayerid="5" nextobjectid="4601">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="8" tileheight="8" infinite="0" nextlayerid="6" nextobjectid="4601">
  <tileset firstgid="1" source="Rocks.tsx"/>
  <tileset firstgid="37" source="Spikes.tsx"/>
  <tileset firstgid="53" source="Mechanics.tsx"/>
+ <tileset firstgid="57" source="Lava.tsx"/>
  <layer id="1" name="Ground" width="32" height="18">
   <properties>
    <property name="unity:CastShadows" type="bool" value="true"/>
@@ -56,11 +57,38 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <layer id="5" name="Lava" width="32" height="18">
+  <properties>
+   <property name="unity:Component" value="Lava"/>
+   <property name="unity:Layer" value="Interactable"/>
+   <property name="unity:SortingLayer" value="Interactable"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,75,75,75,75,75,75,75,75,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,75,75,75,75,75,75,75,75,75,75,75,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,75,75,75,75,75,75,75,75,75,75,75,75,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,75,75,75,75,75,75,75,0,0,75,75,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,75,75,75,75,75,75,0,0,0,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,75,75,0,0,75,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
  <objectgroup id="3" name="Mechanics">
   <properties>
    <property name="unity:AnchorOffset" type="bool" value="true"/>
   </properties>
-  <object id="66" gid="56" x="8" y="40" width="8" height="16"/>
+  <object id="66" gid="56" x="8" y="32" width="8" height="16"/>
   <object id="2286" gid="37" x="168" y="112" width="8" height="8"/>
   <object id="2905" gid="37" x="168" y="112" width="8" height="8"/>
   <object id="2924" gid="37" x="168" y="112" width="8" height="8"/>
@@ -120,29 +148,9 @@
   <object id="4035" gid="37" x="168" y="112" width="8" height="8"/>
   <object id="4036" gid="37" x="184" y="120" width="8" height="8"/>
   <object id="4039" gid="37" x="160" y="112" width="8" height="8"/>
-  <object id="4041" gid="37" x="72" y="104" width="8" height="8"/>
-  <object id="4043" gid="37" x="64" y="104" width="8" height="8"/>
-  <object id="4044" gid="37" x="72" y="104" width="8" height="8"/>
   <object id="4073" gid="37" x="160" y="112" width="8" height="8"/>
   <object id="4074" gid="37" x="152" y="112" width="8" height="8"/>
   <object id="4075" gid="37" x="160" y="112" width="8" height="8"/>
-  <object id="4076" gid="37" x="72" y="104" width="8" height="8"/>
-  <object id="4077" gid="37" x="32" y="120" width="8" height="8"/>
-  <object id="4078" gid="37" x="32" y="120" width="8" height="8"/>
-  <object id="4079" gid="37" x="40" y="120" width="8" height="8"/>
-  <object id="4080" gid="37" x="32" y="120" width="8" height="8"/>
-  <object id="4081" gid="37" x="40" y="120" width="8" height="8"/>
-  <object id="4084" gid="37" x="56" y="128" width="8" height="8"/>
-  <object id="4085" gid="37" x="40" y="120" width="8" height="8"/>
-  <object id="4086" gid="37" x="48" y="128" width="8" height="8"/>
-  <object id="4087" gid="37" x="16" y="128" width="8" height="8"/>
-  <object id="4088" gid="37" x="88" y="120" width="8" height="8"/>
-  <object id="4089" gid="37" x="96" y="112" width="8" height="8"/>
-  <object id="4090" gid="37" x="104" y="104" width="8" height="8"/>
-  <object id="4091" gid="37" x="72" y="104" width="8" height="8"/>
-  <object id="4092" gid="37" x="72" y="104" width="8" height="8"/>
-  <object id="4093" gid="37" x="72" y="104" width="8" height="8"/>
-  <object id="4094" gid="37" x="80" y="112" width="8" height="8"/>
   <object id="4095" gid="37" x="152" y="112" width="8" height="8"/>
   <object id="4096" gid="37" x="144" y="120" width="8" height="8"/>
   <object id="4097" gid="37" x="136" y="112" width="8" height="8"/>
@@ -150,8 +158,6 @@
   <object id="4110" gid="39" x="200" y="88" width="8" height="8"/>
   <object id="4489" gid="37" x="136" y="64" width="8" height="8"/>
   <object id="4490" gid="37" x="136" y="64" width="8" height="8"/>
-  <object id="4519" gid="37" x="24" y="128" width="8" height="8"/>
-  <object id="4520" gid="37" x="8" y="112" width="8" height="8"/>
   <object id="4521" gid="37" x="192" y="72" width="8" height="8"/>
  </objectgroup>
 </map>
