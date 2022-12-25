@@ -8,8 +8,9 @@ using UnityEngine;
 
 namespace World {
     public class Room : MonoBehaviour, IFilterLoggerTarget {
+        private Collider2D _roomCollider;
         private CinemachineVirtualCamera _vCam;
-        private PlayerActor _player;
+        private PlayerRoomManager _player;
         private CinemachineBrain _cmBrain;
 
         private Spawn[] _spawns;
@@ -33,8 +34,9 @@ namespace World {
 
         private void Awake()
         {
+            _roomCollider = GetComponent<Collider2D>();
             _vCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
-            _player = FindObjectOfType<PlayerActor>(true);
+            _player = FindObjectOfType<PlayerRoomManager>(true);
             _cmBrain = FindObjectOfType<CinemachineBrain>(true);
 
             if (_roomList == null || _roomList.Length == 0)
@@ -55,25 +57,16 @@ namespace World {
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D other) {
-            if (other.GetComponent<PlayerRoomManager>() != null)
-            {
-                TransitionToThisRoom();
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
+        private void OnTriggerStay2D(Collider2D other)
         {
-            //This is a failsafe in case the player is between two rooms and exits one of them while the camera is still on it.
-            var playerTrigger = other.GetComponent<PlayerRoomManager>();
-            if (playerTrigger != null && playerTrigger.CurrentRoom == this)
+            bool isPlayer = other.gameObject == _player.gameObject;
+            bool needTransition = _player.CurrentRoom != this;
+            if (isPlayer && needTransition) 
             {
-                foreach (Room room in playerTrigger.FindRoomsTouching())
+                bool boundsCheck = _roomCollider.bounds.Contains(other.bounds.min) && _roomCollider.bounds.Contains(other.bounds.max);
+                if (boundsCheck)
                 {
-                    if (room != this)
-                    {
-                        room.TransitionToThisRoom();
-                    }
+                    TransitionToThisRoom();
                 }
             }
         }
