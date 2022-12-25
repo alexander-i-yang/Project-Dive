@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Tiles/automap.tmx",
+    "activeFile": "Tiles/Level3.tmx",
     "automapping.whileDrawing": true,
     "expandedProjectPaths": [
         ".",
@@ -35,6 +35,77 @@
         "SuperTiled2Unity/Examples/Overhead/Maps/Zoria Tileset/water.tsx": {
             "scaleInDock": 1
         },
+        "Tiles/Alex/Dive.tmx": {
+            "scale": 3.7868055555555555,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.07628828167984,
+                "y": 110.77938749312305
+            }
+        },
+        "Tiles/Alex/Empty.tmx": {
+            "scale": 3.7868055555555555,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.07628828167984,
+                "y": 110.77938749312305
+            }
+        },
+        "Tiles/Alex/Lava Intro.tmx": {
+            "scale": 4.8056640625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.18207681365575,
+                "y": 72.31050599471652
+            }
+        },
+        "Tiles/Alex/Lava.tsx": {
+            "scaleInDock": 1
+        },
+        "Tiles/Alex/LavaIntro.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 3.7868055555555555,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 149.73042362002568,
+                "y": 89.38932697597653
+            }
+        },
+        "Tiles/Alex/Level1.tmx": {
+            "scale": 3.7868055555555555,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.07628828167984,
+                "y": 110.77938749312305
+            }
+        },
+        "Tiles/Alex/Level2.tmx": {
+            "scale": 3.7868055555555555,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 129.13258756647718,
+                "y": 100.48046946634881
+            }
+        },
+        "Tiles/Alex/Level3.tmx": {
+            "scale": 3.7868055555555555,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.07628828167984,
+                "y": 110.77938749312305
+            }
+        },
+        "Tiles/Alex/Mechanics.tsx": {
+            "scaleInDock": 1
+        },
+        "Tiles/Alex/Rocks.tsx": {
+            "scaleInDock": 1
+        },
+        "Tiles/Alex/Spikes.tsx": {
+            "scaleInDock": 1
+        },
         "Tiles/Dive - Copy.tmx": {
             "scale": 4.598263888888889,
             "selectedLayer": 0,
@@ -60,7 +131,9 @@
             }
         },
         "Tiles/Lava.tsx": {
-            "dynamicWrapping": false
+            "dynamicWrapping": false,
+            "scaleInDock": 4,
+            "scaleInEditor": 11
         },
         "Tiles/Level1 - Copy.tmx": {
             "scale": 4.598263888888889,
@@ -102,10 +175,10 @@
                 3
             ],
             "scale": 4,
-            "selectedLayer": 1,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 154.5,
-                "y": 95.375
+                "x": 131.5,
+                "y": 89.375
             }
         },
         "Tiles/Logan_Test.tmx": {
@@ -162,6 +235,7 @@
             }
         }
     },
+    "last.externalTilesetPath": "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles",
     "last.imagePath": "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles",
     "map.height": 18,
     "map.lastUsedFormat": "tmx",
@@ -169,23 +243,25 @@
     "map.tileWidth": 8,
     "map.width": 32,
     "openFiles": [
-        "Tiles/automap.tmx"
+        "Tiles/automap.tmx",
+        "Tiles/Lava.tsx",
+        "Tiles/Level3.tmx"
     ],
     "project": "Project.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "Tiles/automap.tmx",
+        "Tiles/Alex/Level3.tmx",
+        "Tiles/Alex/Empty.tmx",
+        "Tiles/Alex/Level2.tmx",
+        "Tiles/Alex/Level1.tmx",
+        "Tiles/Alex/Dive.tmx",
         "Tiles/Level3.tmx",
+        "Tiles/Alex/Lava Intro.tmx",
+        "Tiles/automap.tmx",
+        "Tiles/Lava.tsx",
         "Tiles/Level1.tmx",
         "Tiles/Level2.tmx",
-        "Tiles/Dive.tmx",
-        "Tiles/Spikes.tsx",
-        "Tiles/automapSpikes.tmx",
-        "Tiles/Mechanics.tsx",
-        "SuperTiled2Unity/Examples/Overhead/Maps/TestOverhead.tmx",
-        "Tiles/Rocks.tsx",
-        "Tiles/Empty.tmx",
-        "Tiles/Logan_Test.tmx"
+        "Tiles/Dive.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
