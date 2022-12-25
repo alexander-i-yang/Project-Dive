@@ -4,30 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Helpers;
 using World;
 
-public class PlayerRoomManager : MonoBehaviour
+public class PlayerRoomManager : MonoBehaviour, IFilterLoggerTarget
 {
-    [SerializeField, AutoProperty] private BoxCollider2D _collider;
-
     private Room _currentRoom;
     private Spawn _currentSpawnPoint;
-    public Room CurrentRoom
-    {
-        get
-        {
-            if (_currentRoom == null)
-            {
-                _currentRoom = FindRoomsTouching()[0];
-                if (_currentRoom == null)
-                {
-                    Debug.LogError("Player is out of bounds!");
-                }
-            }
-
-            return _currentRoom;
-        }
-    }
+    public Room CurrentRoom => _currentRoom;
 
     public Spawn CurrentSpawnPoint
     {
@@ -57,34 +41,21 @@ public class PlayerRoomManager : MonoBehaviour
         _currentSpawnPoint = FindClosestSpawnPoint();
     }
 
-    public List<Room> FindRoomsTouching()
-    {
-        ContactFilter2D filter = new ContactFilter2D();
-        filter.useTriggers = true;
-        List<Collider2D> contacts = new List<Collider2D>();
-        _collider.GetContacts(filter, contacts);
-
-        List<Room> roomsTouching = new List<Room>();
-        foreach (Collider2D contact in contacts)
-        {
-            Room room = contact.GetComponent<Room>();
-            if (room != null)
-            {
-                roomsTouching.Add(room);
-            }
-        }
-
-        return roomsTouching;
-    }
-
     private Spawn FindClosestSpawnPoint()
     {
+        if (_currentRoom == null)
+        {
+            FilterLogger.LogWarning(this, "Player is not in a room. Choosing spawn of arbitrary room.");
+            _currentRoom = FindObjectOfType<Room>();
+        }
+
         float closestDist = float.MaxValue;
         Spawn closest = null;
-        Debug.Log($"CurrentRoom: {CurrentRoom}");
-        Debug.Log($"Spawns: {CurrentRoom.Spawns}");
+        FilterLogger.Log(this, $"CurrentRoom: {CurrentRoom}");
+        FilterLogger.Log(this, $"Spawns: {CurrentRoom.Spawns.Length}");
         foreach (Spawn spawn in CurrentRoom.Spawns)
         {
+            FilterLogger.Log(this, $"{spawn}");
             float newDist = Vector2.Distance(transform.position, spawn.transform.position);
             if (newDist < closestDist)
             {
@@ -95,8 +66,13 @@ public class PlayerRoomManager : MonoBehaviour
 
         if (closest == null)
         {
-            Debug.LogError("No spawn point was found for the player. Every room must have at least one Spawn.");
+            FilterLogger.LogError(this, "No spawn point was found for the player. Every room must have at least one Spawn.");
         }
         return closest;
+    }
+
+    public LogLevel GetLogLevel()
+    {
+        return LogLevel.Info;
     }
 }
