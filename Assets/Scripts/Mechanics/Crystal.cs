@@ -11,20 +11,20 @@ namespace Mechanics {
         public double rechargeTime = 1;
         private SpriteRenderer _mySR;
         private UnityEngine.Rendering.Universal.Light2D _light;
-        
+
         new void Start() {
             _mySR = GetComponent<SpriteRenderer>();
             _light = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
             base.Start();
         }
-
-        public override bool OnCollide(PhysObj p, Vector2 direction) {
+        
+        public override bool Collidable() {
             return false;
         }
 
         public override bool PlayerCollide(PlayerActor p, Vector2 direction) {
             if (!_broken) return p.EnterCrystal(this);
-            return false;
+            return base.OnCollide(p, direction);
         }
 
         public override bool IsGround(PhysObj p) {

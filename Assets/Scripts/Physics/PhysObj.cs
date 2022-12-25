@@ -41,7 +41,8 @@ namespace Phys {
         /// Checks the interactable layer for any collisions. Will call onCollide if it hits anything.
         /// </summary>
         /// <param name="direction"><b>MUST</b> be a cardinal direction with a <b>magnitude of one.</b></param>
-        /// <param name="onCollide"></param>
+        /// <param name="onCollide">(<b>physObj</b> collided with, <b>Vector2</b> direction),
+        /// returns true if should stop</param>
         /// <returns></returns>
         public bool CheckCollisions(Vector2 direction, Func<PhysObj, Vector2, bool> onCollide) {
             if (myCollider == null) { return true; }
@@ -128,10 +129,15 @@ namespace Phys {
             MoveRemainder = vel - truncVel;
         }
         public abstract bool MoveGeneral(Vector2 direction, int magnitude, Func<PhysObj, Vector2, bool> onCollide);
+        
+        public abstract bool Collidable();
+        public virtual bool OnCollide(PhysObj p, Vector2 direction) {
+            return Collidable();
+        }
 
-        public abstract bool OnCollide(PhysObj p, Vector2 direction);
-
-        public abstract bool PlayerCollide(PlayerActor p, Vector2 direction);
+        public virtual bool PlayerCollide(PlayerActor p, Vector2 direction) {
+            return OnCollide(p, direction);
+        }
 
         public virtual bool IsGround(PhysObj whosAsking) {
             return true;

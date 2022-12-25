@@ -10,6 +10,10 @@ namespace Mechanics {
         private Coroutine _reEnableCoroutine;
         private SpriteRenderer _mySR; // for some reason autoProperty wasn't working for this
 
+        public override bool Collidable() {
+            return false;
+        }
+
         protected new void Start() {
             base.Start();
             _mySR = GetComponent<SpriteRenderer>();

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Core;
+using Helpers;
 using Mechanics;
 using Phys;
 using Player;
@@ -11,7 +12,9 @@ using World;
 using MyBox;
 
 using UnityEditor;
+using UnityEditor.Build;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(PlayerStateMachine))]
 [RequireComponent(typeof(PlayerInputController))]
@@ -27,6 +30,10 @@ public class PlayerActor : Actor {
     [SerializeField] private int maxAcceleration;
     [SerializeField] private int maxAirAcceleration;
     [SerializeField] private int maxDeceleration;
+    [Tooltip("Timer between the player crashing into a wall and them getting their speed back (called a cornerboost)")]
+    [SerializeField] private float HitWallTimer;
+    [Tooltip("Cornerboost speed multiplier")]
+    [SerializeField] private float HitWallMultiplier;
 
     [Foldout("Jump", true)]
     [SerializeField] private int JumpHeight;
@@ -41,9 +48,12 @@ public class PlayerActor : Actor {
     [SerializeField] private int DiveDeceleration;
     
     [Foldout("Dogo", true)]
-    [SerializeField] private float DogoXJumpV;
     [SerializeField] private float DogoYJumpHeight;
-    [SerializeField] public double DogoConserveXV;
+    [SerializeField] private float DogoXJumpV;
+    [Tooltip("Time where acceleration/decelartion is 0")]
+    [SerializeField] private float DogoJumpTime;
+    [FormerlySerializedAs("DogoConserveXV")] [SerializeField] public double DogoConserveXVTime;
+    [Tooltip("Time to let players input a direction change")]
     [SerializeField] public double DogoJumpGrace;
 
     [Foldout("RoomTransitions", true)]
@@ -51,8 +61,11 @@ public class PlayerActor : Actor {
     [SerializeField, Range(0f, 1f)] private float roomTransitionVCutY = 0.5f;
 
     private int _moveDirection;
-    private int _lastMoveDirection = 1;
     private bool _lastJumpBeingHeld;
+    private float _dogoJumpTimer;
+
+    private bool _hitWallCoroutineRunning;
+    private float _hitWallPrevSpeed;
 
     private void OnEnable()
     {
@@ -90,7 +103,6 @@ public class PlayerActor : Actor {
         }
 
         _moveDirection = _input.GetMovementInput();
-        if (_moveDirection != 0) _lastMoveDirection = _moveDirection;
     }
 
     private void OnRoomTransition(Room roomEntering)
@@ -104,19 +116,29 @@ public class PlayerActor : Actor {
         bool grounded = IsGrounded();
         _stateMachine.CurState.SetGrounded(grounded);
         _stateMachine.CurState.MoveX(grounded);
+        _dogoJumpTimer = Math.Max(0, _dogoJumpTimer - Game.Instance.FixedDeltaTime);
     }
 
     public void MoveX(bool grounded) {
-        int effectiveAcceleration;
-        if (grounded) {
-            effectiveAcceleration = _moveDirection == 0 ? maxDeceleration : maxAcceleration;
-        } else {
-            effectiveAcceleration = maxAirAcceleration;
-        }
-
+        int effectiveAcceleration = CalcXAcceleration(grounded);
         int targetVelocityX = _moveDirection * MoveSpeed;
         int maxSpeedChange = (int) (effectiveAcceleration * Time.deltaTime);
         velocityX = Mathf.MoveTowards(velocityX, targetVelocityX, maxSpeedChange);
+    }
+
+    public int CalcXAcceleration(bool grounded) {
+        if (_dogoJumpTimer > 0) {
+            return 100;
+        }
+
+        int ret;
+        if (grounded) {
+            ret = _moveDirection == 0 ? maxDeceleration : maxAcceleration;
+        } else {
+            ret = maxAirAcceleration;
+        }
+
+        return ret;
     }
 
     public double Dogo() {
@@ -124,17 +146,21 @@ public class PlayerActor : Actor {
         velocityX = 0;
         return v;
     }
+    
+    public override bool Collidable() {
+        return true;
+    }
 
-    public override bool OnCollide(PhysObj p, Vector2 direction)
-    {
+    public override bool OnCollide(PhysObj p, Vector2 direction) {
         bool col = p.PlayerCollide(this, direction);
-        if (direction.y < 0 && p.IsGround(this))
-        {
-            //SetGrounded(true);
-        }
-        else if (direction.y > 0 && col)
-        {
-            BonkHead();
+        if (col) {
+            if (direction.y > 0) {
+                BonkHead();
+            }
+
+            if (direction.x != 0) {
+                HitWall((int)direction.x);
+            }
         }
 
         return col;
@@ -168,8 +194,7 @@ public class PlayerActor : Actor {
 
     public void TryJumpCut()
     {
-        if (_lastJumpBeingHeld && velocityY > 0f)
-        {
+        if (_lastJumpBeingHeld && velocityY > 0f) {
             velocityY *= JumpCutMultiplier;
         }
 
@@ -190,6 +215,8 @@ public class PlayerActor : Actor {
     }
 
     private void _dogoJumpLogic(bool conserveMomentum, double oldXv) {
+        _dogoJumpTimer = DogoJumpTime;
+        _lastJumpBeingHeld = true;
         if (_moveDirection != 0) {
             velocityX = _moveDirection * DogoXJumpV;
             if (conserveMomentum) {
@@ -200,11 +227,7 @@ public class PlayerActor : Actor {
                 }
             }
         }
-        /*
-        if (_moveDirection == 0) {
-            velocityY = GetJumpSpeedFromHeight(DogoYJumpHeight);
-            _lastJumpBeingHeld = false;
-        }*/
+        velocityY = GetJumpSpeedFromHeight(DogoYJumpHeight);
     }
     
     private IEnumerator _dogoJumpContinuous(bool conserveMomentum, double oldXv) {
@@ -214,20 +237,6 @@ public class PlayerActor : Actor {
         if (oldFacing != _moveDirection) {
             _dogoJumpLogic(conserveMomentum, oldXv);
         }
-        /*if (conserveMomentum) {
-            if (_moveDirection == 1) {
-                velocityX = (float)Math.Max(oldXv+DogoXJumpV, DogoXJumpV);
-            } else if (_moveDirection == -1) {
-                velocityX = (float)Math.Min(oldXv-DogoXJumpV, -DogoXJumpV);
-            }
-        } else {
-            velocityX = _moveDirection * DogoXJumpV;
-            if (_moveDirection == 0) {
-                velocityY = GetJumpSpeedFromHeight(DogoYJumpHeight);
-                _lastJumpBeingHeld = false;
-            }
-        }
-        return null*/
     }
 
     public void Land() {
@@ -267,6 +276,35 @@ public class PlayerActor : Actor {
 
     public void BonkHead() {
         velocityY = Math.Min(10, velocityY);
+    }
+
+    public void HitWall(int direction) {
+        if (!_hitWallCoroutineRunning) {
+            _hitWallPrevSpeed = velocityX;
+            velocityX = 0;
+            _hitWallCoroutineRunning = true;
+            StartCoroutine(_hitWallLogic(direction));
+        }
+    }
+
+    public IEnumerator _hitWallLogic(int direction) {
+        for (float t = 0; t < HitWallTimer; t += Game.Instance.FixedDeltaTime) {
+            bool movingWithDir = Math.Sign(velocityX) == Math.Sign(direction) || velocityX == 0;
+            if (!movingWithDir) {
+                break;
+            }
+            bool stillNextToWall = CheckCollisions(
+                Vector2.right * direction, 
+                (physObj, d) => {
+                return physObj != this && physObj.Collidable();
+            });
+            if (!stillNextToWall) {
+                velocityX = _hitWallPrevSpeed * HitWallMultiplier;
+                break;
+            }
+            yield return null;
+        }
+        _hitWallCoroutineRunning = false;
     }
 
     public override bool Squish(PhysObj p, Vector2 d) {

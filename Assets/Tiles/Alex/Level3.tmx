@@ -88,7 +88,7 @@
   <properties>
    <property name="unity:AnchorOffset" type="bool" value="true"/>
   </properties>
-  <object id="66" gid="56" x="8" y="32" width="8" height="16"/>
+  <object id="66" gid="56" x="16" y="32" width="8" height="16"/>
   <object id="2286" gid="37" x="168" y="112" width="8" height="8"/>
   <object id="2905" gid="37" x="168" y="112" width="8" height="8"/>
   <object id="2924" gid="37" x="168" y="112" width="8" height="8"/>

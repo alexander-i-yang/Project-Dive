@@ -17,6 +17,10 @@ namespace Mechanics {
         private Vector2 _zoomStartPos;
         private Vector2 _startPos;
 
+        public override bool Collidable() {
+            return true;
+        }
+
         new void Start() {
             _startPos = transform.position;
             _mySM = GetComponent<MovingBlockSM>();
