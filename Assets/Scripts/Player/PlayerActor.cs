@@ -30,10 +30,12 @@ public class PlayerActor : Actor {
     [SerializeField] private int maxAcceleration;
     [SerializeField] private int maxAirAcceleration;
     [SerializeField] private int maxDeceleration;
+    [FormerlySerializedAs("HitWallTimer")]
     [Tooltip("Timer between the player crashing into a wall and them getting their speed back (called a cornerboost)")]
-    [SerializeField] private float HitWallTimer;
+    [SerializeField] private float CornerboostTimer;
+    [FormerlySerializedAs("HitWallMultiplier")]
     [Tooltip("Cornerboost speed multiplier")]
-    [SerializeField] private float HitWallMultiplier;
+    [SerializeField] private float CornerboostMultiplier;
 
     [Foldout("Jump", true)]
     [SerializeField] private int JumpHeight;
@@ -288,7 +290,7 @@ public class PlayerActor : Actor {
     }
 
     public IEnumerator _hitWallLogic(int direction) {
-        for (float t = 0; t < HitWallTimer; t += Game.Instance.FixedDeltaTime) {
+        for (float t = 0; t < CornerboostTimer; t += Game.Instance.FixedDeltaTime) {
             bool movingWithDir = Math.Sign(velocityX) == Math.Sign(direction) || velocityX == 0;
             if (!movingWithDir) {
                 break;
@@ -299,7 +301,7 @@ public class PlayerActor : Actor {
                 return physObj != this && physObj.Collidable();
             });
             if (!stillNextToWall) {
-                velocityX = _hitWallPrevSpeed * HitWallMultiplier;
+                velocityX = _hitWallPrevSpeed * CornerboostMultiplier;
                 break;
             }
             yield return null;
