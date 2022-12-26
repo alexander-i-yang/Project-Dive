@@ -865,6 +865,10 @@ PrefabInstance:
       propertyPath: m_InstanceId
       value: -464800
       objectReference: {fileID: 0}
+    - target: {fileID: 8125090563006335607, guid: d3a93dd3ca720254686b739df52e811b, type: 3}
+      propertyPath: m_ShadowIntensityEnabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -2695619058785784247, guid: d3a93dd3ca720254686b739df52e811b, type: 3}
 --- !u!43 &241176072
