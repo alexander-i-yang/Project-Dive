@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
@@ -10,8 +11,10 @@ using SuperTiled2Unity;
 using SuperTiled2Unity.Editor;
 
 using Cinemachine;
+using MyBox;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
 
 using World;
@@ -26,16 +29,19 @@ namespace Helpers {
         private readonly string vcamPrefabName = "VCam_Room";
         private readonly string vcamPrefabPath = "Assets/Prefabs";
 
+        private Dictionary<String, GameObject> _prefabReplacements;
+        
         private static Dictionary<string, Type> typings = new() {
             {"Wall", typeof(Wall)},
             {"Spikes", typeof(Spike)},
             {"Lava", typeof(Lava)},
         };
         
-        public override void TmxAssetImported(TmxAssetImportedArgs data)
-        {
+        public override void TmxAssetImported(TmxAssetImportedArgs data) {
+            var typePrefabReplacements = data.AssetImporter.SuperImportContext.Settings.PrefabReplacements;
+            _prefabReplacements = typePrefabReplacements.ToDictionary(so => so.m_TypeName, so => so.m_Prefab);
+
             SuperMap map = data.ImportedSuperMap;
-            Debug.Log(map);
             var args = data.AssetImporter;
             var layers = map.GetComponentsInChildren<SuperLayer>();
             var objects = map.GetComponentsInChildren<SuperObject>();
@@ -121,7 +127,7 @@ namespace Helpers {
         {
             var customProps = layer.GetComponent<SuperCustomProperties>();
             if (customProps != null) {
-                Dictionary<String, Action<CustomProperty>> PropActions = new() {
+                Dictionary<String, Action<CustomProperty>> propActions = new() {
                     {"Component", (prop) => {
                         AddComponentToCollidersInLayer(layer.transform, prop.GetValueAsString());
                     }},
@@ -134,12 +140,12 @@ namespace Helpers {
                     {"AnchorOffset", (prop) => {
                         if (prop.GetValueAsBool()) AnchorOffset(layer, layerNode);
                     }}, 
-                    {"WriteTileCoords", (prop) => {
-                        if (prop.GetValueAsBool()) WriteTileCoords(layer, layerNode);
+                    {"AddFreeformLightPrefab", (prop) => {
+                        AddFreeformLightPrefab(layer.transform, prop.GetValueAsString());
                     }}
                 };
 
-                foreach (var kv in PropActions) {
+                foreach (var kv in propActions) {
                     string propName = kv.Key;
                     Action<CustomProperty> act = kv.Value;
                     CustomProperty prop;
@@ -181,8 +187,7 @@ namespace Helpers {
         }
 
         public void AnchorOffset(SuperLayer layer, XElement docLayer) {
-            foreach (var xElement in docLayer.Elements())
-            {
+            foreach (var xElement in docLayer.Elements()) {
                 Vector2 size = WidthAndHeight(xElement);
                 string templatePath = xElement.GetAttributeAs<string>("template");
                 Transform transformObj = FindObjByID(layer.transform, xElement.GetAttributeAs<string>("id"));
@@ -202,10 +207,6 @@ namespace Helpers {
             }
         }
 
-        public void WriteTileCoords(SuperLayer layer, XElement docLayer) {
-            Debug.Log(docLayer.Element("data"));
-        }
-
         public Vector2 WidthAndHeight(XElement xNode) {
             return new Vector2(xNode.GetAttributeAs<Int16>("width"), xNode.GetAttributeAs<Int16>("height"));
         }
@@ -216,10 +217,32 @@ namespace Helpers {
 
         public void GenerateShadows(Transform layer) {
             foreach (var edgeObj in GetEdges(layer)) {
-                ShadowCaster2DFromCollider.Execute(edgeObj.gameObject);
+                ComponentFromCollider.AddShadowCaster2D(edgeObj.gameObject);
             }
 
             layer.gameObject.AddComponent<UnityEngine.Rendering.Universal.CompositeShadowCaster2D>();
+        }
+        
+        public void AddFreeformLightPrefab(Transform layer, String prefabName) {
+            GameObject prefab = _prefabReplacements[prefabName];
+            foreach (var edgeObj in GetEdges(layer)) {
+                var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+                instance.transform.SetParent(edgeObj.transform);
+                Debug.Log(instance);
+                Debug.Log(edgeObj.gameObject);
+                instance.transform.localPosition = Vector3.zero;
+                Light2D l = instance.GetComponent<Light2D>();
+
+                if (l == null) {
+                    throw new ConstraintException($"Prefab {prefabName} must have Freeform light attached");
+                }
+
+                foreach (var p in ComponentFromCollider.GetColliderPoints(edgeObj)) {
+                    Debug.Log(p);
+                }
+                l.SetShapePath(ComponentFromCollider.GetColliderPoints(edgeObj));
+            }
+            // var settings = ST2USettings.GetOrCreateST2USettings();
         }
 
         public void AddComponentToCollidersInLayer(Transform layer, string component) {

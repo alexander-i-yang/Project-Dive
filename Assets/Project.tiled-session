@@ -66,11 +66,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 3.7868055555555555,
-            "selectedLayer": 1,
+            "scale": 5.5,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 149.73042362002568,
-                "y": 89.38932697597653
+                "x": 154.72727272727275,
+                "y": 74.81818181818181
             }
         },
         "Tiles/Alex/Level1.tmx": {
@@ -213,14 +213,19 @@
             }
         },
         "Tiles/automap.tmx": {
-            "expandedObjectLayers": [
-                8
-            ],
             "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 76.75,
-                "y": 96.625
+                "x": 161.25,
+                "y": 85.875
+            }
+        },
+        "Tiles/automapLava.tmx": {
+            "scale": 4,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 70,
+                "y": 75.625
             }
         },
         "Tiles/automapSpikes.tmx": {
@@ -250,6 +255,7 @@
     "project": "Project.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "Tiles/Alex/LavaIntro.tmx",
         "Tiles/Alex/Level3.tmx",
         "Tiles/Alex/Empty.tmx",
         "Tiles/Alex/Level2.tmx",
@@ -260,8 +266,7 @@
         "Tiles/automap.tmx",
         "Tiles/Lava.tsx",
         "Tiles/Level1.tmx",
-        "Tiles/Level2.tmx",
-        "Tiles/Dive.tmx"
+        "Tiles/Level2.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

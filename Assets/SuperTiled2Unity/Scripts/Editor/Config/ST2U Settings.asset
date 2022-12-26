@@ -69,3 +69,5 @@ MonoBehaviour:
     m_Prefab: {fileID: 8339257288543612629, guid: dd9d0fcea0ac47444a0af35c0df21787, type: 3}
   - m_TypeName: SpikeRight
     m_Prefab: {fileID: 1345018767946929279, guid: 08480c95fe5ebf248ba877bdd44b0465, type: 3}
+  - m_TypeName: LavaLight
+    m_Prefab: {fileID: 6973331431846444286, guid: 3445dac449a918c4a90c81e2d224cab8, type: 3}

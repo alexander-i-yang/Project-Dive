@@ -130,5 +130,14 @@ namespace Helpers {
             //Do the action after the delay time has finished.
             act();
         }
+
+        public static Color TiledColorStringToColor(string color) {
+            color = $"#{color.Substring(3, 6)}{color.Substring(1, 2)}";
+            Color c;
+            if (!ColorUtility.TryParseHtmlString(color, out c)) {
+                throw new ArgumentException($"Invalid hex code for Sprite Light: {color}");
+            }
+            return c;
+        }
     }
 }
