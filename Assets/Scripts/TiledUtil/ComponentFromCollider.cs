@@ -26,7 +26,7 @@ public class ComponentFromCollider {
 
     public static Vector3[] GetColliderPoints(EdgeCollider2D polygon) {
         // For some reason Tiled always stores the last point twice. Remove it to account for that
-        Vector3[] positions = new Vector3[polygon.points.Length];
+        Vector3[] positions = new Vector3[polygon.points.Length-1];
         for (int i = 0; i < positions.Length; i++) {
             positions[i] = new Vector3(
                 polygon.points[i].x,
