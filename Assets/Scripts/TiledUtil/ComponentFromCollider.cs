@@ -16,13 +16,13 @@ public class ComponentFromCollider {
         BindingFlags.NonPublic | BindingFlags.Instance;
 
     private static FieldInfo meshField =
-        typeof(UnityEngine.Rendering.Universal.ShadowCaster2D).GetField("m_Mesh", accessFlagsPrivate);
+        typeof(ShadowCaster2D).GetField("m_Mesh", accessFlagsPrivate);
 
     private static FieldInfo shapePathField =
-        typeof(UnityEngine.Rendering.Universal.ShadowCaster2D).GetField("m_ShapePath", accessFlagsPrivate);
+        typeof(ShadowCaster2D).GetField("m_ShapePath", accessFlagsPrivate);
 
     private static MethodInfo onEnableMethod =
-        typeof(UnityEngine.Rendering.Universal.ShadowCaster2D).GetMethod("OnEnable", accessFlagsPrivate);
+        typeof(ShadowCaster2D).GetMethod("OnEnable", accessFlagsPrivate);
 
     public static Vector3[] GetColliderPoints(EdgeCollider2D polygon) {
         // For some reason Tiled always stores the last point twice. Remove it to account for that
@@ -45,16 +45,5 @@ public class ComponentFromCollider {
         shapePathField.SetValue(addedCaster, positions);
         meshField.SetValue(addedCaster, null);
         onEnableMethod.Invoke(addedCaster, new object[0]);
-    }
-
-    public static void Set(GameObject g, Color c, float intensity, float falloffIntensity) {
-        var addedLight = g.AddComponent<Light2D>();
-        Vector3[] positions = GetColliderPoints(g.GetComponent<EdgeCollider2D>());
-        addedLight.SetShapePath(positions);
-        addedLight.color = c;
-        addedLight.intensity = intensity;
-        addedLight.lightType = Light2D.LightType.Freeform;
-        addedLight.falloffIntensity = falloffIntensity;
-        Debug.Log(addedLight.color);
     }
 }
