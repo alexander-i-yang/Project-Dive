@@ -81,12 +81,12 @@ SpriteRenderer:
   m_SortingLayerID: -1323353863
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8f334d6fd910f6c4ea89112a3f6792e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba94c1726b14eaf4eb6a0aff46ec9149, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.08, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -109,14 +109,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8, y: 16}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 8, y: 12}
+    newSize: {x: 0.08, y: 0.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 16}
+  m_Size: {x: 8, y: 11.896751}
   m_EdgeRadius: 0
 --- !u!114 &2234600854425113960
 MonoBehaviour:
@@ -137,6 +137,7 @@ MonoBehaviour:
   _stateMachine: {fileID: 2234600854425113957}
   _collider: {fileID: 2234600854425113962}
   _roomManager: {fileID: 4863023254048345395}
+  _mySR: {fileID: 2234600854425113963}
   MoveSpeed: 75
   maxAcceleration: 1600
   maxAirAcceleration: 1200
@@ -194,7 +195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403272a9b371a3c479a0561f5f58d8e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 2234600854425113962}
 --- !u!114 &2234600854425113961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,33 +215,21 @@ MonoBehaviour:
   m_SelfShadows: 0
   m_ApplyToSortingLayers: 00000000af9643f6a39a746b
   m_ShapePath:
-  - {x: -4, y: -2, z: 0}
-  - {x: -3, y: -2, z: 0}
-  - {x: -3, y: -5, z: 0}
-  - {x: -2, y: -5, z: 0}
-  - {x: -2, y: -7, z: 0}
-  - {x: -1, y: -7, z: 0}
-  - {x: -1, y: -8, z: 0}
-  - {x: 1, y: -8, z: 0}
-  - {x: 1, y: -7, z: 0}
-  - {x: 2, y: -7, z: 0}
-  - {x: 2, y: -5, z: 0}
-  - {x: 3, y: -5, z: 0}
-  - {x: 3, y: -2, z: 0}
-  - {x: 4, y: -2, z: 0}
-  - {x: 4, y: 5, z: 0}
-  - {x: 3, y: 5, z: 0}
-  - {x: 3, y: 7, z: 0}
-  - {x: 2, y: 7, z: 0}
-  - {x: 2, y: 8, z: 0}
-  - {x: -2, y: 8, z: 0}
-  - {x: -2, y: 7, z: 0}
-  - {x: -3, y: 7, z: 0}
-  - {x: -3, y: 5, z: 0}
-  - {x: -4, y: 5, z: 0}
-  m_ShapePathHash: 138024101
+  - {x: -4, y: 0, z: 0}
+  - {x: -3, y: 0, z: 0}
+  - {x: -3, y: -4, z: 0}
+  - {x: -2, y: -4, z: 0}
+  - {x: -2, y: -6, z: 0}
+  - {x: 2, y: -6, z: 0}
+  - {x: 2, y: -4, z: 0}
+  - {x: 3, y: -4, z: 0}
+  - {x: 3, y: 0, z: 0}
+  - {x: 4, y: 0, z: 0}
+  - {x: 4, y: 6, z: 0}
+  - {x: -4, y: 6, z: 0}
+  m_ShapePathHash: 1522295477
   m_Mesh: {fileID: 0}
-  m_InstanceId: 45264
+  m_InstanceId: -2524
 --- !u!1 &5389357683659332391
 GameObject:
   m_ObjectHideFlags: 0

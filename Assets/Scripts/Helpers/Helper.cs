@@ -139,5 +139,21 @@ namespace Helpers {
             }
             return c;
         }
+
+        public static Vector2 ComputeAverage(Vector2[] points) {
+            Vector2 avg = points.Aggregate((acc, cur) => acc + cur);
+            return avg / points.Length;
+        }
+
+        public static Vector2[] NormalizePoints(Vector2[] points, Vector2 avg) {
+            for (int i = 0; i < points.Length; ++i) {
+                points[i] -= avg;
+            }
+            return points;
+        }
+
+        public static Vector3[] ToVector3(Vector2[] p) {
+            return Array.ConvertAll(p, item => (Vector3)item);
+        }
     }
 }

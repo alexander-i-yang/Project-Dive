@@ -3,11 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Tiles/Level3.tmx",
+    "activeFile": "Tiles/Alex/Breakable Test.tmx",
     "automapping.whileDrawing": true,
     "expandedProjectPaths": [
-        ".",
-        "Tiles"
+        "Tiles",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -34,6 +34,18 @@
         },
         "SuperTiled2Unity/Examples/Overhead/Maps/Zoria Tileset/water.tsx": {
             "scaleInDock": 1
+        },
+        "Tiles/Alex/Breakable Test.tmx": {
+            "scale": 3,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 129.33333333333331,
+                "y": 107.83333333333333
+            }
+        },
+        "Tiles/Alex/Breakable.tsx": {
+            "scaleInDock": 4,
+            "scaleInEditor": 8
         },
         "Tiles/Alex/Dive.tmx": {
             "scale": 3.7868055555555555,
@@ -67,17 +79,17 @@
                 3
             ],
             "scale": 5.5,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 150.54545454545456,
-                "y": 66.0909090909091
+                "x": 123.27272727272728,
+                "y": 71.9090909090909
             }
         },
         "Tiles/Alex/Level1.tmx": {
             "scale": 3.7868055555555555,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 128.07628828167984,
+                "x": 128.60443792407847,
                 "y": 110.77938749312305
             }
         },
@@ -91,10 +103,10 @@
         },
         "Tiles/Alex/Level3.tmx": {
             "scale": 3.7868055555555555,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 128.34036310287917,
-                "y": 110.77938749312305
+                "x": 128.07628828167984,
+                "y": 72.22446359801944
             }
         },
         "Tiles/Alex/Mechanics.tsx": {
@@ -216,16 +228,24 @@
             "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 161.25,
-                "y": 85.875
+                "x": 120,
+                "y": 79.875
+            }
+        },
+        "Tiles/automapBreakable.tmx": {
+            "scale": 4.8056640625,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 91.76671408250355,
+                "y": 78.55313960577118
             }
         },
         "Tiles/automapLava.tmx": {
             "scale": 4,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 69.75,
-                "y": 75.625
+                "x": 119.75,
+                "y": 80.125
             }
         },
         "Tiles/automapSpikes.tmx": {
@@ -250,23 +270,28 @@
     "openFiles": [
         "Tiles/automap.tmx",
         "Tiles/Lava.tsx",
-        "Tiles/Level3.tmx"
+        "Tiles/Alex/LavaIntro.tmx",
+        "Tiles/automapLava.tmx",
+        "Tiles/Alex/Level3.tmx",
+        "Tiles/Alex/Level1.tmx",
+        "Tiles/Alex/Breakable Test.tmx",
+        "Tiles/Alex/Breakable.tsx"
     ],
     "project": "Project.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "Tiles/Alex/LavaIntro.tmx",
-        "Tiles/Alex/Level3.tmx",
-        "Tiles/Alex/Empty.tmx",
-        "Tiles/Alex/Level2.tmx",
-        "Tiles/Alex/Level1.tmx",
-        "Tiles/Alex/Dive.tmx",
-        "Tiles/Level3.tmx",
-        "Tiles/Alex/Lava Intro.tmx",
+        "Tiles/automapBreakable.tmx",
         "Tiles/automap.tmx",
         "Tiles/Lava.tsx",
-        "Tiles/Level1.tmx",
-        "Tiles/Level2.tmx"
+        "Tiles/Alex/LavaIntro.tmx",
+        "Tiles/automapLava.tmx",
+        "Tiles/Alex/Level3.tmx",
+        "Tiles/Alex/Level1.tmx",
+        "Tiles/Alex/Breakable.tsx",
+        "Tiles/Alex/Breakable Test.tmx",
+        "Tiles/Alex/Empty.tmx",
+        "Tiles/Alex/Level2.tmx",
+        "Tiles/Alex/Dive.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

@@ -24,7 +24,8 @@ public class PlayerActor : Actor {
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private PlayerStateMachine _stateMachine;
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private BoxCollider2D _collider;
     [SerializeField, AutoProperty(AutoPropertyMode.Children)] private PlayerRoomManager _roomManager;
-
+    [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private SpriteRenderer _mySR;
+    
     [Foldout("Move", true)]
     [SerializeField] private int MoveSpeed;
     [SerializeField] private int maxAcceleration;
@@ -105,6 +106,9 @@ public class PlayerActor : Actor {
         }
 
         _moveDirection = _input.GetMovementInput();
+        if (_moveDirection != 0) {
+            _mySR.flipX = _moveDirection == -1;
+        }
     }
 
     private void OnRoomTransition(Room roomEntering)
