@@ -1,4 +1,8 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Reflection;
+using Helpers;
 using SuperTiled2Unity.Editor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -25,25 +29,63 @@ public class ComponentFromCollider {
         typeof(ShadowCaster2D).GetMethod("OnEnable", accessFlagsPrivate);
 
     public static Vector3[] GetColliderPoints(EdgeCollider2D polygon) {
+        return Helper.ToVector3(GetColliderPointsVec2(polygon));
+    }
+    
+    public static Vector2[] GetColliderPointsVec2(EdgeCollider2D polygon) {
         // For some reason Tiled always stores the last point twice. Remove it to account for that
-        Vector3[] positions = new Vector3[polygon.points.Length-1];
-        for (int i = 0; i < positions.Length; i++) {
-            positions[i] = new Vector3(
-                polygon.points[i].x,
-                polygon.points[i].y, 
-                0);
+        List<Vector2> positions = new();
+        for (int i = 0; i < polygon.pointCount-1; i++) {
+            positions.Add(
+                new Vector2(
+                    polygon.points[i].x,
+                    polygon.points[i].y)
+            );
         }
-        return positions;
+        return positions.ToArray();
     }
 
-    public static void AddShadowCaster2D(GameObject g, bool selfShadows = false) {
+    public static void AddShadowCaster2D(GameObject g, bool selfShadows = true) {
         var addedCaster = g.AddComponent<ShadowCaster2D>();
         addedCaster = g.GetComponent<ShadowCaster2D>();
         addedCaster.selfShadows = selfShadows;
         
         Vector3[] positions = GetColliderPoints(g.GetComponent<EdgeCollider2D>());
-        shapePathField.SetValue(addedCaster, positions);
-        meshField.SetValue(addedCaster, null);
-        onEnableMethod.Invoke(addedCaster, new object[0]);
+        SetCastPoints(addedCaster, positions);
+    }
+
+    public static void SetCastPoints(ShadowCaster2D caster, Vector3[] points) {
+        shapePathField.SetValue(caster, points);
+        meshField.SetValue(caster, null);
+        onEnableMethod.Invoke(caster, new object[0]);
+    }
+
+    public static void SetPrefabPoints(GameObject prefab, Vector2[] points) {
+        Vector2 avg = Helper.ComputeAverage(points);
+        points = Helper.NormalizePoints(points, avg);
+        prefab.transform.localPosition = avg;
+
+        ShadowCaster2D s = prefab.GetComponent<ShadowCaster2D>();
+        if (s != null) SetCastPoints(s, Helper.ToVector3(points));
+
+        SetPolygonCollider2DPoints(prefab, points);
+        SetSpriteSize(prefab, points);
+    }
+
+    public static void SetPolygonCollider2DPoints(GameObject instance, Vector2[] points) {
+        PolygonCollider2D pc2d = instance.GetComponent<PolygonCollider2D>();
+        if (pc2d == null) throw new ConstraintException($"Prefab {instance} must have PolygonCollider2D attached");
+        
+        pc2d.points = points;
+    }
+
+    public static void SetSpriteSize(GameObject prefab, Vector2[] points) {
+        SpriteRenderer sr = prefab.GetComponent<SpriteRenderer>();
+        if (sr == null) return;
+        
+        Vector2 dimensions = points[0] - points[2];
+        dimensions.x = Math.Abs(dimensions.x);
+        dimensions.y = Math.Abs(dimensions.y);
+        sr.size = dimensions;
     }
 }

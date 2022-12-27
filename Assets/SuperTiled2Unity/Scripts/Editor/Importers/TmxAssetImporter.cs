@@ -500,7 +500,7 @@ namespace SuperTiled2Unity.Editor
             catch (Exception e)
             {
                 ReportError("Custom importer '{0}' threw an exception. Message = '{1}', Stack:\n{2}", customImporter.GetType().Name, e.Message, e.StackTrace);
-                Debug.LogErrorFormat("Custom importer general exception: {0}", e.Message);
+                Debug.LogErrorFormat("Custom importer general exception: {0}\n{1}", e.Message, e.StackTrace);
             }
         }
     }

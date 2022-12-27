@@ -35,6 +35,7 @@ namespace Helpers {
             {"Wall", typeof(Wall)},
             {"Spikes", typeof(Spike)},
             {"Lava", typeof(Lava)},
+            {"Breakable", typeof(Breakable)},
         };
         
         public override void TmxAssetImported(TmxAssetImportedArgs data) {
@@ -142,6 +143,9 @@ namespace Helpers {
                     }}, 
                     {"AddFreeformLightPrefab", (prop) => {
                         AddFreeformLightPrefab(layer.transform, prop.GetValueAsString());
+                    }},
+                    {"PrefabReplace", (prop) => {
+                        ReplacePrefab(layer.transform, prop.GetValueAsString());
                     }}
                 };
 
@@ -153,30 +157,6 @@ namespace Helpers {
                         act(prop);
                     }
                 }
-
-                /*CustomProperty component;
-                if (customProps.TryGetCustomProperty("unity:Component", out component))
-                {
-                    AddComponentToCollidersInLayer(layer.transform, component.GetValueAsString());
-                }
-
-                CustomProperty layerName;
-                if (customProps.TryGetCustomProperty("unity:Layer", out layerName))
-                {
-                    SetLayer(layer.transform, layerName.GetValueAsString());
-                }
-
-                CustomProperty castShadows;
-                if (customProps.TryGetCustomProperty("unity:CastShadows", out castShadows))
-                {
-                    if (castShadows.GetValueAsBool()) GenerateShadows(layer.transform);
-                }
-
-                CustomProperty anchorOffset;
-                if (customProps.TryGetCustomProperty("unity:AnchorOffset", out anchorOffset))
-                {
-                    if (anchorOffset.GetValueAsBool()) AnchorOffset(layer, layerNode);
-                }*/
             }   
         }
 
@@ -228,21 +208,34 @@ namespace Helpers {
             foreach (var edgeObj in GetEdges(layer)) {
                 var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
                 instance.transform.SetParent(edgeObj.transform);
-                FilterLogger.Log(this, instance);
-                FilterLogger.Log(this, edgeObj.gameObject);
+                Debug.Log(instance);
+                Debug.Log(edgeObj.gameObject);
                 instance.transform.localPosition = Vector3.zero;
                 Light2D l = instance.GetComponent<Light2D>();
 
                 if (l == null) {
                     throw new ConstraintException($"Prefab {prefabName} must have Freeform light attached");
                 }
-
-                foreach (var p in ComponentFromCollider.GetColliderPoints(edgeObj)) {
-                    FilterLogger.Log(this, p);
-                }
-                l.SetShapePath(ComponentFromCollider.GetColliderPoints(edgeObj));
+                l.SetShapePath(ComponentFromCollider.GetColliderPoints(edgeObj).ToArray());
             }
-            // var settings = ST2USettings.GetOrCreateST2USettings();
+        }
+        
+        private void ReplacePrefab(Transform layer, string prefabName) {
+            GameObject prefab = _prefabReplacements[prefabName];
+            int i = 0;
+            foreach (var edgeObj in GetEdges(layer)) {
+                var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+                instance.transform.SetParent(edgeObj.transform.parent);
+                instance.transform.localPosition = Vector3.zero;
+                instance.transform.name = $"{instance.transform.name} ({i++})";
+
+                Vector2[] points = ComponentFromCollider.GetColliderPointsVec2(edgeObj);
+                if (points.Length != 4) {
+                    throw new ConstraintException($"All objects in layer {layer} must be rectangular");
+                }
+                
+                ComponentFromCollider.SetPrefabPoints(instance, points);
+            }
         }
 
         public void AddComponentToCollidersInLayer(Transform layer, string component) {
@@ -257,16 +250,6 @@ namespace Helpers {
             {
                 edge.gameObject.layer = LayerMask.NameToLayer(layerName);
             }
-        }
-
-        private string GetProp(XElement props, String propName) {
-            foreach (var p in props.Elements()) {
-                if (p.Attribute("name").Value == propName) {
-                    return p.Attribute("value").Value;
-                }
-            }
-
-            return null;
         }
 
         public XElement GetLayerXNode(XDocument doc, SuperLayer layer) {
