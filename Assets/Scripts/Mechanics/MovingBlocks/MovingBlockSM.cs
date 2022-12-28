@@ -5,21 +5,21 @@ namespace Mechanics {
     public class MovingBlockSM : StateMachine<MovingBlockSM, MovingBlockState, MovingBlockInput> {
         public MovingBlock M;
 
-        public override void Init() {
+        protected override void Init() {
             M = GetComponent<MovingBlock>();
         }
 
         protected override void SetInitialState() {
-            SetCurState<Idle>();
+            SetState<Idle>();
         }
 
-        public override void FixedUpdate() {
+        protected override void FixedUpdate() {
             base.FixedUpdate();
-            CurState.FixedUpdate();
+            CurrState.FixedUpdate();
         }
 
         public void HitWall() {
-            CurState.HitWall();
+            CurrState.HitWall();
         }
     }
 
