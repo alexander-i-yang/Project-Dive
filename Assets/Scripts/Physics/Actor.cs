@@ -42,6 +42,11 @@ namespace Phys {
             velocityY = Math.Max(MaxFall, velocityY + EffectiveGravity() * Game.Instance.FixedDeltaTime);
         }
 
+        public bool FallVelocityExceedsMax()
+        {
+            return velocityY < MaxFall;
+        }
+
         private int EffectiveGravity()
         {
             return (velocityY > 0 ? GravityUp : GravityDown);

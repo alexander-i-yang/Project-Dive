@@ -12,7 +12,6 @@ using World;
 using MyBox;
 
 using UnityEditor;
-using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -53,19 +52,28 @@ public class PlayerActor : Actor {
     [Foldout("Dogo", true)]
     [SerializeField] private float DogoYJumpHeight;
     [SerializeField] private float DogoXJumpV;
+    [SerializeField] private int dogoJumpAcceleration;
     [Tooltip("Time where acceleration/decelartion is 0")]
-    [SerializeField] private float DogoJumpTime;
-    [FormerlySerializedAs("DogoConserveXV")] [SerializeField] public double DogoConserveXVTime;
+    [SerializeField] private float dogoJumpTime;
+    [SerializeField] public double DogoConserveXVTime;
     [Tooltip("Time to let players input a direction change")]
-    [SerializeField] public double DogoJumpGrace;
+    [SerializeField] public float DogoJumpGraceTime;
 
     [Foldout("RoomTransitions", true)]
     [SerializeField, Range(0f, 1f)] private float roomTransitionVCutX = 0.5f;
     [SerializeField, Range(0f, 1f)] private float roomTransitionVCutY = 0.5f;
 
+# region Serialized Fields Exposed through Properties
+    public int MaxAcceleration => maxAcceleration;
+    public int MaxDeceleration => maxDeceleration;
+    public int MaxAirAcceleration => maxAirAcceleration;
+    public int DogoJumpAcceleration => dogoJumpAcceleration;
+    public float DogoJumpTime => dogoJumpTime;
+#endregion
+
     private int _moveDirection;
+    public int MoveDirection => _moveDirection;
     private bool _lastJumpBeingHeld;
-    private float _dogoJumpTimer;
 
     private bool _hitWallCoroutineRunning;
     private float _hitWallPrevSpeed;
@@ -91,18 +99,18 @@ public class PlayerActor : Actor {
     {
         if (_input.JumpStarted())
         {
-            _stateMachine.CurState.JumpPressed();
+            _stateMachine.CurrState.JumpPressed();
         }
 
         if (_input.JumpFinished())
         {
-            _stateMachine.CurState.JumpReleased();
+            _stateMachine.CurrState.JumpReleased();
             _lastJumpBeingHeld = false;
         }
 
         if (_input.DiveStarted())
         {
-            _stateMachine.CurState.DivePressed();
+            _stateMachine.CurrState.DivePressed();
         }
 
         _moveDirection = _input.GetMovementInput();
@@ -120,31 +128,14 @@ public class PlayerActor : Actor {
     public override void FixedUpdate() {
         base.FixedUpdate();
         bool grounded = IsGrounded();
-        _stateMachine.CurState.SetGrounded(grounded);
-        _stateMachine.CurState.MoveX(grounded);
-        _dogoJumpTimer = Math.Max(0, _dogoJumpTimer - Game.Instance.FixedDeltaTime);
+        _stateMachine.CurrState.SetGrounded(grounded);
+        _stateMachine.CurrState.MoveX(_moveDirection);
     }
 
-    public void MoveX(bool grounded) {
-        int effectiveAcceleration = CalcXAcceleration(grounded);
+    public void UpdateMovementX(int acceleration) {
         int targetVelocityX = _moveDirection * MoveSpeed;
-        int maxSpeedChange = (int) (effectiveAcceleration * Time.deltaTime);
+        int maxSpeedChange = (int) (acceleration * Time.deltaTime);
         velocityX = Mathf.MoveTowards(velocityX, targetVelocityX, maxSpeedChange);
-    }
-
-    public int CalcXAcceleration(bool grounded) {
-        if (_dogoJumpTimer > 0) {
-            return 100;
-        }
-
-        int ret;
-        if (grounded) {
-            ret = _moveDirection == 0 ? maxDeceleration : maxAcceleration;
-        } else {
-            ret = maxAirAcceleration;
-        }
-
-        return ret;
     }
 
     public double Dogo() {
@@ -184,7 +175,7 @@ public class PlayerActor : Actor {
 
     public void Jump() {
         velocityY = GetJumpSpeedFromHeight(JumpHeight);
-        _stateMachine.CurState.SetGrounded(false);
+        _stateMachine.CurrState.SetGrounded(false);
     }
 
     public void JumpFromInput() {
@@ -194,7 +185,7 @@ public class PlayerActor : Actor {
     
     public void CrystalJump() {
         velocityY = GetJumpSpeedFromHeight(CrystalJumpHeight);
-        _stateMachine.CurState.SetGrounded(false);
+        _stateMachine.CurrState.SetGrounded(false);
         _lastJumpBeingHeld = false;
     }
 
@@ -216,33 +207,20 @@ public class PlayerActor : Actor {
         }
     }
 
-    public void DogoJump(bool conserveMomentum, double oldXv) {
-        StartCoroutine(_dogoJumpContinuous(conserveMomentum, oldXv));
-    }
-
-    private void _dogoJumpLogic(bool conserveMomentum, double oldXv) {
-        _dogoJumpTimer = DogoJumpTime;
+    public void DogoJump(bool conserveMomentum, double oldXV) {
         _lastJumpBeingHeld = true;
         if (_moveDirection != 0) {
             velocityX = _moveDirection * DogoXJumpV;
             if (conserveMomentum) {
                 if (_moveDirection == 1) {
-                    velocityX = (float)Math.Max(oldXv+DogoXJumpV, DogoXJumpV);
+                    velocityX = (float)Math.Max(oldXV+DogoXJumpV, DogoXJumpV);
                 } else if (_moveDirection == -1) {
-                    velocityX = (float)Math.Min(oldXv-DogoXJumpV, -DogoXJumpV);
+                    velocityX = (float)Math.Min(oldXV-DogoXJumpV, -DogoXJumpV);
                 }
             }
         }
+
         velocityY = GetJumpSpeedFromHeight(DogoYJumpHeight);
-    }
-    
-    private IEnumerator _dogoJumpContinuous(bool conserveMomentum, double oldXv) {
-        int oldFacing = _moveDirection;
-        _dogoJumpLogic(conserveMomentum, oldXv);
-        yield return new WaitForSeconds((float)(DogoJumpGrace / Game.Instance.TimeScale));
-        if (oldFacing != _moveDirection) {
-            _dogoJumpLogic(conserveMomentum, oldXv);
-        }
     }
 
     public void Land() {
@@ -253,13 +231,8 @@ public class PlayerActor : Actor {
         velocityY = DiveVelocity;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns>true if done diving</returns>
-    public bool DiveDecelUpdate() {
+    public void DiveDecelUpdate() {
         velocityY += DiveDeceleration;
-        return velocityY > MaxFall;
     }
 
     public void Die() {
@@ -273,11 +246,11 @@ public class PlayerActor : Actor {
     }
 
     public bool EnterCrystal(Crystal c) {
-        return _stateMachine.CurState.EnterCrystal(c);
+        return _stateMachine.CurrState.EnterCrystal(c);
     }
     
     public bool EnterSpike(Spike s) {
-        return _stateMachine.CurState.EnterSpike(s);
+        return _stateMachine.CurrState.EnterSpike(s);
     }
 
     public void BonkHead() {
@@ -289,11 +262,11 @@ public class PlayerActor : Actor {
             _hitWallPrevSpeed = velocityX;
             velocityX = 0;
             _hitWallCoroutineRunning = true;
-            StartCoroutine(_hitWallLogic(direction));
+            StartCoroutine(HitWallLogic(direction));
         }
     }
 
-    public IEnumerator _hitWallLogic(int direction) {
+    public IEnumerator HitWallLogic(int direction) {
         for (float t = 0; t < CornerboostTimer; t += Game.Instance.FixedDeltaTime) {
             bool movingWithDir = Math.Sign(velocityX) == Math.Sign(direction) || velocityX == 0;
             if (!movingWithDir) {
