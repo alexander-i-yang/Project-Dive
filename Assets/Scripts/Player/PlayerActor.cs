@@ -19,7 +19,6 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(PlayerInputController))]
 [RequireComponent(typeof(BoxCollider2D))]
 public class PlayerActor : Actor {
-    [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private PlayerInputController _input;
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private PlayerStateMachine _stateMachine;
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private BoxCollider2D _collider;
     [SerializeField, AutoProperty(AutoPropertyMode.Children)] private PlayerRoomManager _roomManager;
@@ -55,7 +54,7 @@ public class PlayerActor : Actor {
     [SerializeField] private int dogoJumpAcceleration;
     [Tooltip("Time where acceleration/decelartion is 0")]
     [SerializeField] private float dogoJumpTime;
-    [SerializeField] public double DogoConserveXVTime;
+    [SerializeField] public float DogoConserveXVTime;
     [Tooltip("Time to let players input a direction change")]
     [SerializeField] public float DogoJumpGraceTime;
 
@@ -70,10 +69,6 @@ public class PlayerActor : Actor {
     public int DogoJumpAcceleration => dogoJumpAcceleration;
     public float DogoJumpTime => dogoJumpTime;
 #endregion
-
-    private int _moveDirection;
-    public int MoveDirection => _moveDirection;
-    private bool _lastJumpBeingHeld;
 
     private bool _hitWallCoroutineRunning;
     private float _hitWallPrevSpeed;
@@ -90,33 +85,12 @@ public class PlayerActor : Actor {
 
     private void Update()
     {
-        UpdateInputs();
-
-        // GetComponent<SpriteRenderer>().color = CheckCollisions(Vector2.down, e => true) ? Color.red : Color.blue;
+        
     }
 
-    private void UpdateInputs()
+    public override void FixedUpdate()
     {
-        if (_input.JumpStarted())
-        {
-            _stateMachine.CurrState.JumpPressed();
-        }
-
-        if (_input.JumpFinished())
-        {
-            _stateMachine.CurrState.JumpReleased();
-            _lastJumpBeingHeld = false;
-        }
-
-        if (_input.DiveStarted())
-        {
-            _stateMachine.CurrState.DivePressed();
-        }
-
-        _moveDirection = _input.GetMovementInput();
-        if (_moveDirection != 0) {
-            _mySR.flipX = _moveDirection == -1;
-        }
+        base.FixedUpdate();
     }
 
     private void OnRoomTransition(Room roomEntering)
@@ -125,21 +99,14 @@ public class PlayerActor : Actor {
         velocityY *= roomTransitionVCutY;
     }
 
-    public override void FixedUpdate() {
-        base.FixedUpdate();
-        bool grounded = IsGrounded();
-        _stateMachine.CurrState.SetGrounded(grounded);
-        _stateMachine.CurrState.MoveX(_moveDirection);
-    }
-
-    public void UpdateMovementX(int acceleration) {
-        int targetVelocityX = _moveDirection * MoveSpeed;
+    public void UpdateMovementX(int moveDirection, int acceleration) {
+        int targetVelocityX = moveDirection * MoveSpeed;
         int maxSpeedChange = (int) (acceleration * Time.deltaTime);
         velocityX = Mathf.MoveTowards(velocityX, targetVelocityX, maxSpeedChange);
     }
 
-    public double Dogo() {
-        double v = velocityX;
+    public float Dogo() {
+        float v = velocityX;
         velocityX = 0;
         return v;
     }
@@ -177,44 +144,34 @@ public class PlayerActor : Actor {
         velocityY = GetJumpSpeedFromHeight(JumpHeight);
         _stateMachine.CurrState.SetGrounded(false);
     }
-
-    public void JumpFromInput() {
-        _lastJumpBeingHeld = true;
-        Jump();
-    }
     
     public void CrystalJump() {
         velocityY = GetJumpSpeedFromHeight(CrystalJumpHeight);
         _stateMachine.CurrState.SetGrounded(false);
-        _lastJumpBeingHeld = false;
     }
 
-    public void TryJumpCut()
+    public void JumpCut()
     {
-        if (_lastJumpBeingHeld && velocityY > 0f) {
+        if (velocityY > 0f) {
             velocityY *= JumpCutMultiplier;
         }
-
-        _lastJumpBeingHeld = false;
     }
 
-    public void DoubleJump() {
+    public void DoubleJump(int moveDirection) {
         velocityY = GetJumpSpeedFromHeight(DoubleJumpHeight);
-        _lastJumpBeingHeld = true;
         // If the player is trying to go in the opposite direction of their x velocity, instantly switch direction.
-        if (_moveDirection != 0 && _moveDirection != Math.Sign(velocityX)) {
+        if (moveDirection != 0 && moveDirection != Math.Sign(velocityX)) {
             velocityX = 0;
         }
     }
 
-    public void DogoJump(bool conserveMomentum, double oldXV) {
-        _lastJumpBeingHeld = true;
-        if (_moveDirection != 0) {
-            velocityX = _moveDirection * DogoXJumpV;
+    public void DogoJump(int moveDirection, bool conserveMomentum, double oldXV) {
+        if (moveDirection != 0) {
+            velocityX = moveDirection * DogoXJumpV;
             if (conserveMomentum) {
-                if (_moveDirection == 1) {
+                if (moveDirection == 1) {
                     velocityX = (float)Math.Max(oldXV+DogoXJumpV, DogoXJumpV);
-                } else if (_moveDirection == -1) {
+                } else if (moveDirection == -1) {
                     velocityX = (float)Math.Min(oldXV-DogoXJumpV, -DogoXJumpV);
                 }
             }

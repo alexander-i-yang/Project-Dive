@@ -1,6 +1,4 @@
-﻿using Core;
-
-using System;
+﻿using Helpers;
 
 namespace Player
 {
@@ -8,19 +6,10 @@ namespace Player
     {
         public class Dogoing : PlayerState
         {
-            private double _oldVelocity;
-            private double _dogoXVBufferTimer;
-
             public override void Enter(PlayerStateInput i)
             {
-                _oldVelocity = Player.Dogo();
-                _dogoXVBufferTimer = Player.DogoConserveXVTime;
-            }
-
-            public override void Exit(PlayerStateInput i)
-            {
-                i.OldVelocity = _oldVelocity;
-                i.DogoXVBufferTimer = _dogoXVBufferTimer;
+                i.oldVelocity = Player.Dogo();
+                i.dogoXVBufferTimer = GameTimer.StartNewTimer(Player.DogoConserveXVTime);
             }
 
             public override void JumpPressed()
@@ -31,12 +20,14 @@ namespace Player
 
             public override void FixedUpdate()
             {
-                if (_dogoXVBufferTimer > 0)
-                {
-                    _dogoXVBufferTimer = Math.Max(0, _dogoXVBufferTimer - Game.Instance.FixedDeltaTime);
-                }
+                GameTimer.FixedUpdate(Input.dogoXVBufferTimer);
 
                 base.FixedUpdate();
+            }
+
+            public override void MoveX(int moveDirection)
+            {
+                UpdateSpriteFacing(moveDirection);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Mechanics;
+﻿using Helpers;
+using Mechanics;
 
 namespace Player
 {
@@ -6,11 +7,11 @@ namespace Player
     {
         public abstract class PlayerState : State<PlayerStateMachine, PlayerState, PlayerStateInput>
         {
-            public PlayerActor Player => MySM.Player;   //This is just a shortcut because it's used so much.
-            //L: Changed from abstract functions to virtual bc not every state needs to implement
+            public PlayerActor Player => MySM._player;
+
             public virtual void JumpPressed()
             {
-                MySM.JumpBufferTimer = MySM.Player.JumpBufferTime;
+                Input.jumpBufferTimer = GameTimer.StartNewTimer(Player.JumpBufferTime, "Jump Buffer Timer");
             }
 
             public virtual void JumpReleased() { }
@@ -23,9 +24,48 @@ namespace Player
             {
                 if (spike.Charged)
                 {
-                    MySM.Player.Die();
+                    Player.Die();
                 }
                 return false;
+            }
+
+            protected void UpdateSpriteFacing(int moveDirection)
+            {
+                if (moveDirection != 0)
+                {
+                    MySM._spriteR.flipX = moveDirection == -1;
+                }
+            }
+
+            protected void JumpFromGround()
+            {
+                Input.jumpedFromGround = true;
+                Input.canJumpCut = true;
+                Player.Jump();
+
+                //GameTimer.Clear(Input.jumpBufferTimer);
+            }
+
+            protected void DoubleJump()
+            {
+                Input.canJumpCut = true;
+                Player.DoubleJump(Input.moveDirection);
+                Input.canDoubleJump = false;
+            }
+
+            protected void TryJumpCut()
+            {
+                if (Input.canJumpCut)
+                {
+                    Player.JumpCut();
+                    Input.canJumpCut = false;
+                }
+            }
+
+            protected void RefreshAbilities()
+            {
+                Input.canDoubleJump = true;
+                Input.canDive = true;
             }
         }
     }

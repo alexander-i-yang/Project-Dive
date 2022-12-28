@@ -11,53 +11,54 @@ namespace Player
     {
         public class DogoJumping : PlayerState
         {
-            private float _dogoJumpTimer;
+            private GameTimer _dogoJumpTimer;
 
             public override void Enter(PlayerStateInput i)
             {
-                bool conserveMomentum = i.DogoXVBufferTimer > 0;
-                MySM.StartCoroutine(DogoJumpRoutine(conserveMomentum, i.OldVelocity));
-                foreach (Spike spike in MySM.DogoDisableSpikes)
+                bool conserveMomentum = GameTimer.GetTimerState(i.dogoXVBufferTimer) == TimerState.Running;
+                MySM.StartCoroutine(DogoJumpRoutine(conserveMomentum, i.oldVelocity));
+                foreach (Spike spike in Input.dogoDisabledSpikes)
                 {
                     spike.Recharge();
                 }
-                MySM.Refill();
+                RefreshAbilities();
             }
 
             private IEnumerator DogoJumpRoutine(bool conserveMomentum, double oldXV)
             {
-                _dogoJumpTimer = Player.DogoJumpTime;
-                Player.DogoJump(conserveMomentum, oldXV);
-                int oldMoveDirection = Player.MoveDirection;
+                Input.canJumpCut = true;
+                _dogoJumpTimer = GameTimer.StartNewTimer(Player.DogoJumpTime);
+                Player.DogoJump(Input.moveDirection, conserveMomentum, oldXV);
+
+                int oldMoveDirection = Input.moveDirection;
                 yield return Helper.DelayAction(Player.DogoJumpGraceTime, () =>
                 {
-                    if (oldMoveDirection != Player.MoveDirection)
+                    if (oldMoveDirection != Input.moveDirection)
                     {
-                        _dogoJumpTimer = Player.DogoJumpTime;
-                        Player.DogoJump(conserveMomentum, oldXV);
+                        _dogoJumpTimer = GameTimer.StartNewTimer(Player.DogoJumpTime);
+                        Player.DogoJump(Input.moveDirection, conserveMomentum, oldXV);
                     }
                 });
             }
 
             public override void JumpPressed()
             {
-                if (MySM._canDoubleJump)
+                if (Input.canDoubleJump)
                 {
-                    Player.DoubleJump();
-                    MySM._canDoubleJump = false;
+                    DoubleJump();
                 }
             }
 
             public override void JumpReleased()
             {
                 base.JumpReleased();
-                Player.TryJumpCut();
+                TryJumpCut();
             }
 
             public override void DivePressed()
             {
                 base.DivePressed();
-                if (MySM._canDive)
+                if (Input.canDive)
                 {
                     MySM.Transition<Diving>();
                 }
@@ -74,13 +75,18 @@ namespace Player
 
             public override void MoveX(int moveDirection)
             {
-                Player.UpdateMovementX(Player.DogoJumpAcceleration);
+                UpdateSpriteFacing(moveDirection);
+                Player.UpdateMovementX(moveDirection, Player.DogoJumpAcceleration);
             }
 
             public override void FixedUpdate()
             {
-                _dogoJumpTimer = Math.Max(0, _dogoJumpTimer - Game.Instance.FixedDeltaTime);
+                GameTimer.FixedUpdate(_dogoJumpTimer);
                 Player.Fall();
+                if (GameTimer.GetTimerState(_dogoJumpTimer) == TimerState.Finished)
+                {
+                    MySM.Transition<Airborne>();
+                }
             }
         }
     }

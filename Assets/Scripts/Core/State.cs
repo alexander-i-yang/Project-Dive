@@ -4,6 +4,7 @@
     where I : StateInput
 {
     public M MySM;
+    public I Input => MySM.CurrInput;
 
     public virtual void Enter(I i) { }
     public virtual void Exit(I i) { }

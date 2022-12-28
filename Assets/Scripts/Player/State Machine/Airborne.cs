@@ -1,6 +1,6 @@
-﻿using Core;
+﻿using Helpers;
 
-using System;
+using UnityEngine;
 
 namespace Player
 {
@@ -8,38 +8,40 @@ namespace Player
     {
         public class Airborne : PlayerState
         {
-            private float _jumpCoyoteTimer;
+            private GameTimer _jumpCoyoteTimer;
 
             public override void Enter(PlayerStateInput i)
             {
-                _jumpCoyoteTimer = Player.JumpCoyoteTime;
+                if (!Input.jumpedFromGround)
+                {
+                    _jumpCoyoteTimer = GameTimer.StartNewTimer(Player.JumpCoyoteTime, "Jump Coyote Timer");
+                }
             }
 
             public override void JumpPressed()
             {
                 base.JumpPressed();
-                bool justLeftGround = _jumpCoyoteTimer > 0 && !MySM._jumpedFromGround;
-                if (justLeftGround)
+                TimerState coyoteState = GameTimer.GetTimerState(_jumpCoyoteTimer);
+                if (coyoteState == TimerState.Running)
                 {
-                    MySM.JumpFromInput();
+                    JumpFromGround();
                 }
-                else if (MySM._canDoubleJump)
+                else if (Input.canDoubleJump)
                 {
-                    Player.DoubleJump();
-                    MySM._canDoubleJump = false;
+                    DoubleJump();
                 }
             }
 
             public override void JumpReleased()
             {
                 base.JumpReleased();
-                Player.TryJumpCut();
+                TryJumpCut();
             }
 
             public override void DivePressed()
             {
                 base.DivePressed();
-                if (MySM._canDive)
+                if (Input.canDive)
                 {
                     MySM.Transition<Diving>();
                 }
@@ -50,22 +52,21 @@ namespace Player
                 base.SetGrounded(isGrounded);
                 if (isGrounded)
                 {
+                    Debug.Log("Airborne to Grounded");
                     MySM.Transition<Grounded>();
                 }
             }
 
             public override void MoveX(int moveDirection)
             {
-                Player.UpdateMovementX(Player.MaxAirAcceleration);
+                UpdateSpriteFacing(moveDirection);
+                Player.UpdateMovementX(moveDirection, Player.MaxAirAcceleration);
             }
 
             public override void FixedUpdate()
             {
                 Player.Fall();
-                if (_jumpCoyoteTimer > 0)
-                {
-                    _jumpCoyoteTimer = Math.Max(0, _jumpCoyoteTimer - Game.Instance.FixedDeltaTime);
-                }
+                GameTimer.FixedUpdate(_jumpCoyoteTimer);
             }
         }
     }
