@@ -4,8 +4,7 @@
     ],
     "extensionsPath": "extensions",
     "folders": [
-        ".",
-        "Tiles"
+        "."
     ],
     "propertyTypes": [
     ]
