@@ -155,7 +155,7 @@ MonoBehaviour:
   DogoYJumpHeight: 28
   DogoXJumpV: 250
   dogoJumpAcceleration: 100
-  DogoJumpTime: 0.04
+  dogoJumpTime: 0.04
   DogoConserveXVTime: 0.2
   DogoJumpGraceTime: 0.04
   roomTransitionVCutX: 0.5
