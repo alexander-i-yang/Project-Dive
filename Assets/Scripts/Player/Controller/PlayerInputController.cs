@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputController : InputController
+public class PlayerInputController : MonoBehaviour, InputController
 {
     private PlayerControls controls;
     private PlayerControls.GameplayActions inputActions;
@@ -22,7 +22,7 @@ public class PlayerInputController : InputController
         inputActions.Disable();
     }
 
-    public override int GetMovementInput()
+    public int GetMovementInput()
     {
         
         int rightInput = inputActions.MoveRight.IsPressed() ? 1 : 0;
@@ -30,45 +30,45 @@ public class PlayerInputController : InputController
         return rightInput - leftInput;
     }
 
-    public override bool MovementStarted()
+    public bool MovementStarted()
     {
         bool bothDirsDifferent = inputActions.MoveRight.IsPressed() ^ inputActions.MoveLeft.IsPressed();
         return MovementChanged() && bothDirsDifferent;
     }
 
-    public override bool MovementFinished()
+    public bool MovementFinished()
     {
         //If left and right are held at the same time, the player will not move.
         bool bothDirsSame = inputActions.MoveRight.IsPressed() == inputActions.MoveLeft.IsPressed();
         return MovementChanged() && bothDirsSame;
     }
 
-    public override bool GetJumpInput()
+    public bool GetJumpInput()
     {
         return inputActions.Jump.IsPressed();
     }
 
-    public override bool JumpStarted()
+    public bool JumpStarted()
     {
         return inputActions.Jump.WasPressedThisFrame();
     }
 
-    public override bool JumpFinished()
+    public bool JumpFinished()
     {
         return inputActions.Jump.WasReleasedThisFrame();
     }
 
-    public override bool GetDiveInput()
+    public bool GetDiveInput()
     {
         return inputActions.Dive.IsPressed();
     }
 
-    public override bool DiveStarted()
+    public bool DiveStarted()
     {
         return inputActions.Dive.WasPressedThisFrame();
     }
 
-    public override bool DiveFinished()
+    public bool DiveFinished()
     {
         return inputActions.Dive.WasReleasedThisFrame();
     }

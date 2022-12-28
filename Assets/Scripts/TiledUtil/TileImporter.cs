@@ -208,6 +208,8 @@ namespace Helpers {
             foreach (var edgeObj in GetEdges(layer)) {
                 var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
                 instance.transform.SetParent(edgeObj.transform);
+                Debug.Log(instance);
+                Debug.Log(edgeObj.gameObject);
                 instance.transform.localPosition = Vector3.zero;
                 Light2D l = instance.GetComponent<Light2D>();
 

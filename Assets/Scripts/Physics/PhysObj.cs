@@ -14,14 +14,14 @@ namespace Phys {
         [NonSerialized] public Vector2 NextFrameOffset = Vector2.zero;
         [NonSerialized] private Vector2 MoveRemainder = Vector2.zero;
 
-        protected float velocityY {
+        public float velocityY {
             get { return velocity.y; }
-            set { velocity = new Vector2(velocity.x, value); }
+            protected set { velocity = new Vector2(velocity.x, value); }
         }
 
-        protected float velocityX {
+        public float velocityX {
             get { return velocity.x; }
-            set { velocity = new Vector2(value, velocity.y); }
+            protected set { velocity = new Vector2(value, velocity.y); }
         }
 
         protected void Start() {
