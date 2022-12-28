@@ -166,6 +166,7 @@ public class PlayerActor : Actor {
     public override bool PlayerCollide(PlayerActor p, Vector2 direction)
     {
         return false;
+        
     }
 
     public override bool IsGround(PhysObj whosAsking)
@@ -304,6 +305,6 @@ public class PlayerActor : Actor {
     }
 
     private void OnDrawGizmosSelected() {
-        Handles.Label(new Vector3(0, 56, 0) , "" + velocityY);
+        Handles.Label(new Vector3(0, 56, 0) , $"Velocity: <{velocityX}, {velocityY}>");
     }
 }
