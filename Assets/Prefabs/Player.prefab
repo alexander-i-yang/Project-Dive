@@ -86,7 +86,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.08, y: 0.12}
+  m_Size: {x: 8, y: 12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -110,13 +110,13 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 8, y: 12}
-    newSize: {x: 0.08, y: 0.12}
+    newSize: {x: 8, y: 12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 11.896751}
+  m_Size: {x: 8, y: 12}
   m_EdgeRadius: 0
 --- !u!114 &2234600854425113960
 MonoBehaviour:
@@ -229,7 +229,7 @@ MonoBehaviour:
   - {x: -4, y: 6, z: 0}
   m_ShapePathHash: 1522295477
   m_Mesh: {fileID: 0}
-  m_InstanceId: -2524
+  m_InstanceId: -2686
 --- !u!1 &5389357683659332391
 GameObject:
   m_ObjectHideFlags: 0

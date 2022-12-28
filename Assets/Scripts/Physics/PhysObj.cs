@@ -45,8 +45,6 @@ namespace Phys {
         /// returns true if should stop</param>
         /// <returns></returns>
         public bool CheckCollisions(Vector2 direction, Func<PhysObj, Vector2, bool> onCollide) {
-            if (myCollider == null) { return true; }
-
             Vector2 colliderSize = myCollider.size;
             Vector2 sizeMult = colliderSize - Vector2.one;
             List<RaycastHit2D> hits = new List<RaycastHit2D>();
@@ -140,7 +138,7 @@ namespace Phys {
         }
 
         public virtual bool IsGround(PhysObj whosAsking) {
-            return true;
+            return Collidable();
         }
 
         public static Actor[] GetActors() {

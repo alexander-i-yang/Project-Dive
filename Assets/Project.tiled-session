@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Tiles/Alex/Breakable Test.tmx",
+    "activeFile": "C:/Users/uncle/Unity/Project-Dive/Misc/Area Planning/Planning Tileset.tsx",
     "automapping.whileDrawing": true,
     "expandedProjectPaths": [
         "Tiles",
@@ -14,6 +14,27 @@
         ":/automap-tiles.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Project-Dive/Area1 Planning.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 56.5,
+                "y": -45.75
+            }
+        },
+        "C:/Users/uncle/Unity/Project-Dive/Misc/Area Planning/Area1 Planning.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 170,
+                "y": -72.25
+            }
+        },
+        "C:/Users/uncle/Unity/Project-Dive/Misc/Area Planning/Planning Tileset.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 0.33,
+            "scaleInEditor": 1
         },
         "SuperTiled2Unity/Examples/Overhead/Maps/TestOverhead.tmx": {
             "scale": 1.5,
@@ -105,7 +126,7 @@
             "scale": 3.7868055555555555,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 128.07628828167984,
+                "x": 128.34036310287917,
                 "y": 72.22446359801944
             }
         },
@@ -244,7 +265,7 @@
             "scale": 4,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 119.75,
+                "x": 120,
                 "y": 80.125
             }
         },
@@ -261,7 +282,8 @@
         }
     },
     "last.externalTilesetPath": "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles",
-    "last.imagePath": "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles",
+    "last.imagePath": "C:/Users/uncle/Unity/Project-Dive/Misc/Area Planning",
+    "map.fixedSize": false,
     "map.height": 18,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 8,
@@ -269,33 +291,29 @@
     "map.width": 32,
     "openFiles": [
         "Tiles/automap.tmx",
-        "Tiles/Lava.tsx",
-        "Tiles/Alex/LavaIntro.tmx",
-        "Tiles/automapLava.tmx",
-        "Tiles/Alex/Level3.tmx",
-        "Tiles/Alex/Level1.tmx",
-        "Tiles/Alex/Breakable Test.tmx",
-        "Tiles/Alex/Breakable.tsx"
+        "C:/Users/uncle/Unity/Project-Dive/Misc/Area Planning/Area1 Planning.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Misc/Area Planning/Planning Tileset.tsx"
     ],
     "project": "Project.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "Tiles/automapBreakable.tmx",
         "Tiles/automap.tmx",
-        "Tiles/Lava.tsx",
-        "Tiles/Alex/LavaIntro.tmx",
-        "Tiles/automapLava.tmx",
-        "Tiles/Alex/Level3.tmx",
-        "Tiles/Alex/Level1.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Misc/Area Planning/Planning Tileset.tsx",
+        "C:/Users/uncle/Unity/Project-Dive/Misc/Area Planning/Area1 Planning.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Area1 Planning.tmx",
         "Tiles/Alex/Breakable.tsx",
         "Tiles/Alex/Breakable Test.tmx",
-        "Tiles/Alex/Empty.tmx",
-        "Tiles/Alex/Level2.tmx",
-        "Tiles/Alex/Dive.tmx"
+        "Tiles/Alex/Level1.tmx",
+        "Tiles/Alex/Level3.tmx",
+        "Tiles/automapLava.tmx",
+        "Tiles/Alex/LavaIntro.tmx",
+        "Tiles/Lava.tsx",
+        "Tiles/automapBreakable.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
         "height": 8,
         "width": 8
-    }
+    },
+    "tileset.type": 1
 }

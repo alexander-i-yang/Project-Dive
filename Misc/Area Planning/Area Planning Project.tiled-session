@@ -1,0 +1,79 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "Area 1 Planning.tmx",
+    "expandedProjectPaths": [
+    ],
+    "exportAsImage.includeBackgroundColor": true,
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "Annotations.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1.5
+        },
+        "Area 1 Planning.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 476,
+                "y": 23.5
+            }
+        },
+        "Area Planning.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1.5
+        },
+        "Area1 Planning.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 413.3333333333333,
+                "y": 366
+            }
+        },
+        "Planning Tileset.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 0.25,
+            "scaleInEditor": 1
+        },
+        "Rooms.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1.5
+        }
+    },
+    "last.externalTilesetPath": "C:/Users/uncle/Unity/Project-Dive/Misc/Area Planning",
+    "last.imagePath": "C:/Users/uncle/Unity/Project-Dive/Misc/Area Planning",
+    "map.fixedSize": false,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 8,
+    "map.tileWidth": 8,
+    "openFiles": [
+        "Area 1 Planning.tmx",
+        "Rooms.tsx",
+        "Annotations.tsx"
+    ],
+    "project": "Area Planning Project.tiled-project",
+    "recentFiles": [
+        "Annotations.tsx",
+        "Rooms.tsx",
+        "Area 1 Planning.tmx",
+        "Area Planning.tsx",
+        "Planning Tileset.tsx",
+        "Area1 Planning.tmx"
+    ],
+    "resizeMap.removeObjects": false,
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 48,
+        "width": 48
+    },
+    "tileset.type": 0
+}

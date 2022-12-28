@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="250" height="250" tilewidth="8" tileheight="8" infinite="0" backgroundcolor="#969696" nextlayerid="4" nextobjectid="140">
+ <tileset firstgid="1" source="Rooms.tsx"/>
+ <tileset firstgid="2" source="Annotations.tsx"/>
+ <objectgroup draworder="index" id="2" name="Rooms">
+  <object id="1" gid="1" x="32" y="536" width="256" height="144"/>
+  <object id="2" gid="1" x="240" y="680" width="256" height="144"/>
+  <object id="3" gid="1" x="440" y="824" width="256" height="144"/>
+  <object id="4" gid="1" x="640" y="968" width="256" height="144"/>
+  <object id="26" gid="1" x="896" y="968" width="256" height="144"/>
+  <object id="63" gid="1" x="512" y="1256" width="510.667" height="287.333"/>
+  <object id="71" gid="1" x="768" y="1400" width="256" height="144"/>
+  <object id="72" gid="1" x="512" y="1400" width="256" height="144"/>
+  <object id="77" gid="1" x="440" y="1544" width="256" height="144"/>
+  <object id="78" gid="1" x="1024" y="1256" width="256" height="144"/>
+  <object id="85" gid="1" x="184" y="1544" width="256" height="144"/>
+  <object id="87" gid="1" x="256" y="1400" width="256" height="144"/>
+  <object id="88" gid="1" x="256" y="1256" width="256" height="144"/>
+  <object id="89" gid="5" x="216" y="1496" width="48" height="48"/>
+  <object id="90" gid="2" x="264" y="1424" width="48" height="48"/>
+  <object id="91" gid="2" x="456" y="1536" width="48" height="48" rotation="-90"/>
+  <object id="92" x="299.833" y="1459.26" width="99.6667" height="22.8153">
+   <text wrap="1">Teach crystal</text>
+  </object>
+  <object id="93" gid="2" x="424" y="1280" width="48" height="48"/>
+  <object id="94" gid="3" x="536" y="1168" width="48" height="48" rotation="-90"/>
+  <object id="95" x="368.5" y="1318.72" width="116" height="26.5542">
+   <text wrap="1">Crystal practice</text>
+  </object>
+  <object id="96" gid="5" x="528" y="1040" width="48" height="48"/>
+  <object id="97" gid="7" x="280" y="1176" width="48" height="48"/>
+  <object id="98" gid="11" x="280" y="1176" width="48" height="48"/>
+  <object id="100" gid="1" x="854" y="1545" width="536" height="144"/>
+  <object id="122" gid="1" x="1536" y="1112" width="412" height="144" rotation="90"/>
+  <object id="123" gid="1" x="1280" y="1256" width="256" height="144"/>
+  <object id="124" gid="2" x="1512" y="1168" width="48" height="48" rotation="90"/>
+  <object id="130" x="360" y="1184" width="116" height="26.5542">
+   <text wrap="1">Crystal practice</text>
+  </object>
+ </objectgroup>
+ <objectgroup draworder="index" id="3" name="Annotations">
+  <object id="7" x="32" y="16" width="128.333" height="48.3333">
+   <text fontfamily="MS Shell Dlg 2" pixelsize="40" wrap="1">Key</text>
+  </object>
+  <object id="9" x="92.167" y="84.657" width="113.667" height="26.0201">
+   <text wrap="1">Tentative</text>
+  </object>
+  <object id="11" x="95.167" y="142.5" width="83" height="19">
+   <text wrap="1">Key shard</text>
+  </object>
+  <object id="21" x="96" y="208" width="83" height="19">
+   <text wrap="1">Important</text>
+  </object>
+  <object id="23" x="96" y="264" width="113.667" height="19">
+   <text wrap="1">Hard to get to</text>
+  </object>
+  <object id="31" gid="6" x="32" y="120" width="48" height="48"/>
+  <object id="32" gid="7" x="32" y="176" width="48" height="48"/>
+  <object id="33" gid="5" x="32" y="240" width="48" height="48"/>
+  <object id="35" gid="4" x="32" y="296" width="48" height="48"/>
+  <object id="37" gid="7" x="1080" y="888" width="48" height="48"/>
+  <object id="41" gid="3" x="872" y="888" width="48" height="48" rotation="90"/>
+  <object id="43" gid="3" x="792" y="944" width="48" height="48" rotation="180"/>
+  <object id="45" gid="10" x="240" y="560" width="48" height="48"/>
+  <object id="46" gid="10" x="448" y="704" width="48" height="48"/>
+  <object id="47" gid="10" x="648" y="848" width="48" height="48"/>
+  <object id="48" gid="3" x="208" y="176" width="48" height="48"/>
+  <object id="49" x="272" y="144" width="186.333" height="19">
+   <text wrap="1">Pathway (must be 2 way)</text>
+  </object>
+  <object id="50" gid="2" x="208" y="240" width="48" height="48"/>
+  <object id="51" x="272" y="208" width="183.667" height="19">
+   <text wrap="1">Pathway (must be 1 way)</text>
+  </object>
+  <object id="52" gid="10" x="208" y="112" width="48" height="48"/>
+  <object id="54" x="272" y="80" width="83" height="19">
+   <text wrap="1">Pathway</text>
+  </object>
+  <object id="66" x="320.5" y="591.167" width="113" height="19">
+   <text wrap="1">Teaches u lava</text>
+  </object>
+  <object id="67" x="623.5" y="1047.5" width="177" height="19">
+   <text wrap="1">Big room hub and spoke</text>
+  </object>
+  <object id="68" gid="7" x="608" y="1184" width="48" height="48"/>
+  <object id="70" gid="11" x="608" y="1184" width="48" height="48"/>
+  <object id="73" gid="7" x="592" y="1384" width="48" height="48"/>
+  <object id="74" gid="3" x="864" y="1280" width="48" height="48"/>
+  <object id="75" gid="11" x="208" y="296" width="48" height="48"/>
+  <object id="76" x="272" y="264" width="189" height="19">
+   <text wrap="1">Locked by main mechanic</text>
+  </object>
+  <object id="79" gid="3" x="1000" y="1200" width="48" height="48" rotation="90"/>
+  <object id="80" gid="5" x="1587.33" y="1214" width="48" height="48"/>
+  <object id="81" x="1584" y="1256.67" width="83" height="19">
+   <text wrap="1">Exit</text>
+  </object>
+  <object id="82" gid="2" x="736" y="1232" width="48" height="48" rotation="180"/>
+  <object id="83" gid="2" x="680" y="1376" width="48" height="48" rotation="180"/>
+  <object id="101" gid="1" x="768" y="1688" width="256" height="144"/>
+  <object id="102" gid="1" x="1208" y="1688" width="256" height="144"/>
+  <object id="103" gid="7" x="1400" y="1616" width="48" height="48"/>
+  <object id="104" gid="7" x="960" y="1608" width="48" height="48"/>
+  <object id="105" gid="11" x="264" y="1424" width="48" height="48"/>
+  <object id="107" gid="1" x="1144" y="1112" width="256" height="144"/>
+  <object id="108" gid="2" x="1200" y="1136" width="48" height="48"/>
+  <object id="109" gid="11" x="1200" y="1136" width="48" height="48"/>
+  <object id="111" gid="4" x="952" y="1416" width="48" height="48"/>
+  <object id="112" gid="3" x="952" y="1424" width="48" height="48"/>
+  <object id="114" gid="2" x="1256" y="1200" width="48" height="48" rotation="90"/>
+  <object id="116" gid="1" x="112" y="1000" width="256" height="144" rotation="90"/>
+  <object id="117" gid="7" x="128" y="1064" width="48" height="48"/>
+  <object id="120" gid="4" x="1384" y="1208" width="48" height="48"/>
+  <object id="121" gid="4" x="1144" y="1176" width="48" height="48"/>
+  <object id="125" gid="5" x="1072" y="1224" width="48" height="48"/>
+  <object id="126" x="1135.17" y="1183.83" width="117.667" height="60.3333">
+   <text wrap="1">Exit locked until u have enough crystals</text>
+  </object>
+  <object id="127" gid="3" x="896" y="1568" width="48" height="48"/>
+  <object id="128" gid="3" x="1240" y="1576" width="48" height="48"/>
+  <object id="129" gid="3" x="232" y="1200" width="48" height="48" rotation="90"/>
+  <object id="119" gid="11" x="232" y="1248" width="48" height="48"/>
+  <object id="131" gid="7" x="464" y="1528" width="48" height="48"/>
+  <object id="132" x="544" y="1472" width="129.667" height="39.6667">
+   <text wrap="1">How to funnel players into here?</text>
+  </object>
+  <object id="133" x="508.833" y="745.167" width="113" height="19">
+   <text wrap="1">Teaches u lava</text>
+  </object>
+  <object id="134" x="712" y="896" width="113" height="19">
+   <text wrap="1">Teaches u lava</text>
+  </object>
+  <object id="137" gid="11" x="960" y="1608" width="48" height="48"/>
+  <object id="138" gid="11" x="1400" y="1616" width="48" height="48"/>
+  <object id="139" gid="7" x="1320" y="1488" width="48" height="48"/>
+ </objectgroup>
+</map>
