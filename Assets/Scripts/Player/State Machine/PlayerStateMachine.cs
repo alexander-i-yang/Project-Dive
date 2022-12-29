@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-
-using Helpers;
-using Mechanics;
+﻿using Helpers;
 
 using UnityEngine;
 
@@ -9,7 +6,8 @@ namespace Player
 {
     public partial class PlayerStateMachine : StateMachine<PlayerStateMachine, PlayerStateMachine.PlayerState, PlayerStateInput> {
         private IInputController _input;
-        private PlayerActor _player;
+        private IPlayerInfoProvider _playerInfo;
+        private IPlayerActionHandler _playerAction;
         private SpriteRenderer _spriteR;
 
         #region Overrides
@@ -21,7 +19,8 @@ namespace Player
         protected override void Init()
         {
             _input = GetComponent<IInputController>();
-            _player = GetComponent<PlayerActor>();
+            _playerInfo = GetComponent<IPlayerInfoProvider>();
+            _playerAction = GetComponent<IPlayerActionHandler>();
             _spriteR = GetComponentInChildren<SpriteRenderer>();
         }
 
@@ -51,7 +50,7 @@ namespace Player
         {
             base.FixedUpdate();
             GameTimer.FixedUpdate(CurrInput.jumpBufferTimer);
-            CurrState.SetGrounded(_player.IsGrounded());
+            CurrState.SetGrounded(_playerInfo.Grounded);
             CurrState.MoveX(CurrInput.moveDirection);
         }
         #endregion

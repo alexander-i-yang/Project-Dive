@@ -12,7 +12,7 @@ namespace Player
                 Input.jumpedFromGround = false;
                 RefreshAbilities();
 
-                Player.Land();
+                PlayerAction.Land();
                 if (GameTimer.GetTimerState(Input.jumpBufferTimer) == TimerState.Running && !MySM.PrevStateEquals<Diving>())
                 {
                     JumpFromGround();
@@ -30,7 +30,6 @@ namespace Player
                 base.SetGrounded(isGrounded);
                 if (!isGrounded)
                 {
-                    Debug.Log("Grounded to Airborne");
                     MySM.Transition<Airborne>();
                 }
             }
@@ -38,8 +37,8 @@ namespace Player
             public override void MoveX(int moveDirection)
             {
                 UpdateSpriteFacing(moveDirection);
-                int acceleration = moveDirection == 0 ? Player.MaxAcceleration : Player.MaxDeceleration;
-                Player.UpdateMovementX(moveDirection, acceleration);
+                int acceleration = moveDirection == 0 ? PlayerInfo.MaxAcceleration : PlayerInfo.MaxDeceleration;
+                PlayerAction.UpdateMovementX(moveDirection, acceleration);
             }
         }
     }

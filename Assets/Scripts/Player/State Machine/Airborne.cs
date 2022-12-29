@@ -14,7 +14,7 @@ namespace Player
             {
                 if (!Input.jumpedFromGround)
                 {
-                    _jumpCoyoteTimer = GameTimer.StartNewTimer(Player.JumpCoyoteTime, "Jump Coyote Timer");
+                    _jumpCoyoteTimer = GameTimer.StartNewTimer(PlayerInfo.JumpCoyoteTime, "Jump Coyote Timer");
                 }
             }
 
@@ -52,7 +52,6 @@ namespace Player
                 base.SetGrounded(isGrounded);
                 if (isGrounded)
                 {
-                    Debug.Log("Airborne to Grounded");
                     MySM.Transition<Grounded>();
                 }
             }
@@ -60,12 +59,12 @@ namespace Player
             public override void MoveX(int moveDirection)
             {
                 UpdateSpriteFacing(moveDirection);
-                Player.UpdateMovementX(moveDirection, Player.MaxAirAcceleration);
+                PlayerAction.UpdateMovementX(moveDirection, PlayerInfo.MaxAirAcceleration);
             }
 
             public override void FixedUpdate()
             {
-                Player.Fall();
+                PlayerAction.Fall();
                 GameTimer.FixedUpdate(_jumpCoyoteTimer);
             }
         }
