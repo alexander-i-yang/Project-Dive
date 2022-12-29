@@ -38,7 +38,7 @@ namespace Helpers
             LogAtLevel(LogLevel.Error, caller, message);
         }
 
-        private static void LogAtLevel(LogLevel logLevel, IFilterLoggerTarget target, object message)
+        private static void LogAtLevel(LogLevel logLevel, IFilterLoggerTarget caller, object message)
         {
             DebugLogMethod doLogAtLevel;
             if (!DebugLogMethods.TryGetValue(logLevel, out doLogAtLevel))
@@ -46,9 +46,9 @@ namespace Helpers
                 Debug.LogWarning("Unallowed log level. Level must be either Log, Warning, or Error.");
             }
 
-            if (logLevel <= target.GetLogLevel())
+            if (logLevel <= caller.GetLogLevel())
             {
-                doLogAtLevel(message);
+                doLogAtLevel($"[{caller.GetLogName()}] {message}");
             }
         }
     }

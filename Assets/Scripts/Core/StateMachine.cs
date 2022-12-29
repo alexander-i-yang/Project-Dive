@@ -1,14 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using System.Collections.Generic;
+
 using UnityEngine;
 
 //The following code is heavily influenced from a state machine used in Side By Side (Producer: Yoon Lee)
 
 /// <summary>
 /// Defines a Finite State Machine that can be extended for more functionality.
-/// Don't mess with this code; if you're confused about how to implement an FSM, @me in the discord.
 /// </summary>
 /// <typeparam name="S">An abstract class that defines what kind of state you want</typeparam>
 /// <typeparam name="I">A class that carries values between states</typeparam>
@@ -17,91 +17,81 @@ public abstract class StateMachine<M, S, I> : MonoBehaviour
     where S : State<M, S, I>
     where I : StateInput
 {
-    public Dictionary<Type, S> StateMap { get; private set; }
-    public S CurState { get; private set; }
+    public S CurrState { get; private set; }
     public S PrevState { get; private set; }
-    public I CurInput { get; private set; }
+    public I CurrInput { get; private set; }
 
-    protected void SetCurState<T>() where T : S {
-        if (StateMap.ContainsKey(typeof(T))) {
-            PrevState = CurState;
-            CurState = StateMap[typeof(T)];
-            if (PrevState == null) PrevState = CurState;
-        } else {
-            Debug.LogError("Error: state machine doesn't include type " + typeof(T));
-            Debug.Break();
-        }
-    }
+    private Dictionary<Type, S> _stateMap = new Dictionary<Type, S>();
 
-    void InitStateInput() { CurInput = (I) Activator.CreateInstance(typeof(I)); }
+    #region Unity Messages
+    protected virtual void Start() {
+        CurrInput = (I) Activator.CreateInstance(typeof(I));
+        Init();
 
-    public bool PrevStateEquals<T>() where T : S {
-        return typeof(T) == PrevState.GetType();
-    }
-
-    // Start is called before the first frame update
-    protected void Start() {
-        InitStateInput();
-        
         //The below code was provided by Side By Side (Producer: Yoon Lee), who got it from Brandon Shockley
         //Gets all inherited classes of S and instantiates them using voodoo magic code I got from Brandon Shockley lol
-        StateMap = new Dictionary<Type, S>();
-        // loadedStates = new GenericDictionary<string, string>();
-        Init();
+        //EDIT by Logan Bowers: Removed Voodoo magic code that gets all the types because you can add a generic constraint that forces the type to be correct so no errors occur.
+        //EDIT EDIT: Keeping the Voodoo magic code here in honor of our fallen brother, and because it works, as it should.
         foreach (Type type in Assembly.GetAssembly(typeof(S)).GetTypes()
-            .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(S)))) {
-            S newState = (S) Activator.CreateInstance(type);
-            newState.MySM = (M) this;
+            .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(S))))
+        {
+            S newState = (S)Activator.CreateInstance(type);
+            newState.MySM = (M)this;
             // newState.character = this;
             // newState.Init(stateInput);
-            StateMap.Add(type, newState);
+            _stateMap.Add(type, newState);
             // loadedStates.Add(type.FullName, RuntimeHelpers.GetHashCode(newState).ToString());
         }
-        
+
         SetInitialState();
     }
 
-    public void Update() {
-        CurState.Update();
+    protected virtual void Update() {
+        CurrState?.Update();
     }
     
-    public virtual void FixedUpdate() {
-        if (CurState == null) {
-            Debug.LogError("Curstate null");
-            Start();
+    protected virtual void FixedUpdate() {
+        CurrState?.FixedUpdate();
+    }
+    #endregion
+
+    public void Transition<NextStateType>() where NextStateType : S, new() {
+        CurrState?.Exit(CurrInput);
+        SetState<NextStateType>();
+        CurrState.Enter(CurrInput);
+    }
+
+    public bool IsOnState<CheckStateType>() where CheckStateType : S, new() {
+        return CurrState.GetType() == typeof(CheckStateType);
+    }
+
+    protected void SetState<T>() where T : S, new()
+    {
+        Type stateType = typeof(T);
+        if (!_stateMap.ContainsKey(stateType))
+        {
+            CreateNewState(stateType);
         }
-        CurState.FixedUpdate();
+
+        PrevState = CurrState;
+        CurrState = _stateMap[stateType];
+        if (PrevState == null) PrevState = CurrState;
     }
 
-    public void Transition<NextStateType>() where NextStateType : S {
-        CurState.Exit(CurInput);
-        SetCurState<NextStateType>();
-        CurState.Enter(CurInput);
+    public bool PrevStateEquals<T>() where T : S
+    {
+        return typeof(T) == PrevState.GetType();
     }
 
-    public bool IsOnState<CheckStateType>() where CheckStateType : S{
-        return CurState.GetType() == typeof(CheckStateType);
+    private void CreateNewState(Type state)
+    {
+        S newState = (S) Activator.CreateInstance(state);
+        newState.MySM = (M) this;
+        _stateMap.Add(state, newState);
     }
 
-    public virtual void Init() { }
+    protected virtual void Init() { }
+
+    //Ideally this would return the initial state, but idk how to do that with generics.
     protected abstract void SetInitialState();
-}
-
-public abstract class State <M, S, I> 
-    where M : StateMachine<M, S, I> 
-    where S : State<M, S, I> 
-    where I : StateInput
-{
-    public M MySM;
-
-    public virtual void Enter(I i) { }
-    public virtual void Exit(I i) { }
-
-    public virtual void Update() { }
-    public virtual void FixedUpdate() { }
-
-    public void Transition() { }
-}
-
-public class StateInput {
 }

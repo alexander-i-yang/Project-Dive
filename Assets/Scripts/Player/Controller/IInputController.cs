@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public abstract class InputController : MonoBehaviour
+public interface IInputController
 {
     //Get -> Returns if the button is pressed
     //_Started -> Returns true the first frame pressed
@@ -15,7 +13,4 @@ public abstract class InputController : MonoBehaviour
     public abstract bool GetDiveInput();
     public abstract bool DiveStarted();
     public abstract bool DiveFinished();
-    //public abstract bool GetGrappleInput();
-    //public abstract bool GrappleStarted();
-    //public abstract bool GrappleFinished();
 }

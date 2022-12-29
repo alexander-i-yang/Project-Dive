@@ -71,3 +71,5 @@ MonoBehaviour:
     m_Prefab: {fileID: 1345018767946929279, guid: 08480c95fe5ebf248ba877bdd44b0465, type: 3}
   - m_TypeName: LavaLight
     m_Prefab: {fileID: 6973331431846444286, guid: 3445dac449a918c4a90c81e2d224cab8, type: 3}
+  - m_TypeName: Breakable
+    m_Prefab: {fileID: 4997218929975561094, guid: b57bd2d7c5686e04c979daed583524e5, type: 3}
