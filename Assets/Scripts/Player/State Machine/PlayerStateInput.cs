@@ -1,12 +1,27 @@
 ﻿using System.Collections.Generic;
+
+using Helpers;
 using Mechanics;
 
 namespace Player
 {
     public class PlayerStateInput : StateInput {
-        public List<Spike> DogoDisabledSpikes;
+        //Movement
+        public int moveDirection;
 
-        public double OldVelocity;
-        public double DogoXVBufferTimer;
+        //Jump
+        public GameTimer jumpBufferTimer;
+        public bool jumpedFromGround;
+        public bool canJumpCut;
+        public bool canDoubleJump;
+
+        //Dive
+        public bool canDive;
+
+        //Dogo
+        public GameTimer dogoXVBufferTimer;
+        public HashSet<Spike> dogoDisabledSpikes;
+        public double oldVelocity;
+
     }
 }

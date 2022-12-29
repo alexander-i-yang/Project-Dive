@@ -9,18 +9,17 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
-                MySM.Player.Dive();
-                MySM._canDive = false;
-                MySM.DogoDisableSpikes = new HashSet<Spike>();
+                Player.Dive();
+                Input.canDive = false;
+                Input.dogoDisabledSpikes = new HashSet<Spike>();
             }
 
             public override void JumpPressed()
             {
                 base.JumpPressed();
-                if (MySM._canDoubleJump)
+                if (Input.canDoubleJump)
                 {
-                    MySM.Player.DoubleJump();
-                    MySM._canDoubleJump = false;
+                    DoubleJump();
                     MySM.Transition<Airborne>();
                 }
             }
@@ -36,28 +35,34 @@ namespace Player
 
             public override void FixedUpdate()
             {
-                if (MySM.Player.FallVelocityExceedsMax())
+                if (Player.FallVelocityExceedsMax())
                 {
-                    MySM.Player.DiveDecelUpdate();
+                    Player.DiveDecelUpdate();
                 }
                 else
                 {
-                    MySM.Player.Fall();
+                    Player.Fall();
                 }
+            }
+
+            public override void MoveX(int moveDirection)
+            {
+                UpdateSpriteFacing(moveDirection);
             }
 
             public override bool EnterCrystal(Crystal c)
             {
-                MySM.Transition<Airborne>();
-                MySM.Player.CrystalJump();
-                MySM.Refill();
+                Input.canJumpCut = false;
+                Player.CrystalJump();
+                RefreshAbilities();
                 c.Break();
+                MySM.Transition<Airborne>();
                 return false;
             }
 
             public override bool EnterSpike(Spike s)
             {
-                MySM.DogoDisableSpikes.Add(s);
+                Input.dogoDisabledSpikes.Add(s);
                 s.DiveEnter();
                 return false;
             }

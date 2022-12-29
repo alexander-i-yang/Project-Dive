@@ -1,48 +1,59 @@
-﻿using Core;
+﻿using System.Collections.Generic;
 
-using System;
-using System.Collections.Generic;
+using Helpers;
 using Mechanics;
+
 using UnityEngine;
 
 namespace Player
 {
     public partial class PlayerStateMachine : StateMachine<PlayerStateMachine, PlayerStateMachine.PlayerState, PlayerStateInput> {
-        public PlayerActor Player { get; private set; }
-        public float JumpBufferTimer { get; set; }
+        private IInputController _input;
+        private PlayerActor _player;
+        private SpriteRenderer _spriteR;
 
-        private bool _jumpedFromGround;
-        private bool _canDoubleJump;
-        private bool _canDive;
-
-        public HashSet<Spike> DogoDisableSpikes { get; private set; }
-
-        protected override void SetInitialState() {
+        #region Overrides
+        protected override void SetInitialState()
+        {
             SetState<Grounded>();
         }
 
-        protected override void Init() {
-            Player = GetComponent<PlayerActor>();
+        protected override void Init()
+        {
+            _input = GetComponent<IInputController>();
+            _player = GetComponent<PlayerActor>();
+            _spriteR = GetComponentInChildren<SpriteRenderer>();
         }
 
-        protected override void FixedUpdate() {
-            if (JumpBufferTimer > 0)
+        protected override void Update()
+        {
+            base.Update();
+
+            if (_input.JumpStarted())
             {
-                JumpBufferTimer = Math.Max(0, JumpBufferTimer - Game.Instance.FixedDeltaTime);
+                CurrState.JumpPressed();
             }
+
+            if (_input.JumpFinished())
+            {
+                CurrState.JumpReleased();
+            }
+
+            if (_input.DiveStarted())
+            {
+                CurrState.DivePressed();
+            }
+
+            CurrInput.moveDirection = _input.GetMovementInput();
+        }
+
+        protected override void FixedUpdate()
+        {
             base.FixedUpdate();
+            GameTimer.FixedUpdate(CurrInput.jumpBufferTimer);
+            CurrState.SetGrounded(_player.IsGrounded());
+            CurrState.MoveX(CurrInput.moveDirection);
         }
-
-        public void Refill()
-        {
-            _canDoubleJump = true;
-            _canDive = true;
-        }
-
-        public void JumpFromInput()
-        {
-            Player.JumpFromInput();
-            _jumpedFromGround = true;
-        }
+        #endregion
     }
 }

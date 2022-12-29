@@ -1,35 +1,45 @@
-﻿namespace Player
+﻿using Helpers;
+
+using UnityEngine;
+
+namespace Player
 {
     public partial class PlayerStateMachine {
         public class Grounded : PlayerState
         {
             public override void Enter(PlayerStateInput i)
             {
-                MySM._jumpedFromGround = false;
-                MySM.Refill();
+                Input.jumpedFromGround = false;
+                RefreshAbilities();
 
                 Player.Land();
-                if (MySM.JumpBufferTimer > 0 && !MySM.PrevStateEquals<Diving>())
+                if (GameTimer.GetTimerState(Input.jumpBufferTimer) == TimerState.Running && !MySM.PrevStateEquals<Diving>())
                 {
-                    MySM.JumpFromInput();
+                    JumpFromGround();
                 }
             }
 
             public override void JumpPressed()
             {
                 base.JumpPressed();
-                MySM.JumpFromInput();
+                JumpFromGround();
             }
 
             public override void SetGrounded(bool isGrounded)
             {
                 base.SetGrounded(isGrounded);
-                if (!isGrounded) MySM.Transition<Airborne>();
+                if (!isGrounded)
+                {
+                    Debug.Log("Grounded to Airborne");
+                    MySM.Transition<Airborne>();
+                }
             }
 
             public override void MoveX(int moveDirection)
             {
-                Player.UpdateMovementX(moveDirection == 0 ? Player.MaxAcceleration : Player.MaxDeceleration);
+                UpdateSpriteFacing(moveDirection);
+                int acceleration = moveDirection == 0 ? Player.MaxAcceleration : Player.MaxDeceleration;
+                Player.UpdateMovementX(moveDirection, acceleration);
             }
         }
     }

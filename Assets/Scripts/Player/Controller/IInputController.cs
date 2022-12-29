@@ -1,4 +1,4 @@
-public interface InputController
+public interface IInputController
 {
     //Get -> Returns if the button is pressed
     //_Started -> Returns true the first frame pressed
