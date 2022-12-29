@@ -8,8 +8,8 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
-                i.oldVelocity = Player.Dogo();
-                i.dogoXVBufferTimer = GameTimer.StartNewTimer(Player.DogoConserveXVTime);
+                i.oldVelocity = PlayerAction.Dogo();
+                i.dogoXVBufferTimer = GameTimer.StartNewTimer(PlayerInfo.DogoConserveXVTime);
             }
 
             public override void JumpPressed()

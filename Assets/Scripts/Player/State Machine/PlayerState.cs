@@ -7,11 +7,12 @@ namespace Player
     {
         public abstract class PlayerState : State<PlayerStateMachine, PlayerState, PlayerStateInput>
         {
-            public PlayerActor Player => MySM._player;
+            public IPlayerInfoProvider PlayerInfo => MySM._playerInfo;
+            public IPlayerActionHandler PlayerAction => MySM._playerAction;
 
             public virtual void JumpPressed()
             {
-                Input.jumpBufferTimer = GameTimer.StartNewTimer(Player.JumpBufferTime, "Jump Buffer Timer");
+                Input.jumpBufferTimer = GameTimer.StartNewTimer(PlayerInfo.JumpBufferTime, "Jump Buffer Timer");
             }
 
             public virtual void JumpReleased() { }
@@ -24,7 +25,7 @@ namespace Player
             {
                 if (spike.Charged)
                 {
-                    Player.Die();
+                    PlayerAction.Die();
                 }
                 return false;
             }
@@ -41,7 +42,7 @@ namespace Player
             {
                 Input.jumpedFromGround = true;
                 Input.canJumpCut = true;
-                Player.Jump();
+                PlayerAction.Jump();
 
                 //GameTimer.Clear(Input.jumpBufferTimer);
             }
@@ -49,7 +50,7 @@ namespace Player
             protected void DoubleJump()
             {
                 Input.canJumpCut = true;
-                Player.DoubleJump(Input.moveDirection);
+                PlayerAction.DoubleJump(Input.moveDirection);
                 Input.canDoubleJump = false;
             }
 
@@ -57,7 +58,7 @@ namespace Player
             {
                 if (Input.canJumpCut)
                 {
-                    Player.JumpCut();
+                    PlayerAction.JumpCut();
                     Input.canJumpCut = false;
                 }
             }
