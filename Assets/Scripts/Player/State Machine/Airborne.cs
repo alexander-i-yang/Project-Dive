@@ -52,7 +52,6 @@ namespace Player
                 base.SetGrounded(isGrounded);
                 if (isGrounded)
                 {
-                    Debug.Log("Airborne to Grounded");
                     MySM.Transition<Grounded>();
                 }
             }

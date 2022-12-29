@@ -30,7 +30,6 @@ namespace Player
                 base.SetGrounded(isGrounded);
                 if (!isGrounded)
                 {
-                    Debug.Log("Grounded to Airborne");
                     MySM.Transition<Airborne>();
                 }
             }
