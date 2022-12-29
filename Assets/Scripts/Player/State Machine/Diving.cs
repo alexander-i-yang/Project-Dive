@@ -9,7 +9,7 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
-                Player.Dive();
+                PlayerAction.Dive();
                 Input.canDive = false;
                 Input.dogoDisabledSpikes = new HashSet<Spike>();
             }
@@ -35,14 +35,7 @@ namespace Player
 
             public override void FixedUpdate()
             {
-                if (Player.FallVelocityExceedsMax())
-                {
-                    Player.DiveDecelUpdate();
-                }
-                else
-                {
-                    Player.Fall();
-                }
+                PlayerAction.UpdateWhileDiving();
             }
 
             public override void MoveX(int moveDirection)
@@ -53,7 +46,7 @@ namespace Player
             public override bool EnterCrystal(Crystal c)
             {
                 Input.canJumpCut = false;
-                Player.CrystalJump();
+                PlayerAction.CrystalJump();
                 RefreshAbilities();
                 c.Break();
                 MySM.Transition<Airborne>();

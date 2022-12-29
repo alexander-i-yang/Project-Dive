@@ -137,29 +137,28 @@ MonoBehaviour:
   _collider: {fileID: 2234600854425113962}
   _roomManager: {fileID: 4863023254048345395}
   _mySR: {fileID: 2234600854425113963}
-  MoveSpeed: 75
+  moveSpeed: 75
   maxAcceleration: 1600
   maxAirAcceleration: 1200
   maxDeceleration: 800
-  CornerboostTimer: 0.08
-  CornerboostMultiplier: 1.05
-  JumpHeight: 20
-  CrystalJumpHeight: 28
-  DoubleJumpHeight: 16
-  JumpCoyoteTime: 0.1
-  JumpBufferTime: 0.1
+  cornerboostTimer: 0.08
+  cornerboostMultiplier: 1.05
+  jumpHeight: 20
+  crystalJumpHeight: 28
+  doubleJumpHeight: 16
+  jumpCoyoteTime: 0.1
+  jumpBufferTime: 0.1
   JumpCutMultiplier: 0.4
-  DiveVelocity: -350
-  DiveDeceleration: 30
-  DogoYJumpHeight: 28
-  DogoXJumpV: 250
+  diveVelocity: -350
+  diveDeceleration: 30
+  dogoJumpHeight: 28
+  dogoJumpXV: 250
   dogoJumpAcceleration: 100
   dogoJumpTime: 0.04
-  DogoConserveXVTime: 0.2
-  DogoJumpGraceTime: 0.04
+  dogoConserveXVTime: 0.2
+  dogoJumpGraceTime: 0.04
   roomTransitionVCutX: 0.5
   roomTransitionVCutY: 0.5
-  _lastJumpBeingHeld: 0
 --- !u!114 &2234600854425113958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +229,7 @@ MonoBehaviour:
   - {x: -4, y: 6, z: 0}
   m_ShapePathHash: 1522295477
   m_Mesh: {fileID: 0}
-  m_InstanceId: 48206
+  m_InstanceId: 103882
 --- !u!1 &5389357683659332391
 GameObject:
   m_ObjectHideFlags: 0
