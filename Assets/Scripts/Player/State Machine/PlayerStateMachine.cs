@@ -1,5 +1,5 @@
 ﻿using Helpers;
-
+using Mechanics;
 using UnityEngine;
 
 namespace Player
@@ -8,6 +8,7 @@ namespace Player
         private IInputController _input;
         private IPlayerInfoProvider _playerInfo;
         private IPlayerActionHandler _playerAction;
+        private PlayerSpawnManager _spawnManager;
         private SpriteRenderer _spriteR;
 
         #region Overrides
@@ -21,7 +22,9 @@ namespace Player
             _input = GetComponent<IInputController>();
             _playerInfo = GetComponent<IPlayerInfoProvider>();
             _playerAction = GetComponent<IPlayerActionHandler>();
+            _spawnManager = GetComponent<PlayerSpawnManager>();
             _spriteR = GetComponentInChildren<SpriteRenderer>();
+
         }
 
         protected override void Update()
@@ -52,6 +55,21 @@ namespace Player
             GameTimer.FixedUpdate(CurrInput.jumpBufferTimer);
             CurrState.SetGrounded(_playerInfo.Grounded);
             CurrState.MoveX(CurrInput.moveDirection);
+        }
+
+        public void OnDeath()
+        {
+            CurrState.OnDeath();
+        }
+
+        public bool EnterCrystal(Crystal c)
+        {
+            return CurrState.EnterCrystal(c);
+        }
+
+        public bool EnterSpike(Spike s)
+        {
+            return CurrState.EnterSpike(s);
         }
         #endregion
     }
