@@ -1,4 +1,5 @@
 ﻿using Helpers;
+using Helpers.Animation;
 using Mechanics;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Player
         private IPlayerInfoProvider _playerInfo;
         private IPlayerActionHandler _playerAction;
         private PlayerSpawnManager _spawnManager;
+        private PlayerAnimationStateManager _playerAnim;
         private SpriteRenderer _spriteR;
 
         #region Overrides
@@ -23,6 +25,7 @@ namespace Player
             _playerInfo = GetComponent<IPlayerInfoProvider>();
             _playerAction = GetComponent<IPlayerActionHandler>();
             _spawnManager = GetComponent<PlayerSpawnManager>();
+            _playerAnim = GetComponentInChildren<PlayerAnimationStateManager>();
             _spriteR = GetComponentInChildren<SpriteRenderer>();
 
         }

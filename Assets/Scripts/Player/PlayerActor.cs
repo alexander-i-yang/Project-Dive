@@ -20,7 +20,6 @@ using UnityEngine.Serialization;
 public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider {
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private PlayerStateMachine _stateMachine;
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private BoxCollider2D _collider;
-    [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private SpriteRenderer _mySR;
     
     [Foldout("Move", true)]
     [SerializeField] private int moveSpeed;
