@@ -10,6 +10,7 @@ namespace Player
             public IPlayerInfoProvider PlayerInfo => MySM._playerInfo;
             public IPlayerActionHandler PlayerAction => MySM._playerAction;
             public PlayerSpawnManager SpawnManager => MySM._spawnManager;
+            public PlayerAnimationStateManager PlayerAnim => MySM._playerAnim;
 
             public virtual void JumpPressed()
             {

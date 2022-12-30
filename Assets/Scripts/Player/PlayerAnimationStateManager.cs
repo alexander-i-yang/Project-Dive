@@ -15,10 +15,10 @@ public class PlayerAnimationStateManager : AnimationStateManager<PlayerAnimation
 {
     public override Dictionary<PlayerAnimations, string> Animations => new Dictionary<PlayerAnimations, string>()
     {
-        { PlayerAnimations.IDLE, "player_idle"},
-        { PlayerAnimations.RUNNING, "player_running" },
-        { PlayerAnimations.JUMPING, "player_jumping" },
-        { PlayerAnimations.DIVING, "player_diving" },
-        { PlayerAnimations.DOGOING, "player_dogoing" }
+        { PlayerAnimations.IDLE, "Player_Idle"},
+        { PlayerAnimations.RUNNING, "Player_Running" },
+        { PlayerAnimations.JUMPING, "Player_Jumping" },
+        { PlayerAnimations.DIVING, "Player_Diving" },
+        { PlayerAnimations.DOGOING, "Player_Dogoing" }
     };
 }

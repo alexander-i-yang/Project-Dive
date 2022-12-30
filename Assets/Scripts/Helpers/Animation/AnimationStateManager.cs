@@ -57,7 +57,7 @@ namespace Helpers.Animation
         private string GetAnimationStr(T animation)
         {
             string animationStr;
-            if (Animations.TryGetValue(animation, out animationStr))
+            if (!Animations.TryGetValue(animation, out animationStr))
             {
                 Debug.LogError($"Animation {animation} not defined.");
             }

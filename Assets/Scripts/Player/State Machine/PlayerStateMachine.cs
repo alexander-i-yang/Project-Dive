@@ -17,6 +17,7 @@ namespace Player
         protected override void SetInitialState()
         {
             SetState<Grounded>();
+            _playerAnim.SetInitialState(PlayerAnimations.IDLE);
         }
 
         protected override void Init()
