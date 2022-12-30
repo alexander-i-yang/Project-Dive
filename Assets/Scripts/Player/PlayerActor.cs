@@ -111,9 +111,20 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider {
         velocityY = GetJumpSpeedFromHeight(jumpHeight);
     }
 
-    public void CrystalJump()
-    {
+    public void CrystalJump() {
         velocityY = GetJumpSpeedFromHeight(crystalJumpHeight);
+    }
+
+    private void _mechanicBounceVelocity(Vector2 v) {
+        velocity = v;
+    }
+    
+    /// <summary>
+    /// Function that bounces the player after entering a dive mechanic.
+    /// </summary>
+    /// <param name="bounceHeight"></param>
+    public void MechanicBounce(int bounceHeight) {
+        velocityY = GetJumpSpeedFromHeight(bounceHeight);
     }
 
     public void DoubleJump(int moveDirection)
@@ -238,6 +249,10 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider {
 
     public bool EnterCrystal(Crystal c) {
         return _stateMachine.EnterCrystal(c);
+    }
+
+    public bool EnterDiveMechanic(IDiveMechanic d) {
+        return _stateMachine.CurrState.EnterDiveMechanic(d);
     }
     
     public bool EnterSpike(Spike s) {

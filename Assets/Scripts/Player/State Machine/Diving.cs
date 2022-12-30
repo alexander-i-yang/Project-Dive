@@ -24,17 +24,16 @@ namespace Player
                 }
             }
 
-            public override void SetGrounded(bool isGrounded)
+            public override void SetGrounded(bool isGrounded, bool isMovingUp)
             {
-                base.SetGrounded(isGrounded);
+                base.SetGrounded(isGrounded, isMovingUp);
                 if (isGrounded)
                 {
                     MySM.Transition<Dogoing>();
                 }
             }
 
-            public override void FixedUpdate()
-            {
+            public override void FixedUpdate() {
                 PlayerAction.UpdateWhileDiving();
             }
 
@@ -43,18 +42,13 @@ namespace Player
                 UpdateSpriteFacing(moveDirection);
             }
 
-            public override bool EnterCrystal(Crystal c)
-            {
+            public override bool EnterDiveMechanic(IDiveMechanic d) {
                 Input.canJumpCut = false;
-                PlayerAction.CrystalJump();
                 RefreshAbilities();
-                c.Break();
-                MySM.Transition<Airborne>();
                 return false;
             }
 
-            public override bool EnterSpike(Spike s)
-            {
+            public override bool EnterSpike(Spike s) {
                 Input.dogoDisabledSpikes.Add(s);
                 s.DiveEnter();
                 return false;

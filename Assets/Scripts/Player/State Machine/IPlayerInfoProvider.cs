@@ -13,6 +13,7 @@ public interface IPlayerInfoProvider
 
     //Jumping
     public bool Grounded { get; }
+    public bool IsMovingUp { get; }
     public float JumpBufferTime { get; }
     public float JumpCoyoteTime { get; }
 

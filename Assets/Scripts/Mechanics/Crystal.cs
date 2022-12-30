@@ -6,7 +6,8 @@ using UnityEngine;
 
 
 namespace Mechanics {
-    public class Crystal : Solid {
+    public class Crystal : Solid, IDiveMechanic {
+        [SerializeField] private int BounceHeight;
         private bool _broken = false;
         public double rechargeTime = 1;
         private SpriteRenderer _mySR;
@@ -46,6 +47,10 @@ namespace Mechanics {
             _mySR.color = Color.white;
             _broken = false;
             _light.intensity = oldLightIntensity;
+        }
+
+        public void OnDiveEnter(PlayerActor p) {
+            p.MechanicBounce(BounceHeight);
         }
     }
 }

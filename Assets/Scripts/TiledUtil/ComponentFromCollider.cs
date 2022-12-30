@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 using Helpers;
+using MyBox;
 using SuperTiled2Unity.Editor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -60,7 +61,7 @@ public class ComponentFromCollider {
         onEnableMethod.Invoke(caster, new object[0]);
     }
 
-    public static void SetPrefabPoints(GameObject prefab, Vector2[] points) {
+    public static void SetPrefabPoints(GameObject prefab, Vector2[] points, bool setSprite = true) {
         Vector2 avg = Helper.ComputeAverage(points);
         points = Helper.NormalizePoints(points, avg);
         prefab.transform.localPosition = avg;
@@ -68,19 +69,24 @@ public class ComponentFromCollider {
         ShadowCaster2D s = prefab.GetComponent<ShadowCaster2D>();
         if (s != null) SetCastPoints(s, Helper.ToVector3(points));
 
-        SetPolygonCollider2DPoints(prefab, points);
-        SetSpriteSize(prefab, points);
+        SetEdgeCollider2DPoints(prefab, points);
+        SpriteRenderer spriteRenderer = prefab.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null) {
+            if (points.Length != 4) {
+                throw new ConstraintException($"All objects in layer {prefab.transform.parent.parent} must be rectangular");
+            }
+            SetSpriteSize(spriteRenderer, points);
+        }
     }
 
-    public static void SetPolygonCollider2DPoints(GameObject instance, Vector2[] points) {
-        PolygonCollider2D pc2d = instance.GetComponent<PolygonCollider2D>();
-        if (pc2d == null) throw new ConstraintException($"Prefab {instance} must have PolygonCollider2D attached");
+    public static void SetEdgeCollider2DPoints(GameObject instance, Vector2[] points) {
+        EdgeCollider2D pc2d = instance.GetComponent<EdgeCollider2D>();
+        if (pc2d == null) throw new ConstraintException($"Prefab {instance} must have EdgeCollider2D attached");
         
         pc2d.points = points;
     }
 
-    public static void SetSpriteSize(GameObject prefab, Vector2[] points) {
-        SpriteRenderer sr = prefab.GetComponent<SpriteRenderer>();
+    public static void SetSpriteSize(SpriteRenderer sr, Vector2[] points) {
         if (sr == null) return;
         
         Vector2 dimensions = points[0] - points[2];

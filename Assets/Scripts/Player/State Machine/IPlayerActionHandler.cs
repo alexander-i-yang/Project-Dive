@@ -7,7 +7,6 @@
 
     //Jumping
     public void Jump();
-    public void CrystalJump();
     public void DoubleJump(int moveDirection);
     public void JumpCut();
 

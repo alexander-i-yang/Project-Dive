@@ -208,8 +208,6 @@ namespace Helpers {
             foreach (var edgeObj in GetEdges(layer)) {
                 var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
                 instance.transform.SetParent(edgeObj.transform);
-                Debug.Log(instance);
-                Debug.Log(edgeObj.gameObject);
                 instance.transform.localPosition = Vector3.zero;
                 Light2D l = instance.GetComponent<Light2D>();
 
@@ -224,16 +222,14 @@ namespace Helpers {
             GameObject prefab = _prefabReplacements[prefabName];
             int i = 0;
             foreach (var edgeObj in GetEdges(layer)) {
+                Debug.Log(edgeObj);
                 var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
                 instance.transform.SetParent(edgeObj.transform.parent);
                 instance.transform.localPosition = Vector3.zero;
                 instance.transform.name = $"{instance.transform.name} ({i++})";
 
                 Vector2[] points = ComponentFromCollider.GetColliderPointsVec2(edgeObj);
-                if (points.Length != 4) {
-                    throw new ConstraintException($"All objects in layer {layer} must be rectangular");
-                }
-                
+
                 ComponentFromCollider.SetPrefabPoints(instance, points);
             }
         }

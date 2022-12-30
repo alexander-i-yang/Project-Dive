@@ -11,7 +11,7 @@ namespace Player
             {
                 Input.jumpedFromGround = false;
                 RefreshAbilities();
-
+                Debug.Log("Transition to grounded");
                 PlayerAction.Land();
                 if (GameTimer.GetTimerState(Input.jumpBufferTimer) == TimerState.Running && !MySM.PrevStateEquals<Diving>())
                 {
@@ -25,9 +25,9 @@ namespace Player
                 JumpFromGround();
             }
 
-            public override void SetGrounded(bool isGrounded)
+            public override void SetGrounded(bool isGrounded, bool isMovingUp)
             {
-                base.SetGrounded(isGrounded);
+                base.SetGrounded(isGrounded, isMovingUp);
                 if (!isGrounded)
                 {
                     MySM.Transition<Airborne>();

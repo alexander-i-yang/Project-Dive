@@ -12,6 +12,7 @@ namespace Player
 
             public override void Enter(PlayerStateInput i)
             {
+                Debug.Log("Transition to airborne");
                 if (!Input.jumpedFromGround)
                 {
                     _jumpCoyoteTimer = GameTimer.StartNewTimer(PlayerInfo.JumpCoyoteTime, "Jump Coyote Timer");
@@ -47,11 +48,10 @@ namespace Player
                 }
             }
 
-            public override void SetGrounded(bool isGrounded)
+            public override void SetGrounded(bool isGrounded, bool isMovingUp)
             {
-                base.SetGrounded(isGrounded);
-                if (isGrounded)
-                {
+                base.SetGrounded(isGrounded, isMovingUp);
+                if (!isMovingUp && isGrounded) {
                     MySM.Transition<Grounded>();
                 }
             }

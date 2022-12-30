@@ -21,7 +21,7 @@ namespace Helpers.Animation
         public void SetInitialState(T newState)
         {
             string newStateStr = GetAnimationStr(newState);
-
+            print(newStateStr);
             if (newStateStr != null)
             {
                 SetState(newStateStr);

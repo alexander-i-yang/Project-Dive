@@ -57,7 +57,7 @@ namespace Player
         {
             base.FixedUpdate();
             GameTimer.FixedUpdate(CurrInput.jumpBufferTimer);
-            CurrState.SetGrounded(_playerInfo.Grounded);
+            CurrState.SetGrounded(_playerInfo.Grounded, _playerInfo.IsMovingUp);
             CurrState.MoveX(CurrInput.moveDirection);
         }
 

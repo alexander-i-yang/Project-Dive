@@ -64,9 +64,9 @@ namespace Player
                 }
             }
 
-            public override void SetGrounded(bool isGrounded)
+            public override void SetGrounded(bool isGrounded, bool isMovingUp)
             {
-                base.SetGrounded(isGrounded);
+                base.SetGrounded(isGrounded, isMovingUp);
                 if (isGrounded)
                 {
                     MySM.Transition<Grounded>();
