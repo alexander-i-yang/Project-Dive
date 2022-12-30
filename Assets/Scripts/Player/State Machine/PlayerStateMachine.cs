@@ -66,9 +66,8 @@ namespace Player
             CurrState.OnDeath();
         }
 
-        public bool EnterCrystal(Crystal c)
-        {
-            return CurrState.EnterCrystal(c);
+        public void EnterCrystal(Crystal c) {
+            CurrState.EnterDiveMechanic(c);
         }
 
         public bool EnterSpike(Spike s)

@@ -2,6 +2,7 @@
 
 using System.Collections;
 using Phys;
+using Player;
 using UnityEngine;
 
 
@@ -24,7 +25,7 @@ namespace Mechanics {
         }
 
         public override bool PlayerCollide(PlayerActor p, Vector2 direction) {
-            if (!_broken) return p.EnterCrystal(this);
+            if (!_broken) p.EnterCrystal(this);
             return base.OnCollide(p, direction);
         }
 
@@ -49,8 +50,10 @@ namespace Mechanics {
             _light.intensity = oldLightIntensity;
         }
 
-        public void OnDiveEnter(PlayerActor p) {
+        public bool OnDiveEnter(IPlayerActionHandler p) {
             p.MechanicBounce(BounceHeight);
+            Break();
+            return true;
         }
     }
 }

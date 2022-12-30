@@ -75,15 +75,8 @@ namespace Player
                 Input.canDoubleJump = true;
                 Input.canDive = true;
             }
-            
-            public virtual bool EnterDiveMechanic(Mechanics.IDiveMechanic diveMechanic) {
-                return false;
-            }
 
-            public bool EnterCrystal(Crystal crystal)
-            {
-                throw new System.NotImplementedException();
-            }
+            public virtual void EnterDiveMechanic(IDiveMechanic diveMechanic) { }
         }
     }
 }

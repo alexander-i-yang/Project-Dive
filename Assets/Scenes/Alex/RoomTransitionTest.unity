@@ -5648,10 +5648,6 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5958525153749255708, guid: 170e70d5caa8008458d966007a658035, type: 3}
-      propertyPath: m_ShadowIntensity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5958525153749255708, guid: 170e70d5caa8008458d966007a658035, type: 3}
       propertyPath: m_ShadowIntensityEnabled
       value: 1
       objectReference: {fileID: 0}

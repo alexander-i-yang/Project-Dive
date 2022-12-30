@@ -12,7 +12,6 @@ namespace Player
 
             public override void Enter(PlayerStateInput i)
             {
-                Debug.Log("Transition to airborne");
                 if (!Input.jumpedFromGround)
                 {
                     _jumpCoyoteTimer = GameTimer.StartNewTimer(PlayerInfo.JumpCoyoteTime, "Jump Coyote Timer");

@@ -247,12 +247,12 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider {
     }
     #endregion
 
-    public bool EnterCrystal(Crystal c) {
-        return _stateMachine.EnterCrystal(c);
+    public void EnterCrystal(Crystal c) {
+        _stateMachine.EnterCrystal(c);
     }
 
-    public bool EnterDiveMechanic(IDiveMechanic d) {
-        return _stateMachine.CurrState.EnterDiveMechanic(d);
+    public void EnterDiveMechanic(IDiveMechanic d) {
+        _stateMachine.CurrState.EnterDiveMechanic(d);
     }
     
     public bool EnterSpike(Spike s) {

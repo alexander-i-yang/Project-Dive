@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Mechanics;
+using UnityEngine;
 
 namespace Player
 {
@@ -42,10 +43,12 @@ namespace Player
                 UpdateSpriteFacing(moveDirection);
             }
 
-            public override bool EnterDiveMechanic(IDiveMechanic d) {
+            public override void EnterDiveMechanic(IDiveMechanic d) {
                 Input.canJumpCut = false;
                 RefreshAbilities();
-                return false;
+                if (d.OnDiveEnter(PlayerAction)) {
+                    MySM.Transition<Airborne>();
+                }
             }
 
             public override bool EnterSpike(Spike s) {

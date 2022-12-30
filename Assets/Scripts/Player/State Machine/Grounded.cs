@@ -11,7 +11,6 @@ namespace Player
             {
                 Input.jumpedFromGround = false;
                 RefreshAbilities();
-                Debug.Log("Transition to grounded");
                 PlayerAction.Land();
                 if (GameTimer.GetTimerState(Input.jumpBufferTimer) == TimerState.Running && !MySM.PrevStateEquals<Diving>())
                 {
