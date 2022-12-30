@@ -10,7 +10,7 @@ namespace World {
     public class Room : MonoBehaviour, IFilterLoggerTarget {
         private Collider2D _roomCollider;
         private CinemachineVirtualCamera _vCam;
-        private PlayerRoomManager _player;
+        private PlayerSpawnManager _player;
         private CinemachineBrain _cmBrain;
 
         private Spawn[] _spawns;
@@ -36,7 +36,7 @@ namespace World {
         {
             _roomCollider = GetComponent<Collider2D>();
             _vCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
-            _player = FindObjectOfType<PlayerRoomManager>(true);
+            _player = FindObjectOfType<PlayerSpawnManager>(true);
             _cmBrain = FindObjectOfType<CinemachineBrain>(true);
 
             if (_roomList == null || _roomList.Length == 0)

@@ -9,6 +9,8 @@ namespace Player
         {
             public IPlayerInfoProvider PlayerInfo => MySM._playerInfo;
             public IPlayerActionHandler PlayerAction => MySM._playerAction;
+            public PlayerSpawnManager SpawnManager => MySM._spawnManager;
+            public PlayerAnimationStateManager PlayerAnim => MySM._playerAnim;
 
             public virtual void JumpPressed()
             {
@@ -20,6 +22,10 @@ namespace Player
             public virtual void SetGrounded(bool isGrounded) { }
             public virtual bool EnterCrystal(Crystal c) { return false; }
             public virtual void MoveX(int moveDirection) { }
+
+            public virtual void OnDeath() {
+                SpawnManager.Respawn();
+            }
 
             public virtual bool EnterSpike(Spike spike)
             {
@@ -43,6 +49,7 @@ namespace Player
                 Input.jumpedFromGround = true;
                 Input.canJumpCut = true;
                 PlayerAction.Jump();
+                SetGrounded(false);
 
                 //GameTimer.Clear(Input.jumpBufferTimer);
             }
@@ -52,6 +59,7 @@ namespace Player
                 Input.canJumpCut = true;
                 PlayerAction.DoubleJump(Input.moveDirection);
                 Input.canDoubleJump = false;
+                SetGrounded(false);
             }
 
             protected void TryJumpCut()
