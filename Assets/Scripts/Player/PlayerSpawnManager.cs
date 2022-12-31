@@ -1,13 +1,11 @@
-using MyBox;
-
-using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 using Helpers;
 using World;
 
-public class PlayerRoomManager : MonoBehaviour, IFilterLoggerTarget
+public class PlayerSpawnManager : MonoBehaviour, IFilterLoggerTarget
 {
     private Room _currentRoom;
     private Spawn _currentSpawnPoint;
@@ -41,19 +39,41 @@ public class PlayerRoomManager : MonoBehaviour, IFilterLoggerTarget
         _currentSpawnPoint = FindClosestSpawnPoint();
     }
 
+    public void Respawn()
+    {
+        if (CurrentSpawnPoint != null)
+        {
+            transform.position = CurrentSpawnPoint.transform.position;
+        }
+    }
+
     private Spawn FindClosestSpawnPoint()
     {
+        Spawn closest;
         if (_currentRoom == null)
         {
-            FilterLogger.LogWarning(this, "Player is not in a room. Choosing spawn of arbitrary room.");
-            _currentRoom = FindObjectOfType<Room>();
+            FilterLogger.LogWarning(this, "Player is not in a room. Choosing arbitrary spawn.");
+            Spawn[] allSpawns = FindObjectsOfType<Spawn>();
+            closest = FindClosestSpawnPoint(allSpawns);
+        } else
+        {
+            closest = FindClosestSpawnPoint(CurrentRoom.Spawns);
         }
 
+        if (closest == null)
+        {
+            FilterLogger.LogError(this, "No spawn point was found for the player. There must be at least one spawn point in the scene.");
+        }
+        return closest;
+    }
+
+    private Spawn FindClosestSpawnPoint(IEnumerable<Spawn> spawns)
+    {
         float closestDist = float.MaxValue;
         Spawn closest = null;
         FilterLogger.Log(this, $"CurrentRoom: {CurrentRoom}");
         FilterLogger.Log(this, $"Spawns: {CurrentRoom.Spawns.Length}");
-        foreach (Spawn spawn in CurrentRoom.Spawns)
+        foreach (Spawn spawn in spawns)
         {
             FilterLogger.Log(this, $"{spawn}");
             float newDist = Vector2.Distance(transform.position, spawn.transform.position);
@@ -64,10 +84,6 @@ public class PlayerRoomManager : MonoBehaviour, IFilterLoggerTarget
             }
         }
 
-        if (closest == null)
-        {
-            FilterLogger.LogError(this, "No spawn point was found for the player. Every room must have at least one Spawn.");
-        }
         return closest;
     }
 

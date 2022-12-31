@@ -20,8 +20,6 @@ using UnityEngine.Serialization;
 public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider {
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private PlayerStateMachine _stateMachine;
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private BoxCollider2D _collider;
-    [SerializeField, AutoProperty(AutoPropertyMode.Children)] private PlayerRoomManager _roomManager;
-    [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private SpriteRenderer _mySR;
     
     [Foldout("Move", true)]
     [SerializeField] private int moveSpeed;
@@ -111,13 +109,22 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider {
     public void Jump()
     {
         velocityY = GetJumpSpeedFromHeight(jumpHeight);
-        _stateMachine.CurrState.SetGrounded(false);
     }
 
-    public void CrystalJump()
-    {
+    public void CrystalJump() {
         velocityY = GetJumpSpeedFromHeight(crystalJumpHeight);
-        _stateMachine.CurrState.SetGrounded(false);
+    }
+
+    private void _mechanicBounceVelocity(Vector2 v) {
+        velocity = v;
+    }
+    
+    /// <summary>
+    /// Function that bounces the player after entering a dive mechanic.
+    /// </summary>
+    /// <param name="bounceHeight"></param>
+    public void MechanicBounce(int bounceHeight) {
+        velocityY = GetJumpSpeedFromHeight(bounceHeight);
     }
 
     public void DoubleJump(int moveDirection)
@@ -194,16 +201,8 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider {
 
     public void Die()
     {
-        if (_roomManager.CurrentSpawnPoint != null)
-        {
-            transform.position = _roomManager.CurrentSpawnPoint.transform.position;
-            velocity = Vector2.zero;
-        }
-        else
-        {
-            Debug.LogError("Room Spawn Point Not Found..");
-            transform.position = new Vector2(24, -34);
-        }
+        _stateMachine.OnDeath();
+        velocity = Vector2.zero;
     }
 
     #region Actor Overrides
@@ -248,12 +247,16 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider {
     }
     #endregion
 
-    public bool EnterCrystal(Crystal c) {
-        return _stateMachine.CurrState.EnterCrystal(c);
+    public void EnterCrystal(Crystal c) {
+        _stateMachine.EnterCrystal(c);
+    }
+
+    public void EnterDiveMechanic(IDiveMechanic d) {
+        _stateMachine.CurrState.EnterDiveMechanic(d);
     }
     
     public bool EnterSpike(Spike s) {
-        return _stateMachine.CurrState.EnterSpike(s);
+        return _stateMachine.EnterSpike(s);
     }
 
     public void BonkHead() {

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4997218929975561114}
   - component: {fileID: 4997218929975561115}
   - component: {fileID: 4997218929975561116}
-  - component: {fileID: 7347268517593048492}
   - component: {fileID: 5976275407650072795}
+  - component: {fileID: 4178085174769499402}
   m_Layer: 3
   m_Name: Breakable
   m_TagString: Untagged
@@ -113,36 +113,7 @@ MonoBehaviour:
   - {x: -12, y: 12, z: 0}
   m_ShapePathHash: -451545835
   m_Mesh: {fileID: 0}
-  m_InstanceId: 102740
---- !u!60 &7347268517593048492
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4997218929975561094}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 8, y: 8, z: 8, w: 8}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 24, y: 24}
-    newSize: {x: 24, y: 24}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 2
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -12, y: 12}
-      - {x: -12, y: -12}
-      - {x: 12, y: -12}
-      - {x: 12, y: 12}
+  m_InstanceId: 231646
 --- !u!114 &5976275407650072795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,3 +126,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240d22ac60434eb7aea08bbe7d617320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!68 &4178085174769499402
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4997218929975561094}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -12, y: 0}
+  - {x: 12, y: 0}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0

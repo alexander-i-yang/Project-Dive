@@ -2,11 +2,13 @@
 
 using System.Collections;
 using Phys;
+using Player;
 using UnityEngine;
 
 
 namespace Mechanics {
-    public class Crystal : Solid {
+    public class Crystal : Solid, IDiveMechanic {
+        [SerializeField] private int BounceHeight;
         private bool _broken = false;
         public double rechargeTime = 1;
         private SpriteRenderer _mySR;
@@ -23,7 +25,7 @@ namespace Mechanics {
         }
 
         public override bool PlayerCollide(PlayerActor p, Vector2 direction) {
-            if (!_broken) return p.EnterCrystal(this);
+            if (!_broken) p.EnterCrystal(this);
             return base.OnCollide(p, direction);
         }
 
@@ -46,6 +48,12 @@ namespace Mechanics {
             _mySR.color = Color.white;
             _broken = false;
             _light.intensity = oldLightIntensity;
+        }
+
+        public bool OnDiveEnter(IPlayerActionHandler p) {
+            p.MechanicBounce(BounceHeight);
+            Break();
+            return true;
         }
     }
 }

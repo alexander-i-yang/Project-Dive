@@ -11,7 +11,6 @@ namespace Player
             {
                 Input.jumpedFromGround = false;
                 RefreshAbilities();
-
                 PlayerAction.Land();
                 if (GameTimer.GetTimerState(Input.jumpBufferTimer) == TimerState.Running && !MySM.PrevStateEquals<Diving>())
                 {
@@ -25,9 +24,9 @@ namespace Player
                 JumpFromGround();
             }
 
-            public override void SetGrounded(bool isGrounded)
+            public override void SetGrounded(bool isGrounded, bool isMovingUp)
             {
-                base.SetGrounded(isGrounded);
+                base.SetGrounded(isGrounded, isMovingUp);
                 if (!isGrounded)
                 {
                     MySM.Transition<Airborne>();
@@ -37,6 +36,7 @@ namespace Player
             public override void MoveX(int moveDirection)
             {
                 UpdateSpriteFacing(moveDirection);
+                PlayerAnim.ChangeState(moveDirection != 0 ? PlayerAnimations.RUNNING : PlayerAnimations.IDLE);
                 int acceleration = moveDirection == 0 ? PlayerInfo.MaxAcceleration : PlayerInfo.MaxDeceleration;
                 PlayerAction.UpdateMovementX(moveDirection, acceleration);
             }
