@@ -10,6 +10,7 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
+                PlayerAnim.ChangeState(PlayerAnimations.DIVING);
                 PlayerActions.Dive();
                 Input.canDive = false;
                 Input.canJumpCut = false;

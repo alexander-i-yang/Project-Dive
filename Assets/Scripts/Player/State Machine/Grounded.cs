@@ -9,6 +9,7 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
+                PlayerAnim.ChangeState(PlayerAnimations.IDLE);
                 Input.jumpedFromGround = false;
                 RefreshAbilities();
                 PlayerActions.Land();

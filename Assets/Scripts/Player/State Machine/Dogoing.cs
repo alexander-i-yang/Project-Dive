@@ -8,6 +8,7 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
+                PlayerAnim.ChangeState(PlayerAnimations.DOGOING);
                 i.oldVelocity = PlayerActions.Dogo();
                 i.dogoXVBufferTimer = GameTimer.StartNewTimer(PlayerCore.DogoConserveXVTime);
             }

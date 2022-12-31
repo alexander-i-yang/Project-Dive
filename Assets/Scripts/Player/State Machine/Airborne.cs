@@ -12,6 +12,7 @@ namespace Player
 
             public override void Enter(PlayerStateInput i)
             {
+                PlayerAnim.ChangeState(PlayerAnimations.JUMPING);   //TEMPORARY
                 if (!Input.jumpedFromGround)
                 {
                     _jumpCoyoteTimer = GameTimer.StartNewTimer(PlayerCore.JumpCoyoteTime, "Jump Coyote Timer");

@@ -45,9 +45,9 @@ namespace Player
             {
                 Input.jumpedFromGround = true;
                 Input.canJumpCut = true;
+                PlayerAnim.ChangeState(PlayerAnimations.JUMPING);
                 PlayerActions.Jump(PlayerCore.JumpHeight);
                 SetGrounded(false, true);
-
                 //GameTimer.Clear(Input.jumpBufferTimer);
             }
 
