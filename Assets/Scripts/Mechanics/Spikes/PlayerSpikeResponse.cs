@@ -10,7 +10,7 @@ namespace Mechanics
     {
         private HashSet<Spike> _dogoDisabledSpikes = new HashSet<Spike>();
 
-        private void OnEnable()
+        private void Start()
         {
             PlayerCore.StateMachine.OnPlayerDeath += RechargeSpikes;
             PlayerCore.StateMachine.StateTransition += OnPlayerStateChanged;
