@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using MyBox;
 
+using Audio;
+
 namespace Core
 {
     public class Game : Singleton<Game>
@@ -17,6 +19,11 @@ namespace Core
         {
             Application.targetFrameRate = 60;
             InitializeSingleton();
+        }
+
+        private void Start()
+        {
+            AudioManager.PlayMusic("Mus_Level_S");
         }
 
         void Update()

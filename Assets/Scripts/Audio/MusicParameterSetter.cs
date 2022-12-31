@@ -1,0 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Audio
+{
+    // Source: Slider by Daniel Carr
+    // Helper script for Unity editor
+    public class MusicParameterSetter : MonoBehaviour
+    {
+        public string trackName;
+        public string parameterName;
+        public float defaultValue;
+
+        public void UpdateParameter()
+        {
+            AudioManager.SetMusicParameter(trackName, parameterName, defaultValue);
+        }
+
+        public void UpdateParameter(float value)
+        {
+            AudioManager.SetMusicParameter(trackName, parameterName, value);
+        }
+    }
+}
+
