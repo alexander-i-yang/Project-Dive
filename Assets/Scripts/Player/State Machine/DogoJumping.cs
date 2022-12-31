@@ -27,16 +27,16 @@ namespace Player
             private IEnumerator DogoJumpRoutine(bool conserveMomentum, double oldXV)
             {
                 Input.canJumpCut = true;
-                _dogoJumpTimer = GameTimer.StartNewTimer(PlayerInfo.DogoJumpTime);
-                PlayerAction.DogoJump(Input.moveDirection, conserveMomentum, oldXV);
+                _dogoJumpTimer = GameTimer.StartNewTimer(PlayerCore.DogoJumpTime);
+                PlayerActions.DogoJump(Input.moveDirection, conserveMomentum, oldXV);
 
                 int oldMoveDirection = Input.moveDirection;
-                yield return Helper.DelayAction(PlayerInfo.DogoJumpGraceTime, () =>
+                yield return Helper.DelayAction(PlayerCore.DogoJumpGraceTime, () =>
                 {
                     if (oldMoveDirection != Input.moveDirection)
                     {
-                        _dogoJumpTimer = GameTimer.StartNewTimer(PlayerInfo.DogoJumpTime);
-                        PlayerAction.DogoJump(Input.moveDirection, conserveMomentum, oldXV);
+                        _dogoJumpTimer = GameTimer.StartNewTimer(PlayerCore.DogoJumpTime);
+                        PlayerActions.DogoJump(Input.moveDirection, conserveMomentum, oldXV);
                     }
                 });
             }
@@ -76,13 +76,13 @@ namespace Player
             public override void MoveX(int moveDirection)
             {
                 UpdateSpriteFacing(moveDirection);
-                PlayerAction.UpdateMovementX(moveDirection, PlayerInfo.DogoJumpAcceleration);
+                PlayerActions.UpdateMovementX(moveDirection, PlayerCore.DogoJumpAcceleration);
             }
 
             public override void FixedUpdate()
             {
                 GameTimer.FixedUpdate(_dogoJumpTimer);
-                PlayerAction.Fall();
+                PlayerActions.Fall();
                 if (GameTimer.GetTimerState(_dogoJumpTimer) == TimerState.Finished)
                 {
                     MySM.Transition<Airborne>();

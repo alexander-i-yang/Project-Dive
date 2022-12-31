@@ -10,13 +10,15 @@ GameObject:
   m_Component:
   - component: {fileID: 2234600854425113956}
   - component: {fileID: 2234600854425113962}
-  - component: {fileID: 2234600854425113957}
+  - component: {fileID: 2400976826232090480}
   - component: {fileID: 2234600854425113960}
-  - component: {fileID: 2234600854425113958}
+  - component: {fileID: 7904916651983550451}
+  - component: {fileID: 2234600854425113957}
   - component: {fileID: 4863023254048345395}
   - component: {fileID: 522702724862650969}
   - component: {fileID: 7720975047318280968}
   - component: {fileID: 2234600854425113961}
+  - component: {fileID: 3431285836361713353}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -68,7 +70,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8, y: 12}
   m_EdgeRadius: 0
---- !u!114 &2234600854425113957
+--- !u!114 &2400976826232090480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,9 +79,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 2234600854425113967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ac73b8be5f4a2c82f54128b3a85995, type: 3}
+  m_Script: {fileID: 11500000, guid: 305c46a72a3d4df488422528d07b182d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 75
+  maxAcceleration: 1600
+  maxAirAcceleration: 1200
+  maxDeceleration: 800
+  cornerboostTimer: 0.08
+  cornerboostMultiplier: 1.05
+  jumpHeight: 20
+  doubleJumpHeight: 16
+  jumpCoyoteTime: 0.1
+  jumpBufferTime: 0.1
+  jumpCutMultiplier: 0.4
+  diveVelocity: -350
+  diveDeceleration: 30
+  dogoJumpHeight: 28
+  dogoJumpXV: 250
+  dogoJumpAcceleration: 100
+  dogoJumpTime: 0.04
+  dogoConserveXVTime: 0.2
+  dogoJumpGraceTime: 0.04
+  roomTransitionVCutX: 0.5
+  roomTransitionVCutY: 0.5
 --- !u!114 &2234600854425113960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,29 +120,7 @@ MonoBehaviour:
   MaxFall: -350
   _stateMachine: {fileID: 2234600854425113957}
   _collider: {fileID: 2234600854425113962}
-  moveSpeed: 75
-  maxAcceleration: 1600
-  maxAirAcceleration: 1200
-  maxDeceleration: 800
-  cornerboostTimer: 0.08
-  cornerboostMultiplier: 1.05
-  jumpHeight: 20
-  crystalJumpHeight: 28
-  doubleJumpHeight: 16
-  jumpCoyoteTime: 0.1
-  jumpBufferTime: 0.1
-  JumpCutMultiplier: 0.4
-  diveVelocity: -350
-  diveDeceleration: 30
-  dogoJumpHeight: 28
-  dogoJumpXV: 250
-  dogoJumpAcceleration: 100
-  dogoJumpTime: 0.04
-  dogoConserveXVTime: 0.2
-  dogoJumpGraceTime: 0.04
-  roomTransitionVCutX: 0.5
-  roomTransitionVCutY: 0.5
---- !u!114 &2234600854425113958
+--- !u!114 &7904916651983550451
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,6 +130,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bbbb8788e370814ab117baf1daae47e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2234600854425113957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2234600854425113967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ac73b8be5f4a2c82f54128b3a85995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &4863023254048345395
@@ -202,7 +215,28 @@ MonoBehaviour:
   - {x: -4, y: 6, z: 0}
   m_ShapePathHash: 1522295477
   m_Mesh: {fileID: 0}
-  m_InstanceId: 67890
+  m_InstanceId: 78538
+--- !u!50 &3431285836361713353
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2234600854425113967}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5389357683659332391
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,22 +8,13 @@ namespace Mechanics
     {
         [SerializeField] private int bounceHeight;
 
-        private IPlayerActionHandler _playerAction;
-        private PlayerStateMachine _playerSM;
-
-        private void Awake()
-        {
-            _playerAction = GetComponent<IPlayerActionHandler>();
-            _playerSM = GetComponent<PlayerStateMachine>();
-        }
-
         public void OnCrystalEnter(Crystal crystal)
         {
-            if (_playerSM.IsOnState<PlayerStateMachine.Diving>())
+            if (PlayerCore.StateMachine.IsOnState<PlayerStateMachine.Diving>())
             {
-                _playerAction.Bounce(bounceHeight);
-                _playerSM.RefreshAbilities();
-                _playerSM.Transition<PlayerStateMachine.Airborne>();
+                PlayerCore.Actor.Jump(bounceHeight);
+                PlayerCore.StateMachine.RefreshAbilities();
+                PlayerCore.StateMachine.Transition<PlayerStateMachine.Airborne>();
                 crystal.Break();
             }
         }

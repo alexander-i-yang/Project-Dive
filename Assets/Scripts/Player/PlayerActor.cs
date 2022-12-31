@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 
 using Core;
 using Helpers;
-using Mechanics;
 using Phys;
 using Player;
 using World;
@@ -13,62 +11,12 @@ using MyBox;
 
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(PlayerStateMachine))]
 [RequireComponent(typeof(BoxCollider2D))]
-public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider, IFilterLoggerTarget {
+public class PlayerActor : Actor, IFilterLoggerTarget {
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private PlayerStateMachine _stateMachine;
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private BoxCollider2D _collider;
-    
-    [Foldout("Move", true)]
-    [SerializeField] private int moveSpeed;
-    [SerializeField] private int maxAcceleration;
-    [SerializeField] private int maxAirAcceleration;
-    [SerializeField] private int maxDeceleration;
-    [Tooltip("Timer between the player crashing into a wall and them getting their speed back (called a cornerboost)")]
-    [SerializeField] private float cornerboostTimer;
-    [Tooltip("Cornerboost speed multiplier")]
-    [SerializeField] private float cornerboostMultiplier;
-
-    [Foldout("Jump", true)]
-    [SerializeField] private int jumpHeight;
-    [SerializeField] private int crystalJumpHeight;
-    [SerializeField] private int doubleJumpHeight;
-    [SerializeField] private float jumpCoyoteTime;
-    [SerializeField] private float jumpBufferTime;
-    [SerializeField, Range(0f, 1f)] public float JumpCutMultiplier;
-
-    [Foldout("Dive", true)]
-    [SerializeField] private int diveVelocity;
-    [SerializeField] private int diveDeceleration;
-    
-    [Foldout("Dogo", true)]
-    [SerializeField] private float dogoJumpHeight;
-    [SerializeField] private float dogoJumpXV;
-    [SerializeField] private int dogoJumpAcceleration;
-    [Tooltip("Time where acceleration/decelartion is 0")]
-    [SerializeField] private float dogoJumpTime;
-    [SerializeField] private float dogoConserveXVTime;
-    [Tooltip("Time to let players input a direction change")]
-    [SerializeField] private float dogoJumpGraceTime;
-
-    [Foldout("RoomTransitions", true)]
-    [SerializeField, Range(0f, 1f)] private float roomTransitionVCutX = 0.5f;
-    [SerializeField, Range(0f, 1f)] private float roomTransitionVCutY = 0.5f;
-
-    #region IPlayerInfoProvider Properties
-    public int MaxAcceleration => maxAcceleration;
-    public int MaxAirAcceleration => maxAirAcceleration;
-    public int MaxDeceleration => maxDeceleration;
-    public bool Grounded => IsGrounded();
-    public float JumpBufferTime => jumpBufferTime;
-    public float JumpCoyoteTime => jumpCoyoteTime;
-    public float DogoConserveXVTime => dogoConserveXVTime;
-    public float DogoJumpTime => dogoJumpTime;
-    public float DogoJumpGraceTime => dogoJumpGraceTime;
-    public int DogoJumpAcceleration => dogoJumpAcceleration;
-    #endregion
 
     private bool _hitWallCoroutineRunning;
     private float _hitWallPrevSpeed;
@@ -85,7 +33,7 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider, IFi
 
     #region Movement
     public void UpdateMovementX(int moveDirection, int acceleration) {
-        int targetVelocityX = moveDirection * moveSpeed;
+        int targetVelocityX = moveDirection * PlayerCore.MoveSpeed;
         int maxSpeedChange = (int) (acceleration * Time.deltaTime);
         velocityX = Mathf.MoveTowards(velocityX, targetVelocityX, maxSpeedChange);
     }
@@ -97,17 +45,13 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider, IFi
     #endregion
 
     #region Jumping
-    public void Jump()
-    {
-        velocityY = GetJumpSpeedFromHeight(jumpHeight);
-    }
     
     /// <summary>
     /// Function that bounces the player.
     /// </summary>
-    /// <param name="bounceHeight"></param>
-    public void Bounce(int bounceHeight) {
-        velocityY = GetJumpSpeedFromHeight(bounceHeight);
+    /// <param name="jumpHeight"></param>
+    public void Jump(int jumpHeight) {
+        velocityY = GetJumpSpeedFromHeight(jumpHeight);
     }
 
     private void _mechanicBounceVelocity(Vector2 v)
@@ -115,9 +59,10 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider, IFi
         velocity = v;
     }
 
-    public void DoubleJump(int moveDirection)
+    public void DoubleJump(int jumpHeight, int moveDirection)
     {
-        velocityY = GetJumpSpeedFromHeight(doubleJumpHeight);
+        Jump(jumpHeight);
+
         // If the player is trying to go in the opposite direction of their x velocity, instantly switch direction.
         if (moveDirection != 0 && moveDirection != Math.Sign(velocityX))
         {
@@ -129,7 +74,7 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider, IFi
     {
         if (velocityY > 0f)
         {
-            velocityY *= JumpCutMultiplier;
+            velocityY *= PlayerCore.JumpCutMultiplier;
         }
     }
     #endregion
@@ -137,14 +82,14 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider, IFi
     #region Dive
     public void Dive()
     {
-        velocityY = diveVelocity;
+        velocityY = PlayerCore.DiveVelocity;
     }
 
     public void UpdateWhileDiving()
     {
         if (FallVelocityExceedsMax())
         {
-            velocityY += diveDeceleration;
+            velocityY += PlayerCore.DiveDeceleration;
         }
         else
         {
@@ -169,21 +114,21 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider, IFi
     {
         if (moveDirection != 0)
         {
-            velocityX = moveDirection * dogoJumpXV;
+            velocityX = moveDirection * PlayerCore.DogoJumpXV;
             if (conserveMomentum)
             {
                 if (moveDirection == 1)
                 {
-                    velocityX = (float)Math.Max(oldXV + dogoJumpXV, dogoJumpXV);
+                    velocityX = (float)Math.Max(oldXV + PlayerCore.DogoJumpXV, PlayerCore.DogoJumpXV);
                 }
                 else if (moveDirection == -1)
                 {
-                    velocityX = (float)Math.Min(oldXV - dogoJumpXV, -dogoJumpXV);
+                    velocityX = (float)Math.Min(oldXV - PlayerCore.DogoJumpXV, -PlayerCore.DogoJumpXV);
                 }
             }
         }
 
-        velocityY = GetJumpSpeedFromHeight(dogoJumpHeight);
+        velocityY = GetJumpSpeedFromHeight(PlayerCore.DogoJumpHeight);
     }
     #endregion
 
@@ -253,7 +198,7 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider, IFi
     }
 
     private IEnumerator HitWallLogic(int direction) {
-        for (float t = 0; t < cornerboostTimer; t += Game.Instance.FixedDeltaTime) {
+        for (float t = 0; t < PlayerCore.CornerboostTimer; t += Game.Instance.FixedDeltaTime) {
             bool movingWithDir = Math.Sign(velocityX) == Math.Sign(direction) || velocityX == 0;
             if (!movingWithDir) {
                 break;
@@ -264,7 +209,7 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider, IFi
                 return physObj != this && physObj.Collidable();
             });
             if (!stillNextToWall) {
-                velocityX = _hitWallPrevSpeed * cornerboostMultiplier;
+                velocityX = _hitWallPrevSpeed * PlayerCore.CornerboostMultiplier;
                 break;
             }
             yield return null;
@@ -274,8 +219,8 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider, IFi
 
     private void OnRoomTransition(Room roomEntering)
     {
-        velocityX *= roomTransitionVCutX;
-        velocityY *= roomTransitionVCutY;
+        velocityX *= PlayerCore.RoomTransitionVCutX;
+        velocityY *= PlayerCore.RoomTransistionVCutY;
     }
 
     private float GetJumpSpeedFromHeight(float jumpHeight)

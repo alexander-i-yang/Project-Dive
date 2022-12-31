@@ -10,7 +10,7 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
-                PlayerAction.Dive();
+                PlayerActions.Dive();
                 Input.canDive = false;
                 Input.canJumpCut = false;
                 Input.dogoDisabledSpikes = new HashSet<Spike>();
@@ -36,7 +36,7 @@ namespace Player
             }
 
             public override void FixedUpdate() {
-                PlayerAction.UpdateWhileDiving();
+                PlayerActions.UpdateWhileDiving();
             }
 
             public override void MoveX(int moveDirection)

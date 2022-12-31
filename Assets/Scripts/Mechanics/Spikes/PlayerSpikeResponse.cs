@@ -8,45 +8,36 @@ namespace Mechanics
 {
     public class PlayerSpikeResponse : MonoBehaviour, ISpikeResponse
     {
-        private IPlayerActionHandler _playerAction;
-        private PlayerStateMachine _playerSM;
-
         private HashSet<Spike> _dogoDisabledSpikes = new HashSet<Spike>();
-
-        private void Awake()
-        {
-            _playerAction = GetComponent<IPlayerActionHandler>();
-            _playerSM = GetComponent<PlayerStateMachine>();
-        }
 
         private void OnEnable()
         {
-            _playerSM.OnPlayerDeath += RechargeSpikes;
-            _playerSM.StateTransition += OnPlayerStateChanged;
+            PlayerCore.StateMachine.OnPlayerDeath += RechargeSpikes;
+            PlayerCore.StateMachine.StateTransition += OnPlayerStateChanged;
         }
 
         private void OnDisable()
         {
-            _playerSM.OnPlayerDeath -= RechargeSpikes;
-            _playerSM.StateTransition -= OnPlayerStateChanged;
+            PlayerCore.StateMachine.OnPlayerDeath -= RechargeSpikes;
+            PlayerCore.StateMachine.StateTransition -= OnPlayerStateChanged;
         }
 
         public void OnSpikeEnter(Spike spike)
         {
-            if (_playerSM.IsOnState<PlayerStateMachine.Diving>())
+            if (PlayerCore.StateMachine.IsOnState<PlayerStateMachine.Diving>())
             {
                 _dogoDisabledSpikes.Add(spike);
                 spike.Discharge();
             }
             else if (spike.Charged)
             {
-                _playerAction.Die();
+                PlayerCore.Actor.Die();
             }
         }
 
         private void OnPlayerStateChanged()
         {
-            if (_playerSM.IsOnState<PlayerStateMachine.DogoJumping>())
+            if (PlayerCore.StateMachine.IsOnState<PlayerStateMachine.DogoJumping>())
             {
                 RechargeSpikes();
             }
