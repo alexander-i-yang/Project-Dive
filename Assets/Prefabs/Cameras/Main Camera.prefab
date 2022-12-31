@@ -10,12 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3142978620854083331}
   - component: {fileID: 3142978620854083580}
-  - component: {fileID: 3142978620854083582}
-  - component: {fileID: 3142978620854083581}
   - component: {fileID: 3142978620854083329}
   - component: {fileID: 3142978620854083330}
   - component: {fileID: 3142978620854083328}
   - component: {fileID: 3142978620854083333}
+  - component: {fileID: 3456601838096084204}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -31,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3142978620854083583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 436, y: -400, z: -10}
+  m_LocalPosition: {x: 327.90625, y: -215.94292, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -57,10 +56,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.23958334
-    y: 0.037962962
-    width: 0.26666668
-    height: 0.26666665
+    x: 0.67418545
+    y: 0.15590201
+    width: 0.320802
+    height: 0.32071272
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -81,30 +80,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3142978620854083582
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3142978620854083583}
-  m_Enabled: 1
---- !u!114 &3142978620854083581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3142978620854083583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57b4c60cd2544f4c9d5abb40294f8b04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TimeScale: 1
-  IsPaused: 0
-  DeltaTime: 0
-  FixedDeltaTime: 0
 --- !u!114 &3142978620854083329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,3 +197,16 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3456601838096084204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3142978620854083583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
