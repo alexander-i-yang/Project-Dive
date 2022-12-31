@@ -14,7 +14,7 @@ namespace Player
             {
                 if (!Input.jumpedFromGround)
                 {
-                    _jumpCoyoteTimer = GameTimer.StartNewTimer(PlayerInfo.JumpCoyoteTime, "Jump Coyote Timer");
+                    _jumpCoyoteTimer = GameTimer.StartNewTimer(PlayerCore.JumpCoyoteTime, "Jump Coyote Timer");
                 }
             }
 
@@ -58,12 +58,12 @@ namespace Player
             public override void MoveX(int moveDirection)
             {
                 UpdateSpriteFacing(moveDirection);
-                PlayerAction.UpdateMovementX(moveDirection, PlayerInfo.MaxAirAcceleration);
+                PlayerActions.UpdateMovementX(moveDirection, PlayerCore.MaxAirAcceleration);
             }
 
             public override void FixedUpdate()
             {
-                PlayerAction.Fall();
+                PlayerActions.Fall();
                 GameTimer.FixedUpdate(_jumpCoyoteTimer);
             }
         }

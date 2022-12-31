@@ -1,20 +1,19 @@
-﻿using Helpers;
-using Helpers.Animation;
-using Mechanics;
+﻿using System;
+
 using UnityEngine;
+
+using Helpers;
 
 namespace Player
 {
     public partial class PlayerStateMachine : StateMachine<PlayerStateMachine, PlayerStateMachine.PlayerState, PlayerStateInput> {
-        private IInputController _input;
-        private IPlayerInfoProvider _playerInfo;
-        private IPlayerActionHandler _playerAction;
-        private PlayerSpawnManager _spawnManager;
         private PlayerAnimationStateManager _playerAnim;
         private SpriteRenderer _spriteR;
 
+        public event Action OnPlayerDeath;
+
         #region Overrides
-        protected override void SetInitialState()
+        protected override void SetInitialState() 
         {
             SetState<Grounded>();
             _playerAnim.SetInitialState(PlayerAnimations.IDLE);
@@ -22,10 +21,6 @@ namespace Player
 
         protected override void Init()
         {
-            _input = GetComponent<IInputController>();
-            _playerInfo = GetComponent<IPlayerInfoProvider>();
-            _playerAction = GetComponent<IPlayerActionHandler>();
-            _spawnManager = GetComponent<PlayerSpawnManager>();
             _playerAnim = GetComponentInChildren<PlayerAnimationStateManager>();
             _spriteR = GetComponentInChildren<SpriteRenderer>();
 
@@ -35,45 +30,41 @@ namespace Player
         {
             base.Update();
 
-            if (_input.JumpStarted())
+            if (PlayerCore.Input.JumpStarted())
             {
                 CurrState.JumpPressed();
             }
 
-            if (_input.JumpFinished())
+            if (PlayerCore.Input.JumpFinished())
             {
                 CurrState.JumpReleased();
             }
 
-            if (_input.DiveStarted())
+            if (PlayerCore.Input.DiveStarted())
             {
                 CurrState.DivePressed();
             }
 
-            CurrInput.moveDirection = _input.GetMovementInput();
+            CurrInput.moveDirection = PlayerCore.Input.GetMovementInput();
         }
 
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
             GameTimer.FixedUpdate(CurrInput.jumpBufferTimer);
-            CurrState.SetGrounded(_playerInfo.Grounded, _playerInfo.IsMovingUp);
+            CurrState.SetGrounded(PlayerCore.Actor.IsGrounded(), PlayerCore.Actor.IsMovingUp);;
             CurrState.MoveX(CurrInput.moveDirection);
+        }
+        #endregion
+
+        public void RefreshAbilities()
+        {
+            CurrState.RefreshAbilities();
         }
 
         public void OnDeath()
         {
             CurrState.OnDeath();
         }
-
-        public void EnterCrystal(Crystal c) {
-            CurrState.EnterDiveMechanic(c);
-        }
-
-        public bool EnterSpike(Spike s)
-        {
-            return CurrState.EnterSpike(s);
-        }
-        #endregion
     }
 }

@@ -4,38 +4,39 @@ using Phys;
 using UnityEngine;
 
 namespace Mechanics {
-    public class Spike : Solid {
+    public class Spike : Solid, IFilterLoggerTarget {
         public bool Charged { get; private set; } = true;
         public float RechargeTime = 0.5f;
         private Coroutine _reEnableCoroutine;
-        private SpriteRenderer _mySR; // for some reason autoProperty wasn't working for this
+        private SpriteRenderer _mySR;
+
+        protected new void Start()
+        {
+            base.Start();
+            _mySR = GetComponent<SpriteRenderer>();
+        }
 
         public override bool Collidable() {
             return false;
         }
 
-        protected new void Start() {
-            base.Start();
-            _mySR = GetComponent<SpriteRenderer>();
-        }
-
         public override bool OnCollide(PhysObj p, Vector2 direction) {
-            return false;
-        }
+            ISpikeResponse response = p.GetComponent<ISpikeResponse>();
+            FilterLogger.Log(this, $"Spike Response?: {response}");
 
-        public override bool PlayerCollide(PlayerActor p, Vector2 direction) {
-            return p.EnterSpike(this);
+            if (response != null)
+            {
+                response.OnSpikeEnter(this);
+            }
+
+            return base.OnCollide(p, direction);
         }
 
         public override bool IsGround(PhysObj b) {
             return false;
         }
 
-        /*public void OnDrawGizmosSelected() {
-            
-        }*/
-
-        public void DiveEnter() {
+        public void Discharge() {
             Charged = false;
             _mySR.SetAlpha(0.2f);
             // _mySR.color = Color.red;
@@ -50,6 +51,11 @@ namespace Mechanics {
                 Charged = true;
                 _mySR.SetAlpha(1);
             }));
+        }
+
+        public LogLevel GetLogLevel()
+        {
+            return LogLevel.Error;
         }
     }
 }

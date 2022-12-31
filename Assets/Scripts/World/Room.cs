@@ -1,10 +1,11 @@
-﻿using Cinemachine;
-
-using Helpers;
-
-using System.Collections;
+﻿using System.Collections;
 
 using UnityEngine;
+using Cinemachine;
+
+using Helpers;
+using Player;
+
 
 namespace World {
     public class Room : MonoBehaviour, IFilterLoggerTarget {

@@ -23,6 +23,8 @@ public abstract class StateMachine<M, S, I> : MonoBehaviour
 
     private Dictionary<Type, S> _stateMap = new Dictionary<Type, S>();
 
+    public event Action StateTransition; //(State, PrevState)
+
     #region Unity Messages
     protected virtual void Start() {
         CurrInput = (I) Activator.CreateInstance(typeof(I));
@@ -59,6 +61,8 @@ public abstract class StateMachine<M, S, I> : MonoBehaviour
         CurrState?.Exit(CurrInput);
         SetState<NextStateType>();
         CurrState.Enter(CurrInput);
+
+        StateTransition?.Invoke();
     }
 
     public bool IsOnState<CheckStateType>() where CheckStateType : S, new() {
