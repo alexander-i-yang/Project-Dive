@@ -2,13 +2,12 @@
 
 using System.Collections;
 using Phys;
-using Player;
+using Helpers;
 using UnityEngine;
 
 
 namespace Mechanics {
-    public class Crystal : Solid, IDiveMechanic {
-        [SerializeField] private int BounceHeight;
+    public class Crystal : Solid, IFilterLoggerTarget {
         private bool _broken = false;
         public double rechargeTime = 1;
         private SpriteRenderer _mySR;
@@ -19,13 +18,25 @@ namespace Mechanics {
             _light = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
             base.Start();
         }
-        
-        public override bool Collidable() {
+
+        public override bool Collidable()
+        {
             return false;
         }
 
-        public override bool PlayerCollide(PlayerActor p, Vector2 direction) {
-            if (!_broken) p.EnterCrystal(this);
+        public override bool OnCollide(PhysObj p, Vector2 direction)
+        {
+            FilterLogger.Log(this, $"Crystal Collided with {p}");
+            if (!_broken)
+            {
+                ICrystalResponse response = p.GetComponent<ICrystalResponse>();
+                FilterLogger.Log(this, $"Crystal Response?: {response}");
+
+                if (response != null)
+                {
+                    response.OnCrystalEnter(this);
+                }
+            }
             return base.OnCollide(p, direction);
         }
 
@@ -50,10 +61,9 @@ namespace Mechanics {
             _light.intensity = oldLightIntensity;
         }
 
-        public bool OnDiveEnter(IPlayerActionHandler p) {
-            p.MechanicBounce(BounceHeight);
-            Break();
-            return true;
+        public LogLevel GetLogLevel()
+        {
+            return LogLevel.Error;
         }
     }
 }

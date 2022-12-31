@@ -17,7 +17,7 @@ using UnityEngine.Serialization;
 
 [RequireComponent(typeof(PlayerStateMachine))]
 [RequireComponent(typeof(BoxCollider2D))]
-public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider {
+public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider, IFilterLoggerTarget {
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private PlayerStateMachine _stateMachine;
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private BoxCollider2D _collider;
     
@@ -83,22 +83,13 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider {
         Room.RoomTransitionEvent -= OnRoomTransition;
     }
 
-    private void Update()
-    {
-        
-    }
-
-    public override void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
-
     #region Movement
     public void UpdateMovementX(int moveDirection, int acceleration) {
         int targetVelocityX = moveDirection * moveSpeed;
         int maxSpeedChange = (int) (acceleration * Time.deltaTime);
         velocityX = Mathf.MoveTowards(velocityX, targetVelocityX, maxSpeedChange);
     }
+
     public void Land()
     {
         velocityY = 0;
@@ -110,21 +101,18 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider {
     {
         velocityY = GetJumpSpeedFromHeight(jumpHeight);
     }
-
-    public void CrystalJump() {
-        velocityY = GetJumpSpeedFromHeight(crystalJumpHeight);
-    }
-
-    private void _mechanicBounceVelocity(Vector2 v) {
-        velocity = v;
-    }
     
     /// <summary>
-    /// Function that bounces the player after entering a dive mechanic.
+    /// Function that bounces the player.
     /// </summary>
     /// <param name="bounceHeight"></param>
-    public void MechanicBounce(int bounceHeight) {
+    public void Bounce(int bounceHeight) {
         velocityY = GetJumpSpeedFromHeight(bounceHeight);
+    }
+
+    private void _mechanicBounceVelocity(Vector2 v)
+    {
+        velocity = v;
     }
 
     public void DoubleJump(int moveDirection)
@@ -211,6 +199,11 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider {
     }
 
     public override bool OnCollide(PhysObj p, Vector2 direction) {
+        if (p != this)
+        {
+            FilterLogger.Log(this, $"Player collided with object {p} from direction {direction}");
+        }
+
         bool col = p.PlayerCollide(this, direction);
         if (col) {
             if (direction.y > 0) {
@@ -227,8 +220,7 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider {
 
     public override bool PlayerCollide(PlayerActor p, Vector2 direction)
     {
-        return false;
-        
+        return false;     
     }
 
     public override bool IsGround(PhysObj whosAsking)
@@ -246,18 +238,6 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider {
         return false;
     }
     #endregion
-
-    public void EnterCrystal(Crystal c) {
-        _stateMachine.EnterCrystal(c);
-    }
-
-    public void EnterDiveMechanic(IDiveMechanic d) {
-        _stateMachine.CurrState.EnterDiveMechanic(d);
-    }
-    
-    public bool EnterSpike(Spike s) {
-        return _stateMachine.EnterSpike(s);
-    }
 
     public void BonkHead() {
         velocityY = Math.Min(10, velocityY);
@@ -305,5 +285,10 @@ public class PlayerActor : Actor, IPlayerActionHandler, IPlayerInfoProvider {
 
     private void OnDrawGizmosSelected() {
         Handles.Label(new Vector3(0, 56, 0) , $"Velocity: <{velocityX}, {velocityY}>");
+    }
+
+    public LogLevel GetLogLevel()
+    {
+        return LogLevel.Error;
     }
 }

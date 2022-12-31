@@ -89,6 +89,6 @@ public class PlayerSpawnManager : MonoBehaviour, IFilterLoggerTarget
 
     public LogLevel GetLogLevel()
     {
-        return LogLevel.Info;
+        return LogLevel.Warning;
     }
 }

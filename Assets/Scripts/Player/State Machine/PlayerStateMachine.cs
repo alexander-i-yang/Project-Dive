@@ -1,7 +1,8 @@
-﻿using Helpers;
-using Helpers.Animation;
-using Mechanics;
+﻿using System;
+
 using UnityEngine;
+
+using Helpers;
 
 namespace Player
 {
@@ -13,8 +14,10 @@ namespace Player
         private PlayerAnimationStateManager _playerAnim;
         private SpriteRenderer _spriteR;
 
+        public event Action OnPlayerDeath;
+
         #region Overrides
-        protected override void SetInitialState()
+        protected override void SetInitialState() 
         {
             SetState<Grounded>();
             _playerAnim.SetInitialState(PlayerAnimations.IDLE);
@@ -60,20 +63,16 @@ namespace Player
             CurrState.SetGrounded(_playerInfo.Grounded, _playerInfo.IsMovingUp);
             CurrState.MoveX(CurrInput.moveDirection);
         }
+        #endregion
+
+        public void RefreshAbilities()
+        {
+            CurrState.RefreshAbilities();
+        }
 
         public void OnDeath()
         {
             CurrState.OnDeath();
         }
-
-        public void EnterCrystal(Crystal c) {
-            CurrState.EnterDiveMechanic(c);
-        }
-
-        public bool EnterSpike(Spike s)
-        {
-            return CurrState.EnterSpike(s);
-        }
-        #endregion
     }
 }

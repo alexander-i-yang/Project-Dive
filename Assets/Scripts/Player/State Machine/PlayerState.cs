@@ -24,15 +24,14 @@ namespace Player
 
             public virtual void OnDeath() {
                 SpawnManager.Respawn();
+                MySM.Transition<Grounded>();
+                MySM.OnPlayerDeath();
             }
 
-            public virtual bool EnterSpike(Spike spike)
+            public void RefreshAbilities()
             {
-                if (spike.Charged)
-                {
-                    PlayerAction.Die();
-                }
-                return false;
+                Input.canDoubleJump = true;
+                Input.canDive = true;
             }
 
             protected void UpdateSpriteFacing(int moveDirection)
@@ -69,14 +68,6 @@ namespace Player
                     Input.canJumpCut = false;
                 }
             }
-
-            protected void RefreshAbilities()
-            {
-                Input.canDoubleJump = true;
-                Input.canDive = true;
-            }
-
-            public virtual void EnterDiveMechanic(IDiveMechanic diveMechanic) { }
         }
     }
 }

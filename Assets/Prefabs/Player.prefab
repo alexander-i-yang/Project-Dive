@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2234600854425113960}
   - component: {fileID: 2234600854425113958}
   - component: {fileID: 4863023254048345395}
+  - component: {fileID: 522702724862650969}
+  - component: {fileID: 7720975047318280968}
   - component: {fileID: 2234600854425113961}
   m_Layer: 3
   m_Name: Player
@@ -141,6 +143,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403272a9b371a3c479a0561f5f58d8e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &522702724862650969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2234600854425113967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108777d835462c243bba0298ca24fd1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceHeight: 28
+--- !u!114 &7720975047318280968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2234600854425113967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f367810978f36c44a9e54e9f5d34c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2234600854425113961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShadowGroup: 0
   m_ComponentVersion: 1
-  m_HasRenderer: 1
+  m_HasRenderer: 0
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
   m_SelfShadows: 0
@@ -175,7 +202,7 @@ MonoBehaviour:
   - {x: -4, y: 6, z: 0}
   m_ShapePathHash: 1522295477
   m_Mesh: {fileID: 0}
-  m_InstanceId: 48186
+  m_InstanceId: 67890
 --- !u!1 &5389357683659332391
 GameObject:
   m_ObjectHideFlags: 0
