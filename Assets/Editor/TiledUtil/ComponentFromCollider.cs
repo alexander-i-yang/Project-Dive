@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 using Helpers;
-using MyBox;
-using SuperTiled2Unity.Editor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 

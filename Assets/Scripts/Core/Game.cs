@@ -12,11 +12,18 @@ namespace Core
         public float FixedDeltaTime;
         public delegate void ResetNFOAction();
         public event ResetNFOAction ResetNextFrameOffset;
+        // public AudioClip music;
 
         void Awake()
         {
             Application.targetFrameRate = 60;
             InitializeSingleton();
+        }
+
+        void Start()
+        {
+            AudioSource source = GetComponent<AudioSource>();
+            // source.PlayOneShot(music);
         }
 
         void Update()
