@@ -8,6 +8,6 @@
   <image width="24" height="24" source="../Sprites/Moving Box.png"/>
  </tile>
  <tile id="3" class="Spawn">
-  <image width="8" height="16" source="../Sprites/Spawn.png"/>
+  <image width="8" height="12" source="../Sprites/Spawn.png"/>
  </tile>
 </tileset>
