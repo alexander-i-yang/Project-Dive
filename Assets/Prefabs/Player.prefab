@@ -215,7 +215,7 @@ MonoBehaviour:
   - {x: -4, y: 6, z: 0}
   m_ShapePathHash: 1522295477
   m_Mesh: {fileID: 0}
-  m_InstanceId: 78538
+  m_InstanceId: 67662
 --- !u!50 &3431285836361713353
 Rigidbody2D:
   serializedVersion: 4
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Color: {r: 0.9245283, g: 0.690433, b: 0.40469912, a: 1}
   m_Intensity: 1.5
   m_LightVolumeIntensity: 0.1
-  m_LightVolumeIntensityEnabled: 1
+  m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000a39a746baf9643f6
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_NormalMapDistance: 600
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensityEnabled: 1
   m_ShadowIntensity: 0.7
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0
@@ -493,7 +493,7 @@ Transform:
   m_GameObject: {fileID: 7361947786605167339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 16, z: 1}
+  m_LocalScale: {x: 8, y: 12, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2234600854425113956}
