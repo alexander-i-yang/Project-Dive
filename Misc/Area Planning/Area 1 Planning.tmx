@@ -62,7 +62,6 @@
   <object id="35" gid="4" x="32" y="296" width="48" height="48"/>
   <object id="37" gid="7" x="1008" y="680" width="48" height="48"/>
   <object id="41" gid="3" x="1040" y="688" width="48" height="48" rotation="180"/>
-  <object id="43" gid="3" x="1336" y="752" width="48" height="48" rotation="180"/>
   <object id="45" gid="10" x="264" y="496" width="48" height="48" rotation="90"/>
   <object id="46" gid="10" x="520" y="600" width="48" height="48" rotation="90"/>
   <object id="47" gid="10" x="776" y="704" width="48" height="48" rotation="90"/>
@@ -78,8 +77,8 @@
   <object id="54" x="272" y="80" width="83" height="19">
    <text wrap="1">Pathway</text>
   </object>
-  <object id="66" x="360" y="560" width="113" height="19">
-   <text wrap="1">Teaches u lava</text>
+  <object id="66" x="360" y="560" width="135.667" height="19">
+   <text wrap="1">Teaches u spikes</text>
   </object>
   <object id="67" x="1167.5" y="855.5" width="177" height="19">
    <text wrap="1">Big room hub and spoke</text>
@@ -110,10 +109,10 @@
    <text wrap="1">Funnel Players into here</text>
   </object>
   <object id="133" x="616" y="672" width="113" height="19">
-   <text wrap="1">Teaches u lava</text>
+   <text wrap="1">Spikes Practice</text>
   </object>
   <object id="134" x="864" y="776" width="113" height="19">
-   <text wrap="1">Teaches u lava</text>
+   <text wrap="1">Spikes Practice</text>
   </object>
   <object id="137" gid="11" x="1760" y="696" width="48" height="48"/>
   <object id="138" gid="11" x="2112" y="992" width="48" height="48"/>

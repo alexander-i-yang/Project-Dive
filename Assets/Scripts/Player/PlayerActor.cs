@@ -227,10 +227,12 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     {
         return Mathf.Sqrt(-2f * GravityUp * jumpHeight);
     }
-
+    
+    #if UNITY_EDITOR
     private void OnDrawGizmosSelected() {
         Handles.Label(new Vector3(0, 56, 0) , $"Velocity: <{velocityX}, {velocityY}>");
     }
+    #endif
 
     public LogLevel GetLogLevel()
     {
