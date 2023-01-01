@@ -10,8 +10,10 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
-                PlayerAction.Dive();
+                PlayerAnim.ChangeState(PlayerAnimations.DIVING);
+                PlayerActions.Dive();
                 Input.canDive = false;
+                Input.canJumpCut = false;
                 Input.dogoDisabledSpikes = new HashSet<Spike>();
             }
 
@@ -35,26 +37,12 @@ namespace Player
             }
 
             public override void FixedUpdate() {
-                PlayerAction.UpdateWhileDiving();
+                PlayerActions.UpdateWhileDiving();
             }
 
             public override void MoveX(int moveDirection)
             {
                 UpdateSpriteFacing(moveDirection);
-            }
-
-            public override void EnterDiveMechanic(IDiveMechanic d) {
-                Input.canJumpCut = false;
-                RefreshAbilities();
-                if (d.OnDiveEnter(PlayerAction)) {
-                    MySM.Transition<Airborne>();
-                }
-            }
-
-            public override bool EnterSpike(Spike s) {
-                Input.dogoDisabledSpikes.Add(s);
-                s.DiveEnter();
-                return false;
             }
         }
     }

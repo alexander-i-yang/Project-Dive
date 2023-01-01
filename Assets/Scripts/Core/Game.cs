@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using MyBox;
 
+using Audio;
+
 namespace Core
 {
     public class Game : Singleton<Game>
@@ -12,11 +14,17 @@ namespace Core
         public float FixedDeltaTime;
         public delegate void ResetNFOAction();
         public event ResetNFOAction ResetNextFrameOffset;
+        // public AudioClip music;
 
         void Awake()
         {
             Application.targetFrameRate = 60;
             InitializeSingleton();
+        }
+
+        private void Start()
+        {
+            AudioManager.PlayMusic("Mus_Level_S");
         }
 
         void Update()

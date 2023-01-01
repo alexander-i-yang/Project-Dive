@@ -7,14 +7,13 @@ namespace Player
     {
         public abstract class PlayerState : State<PlayerStateMachine, PlayerState, PlayerStateInput>
         {
-            public IPlayerInfoProvider PlayerInfo => MySM._playerInfo;
-            public IPlayerActionHandler PlayerAction => MySM._playerAction;
-            public PlayerSpawnManager SpawnManager => MySM._spawnManager;
+            public PlayerActor PlayerActions => PlayerCore.Actor;
+            public PlayerSpawnManager SpawnManager => PlayerCore.SpawnManager;
             public PlayerAnimationStateManager PlayerAnim => MySM._playerAnim;
 
             public virtual void JumpPressed()
             {
-                Input.jumpBufferTimer = GameTimer.StartNewTimer(PlayerInfo.JumpBufferTime, "Jump Buffer Timer");
+                Input.jumpBufferTimer = GameTimer.StartNewTimer(PlayerCore.JumpBufferTime, "Jump Buffer Timer");
             }
 
             public virtual void JumpReleased() { }
@@ -24,15 +23,14 @@ namespace Player
 
             public virtual void OnDeath() {
                 SpawnManager.Respawn();
+                MySM.Transition<Grounded>();
+                MySM.OnPlayerDeath();
             }
 
-            public virtual bool EnterSpike(Spike spike)
+            public void RefreshAbilities()
             {
-                if (spike.Charged)
-                {
-                    PlayerAction.Die();
-                }
-                return false;
+                Input.canDoubleJump = true;
+                Input.canDive = true;
             }
 
             protected void UpdateSpriteFacing(int moveDirection)
@@ -47,16 +45,16 @@ namespace Player
             {
                 Input.jumpedFromGround = true;
                 Input.canJumpCut = true;
-                PlayerAction.Jump();
+                PlayerAnim.ChangeState(PlayerAnimations.JUMPING);
+                PlayerActions.Jump(PlayerCore.JumpHeight);
                 SetGrounded(false, true);
-
                 //GameTimer.Clear(Input.jumpBufferTimer);
             }
 
             protected void DoubleJump()
             {
                 Input.canJumpCut = true;
-                PlayerAction.DoubleJump(Input.moveDirection);
+                PlayerActions.DoubleJump(PlayerCore.DoubleJumpHeight, Input.moveDirection);
                 Input.canDoubleJump = false;
                 SetGrounded(false, true);
             }
@@ -65,18 +63,10 @@ namespace Player
             {
                 if (Input.canJumpCut)
                 {
-                    PlayerAction.JumpCut();
+                    PlayerActions.JumpCut();
                     Input.canJumpCut = false;
                 }
             }
-
-            protected void RefreshAbilities()
-            {
-                Input.canDoubleJump = true;
-                Input.canDive = true;
-            }
-
-            public virtual void EnterDiveMechanic(IDiveMechanic diveMechanic) { }
         }
     }
 }

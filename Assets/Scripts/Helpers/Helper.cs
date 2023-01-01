@@ -11,7 +11,7 @@ namespace Helpers {
     /// <summary>
     /// Static helper methods. Add whatever you want!
     /// </summary>
-    class Helper {
+    public class Helper {
         public static float ActualLerp(float a, float b, float t) {
             return a + (b - a) * t;
         }
@@ -116,12 +116,14 @@ namespace Helpers {
 
             t.localPosition = origPos;
         }
-
+        
+        #if UNITY_EDITOR
         public static void DrawText(Vector3 pos, string text, Color col = default) {
             GUIStyle style = new GUIStyle();
             style.normal.textColor = col == default ? Color.white : col; 
             Handles.Label(pos, text, style);
         }
+        #endif
 
         public static IEnumerator DelayAction(float delayTime, Action act) {
             //Wait for the specified delay time before continuing.

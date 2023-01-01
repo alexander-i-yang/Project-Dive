@@ -9,9 +9,10 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
+                PlayerAnim.ChangeState(PlayerAnimations.IDLE);
                 Input.jumpedFromGround = false;
                 RefreshAbilities();
-                PlayerAction.Land();
+                PlayerActions.Land();
                 if (GameTimer.GetTimerState(Input.jumpBufferTimer) == TimerState.Running && !MySM.PrevStateEquals<Diving>())
                 {
                     JumpFromGround();
@@ -37,8 +38,8 @@ namespace Player
             {
                 UpdateSpriteFacing(moveDirection);
                 PlayerAnim.ChangeState(moveDirection != 0 ? PlayerAnimations.RUNNING : PlayerAnimations.IDLE);
-                int acceleration = moveDirection == 0 ? PlayerInfo.MaxAcceleration : PlayerInfo.MaxDeceleration;
-                PlayerAction.UpdateMovementX(moveDirection, acceleration);
+                int acceleration = moveDirection == 0 ? PlayerCore.MaxAcceleration : PlayerCore.MaxDeceleration;
+                PlayerActions.UpdateMovementX(moveDirection, acceleration);
             }
         }
     }

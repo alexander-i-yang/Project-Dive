@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Alex/SceneThing.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 0
+    path: Assets/Scenes/Alex/Build Layout.unity
+    guid: 242f5f8dec6a241479ac19acc929e1e3
+  - enabled: 1
+    path: Assets/Scenes/Alex/Rebuild layout.unity
+    guid: ef2385a27f1229c49b5504d58367ca5e
   m_configObjects: {}
