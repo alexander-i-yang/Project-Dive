@@ -123,8 +123,9 @@ GameObject:
   - component: {fileID: 3572848764956040596}
   - component: {fileID: 8172312737088805392}
   - component: {fileID: 4069720260113940954}
+  - component: {fileID: 2122767621554533099}
   m_Layer: 0
-  m_Name: Collectible
+  m_Name: Firefly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -234,5 +235,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d260f19d90bcaf94694869be6482561e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2122767621554533099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3572848764956040594}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11fbcdcb03735243a70d8db316a7cd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

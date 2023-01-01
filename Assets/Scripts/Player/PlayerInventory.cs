@@ -26,7 +26,7 @@ public class PlayerInventory : MonoBehaviour, ICollector, IFilterLoggerTarget
         itemQuantities[id]++;
 
         collectible.OnCollected(this);
-        FilterLogger.Log(this, $"Added Collectible {collectible}");
+        FilterLogger.Log(this, $"Player Has {itemQuantities[id]} {id}'s");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
