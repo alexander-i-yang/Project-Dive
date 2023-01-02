@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace Animation
+namespace Helpers.Animation
 {
     //Reference: https://www.youtube.com/watch?v=KPoeNZZ6H4s
     //This class maps inputs to an output using second order dynamics

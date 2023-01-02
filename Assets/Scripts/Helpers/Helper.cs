@@ -150,8 +150,17 @@ namespace Helpers {
         }
         #endif
 
+<<<<<<< HEAD
+        public static IEnumerator Delay(float delayTime)
+        {
+            yield return new WaitForSeconds(delayTime / Game.Instance.TimeScale);
+        }
+
+        public static IEnumerator DelayAction(float delayTime, Action act) {
+=======
         public static IEnumerator DelayAction(float delayTime, Action act)
         {
+>>>>>>> 0d5af06a71c029040a369e009c0aa3862243043b
             //Wait for the specified delay time before continuing.
             yield return new WaitForSeconds(delayTime / Game.Instance.TimeScale);
 

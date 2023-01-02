@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Animation
+namespace Helpers.Animation
 {
     public abstract class SecondOrderDynamics2DImpl
     {
