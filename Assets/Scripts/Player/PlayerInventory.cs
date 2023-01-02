@@ -7,7 +7,7 @@ using UnityEngine;
 using Collectibles;
 using Helpers;
 
-public class PlayerInventory : MonoBehaviour, ICollector, IFilterLoggerTarget
+public class PlayerInventory : Collector, IFilterLoggerTarget
 {
     private Dictionary<string, int> itemQuantities = new Dictionary<string, int>();  //id, qty
 
@@ -16,7 +16,7 @@ public class PlayerInventory : MonoBehaviour, ICollector, IFilterLoggerTarget
         return LogLevel.Info;
     }
 
-    public void OnCollect(Collectible collectible)
+    public override void OnCollectFinished(Collectible collectible)
     {
         string id = collectible.ID;
         if (!itemQuantities.ContainsKey(id))
@@ -25,16 +25,6 @@ public class PlayerInventory : MonoBehaviour, ICollector, IFilterLoggerTarget
         }
         itemQuantities[id]++;
 
-        collectible.OnCollected(this);
         FilterLogger.Log(this, $"Player Has {itemQuantities[id]} {id}'s");
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Collectible collectible = other.GetComponent<Collectible>();
-        if (collectible != null)
-        {
-            OnCollect(collectible);
-        }
     }
 }

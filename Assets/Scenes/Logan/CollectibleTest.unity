@@ -201,7 +201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3142978620854083331, guid: 145dfc2a706b8b4429ae37abae634751, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 154.0135
+      value: 128.05458
       objectReference: {fileID: 0}
     - target: {fileID: 3142978620854083331, guid: 145dfc2a706b8b4429ae37abae634751, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1144,7 +1144,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: a35bc599c07cdec43ba9695647105cba, type: 3}
 --- !u!4 &1033394747 stripped
 Transform:
@@ -1158,18 +1159,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 915306247}
     m_Modifications:
-    - target: {fileID: 2122767621554533099, guid: a35bc599c07cdec43ba9695647105cba, type: 3}
-      propertyPath: dynamics.damping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2122767621554533099, guid: a35bc599c07cdec43ba9695647105cba, type: 3}
-      propertyPath: dynamics.response
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2122767621554533099, guid: a35bc599c07cdec43ba9695647105cba, type: 3}
-      propertyPath: dynamics.frequency
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3572848764956040594, guid: a35bc599c07cdec43ba9695647105cba, type: 3}
       propertyPath: m_Name
       value: Firefly
@@ -1218,8 +1207,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069720260113940954, guid: a35bc599c07cdec43ba9695647105cba, type: 3}
+      propertyPath: xAnimation.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069720260113940954, guid: a35bc599c07cdec43ba9695647105cba, type: 3}
+      propertyPath: xAnimation.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069720260113940954, guid: a35bc599c07cdec43ba9695647105cba, type: 3}
+      propertyPath: xAnimation.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069720260113940954, guid: a35bc599c07cdec43ba9695647105cba, type: 3}
+      propertyPath: xAnimation.m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069720260113940954, guid: a35bc599c07cdec43ba9695647105cba, type: 3}
+      propertyPath: xAnimation.m_Curve.Array.data[1].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dynamics.damping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dynamics.response
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dynamics.frequency
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 2122767621554533099, guid: a35bc599c07cdec43ba9695647105cba, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: a35bc599c07cdec43ba9695647105cba, type: 3}
 --- !u!4 &1034219298 stripped
 Transform:
