@@ -16,7 +16,6 @@ namespace Helpers.Animation
 
         public static IEnumerator AnimateCurve(GameObject go, CubicCurve2D curve, float animSpeed = 1, System.Action OnAnimationFinish = null)
         {
-            Debug.Log($"Animating {go}");
             float t = 0;
             while (t < 1f)
             {
