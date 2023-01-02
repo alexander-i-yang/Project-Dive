@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="8" tileheight="8" infinite="0" nextlayerid="5" nextobjectid="81">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="8" tileheight="8" infinite="0" nextlayerid="5" nextobjectid="82">
  <properties>
   <property name="unity:AddFreeformLightPrefab" value="LavaLight"/>
   <property name="unity:Component" value="Lava"/>
@@ -100,7 +100,6 @@
   </properties>
   <object id="46" gid="53" x="40" y="80" width="8" height="8"/>
   <object id="60" gid="53" x="136" y="104" width="8" height="8"/>
-  <object id="63" gid="56" x="40" y="120" width="8" height="16"/>
   <object id="64" gid="38" x="152" y="64" width="8" height="8"/>
   <object id="65" gid="37" x="160" y="56" width="8" height="8"/>
   <object id="66" gid="37" x="168" y="56" width="8" height="8"/>
@@ -112,5 +111,6 @@
   <object id="78" gid="37" x="168" y="112" width="8" height="8"/>
   <object id="79" gid="37" x="176" y="112" width="8" height="8"/>
   <object id="80" gid="37" x="184" y="112" width="8" height="8"/>
+  <object id="81" gid="56" x="40" y="120" width="8" height="12"/>
  </objectgroup>
 </map>

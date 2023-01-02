@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Numerics;
 using System.Xml.Linq;
 
 using Mechanics;
@@ -11,7 +10,7 @@ using SuperTiled2Unity;
 using SuperTiled2Unity.Editor;
 
 using Cinemachine;
-using MyBox;
+using TiledUtil;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -38,7 +37,8 @@ namespace Helpers {
             {"Breakable", typeof(Breakable)},
         };
         
-        public override void TmxAssetImported(TmxAssetImportedArgs data) {
+        public override void TmxAssetImported(TmxAssetImportedArgs data)
+        {
             var typePrefabReplacements = data.AssetImporter.SuperImportContext.Settings.PrefabReplacements;
             _prefabReplacements = typePrefabReplacements.ToDictionary(so => so.m_TypeName, so => so.m_Prefab);
 
@@ -49,9 +49,24 @@ namespace Helpers {
             var doc = XDocument.Load(args.assetPath);
 
             AddRoomComponents(map.transform);
-            //AddColliderToMap(map.transform.GetChild(0));
+            
+            Dictionary<String, Action<GameObject, int>> tileLayerImports = new() {
+                { "Ground", ImportGround },
+                { "Breakable", ImportBreakable },
+                { "Lava", ImportLava },
+            };
+            
+            Dictionary<String, Action<Transform, XElement>> objectLayerImports = new() {
+                { "Mechanics", ImportMechanics},
+            };
+            
             foreach (SuperLayer layer in layers) {
-                AddCustomPropertiesToLayer(layer, GetLayerXNode(doc, layer));
+                string layerName = layer.name;
+                if (tileLayerImports.ContainsKey(layerName)) {
+                    ResolveTileLayerImports(layer.transform, tileLayerImports[layerName]);
+                } else if (objectLayerImports.ContainsKey(layerName)) {
+                    objectLayerImports[layerName](layer.transform, GetLayerXNode(doc, layer));
+                }
             }
         }
 
@@ -124,127 +139,52 @@ namespace Helpers {
             confiner.m_BoundingShape2D = boundingShape;
         }
 
-        private void AddCustomPropertiesToLayer(SuperLayer layer, XElement layerNode)
-        {
-            var customProps = layer.GetComponent<SuperCustomProperties>();
-            if (customProps != null) {
-                Dictionary<String, Action<CustomProperty>> propActions = new() {
-                    {"Component", (prop) => {
-                        AddComponentToCollidersInLayer(layer.transform, prop.GetValueAsString());
-                    }},
-                    {"Layer", (prop) => {
-                        SetLayer(layer.transform, prop.GetValueAsString());
-                    }},
-                    {"CastShadows", (prop) => {
-                        if (prop.GetValueAsBool()) GenerateShadows(layer.transform);
-                    }},
-                    {"AnchorOffset", (prop) => {
-                        if (prop.GetValueAsBool()) AnchorOffset(layer, layerNode);
-                    }}, 
-                    {"AddFreeformLightPrefab", (prop) => {
-                        AddFreeformLightPrefab(layer.transform, prop.GetValueAsString());
-                    }},
-                    {"PrefabReplace", (prop) => {
-                        ReplacePrefab(layer.transform, prop.GetValueAsString());
-                    }}
-                };
+        private Tuple<GameObject, Vector2[]> ImportTileToPrefab(GameObject g, int index, String prefabName) {
+            GameObject replacer = _prefabReplacements[prefabName];
+            Vector2[] points = LayerImportLibrary.EdgeToPoints(g);
 
-                foreach (var kv in propActions) {
-                    string propName = kv.Key;
-                    Action<CustomProperty> act = kv.Value;
-                    CustomProperty prop;
-                    if (customProps.TryGetCustomProperty("unity:" + propName, out prop)) {
-                        act(prop);
-                    }
-                }
-            }   
+            g = LayerImportLibrary.ConvertToPrefab(g, replacer, index);
+            
+            LayerImportLibrary.SetEdgeCollider2DPoints(g, points);
+            LayerImportLibrary.AddShadowCast(g, points.ToVector3());
+            LayerImportLibrary.SetLayer(g, "Interactable");
+            return new Tuple<GameObject, Vector2[]>(g, points);
         }
 
-        public void AddColliderToMap(Transform t) {
-            BoxCollider2D b = t.gameObject.AddComponent<BoxCollider2D>();
-            b.size = new Vector2(256, 144);
-            b.offset = new Vector2(128, -72);
+        private void ImportGround(GameObject g, int index) {
+            ImportTileToPrefab(g, index, "Ground");
         }
 
-        public void AnchorOffset(SuperLayer layer, XElement docLayer) {
-            foreach (var xElement in docLayer.Elements()) {
-                Vector2 size = WidthAndHeight(xElement);
-                string templatePath = xElement.GetAttributeAs<string>("template");
-                Transform transformObj = FindObjByID(layer.transform, xElement.GetAttributeAs<string>("id"));
-                if (size != Vector2.zero && transformObj != null)
-                {
-
-                }
-                else if (templatePath != null)
-                {
-                    XElement templateX = XElementFromTemplatePath(templatePath);
-                    size = WidthAndHeight(templateX);
-                    size.y *= -1;
-                }
-                if (transformObj != null) transformObj.position += new Vector3(size.x / 2, size.y / 2, 0);
-
-                // layer.GetChild(i).position += new Vector3(s.x, -s.y, 0);
-            }
+        private void ImportBreakable(GameObject g, int index) {
+            var data = ImportTileToPrefab(g, index, "Breakable");
+            g = data.Item1;
+            Vector2[] colliderPoints = data.Item2;
+            Vector2[] spritePoints = LayerImportLibrary.ColliderPointsToSpritePoints(g, colliderPoints); 
+            
+            Vector2 avgSpritePoint = spritePoints.ComputeAverage();
+            colliderPoints = colliderPoints.ComputeNormalized(avgSpritePoint);
+            g.transform.localPosition = avgSpritePoint;
+            
+            LayerImportLibrary.SetNineSliceSprite(g, spritePoints);
+            LayerImportLibrary.SetEdgeCollider2DPoints(g, colliderPoints);
+            LayerImportLibrary.AddShadowCast(g, colliderPoints.ToVector3());
         }
 
-        public Vector2 WidthAndHeight(XElement xNode) {
-            return new Vector2(xNode.GetAttributeAs<Int16>("width"), xNode.GetAttributeAs<Int16>("height"));
-        }
-
-        public EdgeCollider2D[] GetEdges(Transform layer) {
-            return layer.GetComponentsInChildren<EdgeCollider2D>();
-        }
-
-        public void GenerateShadows(Transform layer) {
-            foreach (var edgeObj in GetEdges(layer)) {
-                ComponentFromCollider.AddShadowCaster2D(edgeObj.gameObject);
-            }
-
-            layer.gameObject.AddComponent<UnityEngine.Rendering.Universal.CompositeShadowCaster2D>();
+        private void ImportLava(GameObject g, int _) {
+            g.AddComponent<Lava>();
+            LayerImportLibrary.SetLayer(g, "Interactable");
+            Vector2[] colliderPoints = LayerImportLibrary.EdgeToPoints(g);
+            LayerImportLibrary.AddFreeformLightPrefab(g, _prefabReplacements["LavaLight"], colliderPoints.ToVector3());
         }
         
-        public void AddFreeformLightPrefab(Transform layer, String prefabName) {
-            GameObject prefab = _prefabReplacements[prefabName];
-            foreach (var edgeObj in GetEdges(layer)) {
-                var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
-                instance.transform.SetParent(edgeObj.transform);
-                instance.transform.localPosition = Vector3.zero;
-                Light2D l = instance.GetComponent<Light2D>();
-
-                if (l == null) {
-                    throw new ConstraintException($"Prefab {prefabName} must have Freeform light attached");
-                }
-                l.SetShapePath(ComponentFromCollider.GetColliderPoints(edgeObj).ToArray());
-            }
-        }
-        
-        private void ReplacePrefab(Transform layer, string prefabName) {
-            GameObject prefab = _prefabReplacements[prefabName];
-            int i = 0;
-            foreach (var edgeObj in GetEdges(layer)) {
-                Debug.Log(edgeObj);
-                var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
-                instance.transform.SetParent(edgeObj.transform.parent);
-                instance.transform.localPosition = Vector3.zero;
-                instance.transform.name = $"{instance.transform.name} ({i++})";
-
-                Vector2[] points = ComponentFromCollider.GetColliderPointsVec2(edgeObj);
-
-                ComponentFromCollider.SetPrefabPoints(instance, points);
-            }
+        private void ImportMechanics(Transform layer, XElement element) {
+            // LayerImportLibrary.AnchorOffset(layer, element);
         }
 
-        public void AddComponentToCollidersInLayer(Transform layer, string component) {
-            foreach (EdgeCollider2D edge in GetEdges(layer))
-            {
-                edge.gameObject.AddComponent(typings[component]);
-            }
-        }
-
-        public void SetLayer(Transform layer, string layerName) {
-            foreach (EdgeCollider2D edge in GetEdges(layer))
-            {
-                edge.gameObject.layer = LayerMask.NameToLayer(layerName);
+        private void ResolveTileLayerImports(Transform layer, Action<GameObject, int> import) {
+            if (layer.childCount > 0) {
+                Transform t = layer.GetChild(0);
+                t.ForEachChild(import);
             }
         }
 
@@ -257,21 +197,6 @@ namespace Helpers {
             }
 
             return null;
-        }
-        
-
-        public Transform FindObjByID(Transform parent, string id) {
-            for (var i=0; i < parent.childCount; i++){
-                if(parent.GetChild(i).name.Contains("Object_" + id)) {
-                    return parent.GetChild(i);
-                }
-            }
-
-            return null;
-        }
-
-        public XElement XElementFromTemplatePath(String path) {
-            return XDocument.Load("Assets/Tiles/" + path).Descendants("object").First();
         }
 
         public LogLevel GetLogLevel()

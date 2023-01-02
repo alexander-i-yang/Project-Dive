@@ -60,7 +60,7 @@ MonoBehaviour:
   - m_TypeName: Moving Box
     m_Prefab: {fileID: 4997218929975561094, guid: 6c98e429c92798242bee43a316268452, type: 3}
   - m_TypeName: Spawn
-    m_Prefab: {fileID: 8494943140775078179, guid: 96135c2b97cba5647a346c65e93cf101, type: 3}
+    m_Prefab: {fileID: 8494943140775078179, guid: df14e3f30656bb346bdb7fea394f6f70, type: 3}
   - m_TypeName: SpikeDown
     m_Prefab: {fileID: 1714830696444730741, guid: 554b9bb52b7f23e41ac4e0d62dd3a6d5, type: 3}
   - m_TypeName: SpikeUp
