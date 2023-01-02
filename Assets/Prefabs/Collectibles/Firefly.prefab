@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 3572848764956040596}
   - component: {fileID: 8172312737088805392}
   - component: {fileID: 4069720260113940954}
-  - component: {fileID: 8948840229318957180}
+  - component: {fileID: 2773001664567645559}
   m_Layer: 0
   m_Name: Firefly
   m_TagString: Untagged
@@ -237,7 +237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d260f19d90bcaf94694869be6482561e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8948840229318957180
+  targetGate: {fileID: 0}
+--- !u!114 &2773001664567645559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -246,9 +247,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3572848764956040594}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdc35bf4d48d3d3448cbdd9f0cc3adfd, type: 3}
+  m_Script: {fileID: 11500000, guid: edff8c62226b3eb4191be481c5f26ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startVelocity: {x: -1, y: 0}
-  endVelocity: {x: 1, y: 0}
+  target: {fileID: 0}
+  startSpeed: 100
+  startAngleDeg: 162
+  endAngleDeg: 281
+  endSpeed: 500
   animSpeed: 1

@@ -11,13 +11,17 @@ using Helpers.Animation;
 namespace Collectibles {
     public class Firefly : Collectible, IFilterLoggerTarget
     {
-        private ViewportCurveAnimator _animator;
+        [SerializeField] private Gate targetGate;
+
+        private FireflyAnimator _animator;
+
         public override string ID => "Firefly";
 
         private void Awake()
         {
-            _animator = GetComponent<ViewportCurveAnimator>();
+            _animator = GetComponent<FireflyAnimator>();
         }
+
         public override void OnTouched(Collector collector)
         {
             FilterLogger.Log(this, $"{gameObject.name} Touched {collector}");
@@ -27,7 +31,7 @@ namespace Collectibles {
         private void OnFinishCollected(Collector collector)
         {
             collector.OnCollectFinished(this);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
         public LogLevel GetLogLevel()

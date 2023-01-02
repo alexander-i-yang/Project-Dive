@@ -1,0 +1,60 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+using MyBox;
+
+using Core;
+
+namespace Helpers.Animation
+{
+    public class CurveAnimator
+    {
+        private ICurveAnimProvider _curveProvider;
+        private MonoBehaviour _target;
+
+        private CubicCurve2D _animCurve;
+        private Coroutine _animCorout;
+
+        private Camera _camera => Game.Instance.MainCamera;
+
+        public CurveAnimator(ICurveAnimProvider curveProvider, MonoBehaviour target)
+        {
+            _curveProvider = curveProvider;
+            _target = target;
+        }
+
+        public void PlayAnimation(System.Action onAnimationFinish)
+        {
+            _animCurve = _curveProvider.GetCurve();
+            _animCorout = _target.StartCoroutine(AnimateCurve());
+            _animCorout.OnComplete(onAnimationFinish);
+        }
+
+        private IEnumerator AnimateCurve()
+        {
+            float t = 0;
+            while (t < 1f)
+            {
+                Vector2 newPos = GetWorldPos(_animCurve.Evaluate(Mathf.Clamp01(t)));
+                _target.transform.position = new Vector3(newPos.x, newPos.y, _target.transform.position.z);
+                t += Game.Instance.DeltaTime * _curveProvider.GetAnimSpeed();
+                yield return null;
+            }
+        }
+
+        public Vector2 GetWorldPos(Vector2 curvePos)
+        {
+            switch (_curveProvider.GetRelativeTo())
+            {
+                case CurveRelativeTo.Viewport:
+                    return _camera.ViewportToWorldPoint(curvePos);
+                case CurveRelativeTo.Screen:
+                    return _camera.ScreenToWorldPoint(curvePos);
+                case CurveRelativeTo.World:
+                default:
+                    return curvePos;
+            }
+        }
+    }
+}
