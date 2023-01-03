@@ -10,15 +10,13 @@ using Mechanics;
 namespace Collectibles {
     public class Firefly : Collectible, IFilterLoggerTarget
     {
-        [SerializeField] private Gate targetGate;
+        //[SerializeField] private Gate targetGate;
 
         private FireflyAnimator _animator;
 
         private bool _touched = false;
 
         public override string ID => "Firefly";
-
-        public static string s_ID => "Firefly";
 
         private void Awake()
         {

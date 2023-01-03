@@ -15,7 +15,6 @@ public class GateAnimator : MonoBehaviour
 
     public void PlayAnimation(System.Action OnAnimationFinish = null)
     {
-        GetComponent<SpriteRenderer>().color = Color.green;
         _animCorout = StartCoroutine(Animate());
         _animCorout.OnComplete(OnAnimationFinish);
     }
