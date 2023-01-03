@@ -2,6 +2,7 @@
 
 using UnityEngine;
 
+using Core;
 using Helpers;
 using Helpers.Animation;
 
@@ -11,7 +12,7 @@ namespace Collectibles
     {
         private const int numSamplesVisual = 50;
 
-        [SerializeField] private Transform target;
+        //[SerializeField] private Transform target;
         [SerializeField] private float startSpeed;
         [SerializeField, Range(0f, 360f)] private float startAngleDeg;
         [SerializeField, Range(0f, 360f)] private float endAngleDeg;
@@ -19,6 +20,10 @@ namespace Collectibles
         [SerializeField] private float animSpeed;
 
         private CurveAnimator _curveAnim;
+
+        private Vector3 _offScreenPoint => new Vector3(1, 1, _camera.nearClipPlane);
+
+        private Camera _camera => Game.Instance.MainCamera;
 
         private void Awake()
         {
@@ -32,10 +37,12 @@ namespace Collectibles
 
         public CubicCurve2D GetCurve()
         {
-            Vector2 dirToGate = (target.transform.position - transform.position).normalized;
+            Vector2 startPos = _camera.WorldToViewportPoint(transform.position);
+            Vector2 endPos = _offScreenPoint;
+            Vector2 dirToGate = (endPos - startPos).normalized;
             Vector2 startVel = startSpeed * Helper.RotateVector2(dirToGate, Mathf.Deg2Rad * startAngleDeg);
             Vector2 endVel = endSpeed * Helper.RotateVector2(dirToGate, Mathf.Deg2Rad * endAngleDeg);
-            return new HermiteCurve2D(transform.position, target.transform.position, startVel, endVel);
+            return new HermiteCurve2D(startPos, endPos, startVel, endVel);
         }
 
         public float GetAnimSpeed()
@@ -45,18 +52,17 @@ namespace Collectibles
 
         public CurveRelativeTo GetRelativeTo()
         {
-            return CurveRelativeTo.World;
+            return CurveRelativeTo.Viewport;
         }
 
         private void OnDrawGizmosSelected()
         {
-            List<Vector2> samples = GetCurve().SamplePoints(numSamplesVisual);
-
-            Gizmos.color = Color.green;
-            foreach (Vector2 sample in samples)
+            if (_curveAnim == null)
             {
-                Gizmos.DrawSphere(sample, 2);
+                _curveAnim = new CurveAnimator(this, this);
             }
+
+            _curveAnim.DrawCurve(numSamplesVisual);
         }
     }
 }

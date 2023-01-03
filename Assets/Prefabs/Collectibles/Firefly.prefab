@@ -250,9 +250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edff8c62226b3eb4191be481c5f26ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  startSpeed: 100
-  startAngleDeg: 162
-  endAngleDeg: 281
-  endSpeed: 500
+  startSpeed: 1
+  startAngleDeg: 73
+  endAngleDeg: 333
+  endSpeed: 1.5
   animSpeed: 1

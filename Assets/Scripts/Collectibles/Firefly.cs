@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using MyBox;
 
-using Core;
 using Helpers;
-using Helpers.Animation;
+using Mechanics;
 
 namespace Collectibles {
     public class Firefly : Collectible, IFilterLoggerTarget
@@ -15,7 +14,11 @@ namespace Collectibles {
 
         private FireflyAnimator _animator;
 
+        private bool _touched = false;
+
         public override string ID => "Firefly";
+
+        public static string s_ID => "Firefly";
 
         private void Awake()
         {
@@ -24,19 +27,23 @@ namespace Collectibles {
 
         public override void OnTouched(Collector collector)
         {
-            FilterLogger.Log(this, $"{gameObject.name} Touched {collector}");
-            _animator.PlayAnimation(() => OnFinishCollected(collector));
+            if (!_touched)
+            {
+                _touched = true;
+                FilterLogger.Log(this, $"{gameObject.name} Touched {collector}");
+                _animator.PlayAnimation(() => OnFinishCollected(collector));
+            }
         }
 
         private void OnFinishCollected(Collector collector)
         {
             collector.OnCollectFinished(this);
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
 
         public LogLevel GetLogLevel()
         {
-            return LogLevel.Info;
+            return LogLevel.Warning;
         }
     }
 }

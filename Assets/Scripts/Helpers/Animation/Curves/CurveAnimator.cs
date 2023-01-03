@@ -56,5 +56,16 @@ namespace Helpers.Animation
                     return curvePos;
             }
         }
+
+        public void DrawCurve(int numSamples)
+        {
+            List<Vector2> samples = _curveProvider.GetCurve().SamplePoints(numSamples);
+
+            Gizmos.color = Color.green;
+            foreach (Vector2 sample in samples)
+            {
+                Gizmos.DrawSphere(GetWorldPos(sample), 2);
+            }
+        }
     }
 }
