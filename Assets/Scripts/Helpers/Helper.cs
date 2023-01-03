@@ -58,6 +58,15 @@ namespace Helpers {
             return new Vector2(RoundHalf(v.x), RoundHalf(v.y));
         }
 
+        public static Vector2 RotateVector2(Vector2 v, float angleRad)
+        {
+            float sin = Mathf.Sin(angleRad);
+            float cos = Mathf.Cos(angleRad);
+            float _x = v.x * cos - v.y * sin;
+            float _y = v.x * sin + v.y * cos;
+            return new Vector2(_x, _y);
+        }
+
         /// <summary>
         /// At a given position, casts a vector up and down the z axis to find Components of type <typeparamref name="T"/>
         /// </summary>

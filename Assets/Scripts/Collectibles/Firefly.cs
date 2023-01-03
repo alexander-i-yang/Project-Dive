@@ -4,50 +4,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using MyBox;
 
-using Core;
 using Helpers;
-using Helpers.Animation;
+using Mechanics;
 
 namespace Collectibles {
     public class Firefly : Collectible, IFilterLoggerTarget
     {
-        [SerializeField] private float animSpeed;
+        //[SerializeField] private Gate targetGate;
+
+        private FireflyAnimator _animator;
+
+        private bool _touched = false;
 
         public override string ID => "Firefly";
 
-        public override void OnTouched(Collector collector)
+        private void Awake()
         {
-            FilterLogger.Log(this, $"{gameObject.name} Touched {collector}");
-            StartCoroutine(CurveHelper.AnimateCurve(gameObject, GetAnimCurve(), animSpeed, () => OnFinishCollected(collector)));
+            _animator = GetComponent<FireflyAnimator>();
         }
 
+        public override void OnTouched(Collector collector)
+        {
+            if (!_touched)
+            {
+                _touched = true;
+                FilterLogger.Log(this, $"{gameObject.name} Touched {collector}");
+                _animator.PlayAnimation(() => OnFinishCollected(collector));
+            }
+        }
 
         private void OnFinishCollected(Collector collector)
         {
             collector.OnCollectFinished(this);
             Destroy(gameObject);
-        }
-
-        private Vector3 GetOffScreenPoint()
-        {
-            return Game.Instance.MainCamera.ViewportToWorldPoint(new Vector3(1, 1, Game.Instance.MainCamera.nearClipPlane));
-        }
-
-        private CubicCurve2D GetAnimCurve()
-        {
-            return new HermiteCurve2D(transform.position, GetOffScreenPoint(), -200 * Vector2.right, 50 * (Vector2.up + Vector2.right));
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            CubicCurve2D animCurve = GetAnimCurve();
-            List<Vector2> samples = animCurve.SamplePoints(50);
-
-            Gizmos.color = Color.green;
-            foreach (Vector2 sample in samples)
-            {;
-                Gizmos.DrawSphere(sample, 2);
-            }
         }
 
         public LogLevel GetLogLevel()

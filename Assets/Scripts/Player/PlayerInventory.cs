@@ -27,4 +27,14 @@ public class PlayerInventory : Collector, IFilterLoggerTarget
 
         FilterLogger.Log(this, $"Player Has {itemQuantities[id]} {id}'s");
     }
+
+    public int NumCollectibles(string id)
+    {
+        if (!itemQuantities.ContainsKey(id))
+        {
+            return 0;
+        }
+
+        return itemQuantities[id];
+    }
 }
