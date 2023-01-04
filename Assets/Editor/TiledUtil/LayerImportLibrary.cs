@@ -8,6 +8,7 @@ using SuperTiled2Unity.Editor;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Tilemaps;
 
 namespace TiledUtil {
     public static class LayerImportLibrary {
@@ -113,6 +114,20 @@ namespace TiledUtil {
             GameObject instance = AddPrefabAsChild(g, lightPrefab);
             Light2D l = instance.GetRequiredComponent<Light2D>();
             l.SetShapePath(points);
+        }
+
+        public static void SetMaterial(GameObject g, string materialName)
+        {
+            Material mat = Resources.Load(materialName) as Material;
+
+            if (mat == null)
+            {
+                Debug.LogError($"Could not find material {materialName}");
+                return;
+            }
+            Debug.Log($"Material Name: {mat}");
+            Debug.Log($"{g.name}");
+            g.GetComponent<TilemapRenderer>().material = mat;
         }
 
         public static void SetLayer(GameObject g, String layerName) {
