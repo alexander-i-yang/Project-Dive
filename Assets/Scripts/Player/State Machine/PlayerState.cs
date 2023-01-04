@@ -37,6 +37,8 @@ namespace Player
             {
                 if (moveDirection != 0)
                 {
+
+                    MySM.CurrInput.facing = moveDirection;
                     MySM._spriteR.flipX = moveDirection == -1;
                 }
             }

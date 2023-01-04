@@ -8,6 +8,7 @@ namespace Player
     public class PlayerStateInput : StateInput {
         //Movement
         public int moveDirection;
+        public int facing;
 
         //Jump
         public GameTimer jumpBufferTimer;
