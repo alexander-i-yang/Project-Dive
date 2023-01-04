@@ -15,7 +15,7 @@ namespace Player
 
             public override void Enter(PlayerStateInput i)
             {
-                bool conserveMomentum = GameTimer.GetTimerState(i.dogoXVBufferTimer) == TimerState.Running;
+                bool conserveMomentum = GameTimerWindowed.GetTimerState(i.ultraTimer) == TimerStateWindowed.InWindow;
                 MySM.StartCoroutine(DogoJumpRoutine(conserveMomentum, i.oldVelocity));
                 foreach (Spike spike in Input.dogoDisabledSpikes)
                 {

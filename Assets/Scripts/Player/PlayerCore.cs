@@ -3,6 +3,7 @@ using UnityEngine;
 using MyBox;
 
 using Mechanics;
+using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -71,9 +72,27 @@ namespace Player
         [Tooltip("Time where acceleration/decelartion is 0")]
         [SerializeField] private float dogoJumpTime;
         public static float DogoJumpTime => Instance.dogoJumpTime;
+        
+        [Tooltip("Amount of time you need to wait to press jump in order to ultra")]
+        [SerializeField] private float ultraTimeDelay;
+        public static float UltraTimeDelay => Instance.ultraTimeDelay;
+        
+        [Tooltip("Window of time you need to press jump in order to ultra")]
+        [FormerlySerializedAs("dogoConserveXVTime")]
+        [SerializeField] private float ultraTimeWindow;
+        public static float UltraTimeWindow => Instance.ultraTimeWindow;
+        
+        [Tooltip("Speed multiplier on the boost you get from ultraing")]
+        [FormerlySerializedAs("dogoConserveXVTime")]
+        [SerializeField] private float ultraSpeedMult;
+        public static float UltraSpeedMult => Instance.ultraSpeedMult;
 
-        [SerializeField] private float dogoConserveXVTime;
-        public static float DogoConserveXVTime => Instance.dogoConserveXVTime;
+        [Tooltip("Debug option to change sprite color to green when u can ultra")]
+        [SerializeField] private bool ultraHelper;
+        public static bool UltraHelper => Instance.ultraHelper;
+
+        // [SerializeField] private float dogoConserveXVTime;
+        // public static float DogoConserveXVTime => Instance.dogoConserveXVTime;
 
         [Tooltip("Time to let players input a direction change")]
         [SerializeField] private float dogoJumpGraceTime;

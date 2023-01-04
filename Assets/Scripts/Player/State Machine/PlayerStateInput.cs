@@ -20,9 +20,10 @@ namespace Player
         public bool canDive;
 
         //Dogo
-        public GameTimer dogoXVBufferTimer;
+        // public GameTimer dogoXVBufferTimer;
         public HashSet<Spike> dogoDisabledSpikes;
         public double oldVelocity;
+        public GameTimerWindowed ultraTimer;
 
     }
 }

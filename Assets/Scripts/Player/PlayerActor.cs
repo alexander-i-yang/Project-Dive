@@ -111,7 +111,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     }
 
     public void DogoJump(int moveDirection, bool conserveMomentum, double oldXV) {
-        // if (moveDirection == 0) moveDirection = 
+        // if (moveDirection == 0)
         if (!(moveDirection == 1 || moveDirection == -1)) {
             throw new ArgumentException(
             $"Cannot dogo jump in direction({moveDirection})"
@@ -120,13 +120,14 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         velocityX = moveDirection * PlayerCore.DogoJumpXV;
         if (conserveMomentum)
         {
+            float addSpeed = PlayerCore.DogoJumpXV * PlayerCore.UltraSpeedMult;
             if (moveDirection == 1)
             {
-                velocityX = (float)Math.Max(oldXV + PlayerCore.DogoJumpXV, PlayerCore.DogoJumpXV);
+                velocityX = (float)Math.Max(oldXV + addSpeed, PlayerCore.DogoJumpXV);
             }
             else if (moveDirection == -1)
             {
-                velocityX = (float)Math.Min(oldXV - PlayerCore.DogoJumpXV, -PlayerCore.DogoJumpXV);
+                velocityX = (float)Math.Min(oldXV - addSpeed, -PlayerCore.DogoJumpXV);
             }
         }
 

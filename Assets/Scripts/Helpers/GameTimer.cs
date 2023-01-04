@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using System.Buffers.Text;
+using Core;
 
 namespace Helpers
 {
@@ -10,13 +11,13 @@ namespace Helpers
     }
     public class GameTimer : IFilterLoggerTarget
     {
-        private float _timerValue;
-        private float _duration;
+        protected float _timerValue { get; private set; }
+        protected float _duration { get; }
         private string _name;
 
         private bool _active;
 
-        private GameTimer(float duration, string name)
+        internal GameTimer(float duration, string name)
         {
             _duration = duration;
             _name = name;
@@ -63,13 +64,13 @@ namespace Helpers
             return timer.Finished() ? TimerState.Finished : TimerState.Running;
         }
 
-        private void Reset()
+        internal void Reset()
         {
             _timerValue = _duration;
             _active = true;
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             if (!Finished())
             {
@@ -88,7 +89,7 @@ namespace Helpers
             }
         }
 
-        private bool Finished()
+        internal bool Finished()
         {
             return _timerValue <= 0;
         }
@@ -96,6 +97,48 @@ namespace Helpers
         public LogLevel GetLogLevel()
         {
             return LogLevel.Warning;
+        }
+    }
+    
+    public enum TimerStateWindowed
+    {
+        Inactive,
+        BeforeWindow,
+        InWindow,
+        AfterWindow
+    }
+
+    public class GameTimerWindowed : GameTimer
+    {
+        /**
+         * A GameWindowedTimer is a timer with an appropriate window where the Timer is active.
+         * _length is the length of the window.
+         * base._duration becomes the length of the window + the delay before the window.
+         */
+        private float _length;
+        internal GameTimerWindowed(float duration, float length, string name) : base(duration, name)
+        {
+            _length = length;
+        }
+        
+        public static GameTimerWindowed StartNewWindowedTimer(float delay, float length, string name = "Timer")
+        {
+            GameTimerWindowed timer = new GameTimerWindowed(delay+length, length, name);
+            timer.Reset();
+            return timer;
+        }
+        
+        public static TimerStateWindowed GetTimerState(GameTimerWindowed timer)
+        {
+            if (GameTimer.GetTimerState(timer) == TimerState.Inactive) return TimerStateWindowed.Inactive;
+
+            if (timer.InWindow()) return TimerStateWindowed.InWindow;
+            return timer.Finished() ? TimerStateWindowed.AfterWindow : TimerStateWindowed.BeforeWindow;
+        }
+
+        private bool InWindow()
+        {
+            return _timerValue <= _length && _timerValue > 0;
         }
     }
 }
