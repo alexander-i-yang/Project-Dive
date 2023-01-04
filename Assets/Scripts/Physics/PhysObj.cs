@@ -9,7 +9,7 @@ namespace Phys {
     [RequireComponent(typeof(Collider2D))]
     public abstract class PhysObj : MonoBehaviour {
         protected BoxCollider2D myCollider { get; private set; }
-        protected Vector2 velocity = Vector2.zero;
+        public Vector2 velocity { get; protected set; }  = Vector2.zero;
 
         [NonSerialized] public Vector2 NextFrameOffset = Vector2.zero;
         [NonSerialized] private Vector2 MoveRemainder = Vector2.zero;
