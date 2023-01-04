@@ -110,21 +110,23 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         return v;
     }
 
-    public void DogoJump(int moveDirection, bool conserveMomentum, double oldXV)
-    {
-        if (moveDirection != 0)
+    public void DogoJump(int moveDirection, bool conserveMomentum, double oldXV) {
+        // if (moveDirection == 0) moveDirection = 
+        if (!(moveDirection == 1 || moveDirection == -1)) {
+            throw new ArgumentException(
+            $"Cannot dogo jump in direction({moveDirection})"
+            );
+        }
+        velocityX = moveDirection * PlayerCore.DogoJumpXV;
+        if (conserveMomentum)
         {
-            velocityX = moveDirection * PlayerCore.DogoJumpXV;
-            if (conserveMomentum)
+            if (moveDirection == 1)
             {
-                if (moveDirection == 1)
-                {
-                    velocityX = (float)Math.Max(oldXV + PlayerCore.DogoJumpXV, PlayerCore.DogoJumpXV);
-                }
-                else if (moveDirection == -1)
-                {
-                    velocityX = (float)Math.Min(oldXV - PlayerCore.DogoJumpXV, -PlayerCore.DogoJumpXV);
-                }
+                velocityX = (float)Math.Max(oldXV + PlayerCore.DogoJumpXV, PlayerCore.DogoJumpXV);
+            }
+            else if (moveDirection == -1)
+            {
+                velocityX = (float)Math.Min(oldXV - PlayerCore.DogoJumpXV, -PlayerCore.DogoJumpXV);
             }
         }
 
