@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using System;
+using Core;
 
 using System.Collections;
 using Phys;
@@ -10,13 +11,24 @@ namespace Mechanics {
     public class Crystal : Solid, IFilterLoggerTarget {
         private bool _broken = false;
         public double rechargeTime = 1;
+        
         private SpriteRenderer _mySR;
+        
         private UnityEngine.Rendering.Universal.Light2D _light;
+        private float _lightIntensityStart;
+        [SerializeField] private bool flicker;
+        [SerializeField] private float amplitude;
+        [SerializeField] private float frequency;
 
         new void Start() {
             _mySR = GetComponent<SpriteRenderer>();
             _light = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
+            _lightIntensityStart = _light.intensity;
             base.Start();
+        }
+
+        private void Update() {
+            if (flicker && !_broken) Flicker();
         }
 
         public override bool Collidable()
@@ -51,19 +63,24 @@ namespace Mechanics {
 
         public IEnumerator BreakCoroutine() {
             _mySR.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-            var oldLightIntensity = _light.intensity;
             _light.intensity = 0;
+            GetComponent<Floater>().enabled = false;
             for (double i = 0; i < rechargeTime; i += Game.Instance.DeltaTime) {
                 yield return null;
             }
             _mySR.color = Color.white;
             _broken = false;
-            _light.intensity = oldLightIntensity;
+            _light.intensity = _lightIntensityStart;
+            GetComponent<Floater>().enabled = true;
         }
 
         public LogLevel GetLogLevel()
         {
             return LogLevel.Error;
+        }
+
+        public void Flicker() {
+            _light.intensity = _lightIntensityStart + Mathf.Sin (Game.Instance.Time * Mathf.PI * frequency+transform.position.x*0.1f) * amplitude;
         }
     }
 }

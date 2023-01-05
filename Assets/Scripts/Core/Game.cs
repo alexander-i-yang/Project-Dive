@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using MyBox;
-using UnityEngine.U2D;
 
 using Audio;
 
@@ -11,8 +10,9 @@ namespace Core
         [Range(0, 1)] public float TimeScale = 1;
         public bool IsPaused;
 
-        public float DeltaTime;
-        public float FixedDeltaTime;
+        public float DeltaTime { get; private set; }
+        public float FixedDeltaTime { get; private set; }
+        public float Time { get; private set; } = 0;
 
         private Camera _mainCamera;
         public Camera MainCamera
@@ -50,13 +50,14 @@ namespace Core
 
         void Update()
         {
-            DeltaTime = IsPaused ? 0 : Time.deltaTime * TimeScale;
+            DeltaTime = IsPaused ? 0 : UnityEngine.Time.deltaTime * TimeScale;
+            Time += DeltaTime;
         }
 
         private void FixedUpdate()
         {
             if (ResetNextFrameOffset != null) ResetNextFrameOffset();
-            FixedDeltaTime = IsPaused ? 0 : Time.fixedDeltaTime * TimeScale;
+            FixedDeltaTime = IsPaused ? 0 : UnityEngine.Time.fixedDeltaTime * TimeScale;
         }
     }
 }

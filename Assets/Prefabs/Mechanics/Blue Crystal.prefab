@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 929138509278991382}
   - component: {fileID: 929138509278991387}
   - component: {fileID: 929138509278991380}
+  - component: {fileID: 3840214317341254946}
   m_Layer: 3
   m_Name: Blue Crystal
   m_TagString: Untagged
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -163342673
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7726f8645e0fd7847bc9ed1bdadeaa0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -104,8 +105,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12, y: 18}
+    pivot: {x: 0.5, y: 0.6111111}
+    oldSize: {x: 12, y: 19}
     newSize: {x: 8, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -127,6 +128,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rechargeTime: 1
+  flicker: 1
+  amplitude: 0.5
+  frequency: 2
+--- !u!114 &3840214317341254946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929138509278991383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9be4345a6a432d886069f41b37d4c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  degreesPerSecond: 0
+  amplitude: 1
+  frequency: 1.5
 --- !u!1 &929138510643261010
 GameObject:
   m_ObjectHideFlags: 0
