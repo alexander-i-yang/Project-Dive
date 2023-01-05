@@ -793,7 +793,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "AddNoise (Custom Function)",
+    "m_Name": "ApplyNoise (Custom Function)",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -832,7 +832,7 @@
         "m_SerializableColors": []
     },
     "m_SourceType": 0,
-    "m_FunctionName": "AddNoise",
+    "m_FunctionName": "ApplyNoise",
     "m_FunctionSource": "84adf782f4a0b1746bec289631582647",
     "m_FunctionBody": "float4 noiseDiff = "
 }
