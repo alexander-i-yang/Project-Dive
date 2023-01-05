@@ -49,7 +49,14 @@ namespace Helpers {
             var doc = XDocument.Load(args.assetPath);
 
             AddRoomComponents(map.transform);
+
+            //Applies to the entire tilemap
+            Dictionary<String, Action<GameObject>> tilemapLayerImports = new()
+            {
+                { "Lava", ImportLavaTilemap }
+            };
             
+            //Applies to children
             Dictionary<String, Action<GameObject, int>> tileLayerImports = new() {
                 { "Ground", ImportGround },
                 { "Breakable", ImportBreakable },
@@ -62,7 +69,13 @@ namespace Helpers {
             
             foreach (SuperLayer layer in layers) {
                 string layerName = layer.name;
+                if (tilemapLayerImports.ContainsKey(layerName))
+                {
+                    tilemapLayerImports[layerName](layer.gameObject);
+                }
+
                 if (tileLayerImports.ContainsKey(layerName)) {
+                  
                     ResolveTileLayerImports(layer.transform, tileLayerImports[layerName]);
                 } else if (objectLayerImports.ContainsKey(layerName)) {
                     objectLayerImports[layerName](layer.transform, GetLayerXNode(doc, layer));
@@ -175,6 +188,12 @@ namespace Helpers {
             LayerImportLibrary.SetLayer(g, "Interactable");
             Vector2[] colliderPoints = LayerImportLibrary.EdgeToPoints(g);
             LayerImportLibrary.AddFreeformLightPrefab(g, _prefabReplacements["LavaLight"], colliderPoints.ToVector3());
+        }
+
+        private void ImportLavaTilemap(GameObject g)
+        {
+            Debug.Log($"HELLOOOOO");
+            LayerImportLibrary.SetMaterial(g, "Lava");
         }
         
         private void ImportMechanics(Transform layer, XElement element) {

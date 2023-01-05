@@ -8,6 +8,7 @@ namespace Player
     public class PlayerStateInput : StateInput {
         //Movement
         public int moveDirection;
+        public int facing;
 
         //Jump
         public GameTimer jumpBufferTimer;
@@ -19,9 +20,10 @@ namespace Player
         public bool canDive;
 
         //Dogo
-        public GameTimer dogoXVBufferTimer;
+        // public GameTimer dogoXVBufferTimer;
         public HashSet<Spike> dogoDisabledSpikes;
         public double oldVelocity;
+        public GameTimerWindowed ultraTimer;
 
     }
 }

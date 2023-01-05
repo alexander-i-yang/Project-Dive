@@ -15,7 +15,7 @@ namespace Player
 
             public override void Enter(PlayerStateInput i)
             {
-                bool conserveMomentum = GameTimer.GetTimerState(i.dogoXVBufferTimer) == TimerState.Running;
+                bool conserveMomentum = GameTimerWindowed.GetTimerState(i.ultraTimer) == TimerStateWindowed.InWindow;
                 MySM.StartCoroutine(DogoJumpRoutine(conserveMomentum, i.oldVelocity));
                 foreach (Spike spike in Input.dogoDisabledSpikes)
                 {
@@ -24,19 +24,27 @@ namespace Player
                 RefreshAbilities();
             }
 
+            private int GetDogoJumpDirection() {
+                int facing = MySM.CurrInput.facing;
+                int moveDir = Input.moveDirection;
+                if (moveDir == 0) moveDir = facing;
+                return moveDir;
+            }
+
             private IEnumerator DogoJumpRoutine(bool conserveMomentum, double oldXV)
             {
                 Input.canJumpCut = true;
                 _dogoJumpTimer = GameTimer.StartNewTimer(PlayerCore.DogoJumpTime);
-                PlayerActions.DogoJump(Input.moveDirection, conserveMomentum, oldXV);
-
-                int oldMoveDirection = Input.moveDirection;
-                yield return Helper.DelayAction(PlayerCore.DogoJumpGraceTime, () =>
-                {
-                    if (oldMoveDirection != Input.moveDirection)
+                int jumpDir = GetDogoJumpDirection();
+                PlayerActions.DogoJump(jumpDir, conserveMomentum, oldXV);
+                int oldJumpDir = jumpDir;
+                
+                yield return Helper.DelayAction(PlayerCore.DogoJumpGraceTime, () => {
+                    jumpDir = GetDogoJumpDirection();
+                    if (jumpDir != oldJumpDir)
                     {
                         _dogoJumpTimer = GameTimer.StartNewTimer(PlayerCore.DogoJumpTime);
-                        PlayerActions.DogoJump(Input.moveDirection, conserveMomentum, oldXV);
+                        PlayerActions.DogoJump(jumpDir, conserveMomentum, oldXV);
                     }
                 });
             }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Core;
+using UnityEngine;
 
 namespace Helpers
 {
@@ -25,7 +26,7 @@ namespace Helpers
  
             // Float up/down with a Sin()
             tempPos = posOffset;
-            tempPos.y += Mathf.Sin (Time.fixedTime * Mathf.PI * frequency) * amplitude;
+            tempPos.y += Mathf.Sin (Game.Instance.Time * Mathf.PI * frequency+transform.position.x*0.1f) * amplitude;
  
             transform.position = tempPos;
         }

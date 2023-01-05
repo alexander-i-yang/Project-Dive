@@ -26,12 +26,18 @@ namespace Mechanics
         {
             if (PlayerCore.StateMachine.IsOnState<PlayerStateMachine.Diving>())
             {
-                _dogoDisabledSpikes.Add(spike);
-                spike.Discharge();
+                spike.Discharge(_dogoDisabledSpikes);
             }
             else if (spike.Charged)
             {
-                PlayerCore.Actor.Die();
+                bool shouldDie = true;
+                var directionalSpike = spike as DirectionalSpike;
+                if (directionalSpike != null)
+                {
+                    shouldDie = directionalSpike.ShouldDieFromVelocity(PlayerCore.Actor.velocity);
+                }
+                
+                if (shouldDie) PlayerCore.Actor.Die();
             }
         }
 

@@ -21,4 +21,17 @@
    <object id="1" x="0" y="1" width="2" height="6"/>
   </objectgroup>
  </tile>
+ <tile id="9" class="DirectionalSpikeUp">
+  <properties>
+   <property name="SetDirectionFromCode" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="10" class="ConnectedSpikeUp">
+  <properties>
+   <property name="SetDirectionFromCode" type="int" value="1"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" class="ConnectedSpike" x="0" y="7" width="8" height="1"/>
+  </objectgroup>
+ </tile>
 </tileset>

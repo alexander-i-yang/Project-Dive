@@ -1,4 +1,5 @@
-﻿using Helpers;
+﻿using System.Collections.Generic;
+using Helpers;
 using MyBox;
 using Phys;
 using UnityEngine;
@@ -36,7 +37,7 @@ namespace Mechanics {
             return false;
         }
 
-        public void Discharge() {
+        public virtual void Discharge(HashSet<Spike> dogoDisabledSpikes) {
             Charged = false;
             _mySR.SetAlpha(0.2f);
             // _mySR.color = Color.red;
@@ -44,6 +45,7 @@ namespace Mechanics {
                 StopCoroutine(_reEnableCoroutine);
                 _reEnableCoroutine = null;
             }
+            dogoDisabledSpikes.Add(this);
         }
 
         public void Recharge() {

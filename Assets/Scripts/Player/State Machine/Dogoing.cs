@@ -1,4 +1,5 @@
 ﻿using Helpers;
+using UnityEngine;
 
 namespace Player
 {
@@ -10,7 +11,10 @@ namespace Player
             {
                 PlayerAnim.ChangeState(PlayerAnimations.DOGOING);
                 i.oldVelocity = PlayerActions.Dogo();
-                i.dogoXVBufferTimer = GameTimer.StartNewTimer(PlayerCore.DogoConserveXVTime);
+                i.ultraTimer = GameTimerWindowed.StartNewWindowedTimer(
+                    PlayerCore.UltraTimeDelay, 
+                    PlayerCore.UltraTimeWindow
+                );
             }
 
             public override void JumpPressed()
@@ -21,7 +25,7 @@ namespace Player
 
             public override void FixedUpdate()
             {
-                GameTimer.FixedUpdate(Input.dogoXVBufferTimer);
+                GameTimer.FixedUpdate(Input.ultraTimer);
 
                 base.FixedUpdate();
             }
@@ -29,6 +33,31 @@ namespace Player
             public override void MoveX(int moveDirection)
             {
                 UpdateSpriteFacing(moveDirection);
+            }
+
+            public override void Update()
+            {
+                base.Update();
+                if (PlayerCore.UltraHelper)
+                {
+                    if (GameTimerWindowed.GetTimerState(Input.ultraTimer) == TimerStateWindowed.InWindow)
+                    {
+                        MySM._spriteR.color = Color.green;
+                    }
+                    else
+                    {
+                        MySM._spriteR.color = Color.white;
+                    }
+                }
+            }
+            
+            public override void Exit(PlayerStateInput playerStateInput)
+            {
+                base.Exit(playerStateInput);
+                if (PlayerCore.UltraHelper)
+                {
+                    MySM._spriteR.color = Color.white;
+                }
             }
         }
     }
