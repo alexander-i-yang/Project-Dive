@@ -16,8 +16,6 @@ namespace VFX
         [SerializeField] private Material _lavaMat;
         [SerializeField] private float impulseStrength = 0f;
 
-        private List<Material> _lavaMats;
-
         private CustomRenderTexture _lavaSimTex;
 
         [SerializeField] private RawImage _testImage;
@@ -45,7 +43,10 @@ namespace VFX
         {
             if (_lavaSimTex != null)
             {
-                _testImage.texture = _lavaSimTex;
+                if (_testImage != null)
+                {
+                    _testImage.texture = _lavaSimTex;
+                }
 
                 float velMag = PlayerCore.Actor.velocity.magnitude;
                 if (CurrRoom != null && velMag > 1f)
