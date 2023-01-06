@@ -26,12 +26,36 @@
    <property name="SetDirectionFromCode" type="int" value="1"/>
   </properties>
  </tile>
- <tile id="10" class="ConnectedSpikeUp">
+ <tile id="10" class="ConnectedSpike">
   <properties>
    <property name="SetDirectionFromCode" type="int" value="1"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" class="ConnectedSpike" x="0" y="7" width="8" height="1"/>
+  </objectgroup>
+ </tile>
+ <tile id="11" class="ConnectedSpike">
+  <properties>
+   <property name="SetDirectionFromCode" type="int" value="2"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="7" y="0" width="1" height="8"/>
+  </objectgroup>
+ </tile>
+ <tile id="14" class="ConnectedSpike">
+  <properties>
+   <property name="SetDirectionFromCode" type="int" value="0"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="1" height="8"/>
+  </objectgroup>
+ </tile>
+ <tile id="15" class="ConnectedSpike">
+  <properties>
+   <property name="SetDirectionFromCode" type="int" value="3"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="8" height="1"/>
   </objectgroup>
  </tile>
 </tileset>

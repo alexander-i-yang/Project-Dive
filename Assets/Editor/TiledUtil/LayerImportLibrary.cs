@@ -125,8 +125,6 @@ namespace TiledUtil {
                 Debug.LogError($"Could not find material {materialName}");
                 return;
             }
-            Debug.Log($"Material Name: {mat}");
-            Debug.Log($"{g.name}");
             g.GetComponent<TilemapRenderer>().material = mat;
         }
 
