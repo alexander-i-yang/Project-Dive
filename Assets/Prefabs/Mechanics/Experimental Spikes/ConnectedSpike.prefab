@@ -7,10 +7,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2605001963946083448, guid: 1b9af9c0f52c9d74b83ecf1ea9f13fda, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605001963946083448, guid: 1b9af9c0f52c9d74b83ecf1ea9f13fda, type: 3}
+      propertyPath: m_Size.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605001963946083448, guid: 1b9af9c0f52c9d74b83ecf1ea9f13fda, type: 3}
+      propertyPath: m_Offset.x
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605001963946083448, guid: 1b9af9c0f52c9d74b83ecf1ea9f13fda, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4261253124130823920, guid: 1b9af9c0f52c9d74b83ecf1ea9f13fda, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1578786363, guid: 5cf87638f53f91d43806acabc132898f, type: 3}
+      objectReference: {fileID: -1360893032, guid: 5cf87638f53f91d43806acabc132898f, type: 3}
     - target: {fileID: 7399817060475146222, guid: 1b9af9c0f52c9d74b83ecf1ea9f13fda, type: 3}
       propertyPath: m_Name
       value: ConnectedSpike
@@ -81,3 +97,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RechargeTime: 0.5
   Direction: {x: 0, y: 0}
+  spikeSprites: {fileID: 11400000, guid: e95968d15dd7c8241be18c412eba6640, type: 2}

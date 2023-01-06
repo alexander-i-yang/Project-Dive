@@ -192,7 +192,6 @@ namespace Helpers {
 
         private void ImportLavaTilemap(GameObject g)
         {
-            Debug.Log($"HELLOOOOO");
             LayerImportLibrary.SetMaterial(g, "Lava");
         }
         

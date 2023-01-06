@@ -1,14 +1,23 @@
 ﻿using UnityEngine;
+using Helpers;
 
 namespace Mechanics
 {
     public class DirectionalSpike : Spike
     {
+        
         public Vector2 Direction;
 
+        [SerializeField] private SpikeSpritesScriptableObject spikeSprites;
+
+        //Used in Tile Importer, do not delete
         public void SetDirectionFromCode(int code)
         {
             Direction = ReadDirectionCode(code);
+            float directionAngle = Vector2.SignedAngle(Vector2.right, Direction);
+            // GetComponent<SpriteRenderer>().sprite = spikeSprites.Sprites[code];
+            var boxCollider = GetComponent<BoxCollider2D>();
+            boxCollider.transform.Rotate(new Vector3(0, 0, directionAngle));
         }
         
         private Vector2 ReadDirectionCode(int directionCode)
