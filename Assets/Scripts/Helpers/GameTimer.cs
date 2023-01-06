@@ -64,6 +64,16 @@ namespace Helpers
             return timer.Finished() ? TimerState.Finished : TimerState.Running;
         }
 
+        public static bool TimerFinished(GameTimer timer)
+        {
+            return GetTimerState(timer) == TimerState.Finished;
+        }
+
+        public static bool TimerInactive(GameTimer timer)
+        {
+            return GetTimerState(timer) == TimerState.Inactive;
+        }
+
         internal void Reset()
         {
             _timerValue = _duration;

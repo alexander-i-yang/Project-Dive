@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 920634851000325340}
   - component: {fileID: 6050930652265175039}
+  - component: {fileID: 6107789628600611261}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46,5 +47,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeScale: 1
   IsPaused: 0
-  DeltaTime: 0
-  FixedDeltaTime: 0
+--- !u!114 &6107789628600611261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4467605989971130145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b4c33d04bb47b41a6c55381817cabe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lavaSimMat: {fileID: 2100000, guid: 4cbe966184682404dab9e5743d704724, type: 2}
+  _lavaMat: {fileID: 2100000, guid: e21ced2dba1969a4c8133b8ec60dfff7, type: 2}
+  impulseStrength: 0.3
+  _testImage: {fileID: 0}
