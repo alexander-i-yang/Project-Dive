@@ -40,10 +40,11 @@ Material:
     - _HalfNeighborhood: 2
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _K: 0.1
+    - _ImpulseWidth: 0.03
+    - _K: 0.13
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _Impulse: {r: 0.38183594, g: -0.734375, b: 0.1, a: 0}
+    - _Impulse: {r: 0, g: 0, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

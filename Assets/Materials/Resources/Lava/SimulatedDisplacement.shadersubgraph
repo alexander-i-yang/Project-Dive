@@ -1020,7 +1020,7 @@
     "m_SourceType": 1,
     "m_FunctionName": "GetUVFromWorldPos",
     "m_FunctionSource": "",
-    "m_FunctionBody": "UV = (WorldPos.xy - RoomPos.xy) / RoomSize;"
+    "m_FunctionBody": "UV = float2(WorldPos.x - RoomPos.x, RoomPos.y - WorldPos.y)/ RoomSize;"
 }
 
 {

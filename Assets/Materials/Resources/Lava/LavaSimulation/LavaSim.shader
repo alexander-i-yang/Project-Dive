@@ -5,6 +5,7 @@ Shader "CustomRenderTexture/LavaSim"
         _K("K", Float) = 0.1
         _HalfNeighborhood("Half Neighborhood", Integer) = 2
         _Impulse("Impulse", Vector) = (0, 0, 0, 0)
+        _ImpulseWidth("Impulse Width", Float) = 0.04
     }
 
         SubShader
@@ -21,9 +22,10 @@ Shader "CustomRenderTexture/LavaSim"
            #pragma fragment frag
            #pragma target 3.0
 
-            float3 _Impulse;
             float _K;
             int _HalfNeighborhood;
+            float3 _Impulse;
+            float _ImpulseWidth;
 
             //L: Shader inspired by Sean Flanagan's WaterSimulation shader from TOBI.
             //The main difference is that this is a 2D game, so displacement is a function of x instead of x and z. 
@@ -82,9 +84,10 @@ Shader "CustomRenderTexture/LavaSim"
                         dist = min(dist, distance(uv + float2(i, j), frac(impulseUV)));
                     }
                 }
-                float shouldDisplace = step(dist, 0.01);  //dist <= 0.01, displace the pixel, otherwise don't do anything
-                displacement += impulseStrength * shouldDisplace;
+                float shouldDisplace = step(dist, _ImpulseWidth);  //dist <= 0.01, displace the pixel, otherwise don't do anything
+                velocity += impulseStrength * shouldDisplace;
                 //displacement += _Impulse.z;
+                
                 //Write back to texture
 
                 float r = displacement;
