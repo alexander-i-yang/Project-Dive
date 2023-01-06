@@ -4,7 +4,7 @@ Shader "CustomRenderTexture/LavaSim"
     {
         _K("K", Float) = 0.1
         _HalfNeighborhood("Half Neighborhood", Integer) = 2
-        _Impulse ("Impulse", Vector) = (0, 0, 0, 0)
+        _Impulse("Impulse", Vector) = (0, 0, 0, 0)
     }
 
         SubShader
@@ -21,7 +21,7 @@ Shader "CustomRenderTexture/LavaSim"
            #pragma fragment frag
            #pragma target 3.0
 
-            float2 _Impulse;
+            float3 _Impulse;
             float _K;
             int _HalfNeighborhood;
 
@@ -38,11 +38,12 @@ Shader "CustomRenderTexture/LavaSim"
                 for (int i = -_HalfNeighborhood; i <= _HalfNeighborhood; i++)
                 {
                     float weight = 1 / abs(i);
-                    sum += tex2D(tex, float2(uv.x + i / 256, 0)).r * weight;
+                    //Only care about pixels on the left and right since it ripples "horizontally"
+                    sum += tex2D(tex, float2(uv.x + i / _CustomRenderTextureWidth, uv.y)).r * weight;
                     totalWeight += weight;
                 }
                 
-                //I'm guessing this is so there's no didvide by 0? I actually don't know.
+                //I'm guessing this is so there's no divide by 0? I actually don't know.
                 totalWeight += 0.5; 
 
                 return sum / totalWeight;
@@ -50,7 +51,7 @@ Shader "CustomRenderTexture/LavaSim"
 
             float4 frag(v2f_customrendertexture IN) : COLOR
             {
-                //Read from double buffered texture.
+                ////Read from double buffered texture.
 
                 float2 uv = IN.localTexcoord.xy;
                 float2 c = tex2D(_SelfTexture2D, uv).rg;
@@ -62,7 +63,7 @@ Shader "CustomRenderTexture/LavaSim"
 
                 float target = getTargetDisplacement(_SelfTexture2D, uv);
 
-                //Apply hooke's law to velocity
+                ////Apply hooke's law to velocity
 
                 float accel = (target - displacement) * _K;
                 velocity += accel;
@@ -71,19 +72,24 @@ Shader "CustomRenderTexture/LavaSim"
 
                 //Apply Impulse
 
+                float2 impulseUV = _Impulse.xy;
+                float impulseStrength = _Impulse.z;
                 float dist = 1;
                 for (int i = -1; i <= 1; i++)
                 {
-                    dist = min(dist, abs(uv.x + i - frac(_Impulse.x)));
+                    for (int j = -1; j <= 1; j++)
+                    {
+                        dist = min(dist, distance(uv + float2(i, j), frac(impulseUV)));
+                    }
                 }
                 float shouldDisplace = step(dist, 0.01);  //dist <= 0.01, displace the pixel, otherwise don't do anything
-                displacement += _Impulse.y * shouldDisplace;
-
+                displacement += impulseStrength * shouldDisplace;
+                //displacement += _Impulse.z;
                 //Write back to texture
 
                 float r = displacement;
                 float g = velocity;
-                return float4(r, g, 0, 0);
+                return float4(r, g, 0, 1);
             }
             ENDCG
         }
