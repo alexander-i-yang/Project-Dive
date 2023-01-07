@@ -122,10 +122,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 20
-        height: 15
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: 0.6}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,12 +141,12 @@ TextureImporter:
       name: Dogo_1
       rect:
         serializedVersion: 2
-        x: 20
+        x: 16
         y: 0
-        width: 20
-        height: 15
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: 0.6}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -162,12 +162,12 @@ TextureImporter:
       name: Dogo_2
       rect:
         serializedVersion: 2
-        x: 40
+        x: 32
         y: 0
-        width: 20
-        height: 15
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: 0.6}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: Dogo_3
       rect:
         serializedVersion: 2
-        x: 60
+        x: 48
         y: 0
-        width: 20
-        height: 15
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5, y: 0.6}
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -196,6 +196,48 @@ TextureImporter:
       bones: []
       spriteID: f018ba299ed1587469d7063587831b34
       internalID: -172976676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dogo_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 12
+      alignment: 9
+      pivot: {x: 0.75, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f7b95f9ee8eefc4886a9eebd20c2ef8
+      internalID: -2055856037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dogo_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 12
+      alignment: 9
+      pivot: {x: 0.75, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83330ad87d353a941a0f8be866a35f88
+      internalID: -2121892580
       vertices: []
       indices: 
       edges: []
@@ -213,7 +255,9 @@ TextureImporter:
     nameFileIdTable:
       Dogo_3: -172976676
       Dogo_0: -664978354
+      Dogo_5: -2121892580
       Dogo_2: 1639077241
+      Dogo_4: -2055856037
       Dogo_1: 702704924
   spritePackingTag: 
   pSDRemoveMatte: 0

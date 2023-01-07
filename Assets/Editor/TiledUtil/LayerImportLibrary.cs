@@ -139,5 +139,7 @@ namespace TiledUtil {
             }
             return t;
         }
+
+        public static void SetSortingLayer(this Renderer tr, string layer) => tr.sortingLayerName = layer;
     }
 }

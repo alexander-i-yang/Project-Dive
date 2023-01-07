@@ -28,8 +28,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1099,
-                "y": 999.5
+                "x": 1094.5,
+                "y": 995.5
             }
         },
         "Area Planning.tsx": {
@@ -48,17 +48,17 @@
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Branches.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 11,
-            "scaleInEditor": 16
+            "scaleInEditor": 1.5
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Breakable Test.tmx": {
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 4.8056640625,
+            "scale": 4.8,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 103.6277179435074,
-                "y": 72.31050599471652
+                "x": 103.64583333333333,
+                "y": 71.5625
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Breakable.tsx": {
@@ -70,9 +70,9 @@
                 3
             ],
             "scale": 4,
-            "selectedLayer": 4,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 146.25,
+                "x": 146.375,
                 "y": 82.875
             }
         },
@@ -89,10 +89,10 @@
                 3
             ],
             "scale": 4.8056640625,
-            "selectedLayer": 2,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 126.72546230440967,
-                "y": 72.31050599471652
+                "x": 126.82950619792723,
+                "y": 71.27006705954075
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Empty.tmx": {
@@ -100,10 +100,10 @@
                 3
             ],
             "scale": 4,
-            "selectedLayer": 0,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 1200,
-                "y": 72.125
+                "x": 1196.625,
+                "y": 70.375
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/LavaIntro.tmx": {
@@ -111,9 +111,9 @@
                 3
             ],
             "scale": 4,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 140,
+                "x": 140.125,
                 "y": 55.375
             }
         },
@@ -124,7 +124,7 @@
             "scale": 4.8056640625,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 135.8813249339565,
+                "x": 135.77728104043894,
                 "y": 75.43182280024385
             }
         },
@@ -133,10 +133,10 @@
                 3
             ],
             "scale": 4.8056640625,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 111.95122942491363,
-                "y": 99.36191830928672
+                "x": 112.05527331843123,
+                "y": 99.15383052225158
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Level3.tmx": {
@@ -144,10 +144,10 @@
                 3
             ],
             "scale": 4.8056640625,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 127.9739890266206,
-                "y": 72.31050599471652
+                "x": 128.07803292013818,
+                "y": 72.31050599471651
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Spike Intro.tmx": {
@@ -168,8 +168,8 @@
             "scale": 5.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 176.72727272727275,
-                "y": 100.81818181818181
+                "x": 174.09090909090912,
+                "y": 98.27272727272728
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Threetorial.tmx": {
@@ -177,9 +177,9 @@
                 3
             ],
             "scale": 4,
-            "selectedLayer": 2,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 128,
+                "x": 128.125,
                 "y": 72.125
             }
         },
@@ -188,9 +188,9 @@
                 3
             ],
             "scale": 5.5,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 108,
+                "x": 108.09090909090911,
                 "y": 71.36363636363636
             }
         },
@@ -199,10 +199,10 @@
                 3
             ],
             "scale": 5.5,
-            "selectedLayer": 2,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 106.72727272727272,
-                "y": 92.81818181818181
+                "x": 169.1818181818182,
+                "y": 85.1818181818182
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Lava.tsx": {
@@ -217,17 +217,17 @@
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Rocks.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 4,
-            "scaleInEditor": 11
+            "scaleInEditor": 1.5
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Spikes.tsx": {
             "scaleInDock": 5.5,
-            "scaleInEditor": 23
+            "scaleInEditor": 1.5
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automap.tmx": {
             "scale": 5.126041666666666,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 109.05100589311118,
+                "x": 109.14854704328393,
                 "y": 80.08128429181062
             }
         },
@@ -284,18 +284,18 @@
     "project": "Area Planning Project.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "Area 1 Planning.tmx",
-        "Rooms.tsx",
-        "Annotations.tsx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Breakable Test.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/LavaIntro.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Level3.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Level1.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Threetorial.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Dogojump Tutorial.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Spikes.tsx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Twotorial.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Level2.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Crystal Intro.tmx"
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Crystal Intro.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Empty.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Branches.tsx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automap.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Rocks.tsx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Spike Test.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Level3.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/LavaIntro.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Spikes.tsx"
     ],
     "resizeMap.removeObjects": false,
     "tileset.lastUsedFormat": "tsx",

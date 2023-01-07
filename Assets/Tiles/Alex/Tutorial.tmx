@@ -6,12 +6,6 @@
  <tileset firstgid="60" source="../Lava.tsx"/>
  <tileset firstgid="96" source="Breakable.tsx"/>
  <layer id="1" name="Ground" width="32" height="18">
-  <properties>
-   <property name="unity:CastShadows" type="bool" value="true"/>
-   <property name="unity:Component" value="Wall"/>
-   <property name="unity:Layer" value="Interactable"/>
-   <property name="unity:SortingLayer" value="Interactable"/>
-  </properties>
   <data encoding="csv">
 8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,
 8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,30,14,14,14,14,14,14,14,14,29,8,8,8,8,8,8,8,
