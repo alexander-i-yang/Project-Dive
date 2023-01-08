@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Helpers;
 using UnityEngine;
 
@@ -6,24 +7,26 @@ namespace Mechanics
 {
     public class ConnectedSpike : DirectionalSpike
     {
-        public override void Discharge(HashSet<Spike> dogoDisabledSpikes) {
-            if (Charged == true)
-            {
-                base.Discharge(dogoDisabledSpikes);
-                Vector3 checkPosRight = transform.position + new Vector3(8, -3.5f);
-                Vector3 checkPosLeft = transform.position + new Vector3(-8, -3.5f);
-                
-                DisableSpike(checkPosRight, dogoDisabledSpikes);
-                DisableSpike(checkPosLeft, dogoDisabledSpikes);
-            }
+        public override void Discharge(HashSet<Spike> dogoDisabledSpikes)
+        {
+            if (!Charged) return;
+            Vector3 offsetLeft = new Vector3(8, -3.5f);
+            Vector3 offsetRight = new Vector3(-8, -3.5f);
+            
+            DischargeNext(dogoDisabledSpikes, offsetLeft, 1);
+            DischargeNext(dogoDisabledSpikes, offsetRight, 1);
         }
 
-        private void DisableSpike(Vector3 checkPos, HashSet<Spike> dogoDisabledSpikes)
+        public void DischargeNext(HashSet<Spike> dogoDisabledSpikes, Vector3 offset, int index)
         {
+            Action dischargeAnimation = () => StartCoroutine(Helper.DelayAction(index * 0.025f, DischargeAnimation));
+            DischargeLogic(dogoDisabledSpikes, dischargeAnimation);
+            
+            Vector3 checkPos = transform.position + offset;
             ConnectedSpike s = Helper.OnComponent<ConnectedSpike>(checkPos);
-            if (s != null)
+            if (s != null && s.Charged)
             {
-                s.Discharge(dogoDisabledSpikes);
+                s.DischargeNext(dogoDisabledSpikes, offset, index+1);
             }
         }
     }

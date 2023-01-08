@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Helpers;
 using MyBox;
 using Phys;
@@ -37,15 +38,25 @@ namespace Mechanics {
             return false;
         }
 
-        public virtual void Discharge(HashSet<Spike> dogoDisabledSpikes) {
+        public virtual void Discharge(HashSet<Spike> dogoDisabledSpikes)
+        {
+            DischargeLogic(dogoDisabledSpikes, DischargeAnimation);
+        }
+
+        protected void DischargeLogic(HashSet<Spike> dogoDisabledSpikes, Action dischargeAnimation)
+        {
             Charged = false;
-            _mySR.SetAlpha(0.2f);
-            // _mySR.color = Color.red;
+            dischargeAnimation();
             if (_reEnableCoroutine != null) {
                 StopCoroutine(_reEnableCoroutine);
                 _reEnableCoroutine = null;
             }
             dogoDisabledSpikes.Add(this);
+        }
+
+        protected void DischargeAnimation()
+        {
+            _mySR.SetAlpha(0.2f);
         }
 
         public void Recharge() {
