@@ -2,3 +2,4 @@ automapSpikes.tmx
 automap.tmx
 automapLava.tmx
 automapBreakable.tmx
+automapBranches.tmx
