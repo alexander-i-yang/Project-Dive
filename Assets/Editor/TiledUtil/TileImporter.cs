@@ -193,7 +193,7 @@ namespace Helpers {
         
         private void ImportGroundTilemap(GameObject g)
         {
-            g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Interactable");
+            g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Ground");
         }
         
         private void ImportMechanics(Transform layer, XElement element) {

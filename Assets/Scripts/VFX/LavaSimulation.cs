@@ -14,7 +14,7 @@ namespace VFX
     {
         [SerializeField] private Material _lavaSimMat;
         [SerializeField] private Material _lavaMat;
-        [SerializeField] private float impulseStrength = 0f;
+        [SerializeField, Range(0f, 1f)] private float impulseStrength = 0f;
 
         private CustomRenderTexture _lavaSimTex;
 
@@ -26,7 +26,6 @@ namespace VFX
         private void Awake()
         {
             _lavaSimMat.SetVector("_Impulse", new Vector3(0, 0, 0));
-            //FindMaterials();
         }
 
         private void OnEnable()
@@ -51,9 +50,10 @@ namespace VFX
                 float velMag = PlayerCore.Actor.velocity.magnitude;
                 if (CurrRoom != null && velMag > 1f)
                 {
+                    //Note: y is flipped because it is the upper left corner.
                     float impulseU = (PlayerCore.Actor.transform.position.x - CurrRoom.transform.position.x) / _lavaSimTex.width;
-                    float impulseV = (PlayerCore.Actor.transform.position.y - CurrRoom.transform.position.y) / _lavaSimTex.height;
-                    Debug.Log($"Impulse Strength: {impulseStrength * velMag / 256}");
+                    float impulseV = (CurrRoom.transform.position.y - PlayerCore.Actor.transform.position.y) / _lavaSimTex.height;
+                    FilterLogger.Log(this, $"Impulse Strength: {impulseStrength * velMag / 256}");
                     _lavaSimMat.SetVector("_Impulse", new Vector3(impulseU, impulseV, impulseStrength * velMag / 256));
                 }
                 else
@@ -64,35 +64,15 @@ namespace VFX
             }
         }
 
-        //private void FindMaterials()
-        //{
-        //    _lavaMats = new List<Material>();
-        //    Shader _lavaShader = Shader.Find("Shader Graphs/Lava_World");
-        //    //Shader _lavaSimShader = Shader.Find("CustomRenderTexture/LavaSim");
-
-        //    Renderer[] allRenderers = FindObjectsOfType<Renderer>(true);
-        //    foreach (Renderer r in allRenderers)
-        //    {
-        //        if (r.material.shader == _lavaShader)
-        //        {
-        //            _lavaMats.Add(r.material);
-        //            //Debug.Log(r.gameObject.name);
-        //        }
-        //    }
-        //}
-
         private void OnRoomTransition(Room roomEntering)
         {
             Bounds bounds = roomEntering.GetComponent<Collider2D>().bounds;
 
             _lavaSimTex = CreateLavaSimTexture((int)bounds.extents.x * 2, (int)bounds.extents.y * 2);
 
-            //foreach (var _lavaMat in _lavaMats)
-            //{
-                _lavaMat.SetVector("_RoomPos", roomEntering.transform.position);
-                _lavaMat.SetVector("_RoomSize", new Vector2(_lavaSimTex.width, _lavaSimTex.height));
-                _lavaMat.SetTexture("_SimulationTex", _lavaSimTex);
-            //}
+            _lavaMat.SetVector("_RoomPos", roomEntering.transform.position);
+            _lavaMat.SetVector("_RoomSize", new Vector2(_lavaSimTex.width, _lavaSimTex.height));
+            _lavaMat.SetTexture("_SimulationTex", _lavaSimTex);
         }
 
         private CustomRenderTexture CreateLavaSimTexture(int width, int height)
