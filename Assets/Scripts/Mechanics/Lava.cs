@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace Mechanics {
     public class Lava : Solid {
-        [SerializeField] private float timeToDie = 1f;
+        [SerializeField] private float timeToDie = 0.1f;
+
         private GameTimer _timerToDie;
         private PlayerActor _lastPlayerTouched;
 

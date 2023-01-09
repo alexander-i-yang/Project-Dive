@@ -14,7 +14,7 @@ namespace VFX
     {
         [SerializeField] private Material _lavaSimMat;
         [SerializeField] private Material _lavaMat;
-        [SerializeField] private float impulseStrength = 0f;
+        [SerializeField, Range(0f, 1f)] private float impulseStrength = 0f;
 
         private CustomRenderTexture _lavaSimTex;
 
@@ -50,8 +50,9 @@ namespace VFX
                 float velMag = PlayerCore.Actor.velocity.magnitude;
                 if (CurrRoom != null && velMag > 1f)
                 {
+                    //Note: y is flipped because it is the upper left corner.
                     float impulseU = (PlayerCore.Actor.transform.position.x - CurrRoom.transform.position.x) / _lavaSimTex.width;
-                    float impulseV = (PlayerCore.Actor.transform.position.y - CurrRoom.transform.position.y) / _lavaSimTex.height;
+                    float impulseV = (CurrRoom.transform.position.y - PlayerCore.Actor.transform.position.y) / _lavaSimTex.height;
                     FilterLogger.Log(this, $"Impulse Strength: {impulseStrength * velMag / 256}");
                     _lavaSimMat.SetVector("_Impulse", new Vector3(impulseU, impulseV, impulseStrength * velMag / 256));
                 }
