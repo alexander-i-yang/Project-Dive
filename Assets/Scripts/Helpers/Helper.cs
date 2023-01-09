@@ -229,5 +229,39 @@ namespace Helpers {
                 f(children[i].gameObject, i);
             }
         }
+        
+        /**
+         * POINT rotate_point(float cx,float cy,float angle,POINT p)
+            {
+              float s = sin(angle);
+              float c = cos(angle);
+
+              // translate point back to origin:
+              p.x -= cx;
+              p.y -= cy;
+
+              // rotate point
+              float xnew = p.x * c - p.y * s;
+              float ynew = p.x * s + p.y * c;
+
+              // translate point back:
+              p.x = xnew + cx;
+              p.y = ynew + cy;
+              return p;
+            }
+         */
+        
+        public static Vector2[] RotateAround(this Vector2[] points, float angle, Vector2 pivot)
+        {
+            var newPoints = points.Select(p => RotateAroundPivot(p, pivot, angle));
+            return newPoints.ToArray();
+        }
+        
+        public static Vector2 RotateAroundPivot(Vector2 point, Vector2 pivot, float angle) {
+            Vector2 dir = point - pivot; // get point direction relative to pivot
+            dir = Quaternion.Euler(0, 0, angle) * dir; // rotate it
+            point = dir + pivot; // calculate rotated point
+            return point; // return it
+        }
     }
 }

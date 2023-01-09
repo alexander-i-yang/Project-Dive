@@ -326,6 +326,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Spikes_10
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 8
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29d806e866fedbb4d9e73daf24575002
+      internalID: -1853944625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes_11
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de6427cc54eed56459272ffbd2fe4132
+      internalID: -1360893032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spikes_12
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 841f8ee41b3efd946baee7f7820a6b21
+      internalID: 914995583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -338,12 +401,15 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Spikes_2: 469365239
+      Spikes_12: 914995583
       Spikes_6: 2095319073
       Spikes_1: -416463143
       Spikes_9: 1578786363
       Spikes_3: -749731445
       Spikes_0: 443910618
       Spikes_8: 1441862652
+      Spikes_10: -1853944625
+      Spikes_11: -1360893032
       Spikes_5: 1922814286
       Spikes_7: 224638653
       Spikes_4: 518382324

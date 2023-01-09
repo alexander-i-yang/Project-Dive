@@ -29,14 +29,7 @@ namespace Helpers {
         private readonly string vcamPrefabPath = "Assets/Prefabs";
 
         private Dictionary<String, GameObject> _prefabReplacements;
-        
-        private static Dictionary<string, Type> typings = new() {
-            {"Wall", typeof(Wall)},
-            {"Spikes", typeof(Spike)},
-            {"Lava", typeof(Lava)},
-            {"Breakable", typeof(Breakable)},
-        };
-        
+
         public override void TmxAssetImported(TmxAssetImportedArgs data)
         {
             var typePrefabReplacements = data.AssetImporter.SuperImportContext.Settings.PrefabReplacements;
@@ -53,7 +46,8 @@ namespace Helpers {
             //Applies to the entire tilemap
             Dictionary<String, Action<GameObject>> tilemapLayerImports = new()
             {
-                { "Lava", ImportLavaTilemap }
+                { "Lava", ImportLavaTilemap },
+                { "Ground", ImportGroundTilemap },
             };
             
             //Applies to children
@@ -181,6 +175,7 @@ namespace Helpers {
             LayerImportLibrary.SetNineSliceSprite(g, spritePoints);
             LayerImportLibrary.SetEdgeCollider2DPoints(g, colliderPoints);
             LayerImportLibrary.AddShadowCast(g, colliderPoints.ToVector3());
+            g.GetRequiredComponent<SpriteRenderer>().SetSortingLayer("Interactable");
         }
 
         private void ImportLava(GameObject g, int _) {
@@ -192,8 +187,13 @@ namespace Helpers {
 
         private void ImportLavaTilemap(GameObject g)
         {
-            Debug.Log($"HELLOOOOO");
             LayerImportLibrary.SetMaterial(g, "Lava");
+            g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Lava");
+        }
+        
+        private void ImportGroundTilemap(GameObject g)
+        {
+            g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Ground");
         }
         
         private void ImportMechanics(Transform layer, XElement element) {

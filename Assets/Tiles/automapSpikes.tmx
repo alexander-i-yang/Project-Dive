@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="8" tileheight="8" infinite="0" nextlayerid="15" nextobjectid="35">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="8" tileheight="8" infinite="0" nextlayerid="15" nextobjectid="39">
  <tileset firstgid="1" source="Rocks.tsx"/>
  <tileset firstgid="37" source=":/automap-tiles.tsx"/>
  <tileset firstgid="42" source="Spikes.tsx"/>
  <tileset firstgid="58" source="Mechanics.tsx"/>
- <layer id="7" name="input_Spikes" width="32" height="18">
+ <layer id="7" name="input_Spikes" width="32" height="18" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -32,7 +32,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,45,0,0,0,44,0,0,0,43,0,0,0,42,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,56,0,0,0,57,0,0,0,53,0,0,0,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -48,7 +48,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="10" name="output_Spikes" width="32" height="18" visible="0">
+ <layer id="10" name="output_Spikes" width="32" height="18">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -70,10 +70,10 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="6" name="output_Mechanics" visible="0">
-  <object id="30" gid="42" x="104" y="40" width="8" height="8"/>
-  <object id="31" gid="43" x="72" y="40" width="8" height="8"/>
-  <object id="32" gid="44" x="40" y="40" width="8" height="8"/>
-  <object id="34" gid="45" x="8" y="40" width="8" height="8"/>
+ <objectgroup id="6" name="output_Mechanics">
+  <object id="35" gid="52" x="104" y="40" width="8" height="8"/>
+  <object id="36" gid="53" x="72" y="40" width="8" height="8"/>
+  <object id="37" gid="56" x="8" y="40" width="8" height="8"/>
+  <object id="38" gid="57" x="40" y="40" width="8" height="8"/>
  </objectgroup>
 </map>

@@ -37,6 +37,32 @@ namespace Phys {
             NextFrameOffset = Vector2.zero;
         }
 
+        public bool CheckCollisionsAll(Func<PhysObj, Vector2, bool> onCollide)
+        {
+            //L: lmao
+            if (CheckCollisions(Vector2.right, onCollide))
+            {
+                return true;
+            }
+
+            if (CheckCollisions(Vector2.down, onCollide))
+            {
+                return true;
+            }
+
+            if (CheckCollisions(Vector2.left, onCollide))
+            {
+                return true;
+            }
+
+            if (CheckCollisions(Vector2.up, onCollide))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Checks the interactable layer for any collisions. Will call onCollide if it hits anything.
         /// </summary>
