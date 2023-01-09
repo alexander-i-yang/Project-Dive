@@ -13,9 +13,10 @@ namespace Helpers.Animation
 
         public abstract Dictionary<T, string> Animations { get; }
 
-        private void Start()
+        private void Awake()
         {
             _animator = GetComponent<Animator>();
+            Debug.Log(_animator);
         }
 
         public void SetInitialState(T newState)

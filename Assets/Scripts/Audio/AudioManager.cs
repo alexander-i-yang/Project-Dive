@@ -55,10 +55,13 @@ namespace Audio
                 m.emitter.EventReference = m.fmodEvent;
             }
 
-            sfxBus = FMODUnity.RuntimeManager.GetBus("bus:/" + sfxBusPath);
-            musicBus = FMODUnity.RuntimeManager.GetBus("bus:/" + musicBusPath);
-            SetSFXVolume(sfxVolume);
-            SetMusicVolume(musicVolume);
+            if (FMODUnity.RuntimeManager.HasBankLoaded("Master Bank"))
+            {
+                sfxBus = FMODUnity.RuntimeManager.GetBus("bus:/" + sfxBusPath);
+                musicBus = FMODUnity.RuntimeManager.GetBus("bus:/" + musicBusPath);
+                SetSFXVolume(sfxVolume);
+                SetMusicVolume(musicVolume);
+            }
         }
 
         private static Music GetMusic(string name)
