@@ -24,7 +24,7 @@ namespace Phys {
             protected set { velocity = new Vector2(value, velocity.y); }
         }
 
-        protected void Start() {
+        protected virtual void Start() {
             myCollider = GetComponent<BoxCollider2D>();
             Game.Instance.ResetNextFrameOffset += ResetNextFrameOffset;
         }

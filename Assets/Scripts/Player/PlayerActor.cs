@@ -34,7 +34,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     #region Movement
     public void UpdateMovementX(int moveDirection, int acceleration) {
         int targetVelocityX = moveDirection * PlayerCore.MoveSpeed;
-        int maxSpeedChange = (int) (acceleration * Time.deltaTime);
+        int maxSpeedChange = (int) (acceleration * Game.Instance.FixedDeltaTime);
         velocityX = Mathf.MoveTowards(velocityX, targetVelocityX, maxSpeedChange);
     }
 
@@ -132,6 +132,19 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         }
 
         velocityY = GetJumpSpeedFromHeight(PlayerCore.DogoJumpHeight);
+    }
+    
+    public bool IsDogoJumping()
+    {
+        return _stateMachine.IsOnState<PlayerStateMachine.DogoJumping>();
+    }
+
+    public void BallBounce(Vector2 direction)
+    {
+        if (direction.x != 0)
+        {
+            velocityX = Math.Sign(direction.x) * -150;
+        }
     }
     #endregion
 

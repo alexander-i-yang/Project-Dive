@@ -28,6 +28,7 @@ namespace Phys {
             while (remainder > 0) {
                 bool collision = CheckCollisions(direction, onCollide);
                 if (collision) {
+                    Debug.Log($"{gameObject} Collided");
                     return true;
                 }
                 transform.position += new Vector3((int)direction.x, (int)direction.y, 0);
