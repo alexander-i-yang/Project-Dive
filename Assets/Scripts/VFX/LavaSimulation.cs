@@ -53,7 +53,7 @@ namespace VFX
                 {
                     float impulseU = (PlayerCore.Actor.transform.position.x - CurrRoom.transform.position.x) / _lavaSimTex.width;
                     float impulseV = (PlayerCore.Actor.transform.position.y - CurrRoom.transform.position.y) / _lavaSimTex.height;
-                    Debug.Log($"Impulse Strength: {impulseStrength * velMag / 256}");
+                    // Debug.Log($"Impulse Strength: {impulseStrength * velMag / 256}");
                     _lavaSimMat.SetVector("_Impulse", new Vector3(impulseU, impulseV, impulseStrength * velMag / 256));
                 }
                 else
