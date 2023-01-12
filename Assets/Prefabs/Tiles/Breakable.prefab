@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4997218929975561114}
   - component: {fileID: 4997218929975561115}
   - component: {fileID: 4997218929975561116}
-  - component: {fileID: 5976275407650072795}
   - component: {fileID: 4178085174769499402}
+  - component: {fileID: 4804641221120597709}
   m_Layer: 3
   m_Name: Breakable
   m_TagString: Untagged
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -163342673
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 80ff335d51677f2458b9f41acdf98cf4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -113,19 +113,7 @@ MonoBehaviour:
   - {x: -12, y: 12, z: 0}
   m_ShapePathHash: -451545835
   m_Mesh: {fileID: 0}
-  m_InstanceId: 231646
---- !u!114 &5976275407650072795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4997218929975561094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 240d22ac60434eb7aea08bbe7d617320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_InstanceId: 232528
 --- !u!68 &4178085174769499402
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -148,3 +136,15 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &4804641221120597709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4997218929975561094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e3b3059719c88844b16731dd2b80aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

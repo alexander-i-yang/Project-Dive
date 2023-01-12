@@ -25,7 +25,7 @@ namespace Mechanics
         public override bool OnCollide(PhysObj p, Vector2 direction)
         {
             if (p == this) return false;
-            Breakable b = p as Breakable;
+            TimedBreakable b = p as TimedBreakable;
             bool c = base.OnCollide(p, direction);
             if (c)
             {

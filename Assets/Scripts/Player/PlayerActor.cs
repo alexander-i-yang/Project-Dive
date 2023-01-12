@@ -164,7 +164,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         {
             FilterLogger.Log(this, $"Player collided with object {p} from direction {direction}");
         }
-
         bool col = p.PlayerCollide(this, direction);
         if (col) {
             if (direction.y > 0) {
