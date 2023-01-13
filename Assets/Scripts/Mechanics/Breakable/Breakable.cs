@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Mechanics {
     public class Breakable : Solid {
-        // public GameObject ParticlePrefab;
+        public GameObject ParticlePrefab;
         
         public override bool Collidable() {
             return true;
@@ -29,7 +29,7 @@ namespace Mechanics {
 
         public void Break() {
             gameObject.SetActive(false);
-            // Instantiate(ParticlePrefab, transform.position, Quaternion.identity);
+            Instantiate(ParticlePrefab, transform.position, Quaternion.identity);
         }
     }
 }

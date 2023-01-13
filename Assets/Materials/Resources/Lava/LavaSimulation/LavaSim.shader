@@ -39,7 +39,7 @@ Shader "CustomRenderTexture/LavaSim"
 
                 for (int i = -_HalfNeighborhood; i <= _HalfNeighborhood; i++)
                 {
-                    const float weight = (uint)1 / abs(i);
+                    float weight = 1 / abs(i);
                     //Only care about pixels on the left and right since it ripples "horizontally"
                     sum += tex2D(tex, float2(uv.x + i / _CustomRenderTextureWidth, uv.y)).r * weight;
                     totalWeight += weight;
