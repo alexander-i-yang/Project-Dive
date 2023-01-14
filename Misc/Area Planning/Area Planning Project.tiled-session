@@ -73,7 +73,7 @@
             "selectedLayer": 5,
             "viewCenter": {
                 "x": 134.1125787441577,
-                "y": 72.10241820768138
+                "y": 72.31050599471652
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Cave Intro.tmx": {
@@ -234,8 +234,8 @@
             "scale": 4,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 157.625,
-                "y": 2330.875
+                "x": 128,
+                "y": 1199.875
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Spike Intro.tmx": {
