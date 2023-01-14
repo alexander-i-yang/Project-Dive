@@ -17,9 +17,7 @@ namespace Phys {
 
         public float velocityY {
             get { return velocity.y; }
-            protected set
-            {
-                Debug.Log($"Setting velocity to {value}"); velocity = new Vector2(velocity.x, value); }
+            protected set { velocity = new Vector2(velocity.x, value); }
         }
 
         public float velocityX {
