@@ -6,15 +6,15 @@ namespace Mechanics {
     public class Breakable : Solid {
         private GameObject _particles;
 
-
+        protected virtual string ParticlePath() => "PS_Breakable";
 
         private void Awake()
         {
-            _particles = (GameObject) Resources.Load("PS_Breakable");
+            _particles = (GameObject) Resources.Load(ParticlePath());
         }
 
         public override bool Collidable() {
-            Resources.Load("PS_Breakable");
+            Resources.Load(ParticlePath());
             return true;
         }
 

@@ -17,7 +17,9 @@ namespace Phys {
 
         public float velocityY {
             get { return velocity.y; }
-            protected set { velocity = new Vector2(velocity.x, value); }
+            protected set
+            {
+                Debug.Log($"Setting velocity to {value}"); velocity = new Vector2(velocity.x, value); }
         }
 
         public float velocityX {
@@ -64,6 +66,14 @@ namespace Phys {
             return false;
         }
 
+        public bool IsOverlapping(PhysObj p)
+        {
+            return CheckCollisions(Vector2.zero, (checkCol, dir) =>
+            {
+                return p == checkCol;
+            });
+        }
+
         /// <summary>
         /// Checks the interactable layer for any collisions. Will call onCollide if it hits anything.
         /// </summary>
@@ -94,12 +104,9 @@ namespace Phys {
                     direction, 
                     filter
                 );
-                bool isBreakable = p as TimedBreakable != null;
-                if (isBreakable) print($"Breakable collide {p} {proactiveCollision}");
                 if (proactiveCollision)
                 {
                     bool col = onCollide.Invoke(p, direction);
-                    if (isBreakable) print($"Breakable collide again {p} {col}");
                     if (col)
                     {
                         return true;
