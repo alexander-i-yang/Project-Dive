@@ -45,6 +45,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _Impulse: {r: 0.515625, g: 0.5694444, b: 0.3685547, a: 0}
+    - _Impulse: {r: 0.515625, g: 0.5694444, b: 0.37382814, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
