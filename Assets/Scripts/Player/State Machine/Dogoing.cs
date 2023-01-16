@@ -59,6 +59,12 @@ namespace Player
                     MySM._spriteR.color = Color.white;
                 }
             }
+
+            public override void SetGrounded(bool isGrounded, bool isMovingUp)
+            {
+                base.SetGrounded(isGrounded, isMovingUp);
+                if (!isGrounded) {MySM.Transition<Diving>();}
+            }
         }
     }
 }

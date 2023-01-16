@@ -4,7 +4,7 @@
  <tileset firstgid="37" source="../Spikes.tsx"/>
  <tileset firstgid="53" source="../Mechanics.tsx"/>
  <tileset firstgid="60" source="../Lava.tsx"/>
- <tileset firstgid="96" source="Breakable.tsx"/>
+ <tileset firstgid="96" source="../Breakable.tsx"/>
  <tileset firstgid="108" source="../Branches.tsx"/>
  <layer id="4" name="Lava" width="32" height="18">
   <data encoding="csv">

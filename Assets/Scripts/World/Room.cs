@@ -95,6 +95,8 @@ namespace World {
         private void SwitchCamera()
         {
             //L: Inefficient, but not terrible?
+            Debug.Log(_vCam);
+            Debug.Log(_vCam.gameObject);
             this._vCam.gameObject.SetActive(true);
             foreach (Room room in _roomList)
             {

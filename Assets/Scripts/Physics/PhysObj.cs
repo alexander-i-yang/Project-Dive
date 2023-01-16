@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Helpers;
+using Mechanics;
 using UnityEngine;
 
 namespace Phys {
@@ -24,7 +25,7 @@ namespace Phys {
             protected set { velocity = new Vector2(value, velocity.y); }
         }
 
-        protected void Start() {
+        protected virtual void Start() {
             myCollider = GetComponent<BoxCollider2D>();
             Game.Instance.ResetNextFrameOffset += ResetNextFrameOffset;
         }
@@ -81,6 +82,10 @@ namespace Phys {
 
             foreach (var hit in hits) {
                 var p = hit.transform.GetComponent<PhysObj>();
+                if (hit.transform == transform)
+                {
+                    continue;
+                }
                 bool proactiveCollision = ProactiveBoxCast(
                     p.transform, 
                     p.NextFrameOffset,
@@ -89,8 +94,14 @@ namespace Phys {
                     direction, 
                     filter
                 );
-                if (proactiveCollision) {
-                    if (onCollide.Invoke(p, direction)){
+                bool isBreakable = p as TimedBreakable != null;
+                if (isBreakable) print($"Breakable collide {p} {proactiveCollision}");
+                if (proactiveCollision)
+                {
+                    bool col = onCollide.Invoke(p, direction);
+                    if (isBreakable) print($"Breakable collide again {p} {col}");
+                    if (col)
+                    {
                         return true;
                     }
                 }
