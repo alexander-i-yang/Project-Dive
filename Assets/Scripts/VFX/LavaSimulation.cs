@@ -84,7 +84,7 @@ namespace VFX
         private CustomRenderTexture CreateLavaSimTexture(int width, int height)
         {
             CustomRenderTexture tex = new CustomRenderTexture(width, height);
-            tex.material = lavaSimMat;
+            tex.material = new Material(lavaSimMat);
             _lavaSimMatInstance = tex.material;
 
             tex.initializationMode = CustomRenderTextureUpdateMode.OnLoad;
