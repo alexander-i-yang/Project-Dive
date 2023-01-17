@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Tutorial.tmx",
+    "activeFile": "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Empty.tmx",
     "automapping.whileDrawing": true,
     "expandedProjectPaths": [
         "."
@@ -81,7 +81,7 @@
                 4
             ],
             "scale": 4,
-            "selectedLayer": 0,
+            "selectedLayer": 3,
             "viewCenter": {
                 "x": 132.125,
                 "y": 85.875
@@ -132,11 +132,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 3,
-            "selectedLayer": 0,
+            "scale": 10.125,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 1196.8333333333333,
-                "y": 69.16666666666666
+                "x": 1223.6049382716049,
+                "y": 106.66666666666666
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/FilledDirt.tmx": {
@@ -231,11 +231,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 4,
-            "selectedLayer": 1,
+            "scale": 1.5,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 128,
-                "y": 1199.875
+                "x": 157.66666666666663,
+                "y": 289
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Spike Intro.tmx": {
@@ -357,7 +357,7 @@
                 4
             ],
             "scale": 4,
-            "selectedLayer": 0,
+            "selectedLayer": 6,
             "viewCenter": {
                 "x": 150.125,
                 "y": 76.875
@@ -383,8 +383,8 @@
             "scale": 3.479375,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 119.99281480150886,
-                "y": 120.56763068079755
+                "x": 120.42392671097538,
+                "y": 125.02245374528471
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapDirt.tmx": {
@@ -426,7 +426,6 @@
     "map.tileWidth": 8,
     "map.width": 32,
     "openFiles": [
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Template/Template.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapBreakable.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Breakout.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapBranches.tmx",
@@ -445,18 +444,18 @@
     "project": "Area Planning Project.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Template/Template.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapBreakable.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Breakout.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapBranches.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Template/Dirt.tsx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapDirt.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Tutorial.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Twotorial.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Dirt.tsx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Rocks.tsx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Shaft.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/FilledDirt.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Cave Intro.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Spike Intro.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Empty.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Rocks.tsx"
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Cave Intro.tmx"
     ],
     "resizeMap.removeObjects": false,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
