@@ -5,7 +5,8 @@ using UnityEngine;
 public class ParallaxEffect : MonoBehaviour
 {
     private float _length, _startpos;
-    public Transform cam;
+    public Camera Camera;
+    private Transform _cam => Camera.transform;
     public float parallaxFactor;
     public float PixelsPerUnit;
  
@@ -17,7 +18,7 @@ public class ParallaxEffect : MonoBehaviour
  
     void Update() {
         // float temp = cam.transform.position.x * (1 - parallaxFactor);
-        float distance = cam.position.x * parallaxFactor;
+        float distance = _cam.position.x * parallaxFactor;
  
         Vector3 newPosition = new Vector3(_startpos - distance, transform.position.y, transform.position.z);
  

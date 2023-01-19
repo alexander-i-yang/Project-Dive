@@ -14,6 +14,8 @@ namespace World {
         private PlayerSpawnManager _player;
         private CinemachineBrain _cmBrain;
 
+        public bool StopTime = true;
+
         private Spawn[] _spawns;
         public Spawn[] Spawns
         {
@@ -76,7 +78,7 @@ namespace World {
             }
         }
 
-        public void TransitionToThisRoom()
+        public virtual void TransitionToThisRoom()
         {
             FilterLogger.Log(this, $"Transitioned to room: {gameObject.name}");
             if (_transitionRoutine != null)
@@ -89,13 +91,13 @@ namespace World {
         private IEnumerator TransitionRoutine()
         {
             SwitchCamera();
-            Time.timeScale = 0f;
+            if (StopTime) Time.timeScale = 0f;
             /*
              * This is kinda "cheating". Instead of waiting for the camera to be done switching,
              * we're just waiting for the same amount of time as the blend time between cameras.
              */
             yield return new WaitForSecondsRealtime(_cmBrain.m_DefaultBlend.BlendTime);
-            Time.timeScale = 1f;
+            if (StopTime) Time.timeScale = 1f;
             _transitionRoutine = null;
             RoomTransitionEvent?.Invoke(this);
         }

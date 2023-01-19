@@ -16,7 +16,7 @@ namespace Player
         protected override void SetInitialState() 
         {
             SetState<Grounded>();
-            _playerAnim.SetInitialState(PlayerAnimations.IDLE);
+            _playerAnim.SetInitialState(PlayerAnimations.SLEEPING);
         }
 
         protected override void Init()

@@ -87,6 +87,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public void UpdateWhileDiving()
     {
+        float oldYV = velocityY;
         if (FallVelocityExceedsMax())
         {
             velocityY += PlayerCore.DiveDeceleration;

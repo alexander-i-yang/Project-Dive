@@ -42,6 +42,7 @@ namespace Player
 
             public override void MoveX(int moveDirection)
             {
+                PlayerActions.UpdateMovementX(moveDirection, PlayerCore.MaxAirAcceleration);
                 UpdateSpriteFacing(moveDirection);
             }
         }

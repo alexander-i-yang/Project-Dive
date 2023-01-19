@@ -72,6 +72,9 @@
 </data>
  </layer>
  <layer id="6" name="Breakable" width="32" height="18">
+  <properties>
+   <property name="unity:Ignore" value="Visual"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
