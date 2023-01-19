@@ -12,21 +12,19 @@ namespace VFX
 {
     public class LavaSimulation : MonoBehaviour, IFilterLoggerTarget
     {
-        [SerializeField] private Material _lavaSimMat;
-        [SerializeField] private Material _lavaMat;
+        private const string lavaShaderName = "Shader Graphs/Lava_World";
+
+        [SerializeField] private Material lavaSimMat;
         [SerializeField, Range(0f, 1f)] private float impulseStrength = 0f;
 
         private CustomRenderTexture _lavaSimTex;
+        private Material _lavaSimMatInstance;
+        private List<Material> _lavaMatInstances;
 
         [SerializeField] private RawImage _testImage;
         public CustomRenderTexture LavaSimTex => _lavaSimTex;
 
         private Room CurrRoom => PlayerCore.SpawnManager.CurrentRoom;
-
-        private void Awake()
-        {
-            _lavaSimMat.SetVector("_Impulse", new Vector3(0, 0, 0));
-        }
 
         private void OnEnable()
         {
@@ -38,15 +36,15 @@ namespace VFX
             Room.RoomTransitionEvent -= OnRoomTransition;
         }
 
+        private void Start()
+        {
+            _lavaMatInstances = MaterialFinder.FindMaterialsWithShader(lavaShaderName);
+        }
+
         private void Update()
         {
             if (_lavaSimTex != null)
             {
-                if (_testImage != null)
-                {
-                    _testImage.texture = _lavaSimTex;
-                }
-
                 float velMag = PlayerCore.Actor.velocity.magnitude;
                 if (CurrRoom != null && velMag > 1f)
                 {
@@ -54,11 +52,11 @@ namespace VFX
                     float impulseU = (PlayerCore.Actor.transform.position.x - CurrRoom.transform.position.x) / _lavaSimTex.width;
                     float impulseV = (CurrRoom.transform.position.y - PlayerCore.Actor.transform.position.y) / _lavaSimTex.height;
                     FilterLogger.Log(this, $"Impulse Strength: {impulseStrength * velMag / 256}");
-                    _lavaSimMat.SetVector("_Impulse", new Vector3(impulseU, impulseV, impulseStrength * velMag / 256));
+                    _lavaSimMatInstance.SetVector("_Impulse", new Vector3(impulseU, impulseV, impulseStrength * velMag / 256));
                 }
                 else
                 {
-                    _lavaSimMat.SetVector("_Impulse", new Vector3(0, 0, 0));
+                    _lavaSimMatInstance.SetVector("_Impulse", new Vector3(0, 0, 0));
                 }
 
             }
@@ -69,16 +67,25 @@ namespace VFX
             Bounds bounds = roomEntering.GetComponent<Collider2D>().bounds;
 
             _lavaSimTex = CreateLavaSimTexture((int)bounds.extents.x * 2, (int)bounds.extents.y * 2);
+            if (_testImage != null)
+            {
+                _testImage.texture = _lavaSimTex;
+            }
 
-            _lavaMat.SetVector("_RoomPos", roomEntering.transform.position);
-            _lavaMat.SetVector("_RoomSize", new Vector2(_lavaSimTex.width, _lavaSimTex.height));
-            _lavaMat.SetTexture("_SimulationTex", _lavaSimTex);
+            _lavaMatInstances.ForEach(lavaMat =>
+            {
+                lavaMat.SetVector("_RoomPos", roomEntering.transform.position);
+                lavaMat.SetVector("_RoomSize", new Vector2(_lavaSimTex.width, _lavaSimTex.height));
+                lavaMat.SetTexture("_SimulationTex", _lavaSimTex);
+            });
+
         }
 
         private CustomRenderTexture CreateLavaSimTexture(int width, int height)
         {
             CustomRenderTexture tex = new CustomRenderTexture(width, height);
-            tex.material = _lavaSimMat;
+            tex.material = new Material(lavaSimMat);
+            _lavaSimMatInstance = tex.material;
 
             tex.initializationMode = CustomRenderTextureUpdateMode.OnLoad;
             tex.initializationSource = CustomRenderTextureInitializationSource.TextureAndColor;

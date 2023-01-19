@@ -66,6 +66,10 @@ namespace World {
             bool needTransition = _player.CurrentRoom != this;
             if (isPlayer && needTransition) 
             {
+                /*
+                 * This check ensures that the player can only ever be in one room at a time.
+                 * It says that not only does the player need to collide, but the entire bounding box needs to be in the room.
+                 */
                 bool boundsCheck = _roomCollider.bounds.Contains(other.bounds.min) && _roomCollider.bounds.Contains(other.bounds.max);
                 if (boundsCheck)
                 {
@@ -88,6 +92,10 @@ namespace World {
         {
             SwitchCamera();
             if (StopTime) Time.timeScale = 0f;
+            /*
+             * This is kinda "cheating". Instead of waiting for the camera to be done switching,
+             * we're just waiting for the same amount of time as the blend time between cameras.
+             */
             yield return new WaitForSecondsRealtime(_cmBrain.m_DefaultBlend.BlendTime);
             if (StopTime) Time.timeScale = 1f;
             _transitionRoutine = null;
