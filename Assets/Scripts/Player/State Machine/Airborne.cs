@@ -52,6 +52,7 @@ namespace Player
             {
                 base.SetGrounded(isGrounded, isMovingUp);
                 if (!isMovingUp && isGrounded) {
+                    PlayerAnim.ChangeState(PlayerAnimations.LANDING);
                     MySM.Transition<Grounded>();
                 }
             }

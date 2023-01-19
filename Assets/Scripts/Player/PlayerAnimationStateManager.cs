@@ -7,6 +7,7 @@ public enum PlayerAnimations
     IDLE,
     RUNNING,
     JUMPING,
+    LANDING,
     DIVING,
     DOGOING,
     SLEEPING
@@ -20,6 +21,7 @@ public class PlayerAnimationStateManager : AnimationStateManager<PlayerAnimation
         { PlayerAnimations.SLEEPING, "Player_Sleeping"},
         { PlayerAnimations.RUNNING, "Player_Running" },
         { PlayerAnimations.JUMPING, "Player_Jumping" },
+        { PlayerAnimations.LANDING, "Player_Landing" },
         { PlayerAnimations.DIVING, "Player_Diving" },
         { PlayerAnimations.DOGOING, "Player_Dogoing" }
     };
