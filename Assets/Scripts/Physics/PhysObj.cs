@@ -64,6 +64,14 @@ namespace Phys {
             return false;
         }
 
+        public bool IsOverlapping(PhysObj p)
+        {
+            return CheckCollisions(Vector2.zero, (checkCol, dir) =>
+            {
+                return p == checkCol;
+            });
+        }
+
         /// <summary>
         /// Checks the interactable layer for any collisions. Will call onCollide if it hits anything.
         /// </summary>
@@ -94,12 +102,9 @@ namespace Phys {
                     direction, 
                     filter
                 );
-                bool isBreakable = p as TimedBreakable != null;
-                if (isBreakable) print($"Breakable collide {p} {proactiveCollision}");
                 if (proactiveCollision)
                 {
                     bool col = onCollide.Invoke(p, direction);
-                    if (isBreakable) print($"Breakable collide again {p} {col}");
                     if (col)
                     {
                         return true;

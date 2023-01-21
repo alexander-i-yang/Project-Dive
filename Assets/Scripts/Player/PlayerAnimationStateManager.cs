@@ -7,8 +7,10 @@ public enum PlayerAnimations
     IDLE,
     RUNNING,
     JUMPING,
+    LANDING,
     DIVING,
     DOGOING,
+    SLEEPING
 }
 
 public class PlayerAnimationStateManager : AnimationStateManager<PlayerAnimations>
@@ -16,8 +18,10 @@ public class PlayerAnimationStateManager : AnimationStateManager<PlayerAnimation
     public override Dictionary<PlayerAnimations, string> Animations => new Dictionary<PlayerAnimations, string>()
     {
         { PlayerAnimations.IDLE, "Player_Idle"},
+        { PlayerAnimations.SLEEPING, "Player_Sleeping"},
         { PlayerAnimations.RUNNING, "Player_Running" },
         { PlayerAnimations.JUMPING, "Player_Jumping" },
+        { PlayerAnimations.LANDING, "Player_Landing" },
         { PlayerAnimations.DIVING, "Player_Diving" },
         { PlayerAnimations.DOGOING, "Player_Dogoing" }
     };
