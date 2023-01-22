@@ -12,7 +12,7 @@ namespace Player
 
             public override void Enter(PlayerStateInput i)
             {
-                PlayerAnim.ChangeState(PlayerAnimations.JUMPING);   //TEMPORARY
+                PlayerAnim.Play(PlayerAnimations.FREEFALL);
                 if (!Input.jumpedFromGround)
                 {
                     _jumpCoyoteTimer = GameTimer.StartNewTimer(PlayerCore.JumpCoyoteTime, "Jump Coyote Timer");
@@ -52,7 +52,7 @@ namespace Player
             {
                 base.SetGrounded(isGrounded, isMovingUp);
                 if (!isMovingUp && isGrounded) {
-                    PlayerAnim.ChangeState(PlayerAnimations.LANDING);
+                    PlayerAnim.Play(PlayerAnimations.LANDING);
                     MySM.Transition<Grounded>();
                 }
             }

@@ -9,7 +9,7 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
-                PlayerAnim.ChangeState(PlayerAnimations.DOGOING);
+                PlayerAnim.Play(PlayerAnimations.DOGOING);
                 i.oldVelocity = PlayerActions.Dogo();
                 i.ultraTimer = GameTimerWindowed.StartNewWindowedTimer(
                     PlayerCore.UltraTimeDelay, 
