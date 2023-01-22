@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3572848764672296036}
   - component: {fileID: 3572848764672296039}
+  - component: {fileID: 4088206530082473576}
   m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
@@ -47,9 +48,9 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.3
+  m_FalloffIntensity: 0.2
   m_Color: {r: 0.40498397, g: 0.9056604, b: 0.4360239, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_LightVolumeIntensity: 0.1
   m_LightVolumeIntensityEnabled: 1
   m_ApplyToSortingLayers: 00000000a39a746baf9643f6
@@ -111,6 +112,22 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &4088206530082473576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3572848764672296037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f97194d0537ce4cbd40fb9bf69b925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  percentOn: 0.08
+  updateFrequency: 0.2
+  minIntensity: 0.5
+  maxIntensity: 1.5
 --- !u!1 &3572848764956040594
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +141,7 @@ GameObject:
   - component: {fileID: 8172312737088805392}
   - component: {fileID: 4069720260113940954}
   - component: {fileID: 2773001664567645559}
+  - component: {fileID: 7325514842606642903}
   m_Layer: 0
   m_Name: Firefly
   m_TagString: Untagged
@@ -186,9 +204,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -163342673
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ca05595229ef1f347ad9ea3cce6da5e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c7285ff87e91ac1499ebd2d444fd9ca1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -216,7 +234,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8, y: 8}
+    oldSize: {x: 0.08, y: 0.08}
     newSize: {x: 8, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -254,3 +272,17 @@ MonoBehaviour:
   endAngleDeg: 333
   endSpeed: 1.5
   animSpeed: 1
+--- !u!114 &7325514842606642903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3572848764956040594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9be4345a6a432d886069f41b37d4c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 3
+  frequency: 0.25

@@ -95,10 +95,12 @@ namespace Helpers
             }
         }
 
-        internal void Reset()
+        public static void Reset(GameTimer timer)
         {
-            TimerValue = _duration;
-            _active = true;
+            if (timer != null)
+            {
+                timer.Reset();
+            }
         }
 
         protected virtual void Update()
@@ -119,8 +121,13 @@ namespace Helpers
                 FilterLogger.Log(this, $"{_name}: {TimerValue}");
             }
         }
+        protected void Reset()
+        {
+            TimerValue = _duration;
+            _active = true;
+        }
 
-        internal bool Finished()
+        protected bool Finished()
         {
             return TimerValue <= 0;
         }
