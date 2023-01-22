@@ -4,12 +4,18 @@ using UnityEngine;
  
 public class ParallaxEffect : MonoBehaviour
 {
+    [SerializeField] private float parallaxFactor;
+    [SerializeField] private float PixelsPerUnit;
+
     private float _length, _startpos;
-    public Camera Camera;
-    private Transform _cam => Camera.transform;
-    public float parallaxFactor;
-    public float PixelsPerUnit;
- 
+    private Camera _camera;
+    private Transform _cam => _camera.transform;
+
+    private void Awake()
+    {
+        _camera = FindObjectOfType<Camera>();
+    }
+
     void Start()
     {
         _startpos = transform.position.x;
