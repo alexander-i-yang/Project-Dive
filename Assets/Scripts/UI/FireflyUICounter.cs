@@ -13,11 +13,9 @@ public class FireflyUICounter : MonoBehaviour, IFilterLoggerTarget
     private TextMeshProUGUI _tmText;
     private void Start()
     {
-        Debug.Log("Called Start");
         _inventory = PlayerCore.Actor.GetComponent<PlayerInventory>();
         _inventory.OnCollectibleAdded += HandleCollectibleAdded;
         _tmText = GetComponent<TextMeshProUGUI>();
-        Debug.Log("End of Start");
 
         UpdateCounter();
     }

@@ -37,7 +37,7 @@ namespace Player
             public override void MoveX(int moveDirection)
             {
                 UpdateSpriteFacing(moveDirection);
-                // PlayerAnim.ChangeState(moveDirection != 0 ? PlayerAnimations.RUNNING : PlayerAnimations.IDLE);
+                PlayerAnim.Animator.SetBool("Running", moveDirection != 0);
                 int acceleration = moveDirection == 0 ? PlayerCore.MaxAcceleration : PlayerCore.MaxDeceleration;
                 PlayerActions.UpdateMovementX(moveDirection, acceleration);
             }
