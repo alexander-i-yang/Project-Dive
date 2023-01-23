@@ -26,6 +26,9 @@
 # Visual Studio cache directory
 .vs/
 
+# Rider
+.idea/
+
 # Gradle cache directory
 .gradle/
 
@@ -92,3 +95,6 @@ crashlytics-build.properties
 fmod_editor.log
 
 Misc/Area Planning/Area Planning Project.tiled-session
+
+#Idea
+/.idea/

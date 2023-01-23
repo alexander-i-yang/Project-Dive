@@ -1,3 +1,4 @@
+using MyBox;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,11 +8,14 @@ namespace Helpers.Animation
 {
     public abstract class AnimationStateManager<T> : MonoBehaviour where T : Enum
     {
+        [SerializeField] private AnimationStateReference _animation;
         private Animator _animator;
 
         private string _currentState;
 
         public abstract Dictionary<T, string> Animations { get; }
+
+        public Animator Animator => _animator;
 
         private void Awake()
         {
@@ -19,39 +23,15 @@ namespace Helpers.Animation
             Debug.Log(_animator);
         }
 
-        public void SetInitialState(T newState)
+        public void Play(T newAnimation)
         {
-            string newStateStr = GetAnimationStr(newState);
-            if (newStateStr != null)
-            {
-                SetState(newStateStr);
-            }
-        }
-
-        public void ChangeState(T newState)
-        {
-            string newStateStr = GetAnimationStr(newState);
+            string newStateStr = GetAnimationStr(newAnimation);
 
             if (newStateStr != null)
             {
-                ChangeState(newStateStr);
+                _animator.Play(newStateStr);
+                _currentState = newStateStr;
             }
-        }
-
-        private void SetState(string newState)
-        {
-            _animator.Play(newState);
-            _currentState = newState;
-        }
-
-        private void ChangeState(string newState)
-        {
-            if (_currentState.Equals(newState))
-            {
-                return;
-            }
-
-            SetState(newState);
         }
 
         private string GetAnimationStr(T animation)

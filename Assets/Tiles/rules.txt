@@ -1,5 +1,6 @@
-automapSpikes.tmx
 automap.tmx
-automapLava.tmx
-automapBreakable.tmx
 automapBranches.tmx
+automapBreakable.tmx
+automapDirt.tmx
+automapLava.tmx
+automapSpikes.tmx

@@ -12,11 +12,13 @@ namespace Player
 
         public event Action OnPlayerDeath;
 
+        public bool UsingDrill => IsOnState<Diving>() || IsOnState<Dogoing>();
+
         #region Overrides
         protected override void SetInitialState() 
         {
             SetState<Grounded>();
-            _playerAnim.SetInitialState(PlayerAnimations.IDLE);
+            _playerAnim.Play(PlayerAnimations.SLEEPING);
         }
 
         protected override void Init()

@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Helpers;
+using Mechanics;
 using UnityEngine;
 
 namespace Phys {
@@ -24,7 +25,7 @@ namespace Phys {
             protected set { velocity = new Vector2(value, velocity.y); }
         }
 
-        protected void Start() {
+        protected virtual void Start() {
             myCollider = GetComponent<BoxCollider2D>();
             Game.Instance.ResetNextFrameOffset += ResetNextFrameOffset;
         }
@@ -63,6 +64,14 @@ namespace Phys {
             return false;
         }
 
+        public bool IsOverlapping(PhysObj p)
+        {
+            return CheckCollisions(Vector2.zero, (checkCol, dir) =>
+            {
+                return p == checkCol;
+            });
+        }
+
         /// <summary>
         /// Checks the interactable layer for any collisions. Will call onCollide if it hits anything.
         /// </summary>
@@ -81,6 +90,10 @@ namespace Phys {
 
             foreach (var hit in hits) {
                 var p = hit.transform.GetComponent<PhysObj>();
+                if (hit.transform == transform)
+                {
+                    continue;
+                }
                 bool proactiveCollision = ProactiveBoxCast(
                     p.transform, 
                     p.NextFrameOffset,
@@ -89,8 +102,11 @@ namespace Phys {
                     direction, 
                     filter
                 );
-                if (proactiveCollision) {
-                    if (onCollide.Invoke(p, direction)){
+                if (proactiveCollision)
+                {
+                    bool col = onCollide.Invoke(p, direction);
+                    if (col)
+                    {
                         return true;
                     }
                 }

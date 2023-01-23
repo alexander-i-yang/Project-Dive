@@ -63,5 +63,11 @@ namespace Phys {
                 return p.IsGround(this);
             });
         }
+
+        public void FlipGravity()
+        {
+            GravityDown *= -1;
+            GravityUp *= -1;
+        }
     }
 }

@@ -4,9 +4,17 @@ using UnityEngine;
 
 namespace Mechanics {
     public class Breakable : Solid {
-        // public GameObject ParticlePrefab;
-        
+        private GameObject _particles;
+
+        protected virtual string ParticlePath() => "PS_Breakable";
+
+        private void Awake()
+        {
+            _particles = (GameObject) Resources.Load(ParticlePath());
+        }
+
         public override bool Collidable() {
+            Resources.Load(ParticlePath());
             return true;
         }
 
@@ -29,7 +37,8 @@ namespace Mechanics {
 
         public void Break() {
             gameObject.SetActive(false);
-            // Instantiate(ParticlePrefab, transform.position, Quaternion.identity);
+            Instantiate(_particles, transform.position, Quaternion.identity);
+            //Instantiate(ParticlePrefab, transform.position, Quaternion.identity);
         }
     }
 }

@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="../Rocks.tsx"/>
  <tileset firstgid="37" source="../Branches.tsx"/>
  <tileset firstgid="67" source="../Mechanics.tsx"/>
- <tileset firstgid="74" source="Breakable.tsx"/>
+ <tileset firstgid="74" source="../Breakable.tsx"/>
  <layer id="1" name="Ground" width="32" height="18">
   <data encoding="csv">
 8,8,8,8,8,8,8,8,8,8,8,8,9,0,0,0,7,8,8,8,8,8,8,8,8,30,14,14,14,14,14,29,

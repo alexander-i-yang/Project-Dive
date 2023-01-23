@@ -18,6 +18,8 @@ namespace Collectibles {
 
         public override string ID => "Firefly";
 
+        public static string s_ID => "Firefly";
+
         private void Awake()
         {
             _animator = GetComponent<FireflyAnimator>();

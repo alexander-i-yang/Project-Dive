@@ -1,4 +1,5 @@
 ﻿using System.Buffers.Text;
+using System.Timers;
 using Core;
 
 namespace Helpers
@@ -7,13 +8,15 @@ namespace Helpers
     {
         Inactive,
         Running,
+        Paused,
         Finished
     }
     public class GameTimer : IFilterLoggerTarget
     {
-        protected float _timerValue { get; private set; }
+        public float TimerValue { get; private set; }
         protected float _duration { get; }
         private string _name;
+        private bool _paused;
 
         private bool _active;
 
@@ -61,7 +64,9 @@ namespace Helpers
                 return TimerState.Inactive;
             }
 
-            return timer.Finished() ? TimerState.Finished : TimerState.Running;
+            if (timer.Finished()) return TimerState.Finished;
+
+            return timer._paused ? TimerState.Paused : TimerState.Running;
         }
 
         public static bool TimerFinished(GameTimer timer)
@@ -74,34 +79,50 @@ namespace Helpers
             return GetTimerState(timer) == TimerState.Inactive;
         }
 
+        public static void Pause(GameTimer timer)
+        {
+            if (timer != null)
+            {
+                timer._paused = true;
+            }
+        }
+        
+        public static void UnPause(GameTimer timer)
+        {
+            if (timer != null)
+            {
+                timer._paused = false;
+            }
+        }
+
         internal void Reset()
         {
-            _timerValue = _duration;
+            TimerValue = _duration;
             _active = true;
         }
 
         protected virtual void Update()
         {
-            if (!Finished())
+            if (!Finished() && !_paused)
             {
-                _timerValue = _timerValue - Game.Instance.DeltaTime;
-                FilterLogger.Log(this, $"{_name}: {_timerValue}");
+                TimerValue -= Game.Instance.DeltaTime;
+                FilterLogger.Log(this, $"{_name}: {TimerValue}");
             }
 
         }
 
         private void FixedUpdate()
         {
-            if (!Finished())
+            if (!Finished() && !_paused)
             {
-                _timerValue = _timerValue - Game.Instance.FixedDeltaTime;
-                FilterLogger.Log(this, $"{_name}: {_timerValue}");
+                TimerValue -= Game.Instance.FixedDeltaTime;
+                FilterLogger.Log(this, $"{_name}: {TimerValue}");
             }
         }
 
         internal bool Finished()
         {
-            return _timerValue <= 0;
+            return TimerValue <= 0;
         }
 
         public LogLevel GetLogLevel()
@@ -148,7 +169,7 @@ namespace Helpers
 
         private bool InWindow()
         {
-            return _timerValue <= _length && _timerValue > 0;
+            return TimerValue <= _length && TimerValue > 0;
         }
     }
 }

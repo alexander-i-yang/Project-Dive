@@ -1,24 +1,33 @@
 using Helpers.Animation;
-using System;
+
 using System.Collections.Generic;
 
-public enum PlayerAnimations
+namespace Player
 {
-    IDLE,
-    RUNNING,
-    JUMPING,
-    DIVING,
-    DOGOING,
-}
-
-public class PlayerAnimationStateManager : AnimationStateManager<PlayerAnimations>
-{
-    public override Dictionary<PlayerAnimations, string> Animations => new Dictionary<PlayerAnimations, string>()
+    public enum PlayerAnimations
     {
-        { PlayerAnimations.IDLE, "Player_Idle"},
-        { PlayerAnimations.RUNNING, "Player_Running" },
-        { PlayerAnimations.JUMPING, "Player_Jumping" },
-        { PlayerAnimations.DIVING, "Player_Diving" },
-        { PlayerAnimations.DOGOING, "Player_Dogoing" }
-    };
+        IDLE,
+        RUNNING,
+        JUMP_INIT,
+        FREEFALL,
+        LANDING,
+        DIVING,
+        DOGOING,
+        SLEEPING
+    }
+
+    public class PlayerAnimationStateManager : AnimationStateManager<PlayerAnimations>
+    {
+        public override Dictionary<PlayerAnimations, string> Animations => new Dictionary<PlayerAnimations, string>()
+        {
+            { PlayerAnimations.IDLE, "Player_Idle"},
+            { PlayerAnimations.SLEEPING, "Player_Sleeping"},
+            { PlayerAnimations.RUNNING, "Player_Running" },
+            { PlayerAnimations.JUMP_INIT, "Player_Jump_Init" },
+            { PlayerAnimations.FREEFALL, "Player_Freefall" },
+            { PlayerAnimations.LANDING, "Player_Landing" },
+            { PlayerAnimations.DIVING, "Player_Diving" },
+            { PlayerAnimations.DOGOING, "Player_Dogoing" }
+        };
+    }
 }
