@@ -8,6 +8,7 @@ public class EarlyOut : ScriptableRendererFeature
 {
     [SerializeField] RenderTexture rt;
     [SerializeField] RenderPassEvent trigger;
+    [SerializeField] string passTag;
     EarlyOutPass p;
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
@@ -17,16 +18,18 @@ public class EarlyOut : ScriptableRendererFeature
 
     public override void Create()
     {
-        p = new EarlyOutPass(rt, trigger);
+        p = new EarlyOutPass(passTag, rt, trigger);
     }
 
     public class EarlyOutPass : ScriptableRenderPass
     {
         RenderTexture rt;
-        string m_ProfilerTag = "Early Out";
+        ProfilingSampler m_ProfilinSampler;
 
-        public EarlyOutPass(RenderTexture rt, RenderPassEvent trigger)
+        public EarlyOutPass(string passTag, RenderTexture rt, RenderPassEvent trigger)
         {
+            base.profilingSampler = new ProfilingSampler(nameof(EarlyOutPass)); // again, not really sure what this does
+            m_ProfilinSampler = new ProfilingSampler(passTag);
             this.rt = rt;
             renderPassEvent = trigger;
         }
@@ -35,8 +38,8 @@ public class EarlyOut : ScriptableRendererFeature
         {
             var renderer = renderingData.cameraData.renderer;
 
-            var cmd = CommandBufferPool.Get(m_ProfilerTag);
-            using (new ProfilingScope())
+            var cmd = CommandBufferPool.Get();
+            using (new ProfilingScope(cmd, m_ProfilinSampler))
             {
                 cmd.Blit(renderer.cameraColorTarget, rt);
             }
