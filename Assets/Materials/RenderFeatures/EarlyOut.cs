@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 public class EarlyOut : ScriptableRendererFeature
 {
     [SerializeField] RenderTexture rt;
-    [SerializeField] RenderPassEvent time;
+    [SerializeField] RenderPassEvent trigger;
     EarlyOutPass p;
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
@@ -17,7 +17,7 @@ public class EarlyOut : ScriptableRendererFeature
 
     public override void Create()
     {
-        p = new EarlyOutPass(rt, time);
+        p = new EarlyOutPass(rt, trigger);
     }
 
     public class EarlyOutPass : ScriptableRenderPass
@@ -25,10 +25,10 @@ public class EarlyOut : ScriptableRendererFeature
         RenderTexture rt;
         string m_ProfilerTag = "Early Out";
 
-        public EarlyOutPass(RenderTexture rt, RenderPassEvent time)
+        public EarlyOutPass(RenderTexture rt, RenderPassEvent trigger)
         {
             this.rt = rt;
-            renderPassEvent = time;
+            renderPassEvent = trigger;
         }
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
