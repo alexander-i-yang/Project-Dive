@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using static UnityEditor.SceneView;
 
-public class RenderSortingLayer : ScriptableRendererFeature
+public class DFRenderObject : ScriptableRendererFeature
 {
     [SerializeField] LayerMask layerMask;
     [SerializeField] RenderPassEvent trigger;
@@ -15,9 +14,9 @@ public class RenderSortingLayer : ScriptableRendererFeature
     [SerializeField] int overrideMaterialPassIndex = 0;
 
     [SerializeField] string passTag;
-    RenderSortingLayerPass pass;
+    DFRenderObjectPass pass;
 
-    class RenderSortingLayerPass : ScriptableRenderPass
+    class DFRenderObjectPass : ScriptableRenderPass
     {
         Material _m;
         FilteringSettings fSettings;
@@ -26,9 +25,9 @@ public class RenderSortingLayer : ScriptableRendererFeature
         ProfilingSampler m_ProfilingSampler;
         int overrideMaterialPassIndex;
 
-        public RenderSortingLayerPass(string passTag, LayerMask layerMask, RenderPassEvent trigger, Material overrideMaterial, int overrideMaterialPassIndex)
+        public DFRenderObjectPass(string passTag, LayerMask layerMask, RenderPassEvent trigger, Material overrideMaterial, int overrideMaterialPassIndex)
         {
-            base.profilingSampler = new ProfilingSampler(nameof(RenderSortingLayerPass)); // no idea what this does. lol
+            base.profilingSampler = new ProfilingSampler(nameof(DFRenderObjectPass)); // no idea what this does. lol
             m_ProfilingSampler = new ProfilingSampler(passTag);
 
             _m = overrideMaterial;
@@ -46,13 +45,13 @@ public class RenderSortingLayer : ScriptableRendererFeature
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
-            var criteria = SortingCriteria.SortingLayer | SortingCriteria.CommonOpaque; // the URP RenderObjects feature uses CommonOpaque only, here we add sorting layer to support tilemaps
+            var criteria = SortingCriteria.CommonOpaque;
 
             var drawingSettings = CreateDrawingSettings(m_ShaderTagIds, ref renderingData, criteria);
             drawingSettings.overrideMaterial = _m;
             drawingSettings.overrideMaterialPassIndex = overrideMaterialPassIndex;
 
-            CommandBuffer cmd = CommandBufferPool.Get();
+            CommandBuffer cmd = CommandBufferPool.Get(nameof(DFRenderObjectPass));
             using (new ProfilingScope(cmd, m_ProfilingSampler))
             {
                 // flush buffer
@@ -68,7 +67,7 @@ public class RenderSortingLayer : ScriptableRendererFeature
 
     public override void Create()
     {
-        pass = new RenderSortingLayerPass(passTag, layerMask, trigger, overrideMaterial, overrideMaterialPassIndex);
+        pass = new DFRenderObjectPass(passTag, layerMask, trigger, overrideMaterial, overrideMaterialPassIndex);
     }
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)

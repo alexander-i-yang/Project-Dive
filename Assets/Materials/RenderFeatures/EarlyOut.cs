@@ -8,44 +8,48 @@ public class EarlyOut : ScriptableRendererFeature
 {
     [SerializeField] RenderTexture rt;
     [SerializeField] RenderPassEvent trigger;
-    [SerializeField] string passTag;
-    EarlyOutPass p;
-
-    public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
-    {
-        renderer.EnqueuePass(p);
-    }
-
-    public override void Create()
-    {
-        p = new EarlyOutPass(passTag, rt, trigger);
-    }
+    EarlyOutPass pass;
 
     public class EarlyOutPass : ScriptableRenderPass
     {
         RenderTexture rt;
-        ProfilingSampler m_ProfilinSampler;
+        ProfilingSampler m_ProfilingSampler = new ProfilingSampler(nameof(EarlyOutPass));
 
-        public EarlyOutPass(string passTag, RenderTexture rt, RenderPassEvent trigger)
+        public EarlyOutPass(RenderTexture rt, RenderPassEvent trigger)
         {
-            base.profilingSampler = new ProfilingSampler(nameof(EarlyOutPass)); // again, not really sure what this does
-            m_ProfilinSampler = new ProfilingSampler(passTag);
             this.rt = rt;
             renderPassEvent = trigger;
         }
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
+            if (renderingData.cameraData.camera != Camera.main) return;
+
             var renderer = renderingData.cameraData.renderer;
 
-            var cmd = CommandBufferPool.Get();
-            using (new ProfilingScope(cmd, m_ProfilinSampler))
-            {
-                cmd.Blit(renderer.cameraColorTarget, rt);
+            var cmd = CommandBufferPool.Get(nameof(EarlyOutPass));
+            using(new ProfilingScope(cmd, m_ProfilingSampler))
+            { 
+                // flush buffer
+                context.ExecuteCommandBuffer(cmd);
+                cmd.Clear();
+
+                cmd.Blit(renderer.cameraColorTarget, rt); // from the Frame Debugger, this operation actually sets the target of the entire buffer
+                cmd.SetRenderTarget(renderer.cameraColorTarget); // this cleans up the target change... BUT it assumes the original target is camera color
             }
 
             context.ExecuteCommandBuffer(cmd);
             CommandBufferPool.Release(cmd);
         }
+    }
+
+    public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
+    {
+        renderer.EnqueuePass(pass);
+    }
+
+    public override void Create()
+    {
+        pass = new EarlyOutPass(rt, trigger);
     }
 }

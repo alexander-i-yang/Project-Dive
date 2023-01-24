@@ -1,26 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3931007918154323954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14425bd540fc6774981eb582b63f2aec, type: 3}
-  m_Name: RenderSortingLayer
-  m_EditorClassIdentifier: 
-  m_Active: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 16
-  trigger: 350
-  overrideMaterial: {fileID: 2100000, guid: b7ba06fb4e046504388011c5db793084, type: 2}
-  overrideMaterialPassIndex: 0
-  passTag: Liquid Resample Pass
---- !u!114 &-1459639675462021229
+--- !u!114 &-7543897825618846353
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -33,9 +13,48 @@ MonoBehaviour:
   m_Name: EarlyOut
   m_EditorClassIdentifier: 
   m_Active: 1
-  rt: {fileID: 8400000, guid: b8f7c0c8dac65d24a8c42d287164d1a7, type: 2}
-  trigger: 1000
-  passTag: Early Out
+  rt: {fileID: 8400000, guid: 6a97591154f2fc9459fa04d62dbc260d, type: 2}
+  trigger: 350
+--- !u!114 &-3997568628273803268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14425bd540fc6774981eb582b63f2aec, type: 3}
+  m_Name: DFRenderObject
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  trigger: 450
+  overrideMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  overrideMaterialPassIndex: 0
+  passTag: 
+--- !u!114 &-3943725525851770831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14425bd540fc6774981eb582b63f2aec, type: 3}
+  m_Name: Override Water Pass
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 16
+  trigger: 450
+  overrideMaterial: {fileID: 2100000, guid: b7ba06fb4e046504388011c5db793084, type: 2}
+  overrideMaterialPassIndex: 0
+  passTag: Override Water Pass
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,10 +70,10 @@ MonoBehaviour:
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
   m_RendererFeatures:
-  - {fileID: -3931007918154323954}
-  - {fileID: 5324792607518285288}
-  - {fileID: -1459639675462021229}
-  m_RendererFeatureMap: 0ee82935204172c9e8ddc021aa76e549930f05dc7251beeb
+  - {fileID: -7543897825618846353}
+  - {fileID: -3943725525851770831}
+  - {fileID: -3997568628273803268}
+  m_RendererFeatureMap: 6f9d259ae5b04e9731f0f66b871245c9fc8f7e3a83c885c8
   m_UseNativeRenderPass: 0
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 1, z: 0}
@@ -97,23 +116,3 @@ MonoBehaviour:
   m_DefaultLitMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_DefaultUnlitMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_DefaultMaskMaterial: {fileID: 2100000, guid: 15d0c3709176029428a0da2f8cecf0b5, type: 2}
---- !u!114 &5324792607518285288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14425bd540fc6774981eb582b63f2aec, type: 3}
-  m_Name: RenderSortingLayer
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  trigger: 250
-  overrideMaterial: {fileID: 0}
-  overrideMaterialPassIndex: 0
-  passTag: Pre-render
