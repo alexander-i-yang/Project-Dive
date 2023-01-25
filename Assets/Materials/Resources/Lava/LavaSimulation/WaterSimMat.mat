@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LavaSimMat
+  m_Name: WaterSimMat
   m_Shader: {fileID: 4800000, guid: 95795ca406604fc438300fb49f6a9f7f, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -37,11 +37,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints:
-    - _HalfNeighborhood: 2
+    - _HalfNeighborhood: 3
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _ImpulseWidth: 0.03
-    - _K: 0.13
+    - _ImpulseWidth: 0.07
+    - _K: 0.07
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}

@@ -9,9 +9,17 @@ public class DFRenderObject : ScriptableRendererFeature
     [SerializeField] LayerMask layerMask;
     [SerializeField] RenderPassEvent trigger;
 
+    // render to RT instead of camear color, when chosen
+    [SerializeField] RenderTexture overrideTexture = null;
+    [SerializeField] bool clearOverrideTextureBefore = false;
+
     // default values synced to RenderObjects feature
     [SerializeField] Material overrideMaterial = null;
-    [SerializeField] int overrideMaterialPassIndex = 0;
+    public Material OverrideMaterialPrototype => overrideMaterial;
+    public Material OverrideMaterialInstance { get; set; }
+
+    // never actually used, hide for now
+    [SerializeField, HideInInspector] int overrideMaterialPassIndex = 0;
 
     [SerializeField] string passTag;
     DFRenderObjectPass pass;
@@ -23,10 +31,15 @@ public class DFRenderObject : ScriptableRendererFeature
         List<ShaderTagId> m_ShaderTagIds;
         RenderStateBlock m_RenderStateBlock;
         ProfilingSampler m_ProfilingSampler;
+        RenderTexture rt;
         int overrideMaterialPassIndex;
+        bool clear;
 
-        public DFRenderObjectPass(string passTag, LayerMask layerMask, RenderPassEvent trigger, Material overrideMaterial, int overrideMaterialPassIndex)
+        public DFRenderObjectPass(string passTag, LayerMask layerMask, RenderPassEvent trigger, bool cleareOverrideTextureBefore, RenderTexture overrideTexture, Material overrideMaterial, int overrideMaterialPassIndex)
         {
+            rt = overrideTexture;
+            clear = cleareOverrideTextureBefore;
+
             base.profilingSampler = new ProfilingSampler(nameof(DFRenderObjectPass)); // no idea what this does. lol
             m_ProfilingSampler = new ProfilingSampler(passTag);
 
@@ -58,7 +71,20 @@ public class DFRenderObject : ScriptableRendererFeature
                 context.ExecuteCommandBuffer(cmd);
                 cmd.Clear();
 
+                if (rt != null)
+                {
+                    cmd.SetRenderTarget(rt);
+                    if (clear)
+                    {
+                        cmd.ClearRenderTarget(false, true, Color.black);
+                    }
+                }
+                context.ExecuteCommandBuffer(cmd); // DrawRenderers doesn't respect buffer order so the above commands need to be done immediately
+                cmd.Clear();
+
                 context.DrawRenderers(renderingData.cullResults, ref drawingSettings, ref fSettings, ref m_RenderStateBlock);
+
+                // if (rt != null) cmd.SetRenderTarget(renderingData.cameraData.renderer.cameraColorTarget);
             }
             context.ExecuteCommandBuffer(cmd);
             CommandBufferPool.Release(cmd);
@@ -67,7 +93,8 @@ public class DFRenderObject : ScriptableRendererFeature
 
     public override void Create()
     {
-        pass = new DFRenderObjectPass(passTag, layerMask, trigger, overrideMaterial, overrideMaterialPassIndex);
+        var m = OverrideMaterialInstance != null ? OverrideMaterialInstance : OverrideMaterialPrototype;
+        pass = new DFRenderObjectPass(passTag, layerMask, trigger, clearOverrideTextureBefore, overrideTexture, m, overrideMaterialPassIndex);
     }
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)

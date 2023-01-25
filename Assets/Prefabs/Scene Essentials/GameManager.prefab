@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 920634851000325340}
   - component: {fileID: 6050930652265175039}
-  - component: {fileID: 6107789628600611261}
+  - component: {fileID: 633548019293512412}
+  - component: {fileID: 4380424756509594215}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeScale: 1
   IsPaused: 0
---- !u!114 &6107789628600611261
+--- !u!114 &633548019293512412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,7 +60,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b4c33d04bb47b41a6c55381817cabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lavaSimMat: {fileID: 2100000, guid: 4cbe966184682404dab9e5743d704724, type: 2}
-  _lavaMat: {fileID: 2100000, guid: e21ced2dba1969a4c8133b8ec60dfff7, type: 2}
-  impulseStrength: 0.3
+  SimMat: {fileID: 2100000, guid: 4cbe966184682404dab9e5743d704724, type: 2}
+  SimListenerMats:
+  - {fileID: 2100000, guid: e21ced2dba1969a4c8133b8ec60dfff7, type: 2}
+  impulseStrength: 0.345
+  scriptableRenderer: {fileID: 11400000, guid: fa9b408e5b582c748a1ee0dba318e3cc, type: 2}
+  _testImage: {fileID: 0}
+--- !u!114 &4380424756509594215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4467605989971130145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b4c33d04bb47b41a6c55381817cabe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SimMat: {fileID: 2100000, guid: a32a197acfd0bd344842ad4843432cc4, type: 2}
+  SimListenerMats:
+  - {fileID: 2100000, guid: 00377a25236f1874baf77687f292ff3f, type: 2}
+  - {fileID: 2100000, guid: b7ba06fb4e046504388011c5db793084, type: 2}
+  impulseStrength: 1
+  scriptableRenderer: {fileID: 11400000, guid: fa9b408e5b582c748a1ee0dba318e3cc, type: 2}
   _testImage: {fileID: 0}
