@@ -56,6 +56,15 @@ MonoBehaviour:
         Data4: 1802742122
       Path: event:/Music/Mus_Level_S
     emitter: {fileID: 595249429895139177}
+  - name: Cave_Music
+    fmodEvent:
+      Guid:
+        Data1: -152067354
+        Data2: 1077506835
+        Data3: 1278362255
+        Data4: 325026680
+      Path: event:/Music/CaveMusic
+    emitter: {fileID: 595249429895139177}
   musicBusPath: 
   sfxBusPath: 
   soundDampenCurve:

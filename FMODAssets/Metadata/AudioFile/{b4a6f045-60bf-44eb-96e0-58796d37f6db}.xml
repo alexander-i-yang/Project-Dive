@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{b4a6f045-60bf-44eb-96e0-58796d37f6db}">
+		<property name="assetPath">
+			<value>SFX/drill_in_air.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>8.0192290249433107</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5f6f5d71-610b-462e-a1fd-92ec1c44a98a}</destination>
+		</relationship>
+	</object>
+</objects>
