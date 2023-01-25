@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{79b58dbc-bdf6-4409-8517-e89582b3dc37}">
 		<property name="assetPath">
-			<value>DANDARA OST - Dandara's Purpose.wav</value>
+			<value>Music/DANDARA OST - Dandara's Purpose.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
