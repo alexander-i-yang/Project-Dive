@@ -43,7 +43,7 @@ namespace Mechanics
 
         private void OnPlayerStateChanged()
         {
-            if (PlayerCore.StateMachine.IsOnState<PlayerStateMachine.DogoJumping>())
+            if (!PlayerCore.StateMachine.UsingDrill)
             {
                 RechargeSpikes();
             }

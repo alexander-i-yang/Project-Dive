@@ -10,7 +10,7 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
-                PlayerAnim.ChangeState(PlayerAnimations.DIVING);
+                PlayerAnim.Play(PlayerAnimations.DIVING);
                 PlayerActions.Dive();
                 Input.canDive = false;
                 Input.canJumpCut = false;
@@ -42,6 +42,7 @@ namespace Player
 
             public override void MoveX(int moveDirection)
             {
+                PlayerActions.UpdateMovementX(moveDirection, PlayerCore.MaxAirAcceleration);
                 UpdateSpriteFacing(moveDirection);
             }
         }

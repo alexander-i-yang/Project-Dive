@@ -48,11 +48,16 @@ namespace Helpers {
             {
                 { "Lava", ImportLavaTilemap },
                 { "Ground", ImportGroundTilemap },
+                { "Dirt", ImportGroundTilemap },
+                { "DecorBack", ImportDecorBackTilemap },
+                { "Spikes", ImportSpikesTilemap },
+                { "Branches", ImportBranchesTilemap },
             };
             
             //Applies to children
             Dictionary<String, Action<GameObject, int>> tileLayerImports = new() {
                 { "Ground", ImportGround },
+                { "Dirt", ImportGround },
                 { "Breakable", ImportBreakable },
                 { "Lava", ImportLava },
             };
@@ -85,7 +90,7 @@ namespace Helpers {
             if (mainTilemap == null)
             {
                 FilterLogger.LogWarning(this,   $"Room bounds and components not added to tiled map {room.gameObject.name} " +
-                                                $"because it does not contain a Tiled layer named 'Ground'.");
+                                                $"because it does not contain a Tiled layer named 'Ground' or 'Dirt'.");
                 return;
             }
             mainTilemap.CompressBounds();
@@ -98,7 +103,7 @@ namespace Helpers {
             SuperTileLayer[] layers = parent.GetComponentsInChildren<SuperTileLayer>();
             foreach (SuperTileLayer layer in layers)
             {
-                if (layer.gameObject.name.Equals("Ground"))
+                if (layer.gameObject.name.Equals("Ground") || layer.gameObject.name.Equals("Dirt"))
                 {
                     return layer.GetComponent<Tilemap>();
                 }
@@ -147,6 +152,7 @@ namespace Helpers {
         }
 
         private Tuple<GameObject, Vector2[]> ImportTileToPrefab(GameObject g, int index, String prefabName) {
+            Debug.Log($"Import ground{g}, {index}, {prefabName}");
             GameObject replacer = _prefabReplacements[prefabName];
             Vector2[] points = LayerImportLibrary.EdgeToPoints(g);
 
@@ -189,6 +195,21 @@ namespace Helpers {
         {
             LayerImportLibrary.SetMaterial(g, "Lava");
             g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Lava");
+        }
+
+        private void ImportBranchesTilemap(GameObject g)
+        {
+            g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Ground");
+        }
+        
+        private void ImportSpikesTilemap(GameObject g)
+        {
+            GameObject.DestroyImmediate(g);
+        }
+        
+        private void ImportDecorBackTilemap(GameObject g)
+        {
+            g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Bg");
         }
         
         private void ImportGroundTilemap(GameObject g)

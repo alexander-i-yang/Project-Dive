@@ -9,7 +9,7 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
-                PlayerAnim.ChangeState(PlayerAnimations.DOGOING);
+                PlayerAnim.Play(PlayerAnimations.DOGOING);
                 i.oldVelocity = PlayerActions.Dogo();
                 i.ultraTimer = GameTimerWindowed.StartNewWindowedTimer(
                     PlayerCore.UltraTimeDelay, 
@@ -63,7 +63,7 @@ namespace Player
             public override void SetGrounded(bool isGrounded, bool isMovingUp)
             {
                 base.SetGrounded(isGrounded, isMovingUp);
-                if (!isGrounded) {MySM.Transition<Diving>();}
+                // if (!isGrounded) {MySM.Transition<Diving>();}
             }
         }
     }

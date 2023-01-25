@@ -24,3 +24,50 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
+  - m_From: VCam_Room
+    m_To: Shaft Room
+    m_Blend:
+      m_Style: 4
+      m_Time: 12
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0.5178255
+          inSlope: 0.022217082
+          outSlope: 0.022217082
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.48329565
+          value: 0.5285629
+          inSlope: 0.11625118
+          outSlope: 0.11625118
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.6250097
+        - serializedVersion: 3
+          time: 0.92482436
+          value: 0.98293275
+          inSlope: 0.58890474
+          outSlope: 0.58890474
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0.9941133
+          inSlope: 0.14872609
+          outSlope: 0.14872609
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0

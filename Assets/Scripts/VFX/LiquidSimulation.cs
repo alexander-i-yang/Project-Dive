@@ -16,8 +16,8 @@ namespace VFX
         [Header("Material Prototypes")]
         [SerializeField] private Material SimMat;
         private Material m_SimMat;
-        [SerializeField] private Material[] SimListenerMats;
-        private Material[] m_SimListenerMats;
+        [SerializeField] private List<Material> SimListenerMats;
+        private List<Material> m_SimListenerMats;
         [SerializeField, Range(0f, 1f)] private float impulseStrength = 0f;
 
         [SerializeField] ScriptableRendererData scriptableRenderer;
@@ -33,13 +33,15 @@ namespace VFX
         private void Awake()
         {
             m_SimMat = InstantiateMaterial(SimMat);
-            m_SimListenerMats = new Material[SimListenerMats.Length];
+            m_SimListenerMats = new List<Material>(SimListenerMats.Count);
 
             if (scriptableRenderer == null) throw new System.Exception("Requires reference to the 2D renderer data");
 
-            for (int i = 0; i < SimListenerMats.Length; i++)
+            foreach(var m in SimListenerMats)
             {
-                m_SimListenerMats[i] = InstantiateMaterial(SimListenerMats[i]);
+                var mInst = InstantiateMaterial(m);
+                m_SimListenerMats.Add(mInst);
+
                 // replace render feature at run time
                 var rfs = scriptableRenderer.rendererFeatures;
                 foreach (var rf in rfs)
@@ -47,13 +49,15 @@ namespace VFX
                     if (rf is DFRenderObject)
                     {
                         var roFeature = rf as DFRenderObject;
-                        if (roFeature.OverrideMaterialPrototype == SimListenerMats[i])
+                        if (roFeature.OverrideMaterialPrototype == m)
                         {
                             Debug.Log($"Replacing {roFeature.name}'s material prototype {roFeature.OverrideMaterialPrototype.name}");
-                            roFeature.OverrideMaterialInstance = m_SimListenerMats[i];
+                            roFeature.OverrideMaterialInstance = m;
                         }
                     }
                 }
+
+                MaterialFinder.ReplaceMaterial(m, mInst);
             }
         }
 

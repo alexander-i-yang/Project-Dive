@@ -14,6 +14,8 @@ namespace World {
         private PlayerSpawnManager _player;
         private CinemachineBrain _cmBrain;
 
+        public bool StopTime = true;
+
         private Spawn[] _spawns;
         public Spawn[] Spawns
         {
@@ -64,6 +66,10 @@ namespace World {
             bool needTransition = _player.CurrentRoom != this;
             if (isPlayer && needTransition) 
             {
+                /*
+                 * This check ensures that the player can only ever be in one room at a time.
+                 * It says that not only does the player need to collide, but the entire bounding box needs to be in the room.
+                 */
                 bool boundsCheck = _roomCollider.bounds.Contains(other.bounds.min) && _roomCollider.bounds.Contains(other.bounds.max);
                 if (boundsCheck)
                 {
@@ -72,7 +78,7 @@ namespace World {
             }
         }
 
-        public void TransitionToThisRoom()
+        public virtual void TransitionToThisRoom()
         {
             FilterLogger.Log(this, $"Transitioned to room: {gameObject.name}");
             if (_transitionRoutine != null)
@@ -85,9 +91,13 @@ namespace World {
         private IEnumerator TransitionRoutine()
         {
             SwitchCamera();
-            Time.timeScale = 0f;
+            if (StopTime) Time.timeScale = 0f;
+            /*
+             * This is kinda "cheating". Instead of waiting for the camera to be done switching,
+             * we're just waiting for the same amount of time as the blend time between cameras.
+             */
             yield return new WaitForSecondsRealtime(_cmBrain.m_DefaultBlend.BlendTime);
-            Time.timeScale = 1f;
+            if (StopTime) Time.timeScale = 1f;
             _transitionRoutine = null;
             RoomTransitionEvent?.Invoke(this);
         }
@@ -95,8 +105,6 @@ namespace World {
         private void SwitchCamera()
         {
             //L: Inefficient, but not terrible?
-            Debug.Log(_vCam);
-            Debug.Log(_vCam.gameObject);
             this._vCam.gameObject.SetActive(true);
             foreach (Room room in _roomList)
             {
