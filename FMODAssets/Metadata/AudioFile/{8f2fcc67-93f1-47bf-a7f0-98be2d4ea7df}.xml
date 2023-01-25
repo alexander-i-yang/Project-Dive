@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{8f2fcc67-93f1-47bf-a7f0-98be2d4ea7df}">
+		<property name="assetPath">
+			<value>TEMP/temp cave ambiance.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>24</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>535.55200000000002</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5f6f5d71-610b-462e-a1fd-92ec1c44a98a}</destination>
+		</relationship>
+	</object>
+</objects>
