@@ -203,8 +203,8 @@
             "scale": 4,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 112.375,
-                "y": 82.125
+                "x": 163.375,
+                "y": 92.125
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Level1.tmx": {
@@ -214,8 +214,8 @@
             "scale": 4.8056640625,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 138.06624669782565,
-                "y": 91.24649461491566
+                "x": 139.93903678114205,
+                "y": 88.12517780938833
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Level2.tmx": {
@@ -236,8 +236,8 @@
             "scale": 4.8056640625,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 163.24486892907947,
-                "y": 90.6222312538102
+                "x": 136.60963218857955,
+                "y": 86.46047551310708
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Line of crystals.tmx": {
@@ -403,8 +403,8 @@
             "scale": 5.5,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 122.63636363636365,
-                "y": 59.54545454545455
+                "x": 120,
+                "y": 79.9090909090909
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapBranches.tmx": {
@@ -435,8 +435,8 @@
             "scale": 5.5,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 57.545454545454554,
-                "y": 45.72727272727273
+                "x": 128,
+                "y": 71.9090909090909
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapDirt.tmx": {
@@ -462,16 +462,16 @@
             "scale": 5.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 65.9090909090909,
-                "y": 57.72727272727273
+                "x": 127.9090909090909,
+                "y": 71.9090909090909
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapToDecorBack.tmx": {
             "scale": 5.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 88.27272727272727,
-                "y": 42.45454545454545
+                "x": 128,
+                "y": 71.9090909090909
             }
         },
         "Planning Tileset.tsx": {

@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 8172312737088805392}
   - component: {fileID: 4069720260113940954}
   - component: {fileID: 2773001664567645559}
+  - component: {fileID: 6374834344929894557}
   m_Layer: 0
   m_Name: Firefly
   m_TagString: Untagged
@@ -186,9 +187,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -163342673
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ca05595229ef1f347ad9ea3cce6da5e4, type: 3}
+  m_Sprite: {fileID: -1883309256, guid: 44ed0f6286286594e94c53a80d5462ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -215,8 +216,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8, y: 8}
+    pivot: {x: 0.5, y: 0.33333334}
+    oldSize: {x: 12, y: 12}
     newSize: {x: 8, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -254,3 +255,23 @@ MonoBehaviour:
   endAngleDeg: 333
   endSpeed: 1.5
   animSpeed: 1
+--- !u!95 &6374834344929894557
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3572848764956040594}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e855d7e662b36164fbb96e2a0b398d21, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
