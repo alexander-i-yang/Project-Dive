@@ -4,3 +4,5 @@ automapBreakable.tmx
 automapDirt.tmx
 automapLava.tmx
 automapSpikes.tmx
+automapToDecorBack.tmx
+automapDecorBack.tmx

@@ -49,6 +49,8 @@ namespace Helpers {
                 { "Lava", ImportLavaTilemap },
                 { "Ground", ImportGroundTilemap },
                 { "Dirt", ImportGroundTilemap },
+                { "DecorBack", ImportDecorBackTilemap },
+                { "Spikes", ImportSpikesTilemap },
                 { "Branches", ImportBranchesTilemap },
             };
             
@@ -198,6 +200,16 @@ namespace Helpers {
         private void ImportBranchesTilemap(GameObject g)
         {
             g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Ground");
+        }
+        
+        private void ImportSpikesTilemap(GameObject g)
+        {
+            GameObject.DestroyImmediate(g);
+        }
+        
+        private void ImportDecorBackTilemap(GameObject g)
+        {
+            g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Bg");
         }
         
         private void ImportGroundTilemap(GameObject g)
