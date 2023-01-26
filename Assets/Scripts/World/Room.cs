@@ -28,8 +28,6 @@ namespace World {
                 return _spawns;
             }
         }
-
-        private static Room[] _roomList;
         private static Coroutine _transitionRoutine;
 
         public delegate void OnRoomTransition(Room roomEntering);
@@ -38,16 +36,10 @@ namespace World {
         private void Awake()
         {
             _roomCollider = GetComponent<Collider2D>();
-            _vCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
             _player = FindObjectOfType<PlayerSpawnManager>(true);
             _cmBrain = FindObjectOfType<CinemachineBrain>(true);
 
-            if (_roomList == null || _roomList.Length == 0)
-            {
-                _roomList = FindObjectsOfType<Room>(true);
-                FilterLogger.Log(this, $"Initialized Room List: Found {_roomList.Length} rooms.");
-            }
-
+            _vCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
             _vCam.Follow = _player.transform;
         }
 
@@ -106,7 +98,7 @@ namespace World {
         {
             //L: Inefficient, but not terrible?
             this._vCam.gameObject.SetActive(true);
-            foreach (Room room in _roomList)
+            foreach (Room room in RoomList.Rooms)
             {
                 if (room != this)
                 {
