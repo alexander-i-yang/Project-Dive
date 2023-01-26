@@ -28,7 +28,6 @@ namespace Player
             _playerAnim = GetComponentInChildren<PlayerAnimationStateManager>();
             _spriteR = GetComponentInChildren<SpriteRenderer>();
             _drillEmitter = GetComponentInChildren<StudioEventEmitter>();
-            _drillEmitter.EventDescription.loadSampleData();
         }
 
         protected override void Update()
