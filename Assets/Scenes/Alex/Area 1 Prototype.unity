@@ -3258,6 +3258,18 @@ PrefabInstance:
       propertyPath: m_NormalizedViewPortRect.height
       value: 0.93333334
       objectReference: {fileID: 0}
+    - target: {fileID: 7330086496756647763, guid: 1a01374bbf202bf4fb2366a12a2699c2, type: 3}
+      propertyPath: m_fontSize
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7330086496756647763, guid: 1a01374bbf202bf4fb2366a12a2699c2, type: 3}
+      propertyPath: m_margin.x
+      value: -170.60388
+      objectReference: {fileID: 0}
+    - target: {fileID: 7330086496756647763, guid: 1a01374bbf202bf4fb2366a12a2699c2, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 64
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a01374bbf202bf4fb2366a12a2699c2, type: 3}
 --- !u!43 &404418750
@@ -19315,11 +19327,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2234600854425113956, guid: 170e70d5caa8008458d966007a658035, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 920
+      value: 1056
       objectReference: {fileID: 0}
     - target: {fileID: 2234600854425113956, guid: 170e70d5caa8008458d966007a658035, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -920
+      value: -840
       objectReference: {fileID: 0}
     - target: {fileID: 2234600854425113956, guid: 170e70d5caa8008458d966007a658035, type: 3}
       propertyPath: m_LocalPosition.z
