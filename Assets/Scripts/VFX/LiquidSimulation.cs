@@ -7,7 +7,8 @@ using UnityEngine.UI;
 using Helpers;
 using Player;
 using World;
-using UnityEngine.Rendering.Universal;
+// using UnityEngine.Rendering.Universal;
+using UnityEditor;
 
 namespace VFX
 {
@@ -98,6 +99,23 @@ namespace VFX
                     m_SimMat.SetVector("_Impulse", new Vector3(0, 0, 0));
                 }
 
+            }
+        }
+
+        private void OnDestroy()
+        {
+            Debug.Log("Clear material edits");
+            foreach(var m in SimListenerMats)
+            {
+                m.SetVector("_Impulse", new Vector3(0, 0, 0));
+                m.SetVector("_RoomSize", new Vector2(0, 0));
+                m.SetVector("_RoomPos", new Vector3(0, 0, 0));
+                m.SetTexture("_SimulationTex", null);
+
+#if UNITY_EDITOR
+                EditorUtility.SetDirty(m);
+                AssetDatabase.SaveAssetIfDirty(m);
+#endif
             }
         }
 

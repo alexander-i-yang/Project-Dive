@@ -47,8 +47,8 @@ Material:
     - _Speed: 1.5
     - _WaveHeight: 1
     m_Colors:
-    - _RoomPos: {r: 656, g: -576, b: 0, a: 0}
-    - _RoomSize: {r: 256, g: 144, b: 0, a: 0}
+    - _RoomPos: {r: 0, g: 0, b: 0, a: 0}
+    - _RoomSize: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &4312840938522910784
 MonoBehaviour:

@@ -63,7 +63,7 @@ Material:
     - _ReflectionOverlay: 0.854
     - _SimulationStrength: 5
     - _Speed: 1.5
-    - _WaveHeight: 1
+    - _WaveHeight: 0.25
     - _WobbleExtent: 1
     - _WobbleSpeed: 4
     - _hit: 0.841
@@ -74,8 +74,8 @@ Material:
     - _ReflectionAmbient: {r: 0.24430405, g: 0.2593339, b: 0.2830189, a: 0}
     - _ReflectionTint: {r: 0.6745098, g: 1, b: 0.9376872, a: 0}
     - _RefractionTint: {r: 0.5504183, g: 0.6049083, b: 0.8773585, a: 0}
-    - _RoomPos: {r: 656, g: -576, b: 0, a: 0}
-    - _RoomSize: {r: 256, g: 144, b: 0, a: 0}
+    - _RoomPos: {r: 0, g: 0, b: 0, a: 0}
+    - _RoomSize: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3967551692810230703
 MonoBehaviour:
