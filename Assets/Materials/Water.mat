@@ -63,7 +63,7 @@ Material:
     - _ReflectionOverlay: 0.854
     - _SimulationStrength: 5
     - _Speed: 1.5
-    - _WaveHeight: 0.25
+    - _WaveHeight: 1
     - _WobbleExtent: 1
     - _WobbleSpeed: 4
     - _hit: 0.841

@@ -4,7 +4,7 @@ Shader "CustomRenderTexture/LavaSim"
     {
         _K("K", Float) = 0.1
         _HalfNeighborhood("Half Neighborhood", Integer) = 2
-        _Impulse("Impulse", Vector) = (0, 0, 0, 0)
+        // _Impulse("Impulse", Vector) = (0, 0, 0, 0)
         _ImpulseWidth("Impulse Width", Float) = 0.04
     }
 
