@@ -112,7 +112,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     }
 
     public void DogoJump(int moveDirection, bool conserveMomentum, double oldXV) {
-        // if (moveDirection == 0)
         if (!(moveDirection == 1 || moveDirection == -1)) {
             throw new ArgumentException(
             $"Cannot dogo jump in direction({moveDirection})"

@@ -3,12 +3,14 @@
 using UnityEngine;
 
 using Helpers;
+using FMODUnity;
 
 namespace Player
 {
     public partial class PlayerStateMachine : StateMachine<PlayerStateMachine, PlayerStateMachine.PlayerState, PlayerStateInput> {
         private PlayerAnimationStateManager _playerAnim;
         private SpriteRenderer _spriteR;
+        private StudioEventEmitter _drillEmitter;
 
         public event Action OnPlayerDeath;
 
@@ -25,7 +27,8 @@ namespace Player
         {
             _playerAnim = GetComponentInChildren<PlayerAnimationStateManager>();
             _spriteR = GetComponentInChildren<SpriteRenderer>();
-
+            _drillEmitter = GetComponentInChildren<StudioEventEmitter>();
+            _drillEmitter.EventDescription.loadSampleData();
         }
 
         protected override void Update()
