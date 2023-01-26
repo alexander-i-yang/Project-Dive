@@ -34,36 +34,9 @@ namespace VFX
         private void Awake()
         {
             m_SimMat = InstantiateMaterial(SimMat);
-            // m_SimListenerMats = new List<Material>(SimListenerMats.Count);
 
-            // if (scriptableRenderer == null) throw new System.Exception("Requires reference to the 2D renderer data");
-
-            //foreach (var m in SimListenerMats)
-            //{
-            //    var mInst = InstantiateMaterial(m);
-            //    m_SimListenerMats.Add(mInst);
-
-                // AT: Material instancing does not actually work on render features(sim textures updates will NOT reflect on the actual render)
-                //     This is because the Editor.SetDirty() methods needs to be called on the render feature after editing
-                //     But that method needs the UNITY_EDITOR flag to be set
-                // replace render feature at run time
-                //var rfs = scriptableRenderer.rendererFeatures;
-                //foreach (var rf in rfs)
-                //{
-                //    if (rf is DFRenderObject)
-                //    {
-                //        var roFeature = rf as DFRenderObject;
-                //        if (roFeature.OverrideMaterialPrototype == m)
-                //        {
-                //            Debug.Log($"Replacing {roFeature.name}'s material prototype {roFeature.OverrideMaterialPrototype.name}");
-                //            roFeature.OverrideMaterialInstance = m;
-
-                //        }
-                //    }
-                //}
-
-            //    MaterialFinder.ReplaceMaterial(m, mInst);
-            //}
+            // AT: see OnDestroy()
+            // InstantiateMaterials();
         }
 
         private void OnEnable()
@@ -152,6 +125,40 @@ namespace VFX
         {
             return LogLevel.Warning;
         }
+
+        //private void InstantiateMaterials()
+        //{
+        //    m_SimListenerMats = new List<Material>(SimListenerMats.Count);
+
+        //    if (scriptableRenderer == null) throw new System.Exception("Requires reference to the 2D renderer data");
+
+        //    foreach (var m in SimListenerMats)
+        //    {
+        //        var mInst = InstantiateMaterial(m);
+        //        m_SimListenerMats.Add(mInst);
+
+        //    // AT: Material instancing does not actually work on render features(sim textures updates will NOT reflect on the actual render)
+        //    //     This is because the Editor.SetDirty() methods needs to be called on the render feature after editing
+        //    //     But that method needs the UNITY_EDITOR flag to be set
+        //    // replace render feature at run time
+        //    var rfs = scriptableRenderer.rendererFeatures;
+        //        foreach (var rf in rfs)
+        //        {
+        //            if (rf is DFRenderObject)
+        //            {
+        //                var roFeature = rf as DFRenderObject;
+        //                if (roFeature.OverrideMaterialPrototype == m)
+        //                {
+        //                    Debug.Log($"Replacing {roFeature.name}'s material prototype {roFeature.OverrideMaterialPrototype.name}");
+        //                    roFeature.OverrideMaterialInstance = m;
+
+        //                }
+        //            }
+        //        }
+
+        //        MaterialFinder.ReplaceMaterial(m, mInst);
+        //    }
+        //}
 
         private Material InstantiateMaterial(Material m)
         {
