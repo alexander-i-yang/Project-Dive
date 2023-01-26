@@ -64,16 +64,16 @@ Material:
     - _SimulationStrength: 5
     - _Speed: 1.5
     - _WaveHeight: 0.25
-    - _WobbleExtent: 1
+    - _WobbleExtent: 2
     - _WobbleSpeed: 4
     - _hit: 0.841
     - _reflectionHeight: 16
     - _reflectionStepCount: 4
     - _refractive_index: 1.18
     m_Colors:
-    - _ReflectionAmbient: {r: 0.24430405, g: 0.2593339, b: 0.2830189, a: 0}
-    - _ReflectionTint: {r: 0.6745098, g: 1, b: 0.9376872, a: 0}
-    - _RefractionTint: {r: 0.5504183, g: 0.6049083, b: 0.8773585, a: 0}
+    - _ReflectionAmbient: {r: 0.480857, g: 0.611, b: 0.58129925, a: 0}
+    - _ReflectionTint: {r: 0, g: 0.7326908, b: 1, a: 0}
+    - _RefractionTint: {r: 0.29000002, g: 0.7304532, b: 1, a: 0}
     - _RoomPos: {r: 0, g: 0, b: 0, a: 0}
     - _RoomSize: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
