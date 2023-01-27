@@ -21,5 +21,17 @@ namespace Helpers
 
             return materials;
         }
+
+        public static void ReplaceMaterial(Material from, Material to)
+        {
+            Renderer[] allRenderers = GameObject.FindObjectsOfType<Renderer>(true);
+            foreach (Renderer r in allRenderers)
+            {
+                if (r.sharedMaterial.shader == from.shader)
+                {
+                    r.sharedMaterial = to;
+                }
+            }
+        }
     }
 }

@@ -1,5 +1,64 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7543897825618846353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f605a7c2dad06dd4eb2a1ec0a15e0630, type: 3}
+  m_Name: EarlyOut
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  rt: {fileID: 8400000, guid: 6a97591154f2fc9459fa04d62dbc260d, type: 2}
+  trigger: 350
+--- !u!114 &-3997568628273803268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14425bd540fc6774981eb582b63f2aec, type: 3}
+  m_Name: Override Ground Pass
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  trigger: 450
+  overrideTexture: {fileID: 0}
+  clearOverrideTextureBefore: 0
+  overrideMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  overrideMaterialPassIndex: 0
+  passTag: Override Ground Pass
+--- !u!114 &-3943725525851770831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14425bd540fc6774981eb582b63f2aec, type: 3}
+  m_Name: Override Water Pass
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 16
+  trigger: 450
+  overrideTexture: {fileID: 0}
+  clearOverrideTextureBefore: 0
+  overrideMaterial: {fileID: 2100000, guid: b7ba06fb4e046504388011c5db793084, type: 2}
+  overrideMaterialPassIndex: 0
+  passTag: Override Water Pass
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14,8 +73,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
-  m_RendererFeatures: []
-  m_RendererFeatureMap: 
+  m_RendererFeatures:
+  - {fileID: -7543897825618846353}
+  - {fileID: -3943725525851770831}
+  - {fileID: -3997568628273803268}
+  - {fileID: 3147613855000953012}
+  m_RendererFeatureMap: 6f9d259ae5b04e9731f0f66b871245c9fc8f7e3a83c885c8b4006ed51f92ae2b
   m_UseNativeRenderPass: 0
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 1, z: 0}
@@ -58,3 +121,25 @@ MonoBehaviour:
   m_DefaultLitMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_DefaultUnlitMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_DefaultMaskMaterial: {fileID: 2100000, guid: 15d0c3709176029428a0da2f8cecf0b5, type: 2}
+--- !u!114 &3147613855000953012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14425bd540fc6774981eb582b63f2aec, type: 3}
+  m_Name: Water Stencil Pass
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 16
+  trigger: 250
+  overrideTexture: {fileID: 8400000, guid: b052120b34006954e99852b557e43a28, type: 2}
+  clearOverrideTextureBefore: 1
+  overrideMaterial: {fileID: 2100000, guid: 00377a25236f1874baf77687f292ff3f, type: 2}
+  overrideMaterialPassIndex: 0
+  passTag: Water Stencil Pass
