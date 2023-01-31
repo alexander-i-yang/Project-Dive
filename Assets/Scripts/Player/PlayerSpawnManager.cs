@@ -39,6 +39,7 @@ namespace Player
         {
             if (CurrentSpawnPoint != null)
             {
+                _currentRoom.Reset();
                 transform.position = CurrentSpawnPoint.transform.position;
             }
         }

@@ -32,6 +32,8 @@ namespace Collectibles
         {
             _curveAnim.PlayAnimation(OnAnimationFinish);
         }
+        
+        public void StopAnimation() {_curveAnim.StopAnimation();}
 
         public virtual CubicCurve2D GetCurve()
         {

@@ -1,16 +1,11 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Core;
 using UnityEngine;
-using MyBox;
 
 using Helpers;
-using Mechanics;
+using World;
 
 namespace Collectibles {
-    public class Firefly : Collectible, IFilterLoggerTarget
+    public class Firefly : Collectible, IResettable, IFilterLoggerTarget
     {
         //[SerializeField] private Gate targetGate;
 
@@ -27,20 +22,20 @@ namespace Collectibles {
         private int _coordInd;
 
         public GameObject Next;
+        private Vector3 _startPos;
     
         private void Awake()
         {
             _animator = GetComponent<FireflyAnimator>();
             _animatorEnd = GetComponent<FireflyAnimatorEnd>();
             _coords = ReadCoords(Next);
-            foreach (var i in _coords) print(i);
+            _startPos = transform.position;
         }
         
         public List<Vector2> ReadCoords(GameObject g)
         {
             List<Vector2> ret = new();
             FireflyPoint f;
-            print("READ COORDS");
             while (g != null)
             {
                 f = g.GetComponent<FireflyPoint>();
@@ -56,7 +51,6 @@ namespace Collectibles {
             {
                 _moving = true;
                 FilterLogger.Log(this, $"{gameObject.name} Touched {collector}");
-                print(_coordInd);
                 if (_coordInd < _coords.Count)
                 {
                     _animator.EndPos = _coords[_coordInd];
@@ -79,12 +73,21 @@ namespace Collectibles {
         {
             collector.OnCollectFinished(this);
             _moving = false;
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         public LogLevel GetLogLevel()
         {
             return LogLevel.Warning;
+        }
+
+        public void Reset()
+        {
+            transform.position = _startPos;
+            _coordInd = 0;
+            _moving = false;
+            _animator.StopAnimation();
+            _animatorEnd.StopAnimation();
         }
     }
 }

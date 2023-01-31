@@ -17,6 +17,7 @@ namespace World {
         public bool StopTime = true;
 
         private Spawn[] _spawns;
+        private IResettable[] _resettables;
         public Spawn[] Spawns
         {
             get
@@ -41,6 +42,7 @@ namespace World {
 
             _vCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
             _vCam.Follow = _player.transform;
+            _resettables = GetComponentsInChildren<IResettable>();
         }
 
         private void OnValidate()
@@ -110,6 +112,14 @@ namespace World {
         public LogLevel GetLogLevel()
         {
             return LogLevel.Error;
+        }
+
+        public void Reset()
+        {
+            foreach (var r in _resettables)
+            {
+                if (r != null) r.Reset();
+            }
         }
     }
 }
