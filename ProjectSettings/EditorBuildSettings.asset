@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Logan/Area 1 Prototype.unity
     guid: 4c4e23e98c375b64d95a81b981aaf4ba
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Logan/Intro.unity
     guid: 8496c639a9129134c88598b17c5514fa
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Alex/Area 1 Prototype.unity
     guid: fb6789cef112c0046b76ee6a1419f137
   m_configObjects: {}
