@@ -63,7 +63,7 @@ namespace Helpers {
             };
             
             Dictionary<String, Action<Transform, XElement>> objectLayerImports = new() {
-                { "Mechanics", ImportMechanics},
+                // { "Mechanics", ImportMechanics},
             };
             
             foreach (SuperLayer layer in layers) {
@@ -152,7 +152,6 @@ namespace Helpers {
         }
 
         private Tuple<GameObject, Vector2[]> ImportTileToPrefab(GameObject g, int index, String prefabName) {
-            Debug.Log($"Import ground{g}, {index}, {prefabName}");
             GameObject replacer = _prefabReplacements[prefabName];
             Vector2[] points = LayerImportLibrary.EdgeToPoints(g);
 
@@ -215,10 +214,6 @@ namespace Helpers {
         private void ImportGroundTilemap(GameObject g)
         {
             g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Ground");
-        }
-        
-        private void ImportMechanics(Transform layer, XElement element) {
-            // LayerImportLibrary.AnchorOffset(layer, element);
         }
 
         private void ResolveTileLayerImports(Transform layer, Action<GameObject, int> import) {
