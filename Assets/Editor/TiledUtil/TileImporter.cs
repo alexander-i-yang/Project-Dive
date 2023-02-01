@@ -166,8 +166,19 @@ namespace Helpers {
             return new Tuple<GameObject, Vector2[]>(g, points);
         }
 
+        private GameObject AddWaterfalCollision(GameObject g, Vector2[] points)
+        {
+            GameObject waterfallReplace = _prefabReplacements["WaterfallCollider"];
+            Debug.Log(waterfallReplace);
+            waterfallReplace = LayerImportLibrary.CreatePrefab(waterfallReplace, 0, g.transform);
+            Debug.Log(waterfallReplace);
+            LayerImportLibrary.SetEdgeCollider2DPoints(waterfallReplace, points);
+            return waterfallReplace;
+        }
+
         private void ImportGround(GameObject g, int index) {
-            ImportTileToPrefab(g, index, "Ground");
+            var ret = ImportTileToPrefab(g, index, "Ground");
+            AddWaterfalCollision(ret.Item1, ret.Item2);
         }
 
         private void ImportBreakable(GameObject g, int index) {
@@ -197,6 +208,7 @@ namespace Helpers {
         {
             // g.GetComponentInChildren<>()<SpriteRenderer>().SetSortingLayer("Lava");
             // g.GetComponentInChildren<EdgeCollider2D>();
+            AddWaterfalCollision(g, LayerImportLibrary.EdgeToPoints(g));
         }
 
         private void ImportLavaTilemap(GameObject g)

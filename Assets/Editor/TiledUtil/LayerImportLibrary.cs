@@ -32,7 +32,7 @@ namespace TiledUtil {
             g.GetRequiredComponent<EdgeCollider2D>().points = points;
         }
 
-        private static GameObject CreatePrefab(GameObject prefab, int index, Transform parent) {
+        public static GameObject CreatePrefab(GameObject prefab, int index, Transform parent) {
             Transform instance = ((GameObject)PrefabUtility.InstantiatePrefab(prefab)).transform;
             instance.SetParent(parent);
             instance.localPosition = Vector3.zero;
