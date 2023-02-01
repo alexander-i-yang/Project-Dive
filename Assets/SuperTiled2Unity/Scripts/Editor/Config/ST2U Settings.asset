@@ -85,3 +85,5 @@ MonoBehaviour:
     m_Prefab: {fileID: 8806203471442143665, guid: b7eaa7333ff31d34a880a561bc6fb2cf, type: 3}
   - m_TypeName: ConnectedSpike
     m_Prefab: {fileID: 4109387912916260404, guid: 5660cb00508f7e848a0007a490b00613, type: 3}
+  - m_TypeName: Waterfall
+    m_Prefab: {fileID: 4288628781913162908, guid: cf6a2b3be30aa294899a15d9c003a184, type: 3}
