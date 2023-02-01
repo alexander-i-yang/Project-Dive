@@ -17,7 +17,7 @@ namespace World {
         public bool StopTime = true;
 
         private Spawn[] _spawns;
-        private IResettable[] _resettables;
+        private IResettable[] _resettables = new IResettable[0];
         public Spawn[] Spawns
         {
             get
@@ -100,6 +100,7 @@ namespace World {
         {
             //L: Inefficient, but not terrible?
             this._vCam.gameObject.SetActive(true);
+            Reset();
             foreach (Room room in RoomList.Rooms)
             {
                 if (room != this)

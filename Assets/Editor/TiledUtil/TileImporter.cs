@@ -10,6 +10,7 @@ using SuperTiled2Unity;
 using SuperTiled2Unity.Editor;
 
 using Cinemachine;
+using MyBox;
 using TiledUtil;
 using UnityEditor;
 using UnityEngine;
@@ -48,6 +49,7 @@ namespace Helpers {
             {
                 { "Lava", ImportLavaTilemap },
                 { "Ground", ImportGroundTilemap },
+                { "Water", ImportWaterTilemap },
                 { "Dirt", ImportGroundTilemap },
                 { "DecorBack", ImportDecorBackTilemap },
                 { "Spikes", ImportSpikesTilemap },
@@ -60,6 +62,7 @@ namespace Helpers {
                 { "Dirt", ImportGround },
                 { "Breakable", ImportBreakable },
                 { "Lava", ImportLava },
+                { "Water", ImportWater },
             };
             
             Dictionary<String, Action<Transform, XElement>> objectLayerImports = new() {
@@ -190,6 +193,12 @@ namespace Helpers {
             LayerImportLibrary.AddFreeformLightPrefab(g, _prefabReplacements["LavaLight"], colliderPoints.ToVector3());
         }
 
+        private void ImportWater(GameObject g, int _)
+        {
+            // g.GetComponentInChildren<>()<SpriteRenderer>().SetSortingLayer("Lava");
+            // g.GetComponentInChildren<EdgeCollider2D>();
+        }
+
         private void ImportLavaTilemap(GameObject g)
         {
             LayerImportLibrary.SetMaterial(g, "Lava");
@@ -214,6 +223,14 @@ namespace Helpers {
         private void ImportGroundTilemap(GameObject g)
         {
             g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Ground");
+            // LayerImportLibrary.SetMaterial(g, "Mask_Graph");
+        }
+        
+        private void ImportWaterTilemap(GameObject g)
+        {
+            g.SetLayerRecursively("Water");
+            g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Lava");
+            LayerImportLibrary.SetMaterial(g, "Mask_Graph");
         }
 
         private void ResolveTileLayerImports(Transform layer, Action<GameObject, int> import) {

@@ -58,7 +58,7 @@
             "selectedLayer": 4,
             "viewCenter": {
                 "x": 126.15690168818273,
-                "y": 70.12247600132407
+                "y": 123.6146971201589
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1 Prototype tutorial.tmx": {
@@ -123,11 +123,11 @@
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 5.5,
-            "selectedLayer": 0,
+            "scale": 3,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 105.9090909090909,
-                "y": 90.90909090909092
+                "x": 229.16666666666666,
+                "y": 58.5
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Crystal Intro Flipped.tmx": {
@@ -205,11 +205,14 @@
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Hub.tmx": {
-            "scale": 2,
-            "selectedLayer": 1,
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 4,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 246.75,
-                "y": 147
+                "x": 72.125,
+                "y": 81.875
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/LavaIntro.tmx": {
@@ -230,7 +233,7 @@
             "scale": 4,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 127.875,
+                "x": -153.375,
                 "y": 72.125
             }
         },
@@ -252,8 +255,8 @@
             "scale": 4,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 127.875,
-                "y": 72.125
+                "x": 184.125,
+                "y": 82.125
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Line of crystals.tmx": {
@@ -434,6 +437,10 @@
                 "y": 76.125
             }
         },
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Water.tsx": {
+            "dynamicWrapping": false,
+            "scaleInEditor": 16
+        },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automap.tmx": {
             "scale": 5.5,
             "selectedLayer": 3,
@@ -462,16 +469,16 @@
             "scale": 5.5,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 101,
-                "y": 71
+                "x": 100.81818181818183,
+                "y": 25.18181818181818
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapDecorTest.tmx": {
             "scale": 5.5,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 45.54545454545455,
-                "y": 75.27272727272728
+                "x": 45.545454545454554,
+                "y": 75.36363636363636
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapDirt.tmx": {
@@ -503,10 +510,10 @@
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapToDecorBack.tmx": {
             "scale": 8,
-            "selectedLayer": 6,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 38.5625,
-                "y": 31
+                "x": 22.4375,
+                "y": 31.0625
             }
         },
         "Planning Tileset.tsx": {
@@ -521,7 +528,7 @@
         }
     },
     "last.externalTilesetPath": "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles",
-    "last.imagePath": "C:/Users/uncle/Unity/Project-Dive/Assets/Sprites/Mechanics",
+    "last.imagePath": "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles",
     "map.fixedSize": true,
     "map.height": 36,
     "map.lastUsedFormat": "tmx",
@@ -536,18 +543,18 @@
     "project": "Area Planning Project.tiled-project",
     "property.type": "object",
     "recentFiles": [
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Water.tsx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapDecorTest.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1 Prototype spike intro.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Level1.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Level3.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Mechanics.tsx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Crystal Intro.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Tutorial.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapDecorTest.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automap.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapToDecorBack.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/LavaIntro.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapSpikes.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Cool breakable stuff.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Tall room 2.tmx"
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapSpikes.tmx"
     ],
     "resizeMap.removeObjects": false,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
@@ -556,5 +563,5 @@
         "height": 8,
         "width": 8
     },
-    "tileset.type": 1
+    "tileset.type": 0
 }
