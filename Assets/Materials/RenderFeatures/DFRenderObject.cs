@@ -12,6 +12,7 @@ public class DFRenderObject : ScriptableRendererFeature
     // render to RT instead of camear color, when chosen
     [SerializeField] RenderTexture overrideTexture = null;
     [SerializeField] bool clearOverrideTextureBefore = false;
+    [SerializeField] bool useURPLit = false;
 
     // default values synced to RenderObjects feature
     [SerializeField] Material overrideMaterial = null;
@@ -34,8 +35,17 @@ public class DFRenderObject : ScriptableRendererFeature
         RenderTexture rt;
         int overrideMaterialPassIndex;
         bool clear;
+        bool useURPLit;
 
-        public DFRenderObjectPass(string passTag, LayerMask layerMask, RenderPassEvent trigger, bool cleareOverrideTextureBefore, RenderTexture overrideTexture, Material overrideMaterial, int overrideMaterialPassIndex)
+        public DFRenderObjectPass(
+            string passTag,
+            LayerMask layerMask,
+            RenderPassEvent trigger,
+            bool cleareOverrideTextureBefore,
+            RenderTexture overrideTexture,
+            Material overrideMaterial,
+            int overrideMaterialPassIndex,
+            bool useURPLit)
         {
             rt = overrideTexture;
             clear = cleareOverrideTextureBefore;
@@ -50,10 +60,13 @@ public class DFRenderObject : ScriptableRendererFeature
             m_ShaderTagIds = new List<ShaderTagId>() {
                 new ShaderTagId("SRPDefaultUnlit"),
                 new ShaderTagId("UniversalForward"),
-                new ShaderTagId("UniversalForwardOnly")
+                new ShaderTagId("UniversalForwardOnly"),
+                new ShaderTagId("Universal2D") // added on top of tutorial, comes from URP Hidden/Sprite-Lit-Default source
                 };
 
             m_RenderStateBlock = new RenderStateBlock(RenderStateMask.Nothing);
+
+            this.useURPLit = useURPLit;
         }
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
@@ -63,6 +76,10 @@ public class DFRenderObject : ScriptableRendererFeature
             var drawingSettings = CreateDrawingSettings(m_ShaderTagIds, ref renderingData, criteria);
             drawingSettings.overrideMaterial = _m;
             drawingSettings.overrideMaterialPassIndex = overrideMaterialPassIndex;
+            if (useURPLit)
+            {
+                drawingSettings.overrideMaterial.EnableKeyword("USE_SHAPE_LIGHT_TYPE_0");
+            }
 
             CommandBuffer cmd = CommandBufferPool.Get(nameof(DFRenderObjectPass));
             using (new ProfilingScope(cmd, m_ProfilingSampler))
@@ -94,7 +111,15 @@ public class DFRenderObject : ScriptableRendererFeature
     public override void Create()
     {
         var m = OverrideMaterialInstance != null ? OverrideMaterialInstance : OverrideMaterialPrototype;
-        pass = new DFRenderObjectPass(passTag, layerMask, trigger, clearOverrideTextureBefore, overrideTexture, m, overrideMaterialPassIndex);
+        pass = new DFRenderObjectPass(
+            passTag,
+            layerMask,
+            trigger,
+            clearOverrideTextureBefore,
+            overrideTexture,
+            m,
+            overrideMaterialPassIndex,
+            useURPLit);
     }
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
