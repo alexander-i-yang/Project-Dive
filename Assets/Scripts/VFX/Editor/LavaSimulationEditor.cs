@@ -3,10 +3,10 @@ using UnityEditor;
 
 using VFX;
 
-[CustomEditor(typeof(LavaSimulation))]
+[CustomEditor(typeof(LiquidSimulation))]
 public class LavaSimulationEditor : Editor
 {
-    LavaSimulation _lavaSimulation;
+    LiquidSimulation _lavaSimulation;
 
     Texture2D _texture;
 
@@ -14,7 +14,7 @@ public class LavaSimulationEditor : Editor
     {
         //target is by default available for you
         //because we inherite Editor
-        _lavaSimulation = target as LavaSimulation;
+        _lavaSimulation = target as LiquidSimulation;
     }
 
     private void OnSceneGUI()
@@ -35,7 +35,7 @@ public class LavaSimulationEditor : Editor
     {
         base.OnPreviewGUI(r, background);
 
-        _texture = AssetPreview.GetAssetPreview(_lavaSimulation.LavaSimTex);
+        _texture = AssetPreview.GetAssetPreview(_lavaSimulation.SimTex);
         if (_texture != null)
         {
             //We crate empty space 80x80 (you may need to tweak it to scale better your sprite

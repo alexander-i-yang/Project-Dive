@@ -25,5 +25,10 @@ namespace Player
         public double oldVelocity;
         public GameTimerWindowed ultraTimer;
 
+        public void RefillAbilities()
+        {
+            canDive = true;
+            canDoubleJump = true;
+        }
     }
 }

@@ -44,7 +44,6 @@ public abstract class StateMachine<M, S, I> : MonoBehaviour
             _stateMap.Add(type, newState);
             // loadedStates.Add(type.FullName, RuntimeHelpers.GetHashCode(newState).ToString());
         }
-
         SetInitialState();
     }
 

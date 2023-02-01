@@ -69,5 +69,10 @@ namespace Phys {
             GravityDown *= -1;
             GravityUp *= -1;
         }
+
+        public void ApplyVelocity(Vector2 v)
+        {
+            velocity += v;
+        }
     }
 }

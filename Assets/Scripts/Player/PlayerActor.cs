@@ -59,7 +59,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         velocity = v;
     }
 
-    public void DoubleJump(int jumpHeight, int moveDirection)
+    public void DoubleJump(int jumpHeight, int moveDirection = 0)
     {
         Jump(jumpHeight);
 
@@ -112,7 +112,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     }
 
     public void DogoJump(int moveDirection, bool conserveMomentum, double oldXV) {
-        // if (moveDirection == 0)
         if (!(moveDirection == 1 || moveDirection == -1)) {
             throw new ArgumentException(
             $"Cannot dogo jump in direction({moveDirection})"
@@ -138,6 +137,11 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     public bool IsDogoJumping()
     {
         return _stateMachine.IsOnState<PlayerStateMachine.DogoJumping>();
+    }
+    
+    public bool IsDogoing()
+    {
+        return _stateMachine.IsOnState<PlayerStateMachine.Dogoing>();
     }
 
     public void BallBounce(Vector2 direction)
