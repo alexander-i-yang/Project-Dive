@@ -10,11 +10,19 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
+                MySM._drillEmitter.SetParameter("PlayerGrounded", 0);
+                MySM._drillEmitter.Play();
                 PlayerAnim.Play(PlayerAnimations.DIVING);
                 PlayerActions.Dive();
                 Input.canDive = false;
                 Input.canJumpCut = false;
                 Input.dogoDisabledSpikes = new HashSet<Spike>();
+            }
+
+            public override void Exit(PlayerStateInput i)
+            {
+                base.Exit(i);
+                MySM._drillEmitter.Stop();
             }
 
             public override void JumpPressed()

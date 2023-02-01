@@ -114,7 +114,7 @@ namespace Player
 
         private void Awake()
         {
-            InitializeSingleton();
+            InitializeSingleton(false); //L: Don't make player persistent, bc then there'll be multiple players OO
             StateMachine = gameObject.GetComponent<PlayerStateMachine>();
             Input = gameObject.GetComponent<PlayerInputController>();
             Actor = gameObject.GetComponent<PlayerActor>();

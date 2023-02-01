@@ -31,6 +31,11 @@ namespace Helpers.Animation
             _animCorout.OnComplete(onAnimationFinish);
         }
 
+        public void StopAnimation()
+        {
+            if (_animCorout != null) _target.StopCoroutine(_animCorout);
+        }
+
         private IEnumerator AnimateCurve()
         {
             float t = 0;

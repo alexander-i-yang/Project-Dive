@@ -155,6 +155,7 @@ namespace SuperTiled2Unity.Editor
                 GameObject gameObject;
                 if (!objectsById.TryGetValue(objectId, out gameObject))
                 {
+                    if (objectId == 0) return;
                     Debug.LogErrorFormat("Object property refers to invalid ID {0}", objectId);
                     return;
                 }

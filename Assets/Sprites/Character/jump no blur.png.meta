@@ -123,9 +123,9 @@ TextureImporter:
         x: 0
         y: 0
         width: 15
-        height: 20
+        height: 15
       alignment: 9
-      pivot: {x: 0.5333334, y: 0.45}
+      pivot: {x: 0.53333336, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -144,9 +144,9 @@ TextureImporter:
         x: 15
         y: 0
         width: 15
-        height: 20
+        height: 15
       alignment: 9
-      pivot: {x: 0.53333336, y: 0.6}
+      pivot: {x: 0.53333336, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -165,9 +165,9 @@ TextureImporter:
         x: 30
         y: 0
         width: 15
-        height: 20
+        height: 15
       alignment: 9
-      pivot: {x: 0.53333336, y: 0.65000004}
+      pivot: {x: 0.53333336, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -186,9 +186,9 @@ TextureImporter:
         x: 45
         y: 0
         width: 15
-        height: 20
+        height: 15
       alignment: 9
-      pivot: {x: 0.53333336, y: 0.7}
+      pivot: {x: 0.53333336, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -207,9 +207,9 @@ TextureImporter:
         x: 60
         y: 0
         width: 15
-        height: 20
+        height: 15
       alignment: 9
-      pivot: {x: 0.53333336, y: 0.5}
+      pivot: {x: 0.53333336, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -228,58 +228,16 @@ TextureImporter:
         x: 75
         y: 0
         width: 15
-        height: 20
+        height: 15
       alignment: 9
-      pivot: {x: 0.53333336, y: 0.45000002}
+      pivot: {x: 0.53333336, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 337b3835702d87a4c84170eef01eed85
-      internalID: -548260957
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: jump no blur_6
-      rect:
-        serializedVersion: 2
-        x: 90
-        y: 0
-        width: 15
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5333334, y: 0.45}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 05efbbf1b4c6e1c4ea995ad1dc295302
-      internalID: -808274256
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: jump no blur_7
-      rect:
-        serializedVersion: 2
-        x: 105
-        y: 0
-        width: 15
-        height: 20
-      alignment: 9
-      pivot: {x: 0.53333336, y: 0.45000002}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7f6aad684b0247441abaa01e17ef86e6
-      internalID: -1847940581
+      spriteID: ec8123e8e1c9b0e4fa6a1ebf4b18acf2
+      internalID: -921819761
       vertices: []
       indices: 
       edges: []
@@ -297,12 +255,10 @@ TextureImporter:
     nameFileIdTable:
       jump no blur_1: 675610048
       jump no blur_3: -1188668775
-      jump no blur_5: -548260957
+      jump no blur_5: -921819761
       jump no blur_0: -934078295
       jump no blur_4: -966940525
       jump no blur_2: 1525766751
-      jump no blur_7: -1847940581
-      jump no blur_6: -808274256
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.9" tiledversion="1.9.2" name="Static Decorations" tilewidth="8" tileheight="16" tilecount="13" columns="0">
+<tileset version="1.9" tiledversion="1.9.2" name="Static Decorations" tilewidth="16" tileheight="16" tilecount="14" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="21">
   <image width="8" height="8" source="../Sprites/Decor/Static/decor placeholder dirt corner left.png"/>
@@ -39,5 +39,8 @@
  </tile>
  <tile id="16">
   <image width="8" height="8" source="../Sprites/Decor/Static/flower.png"/>
+ </tile>
+ <tile id="22">
+  <image width="16" height="16" source="../Sprites/Decor/Static/Flowers.png"/>
  </tile>
 </tileset>

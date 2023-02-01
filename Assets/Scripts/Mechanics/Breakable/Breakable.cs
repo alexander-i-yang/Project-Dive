@@ -1,9 +1,10 @@
 ﻿using MyBox;
 using Phys;
 using UnityEngine;
+using World;
 
 namespace Mechanics {
-    public class Breakable : Solid {
+    public class Breakable : Solid, IResettable {
         private GameObject _particles;
 
         protected virtual string ParticlePath() => "PS_Breakable";
@@ -39,6 +40,11 @@ namespace Mechanics {
             gameObject.SetActive(false);
             Instantiate(_particles, transform.position, Quaternion.identity);
             //Instantiate(ParticlePrefab, transform.position, Quaternion.identity);
+        }
+
+        public void Reset()
+        {
+            gameObject.SetActive(true);
         }
     }
 }

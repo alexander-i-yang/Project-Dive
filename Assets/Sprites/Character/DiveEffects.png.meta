@@ -120,9 +120,9 @@ TextureImporter:
       name: DiveEffects_0
       rect:
         serializedVersion: 2
-        x: 4
+        x: 0
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -141,9 +141,9 @@ TextureImporter:
       name: DiveEffects_1
       rect:
         serializedVersion: 2
-        x: 28
+        x: 24
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -162,9 +162,9 @@ TextureImporter:
       name: DiveEffects_2
       rect:
         serializedVersion: 2
-        x: 52
+        x: 48
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -183,9 +183,9 @@ TextureImporter:
       name: DiveEffects_3
       rect:
         serializedVersion: 2
-        x: 76
+        x: 72
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -204,9 +204,9 @@ TextureImporter:
       name: DiveEffects_4
       rect:
         serializedVersion: 2
-        x: 100
+        x: 96
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -225,9 +225,9 @@ TextureImporter:
       name: DiveEffects_5
       rect:
         serializedVersion: 2
-        x: 124
+        x: 120
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -246,9 +246,9 @@ TextureImporter:
       name: DiveEffects_6
       rect:
         serializedVersion: 2
-        x: 148
+        x: 144
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -267,9 +267,9 @@ TextureImporter:
       name: DiveEffects_7
       rect:
         serializedVersion: 2
-        x: 172
+        x: 168
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -288,9 +288,9 @@ TextureImporter:
       name: DiveEffects_8
       rect:
         serializedVersion: 2
-        x: 196
+        x: 192
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -309,9 +309,9 @@ TextureImporter:
       name: DiveEffects_9
       rect:
         serializedVersion: 2
-        x: 220
+        x: 216
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -330,9 +330,9 @@ TextureImporter:
       name: DiveEffects_10
       rect:
         serializedVersion: 2
-        x: 244
+        x: 240
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -351,9 +351,9 @@ TextureImporter:
       name: DiveEffects_11
       rect:
         serializedVersion: 2
-        x: 268
+        x: 264
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -372,9 +372,9 @@ TextureImporter:
       name: DiveEffects_12
       rect:
         serializedVersion: 2
-        x: 292
+        x: 288
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -393,9 +393,9 @@ TextureImporter:
       name: DiveEffects_13
       rect:
         serializedVersion: 2
-        x: 316
+        x: 312
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -414,9 +414,9 @@ TextureImporter:
       name: DiveEffects_14
       rect:
         serializedVersion: 2
-        x: 340
+        x: 336
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -435,9 +435,9 @@ TextureImporter:
       name: DiveEffects_15
       rect:
         serializedVersion: 2
-        x: 364
+        x: 360
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -456,9 +456,9 @@ TextureImporter:
       name: DiveEffects_16
       rect:
         serializedVersion: 2
-        x: 388
+        x: 384
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -477,9 +477,9 @@ TextureImporter:
       name: DiveEffects_17
       rect:
         serializedVersion: 2
-        x: 412
+        x: 408
         y: 0
-        width: 16
+        width: 24
         height: 60
       alignment: 9
       pivot: {x: 0.5, y: 0.2}
@@ -490,48 +490,6 @@ TextureImporter:
       bones: []
       spriteID: 9c193ec9d10aeca47a821d5bc98d8312
       internalID: -1386049409
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DiveEffects_18
-      rect:
-        serializedVersion: 2
-        x: 436
-        y: 0
-        width: 16
-        height: 60
-      alignment: 9
-      pivot: {x: 0.5, y: 0.2}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a76cadf3061d913429a80dbff16b7e90
-      internalID: -484079033
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DiveEffects_19
-      rect:
-        serializedVersion: 2
-        x: 460
-        y: 0
-        width: 16
-        height: 60
-      alignment: 9
-      pivot: {x: 0.5, y: 0.2}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d5e239dc05c9def40bd77ab3b2862d6c
-      internalID: 1433393546
       vertices: []
       indices: 
       edges: []
@@ -551,10 +509,8 @@ TextureImporter:
       DiveEffects_9: -1492841432
       DiveEffects_7: 1759850493
       DiveEffects_15: -1903498404
-      DiveEffects_19: 1433393546
       DiveEffects_4: 1629881493
       DiveEffects_8: -1523048740
-      DiveEffects_18: -484079033
       DiveEffects_16: -1556227005
       DiveEffects_2: 470795434
       DiveEffects_13: 1734355038
