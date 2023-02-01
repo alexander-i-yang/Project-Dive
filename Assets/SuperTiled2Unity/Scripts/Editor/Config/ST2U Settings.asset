@@ -79,7 +79,11 @@ MonoBehaviour:
     m_Prefab: {fileID: 7577498517139833191, guid: 569fb27da6ab8ae4a9467f0d4ba570d5, type: 3}
   - m_TypeName: Firefly
     m_Prefab: {fileID: 3572848764956040594, guid: a35bc599c07cdec43ba9695647105cba, type: 3}
+  - m_TypeName: FireflyPoint
+    m_Prefab: {fileID: 8238224786223980396, guid: 8253c6ce00e83ad49b615d666c1a866e, type: 3}
   - m_TypeName: DirectionalSpikeUp
     m_Prefab: {fileID: 8806203471442143665, guid: b7eaa7333ff31d34a880a561bc6fb2cf, type: 3}
   - m_TypeName: ConnectedSpike
     m_Prefab: {fileID: 4109387912916260404, guid: 5660cb00508f7e848a0007a490b00613, type: 3}
+  - m_TypeName: Waterfall
+    m_Prefab: {fileID: 4288628781913162908, guid: cf6a2b3be30aa294899a15d9c003a184, type: 3}

@@ -15,7 +15,7 @@ TagManager:
   - Light
   - Velocity
   - PlayerLight
-  - 
+  - WaterfallCollision
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 3841973759
+    locked: 0
+  - name: Firefly
+    uniqueID: 437785363
     locked: 0
