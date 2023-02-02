@@ -4825,7 +4825,7 @@ GameObject:
   - component: {fileID: 6993315388611087533}
   - component: {fileID: 6993315388611087530}
   m_Layer: 4
-  m_Name: Water
+  m_Name: WaterfallSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4867,7 +4867,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4b641248b19fcf47a9246d739bab20b, type: 2}
+  - {fileID: 2100000, guid: 1ce8ba2df1a9bec4c9503a87bb18d576, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4885,8 +4885,8 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1220263349
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
