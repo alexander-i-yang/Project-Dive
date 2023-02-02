@@ -9,7 +9,22 @@ ScriptedImporter:
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
   missingFiles: []
-  errors: []
+  errors:
+  - "Custom importer 'TileImporter' threw an exception. Message = 'GameObject Semisolid
+    (1) (UnityEngine.GameObject) must be rectangular', Stack:\n  at TiledUtil.LayerImportLibrary.ColliderPointsToRectanglePoints
+    (UnityEngine.GameObject g, UnityEngine.Vector2[] points) [0x00025] in C:\\Users\\uncle\\Unity\\Project-Dive\\Assets\\Editor\\TiledUtil\\LayerImportLibrary.cs:81
+    \r\n  at TiledUtil.TileImporter.ImportTileToPrefab (UnityEngine.GameObject g,
+    System.Int32 index, System.String prefabName) [0x00043] in C:\\Users\\uncle\\Unity\\Project-Dive\\Assets\\Editor\\TiledUtil\\TileImporter.cs:172
+    \r\n  at TiledUtil.TileImporter.ImportSemisolid (UnityEngine.GameObject g, System.Int32
+    index) [0x00000] in C:\\Users\\uncle\\Unity\\Project-Dive\\Assets\\Editor\\TiledUtil\\TileImporter.cs:198
+    \r\n  at Helpers.Helper.ForEachChild (UnityEngine.Transform t, System.Action`2[T1,T2]
+    f) [0x0000b] in C:\\Users\\uncle\\Unity\\Project-Dive\\Assets\\Scripts\\Helpers\\Helper.cs:243
+    \r\n  at TiledUtil.TileImporter.ResolveTileLayerImports (UnityEngine.Transform
+    layer, System.Action`2[T1,T2] import) [0x00010] in C:\\Users\\uncle\\Unity\\Project-Dive\\Assets\\Editor\\TiledUtil\\TileImporter.cs:274
+    \r\n  at TiledUtil.TileImporter.TmxAssetImported (SuperTiled2Unity.Editor.TmxAssetImportedArgs
+    data) [0x0022f] in C:\\Users\\uncle\\Unity\\Project-Dive\\Assets\\Editor\\TiledUtil\\TileImporter.cs:83
+    \r\n  at SuperTiled2Unity.Editor.TmxAssetImporter.RunCustomImporterType (System.Type
+    type) [0x00048] in C:\\Users\\uncle\\Unity\\Project-Dive\\Assets\\SuperTiled2Unity\\Scripts\\Editor\\Importers\\TmxAssetImporter.cs:493 "
   warnings: []
   missingSortingLayers: []
   missingLayers: []

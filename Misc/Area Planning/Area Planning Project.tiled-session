@@ -95,8 +95,8 @@
             "scale": 8,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 197.5625,
-                "y": 116.8125
+                "x": 197.4375,
+                "y": 116.6875
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Branches.tsx": {
@@ -149,7 +149,7 @@
             "selectedLayer": 3,
             "viewCenter": {
                 "x": 113.5,
-                "y": 72.16666666666667
+                "y": 72.16666666666666
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Crystal Intro Flipped.tmx": {
@@ -409,7 +409,7 @@
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 256,
+                "x": 256.5,
                 "y": 144.5
             }
         },
@@ -553,6 +553,14 @@
                 "y": 72.16938898971566
             }
         },
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapSemisolids.tmx": {
+            "scale": 8,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 25.8125,
+                "y": 17.4375
+            }
+        },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapSpikes.tmx": {
             "expandedObjectLayers": [
                 6
@@ -586,11 +594,11 @@
     "last.externalTilesetPath": "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles",
     "last.imagePath": "C:/Users/uncle/Unity/Project-Dive/Assets/Sprites/Decor/Static",
     "map.fixedSize": true,
-    "map.height": 36,
+    "map.height": 18,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 8,
     "map.tileWidth": 8,
-    "map.width": 64,
+    "map.width": 32,
     "openFiles": [
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Mechanics.tsx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Level3.tmx",
