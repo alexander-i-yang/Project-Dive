@@ -60,8 +60,8 @@
             "scale": 4,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 132,
-                "y": 70.125
+                "x": 176.875,
+                "y": 85.5
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1 Prototype spike intro.tmx": {
@@ -86,6 +86,17 @@
             "viewCenter": {
                 "x": 192.63636363636363,
                 "y": 99.45454545454545
+            }
+        },
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1 Thingy.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 4,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 79.125,
+                "y": 81.5
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Branches.tsx": {
@@ -137,8 +148,8 @@
             "scale": 3,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 228.33333333333331,
-                "y": 58.5
+                "x": 227.49999999999997,
+                "y": 52.33333333333333
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Crystal Intro Flipped.tmx": {
@@ -211,8 +222,8 @@
             "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 142.25,
-                "y": 90.875
+                "x": 141.625,
+                "y": 86.25
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Hub.tmx": {
@@ -222,8 +233,8 @@
             "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 104.5,
-                "y": 85.625
+                "x": 104.125,
+                "y": 81
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/LavaIntro.tmx": {
@@ -244,8 +255,8 @@
             "scale": 2,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 71.5,
-                "y": 110.25
+                "x": 70.75,
+                "y": 101
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Level2.tmx": {
@@ -264,10 +275,10 @@
                 3
             ],
             "scale": 4,
-            "selectedLayer": 6,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 54,
-                "y": 87.875
+                "x": 70.125,
+                "y": 51.75
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Line of crystals.tmx": {
@@ -386,8 +397,8 @@
             "scale": 8,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 16.625,
-                "y": 21.1875
+                "x": 16.4375,
+                "y": 18.875
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Branches.tsx": {
@@ -412,8 +423,8 @@
             "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 158,
-                "y": 95.875
+                "x": 157.375,
+                "y": 91.25
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Mechanics.tsx": {
@@ -497,8 +508,8 @@
             "scale": 5.5,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 100.72727272727273,
-                "y": 27.909090909090907
+                "x": 100.27272727272728,
+                "y": 24.545454545454554
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapDecorTest.tmx": {
@@ -537,11 +548,11 @@
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapToDecorBack.tmx": {
-            "scale": 8,
+            "scale": 5.5,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 22.5,
-                "y": 32.9375
+                "x": 71.54545454545455,
+                "y": 28.181818181818187
             }
         },
         "Planning Tileset.tsx": {

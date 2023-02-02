@@ -195,6 +195,7 @@ namespace Helpers {
             LayerImportLibrary.SetEdgeCollider2DPoints(g, colliderPoints);
             LayerImportLibrary.AddShadowCast(g, colliderPoints.ToVector3());
             g.GetRequiredComponent<SpriteRenderer>().SetSortingLayer("Interactable");
+            AddWaterfalCollision(g, colliderPoints);
         }
 
         private void ImportLava(GameObject g, int _) {
