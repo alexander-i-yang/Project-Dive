@@ -92,11 +92,11 @@
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 8,
+            "scale": 4,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 197.4375,
-                "y": 116.6875
+                "x": 89.125,
+                "y": 87.625
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Branches.tsx": {
@@ -555,10 +555,10 @@
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapSemisolids.tmx": {
             "scale": 8,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 25.8125,
-                "y": 17.4375
+                "x": 34.0625,
+                "y": 43.6875
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapSpikes.tmx": {
