@@ -89,3 +89,5 @@ MonoBehaviour:
     m_Prefab: {fileID: 4288628781913162908, guid: cf6a2b3be30aa294899a15d9c003a184, type: 3}
   - m_TypeName: WaterfallCollider
     m_Prefab: {fileID: 1139700783278281427, guid: 181a8c26c8a30e242af17b1e5eb0be2b, type: 3}
+  - m_TypeName: Semisolid
+    m_Prefab: {fileID: 808481085618889319, guid: 5e007052310023a4498e6534424e8f96, type: 3}
