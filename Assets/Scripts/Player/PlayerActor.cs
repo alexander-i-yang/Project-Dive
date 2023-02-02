@@ -20,6 +20,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     private bool _hitWallCoroutineRunning;
     private float _hitWallPrevSpeed;
+    private GameObject _dpInstance;
 
     private void OnEnable()
     {
@@ -40,6 +41,9 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public void Land()
     {
+        if (_dpInstance != null) {
+            _dpInstance?.GetComponent<ParticleSystem>().Stop();
+        } 
         velocityY = 0;
     }
     #endregion
@@ -51,6 +55,9 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     /// </summary>
     /// <param name="jumpHeight"></param>
     public void Jump(int jumpHeight) {
+        if (_dpInstance != null) {
+            _dpInstance?.GetComponent<ParticleSystem>().Stop();
+        } 
         velocityY = GetJumpSpeedFromHeight(jumpHeight);
     }
 
@@ -100,6 +107,9 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public bool IsDiving()
     {
+        if (_dpInstance == null) {
+            _dpInstance = Instantiate(PlayerCore._diggingParticles, transform);
+        }
         return _stateMachine.IsOnState<PlayerStateMachine.Diving>();
     }
     #endregion
