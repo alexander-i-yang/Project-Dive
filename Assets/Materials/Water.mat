@@ -9,7 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Water
   m_Shader: {fileID: -6465566751694194690, guid: be775542079dbba4fbabb0f4cea94870, type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - USE_SHAPE_LIGHT_TYPE_0
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -30,6 +31,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Prerender:
         m_Texture: {fileID: 8400000, guid: 6a97591154f2fc9459fa04d62dbc260d, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShapeLight_Texture0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Shape_Light_Texture_0:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SimulationTex:
@@ -56,14 +65,14 @@ Material:
     m_Floats:
     - _Boolean: 0
     - _Frequency: 0.1
-    - _NoiseBlend: 0.354
+    - _NoiseBlend: 0.65
     - _NoiseScale: 10
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ReflectionOverlay: 0.854
-    - _SimulationStrength: 5
-    - _Speed: 1.5
-    - _WaveHeight: 0.25
+    - _ReflectionOverlay: 1
+    - _SimulationStrength: 5.02
+    - _Speed: 1.35
+    - _WaveHeight: 0.16
     - _WobbleExtent: 2
     - _WobbleSpeed: 4
     - _hit: 0.841
@@ -71,9 +80,9 @@ Material:
     - _reflectionStepCount: 4
     - _refractive_index: 1.18
     m_Colors:
-    - _ReflectionAmbient: {r: 0.480857, g: 0.611, b: 0.58129925, a: 0}
-    - _ReflectionTint: {r: 0, g: 0.7326908, b: 1, a: 0}
-    - _RefractionTint: {r: 0.29000002, g: 0.7304532, b: 1, a: 0}
+    - _ReflectionAmbient: {r: 0.20334639, g: 0.28592196, b: 0.3018868, a: 0}
+    - _ReflectionTint: {r: 0.5127803, g: 0.8568754, b: 0.9811321, a: 0}
+    - _RefractionTint: {r: 0.14330718, g: 0.33873105, b: 0.7830189, a: 0}
     - _RoomPos: {r: 0, g: 0, b: 0, a: 0}
     - _RoomSize: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

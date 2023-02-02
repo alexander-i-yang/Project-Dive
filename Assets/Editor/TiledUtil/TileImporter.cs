@@ -10,6 +10,7 @@ using SuperTiled2Unity;
 using SuperTiled2Unity.Editor;
 
 using Cinemachine;
+using MyBox;
 using TiledUtil;
 using UnityEditor;
 using UnityEngine;
@@ -48,6 +49,7 @@ namespace Helpers {
             {
                 { "Lava", ImportLavaTilemap },
                 { "Ground", ImportGroundTilemap },
+                { "Water", ImportWaterTilemap },
                 { "Dirt", ImportGroundTilemap },
                 { "DecorBack", ImportDecorBackTilemap },
                 { "Spikes", ImportSpikesTilemap },
@@ -60,10 +62,11 @@ namespace Helpers {
                 { "Dirt", ImportGround },
                 { "Breakable", ImportBreakable },
                 { "Lava", ImportLava },
+                { "Water", ImportWater },
             };
             
             Dictionary<String, Action<Transform, XElement>> objectLayerImports = new() {
-                { "Mechanics", ImportMechanics},
+                // { "Mechanics", ImportMechanics},
             };
             
             foreach (SuperLayer layer in layers) {
@@ -152,7 +155,6 @@ namespace Helpers {
         }
 
         private Tuple<GameObject, Vector2[]> ImportTileToPrefab(GameObject g, int index, String prefabName) {
-            Debug.Log($"Import ground{g}, {index}, {prefabName}");
             GameObject replacer = _prefabReplacements[prefabName];
             Vector2[] points = LayerImportLibrary.EdgeToPoints(g);
 
@@ -164,8 +166,19 @@ namespace Helpers {
             return new Tuple<GameObject, Vector2[]>(g, points);
         }
 
+        private GameObject AddWaterfalCollision(GameObject g, Vector2[] points)
+        {
+            GameObject waterfallReplace = _prefabReplacements["WaterfallCollider"];
+            Debug.Log(waterfallReplace);
+            waterfallReplace = LayerImportLibrary.CreatePrefab(waterfallReplace, 0, g.transform);
+            Debug.Log(waterfallReplace);
+            LayerImportLibrary.SetEdgeCollider2DPoints(waterfallReplace, points);
+            return waterfallReplace;
+        }
+
         private void ImportGround(GameObject g, int index) {
-            ImportTileToPrefab(g, index, "Ground");
+            var ret = ImportTileToPrefab(g, index, "Ground");
+            AddWaterfalCollision(ret.Item1, ret.Item2);
         }
 
         private void ImportBreakable(GameObject g, int index) {
@@ -182,6 +195,7 @@ namespace Helpers {
             LayerImportLibrary.SetEdgeCollider2DPoints(g, colliderPoints);
             LayerImportLibrary.AddShadowCast(g, colliderPoints.ToVector3());
             g.GetRequiredComponent<SpriteRenderer>().SetSortingLayer("Interactable");
+            AddWaterfalCollision(g, colliderPoints);
         }
 
         private void ImportLava(GameObject g, int _) {
@@ -189,6 +203,13 @@ namespace Helpers {
             LayerImportLibrary.SetLayer(g, "Interactable");
             Vector2[] colliderPoints = LayerImportLibrary.EdgeToPoints(g);
             LayerImportLibrary.AddFreeformLightPrefab(g, _prefabReplacements["LavaLight"], colliderPoints.ToVector3());
+        }
+
+        private void ImportWater(GameObject g, int _)
+        {
+            // g.GetComponentInChildren<>()<SpriteRenderer>().SetSortingLayer("Lava");
+            // g.GetComponentInChildren<EdgeCollider2D>();
+            AddWaterfalCollision(g, LayerImportLibrary.EdgeToPoints(g));
         }
 
         private void ImportLavaTilemap(GameObject g)
@@ -215,10 +236,14 @@ namespace Helpers {
         private void ImportGroundTilemap(GameObject g)
         {
             g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Ground");
+            LayerImportLibrary.SetMaterial(g, "Underwater");
         }
         
-        private void ImportMechanics(Transform layer, XElement element) {
-            // LayerImportLibrary.AnchorOffset(layer, element);
+        private void ImportWaterTilemap(GameObject g)
+        {
+            g.SetLayerRecursively("Water");
+            g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Lava");
+            LayerImportLibrary.SetMaterial(g, "Mask_Graph");
         }
 
         private void ResolveTileLayerImports(Transform layer, Action<GameObject, int> import) {
