@@ -2,6 +2,7 @@
 using MyBox;
 
 using Audio;
+using FMODUnity;
 
 namespace Core
 {
@@ -41,11 +42,13 @@ namespace Core
             InitializeSingleton();
 
             _mainCamera = FindObjectOfType<Camera>();
+
+            FMODUnity.RuntimeManager.LoadBank("Master", true);
         }
 
         private void Start()
         {
-            AudioManager.PlayMusic("Mus_Level_S");  //TEMPORARY
+            AudioManager.PlayMusic("Cave_Music");  //TEMPORARY
         }
 
         void Update()

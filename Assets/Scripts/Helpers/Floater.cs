@@ -4,22 +4,19 @@ using UnityEngine;
 namespace Helpers
 {
     public class Floater : MonoBehaviour {
-        // User Inputs
-        public float degreesPerSecond = 15.0f;
-        public float amplitude = 0.5f;
-        public float frequency = 1f;
+        //[SerializeField] private float degreesPerSecond = 15.0f;
+        [SerializeField] private float amplitude = 0.5f;
+        [SerializeField] private float frequency = 1f;
  
         // Position Storage Variables
         Vector3 posOffset = new Vector3 ();
         Vector3 tempPos = new Vector3 ();
  
-        // Use this for initialization
         void Start () {
             // Store the starting position & rotation of the object
-            posOffset = transform.position;
+            posOffset = transform.localPosition;
         }
      
-        // Update is called once per frame
         void Update () {
             // Spin object around Y-Axis
             // transform.Rotate(new Vector3(0f, Time.deltaTime * degreesPerSecond, 0f), Space.World);
@@ -28,7 +25,7 @@ namespace Helpers
             tempPos = posOffset;
             tempPos.y += Mathf.Sin (Game.Instance.Time * Mathf.PI * frequency+transform.position.x*0.1f) * amplitude;
  
-            transform.position = tempPos;
+            transform.localPosition = tempPos;
         }
     }
 }

@@ -5,10 +5,11 @@ using System.Collections;
 using Phys;
 using Helpers;
 using UnityEngine;
+using World;
 
 
 namespace Mechanics {
-    public class Crystal : Solid, IFilterLoggerTarget {
+    public class Crystal : Solid, IResettable, IFilterLoggerTarget {
         private bool _broken = false;
         public double rechargeTime = 1;
         
@@ -19,9 +20,13 @@ namespace Mechanics {
         [SerializeField] private bool flicker;
         [SerializeField] private float amplitude;
         [SerializeField] private float frequency;
+        
+        private IEnumerator _breakCoroutine;
+        private Floater _floater;
 
         new void Start() {
             _mySR = GetComponent<SpriteRenderer>();
+            _floater = GetComponent<Floater>();
             _light = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
             _lightIntensityStart = _light.intensity;
             base.Start();
@@ -57,21 +62,32 @@ namespace Mechanics {
         }
 
         public void Break() {
-            _broken = true;
-            StartCoroutine(BreakCoroutine());
+            _breakCoroutine = BreakCoroutine();
+            StartCoroutine(_breakCoroutine);
         }
 
         public IEnumerator BreakCoroutine() {
-            _mySR.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-            _light.intensity = 0;
-            GetComponent<Floater>().enabled = false;
+            Discharge();
             for (double i = 0; i < rechargeTime; i += Game.Instance.DeltaTime) {
                 yield return null;
             }
+            Recharge();
+        }
+
+        void Discharge()
+        {
+            _broken = true;
+            _mySR.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+            _light.intensity = 0;
+            _floater.enabled = false;
+        }
+
+        void Recharge()
+        {
             _mySR.color = Color.white;
             _broken = false;
             _light.intensity = _lightIntensityStart;
-            GetComponent<Floater>().enabled = true;
+            _floater.enabled = true;
         }
 
         public LogLevel GetLogLevel()
@@ -81,6 +97,12 @@ namespace Mechanics {
 
         public void Flicker() {
             _light.intensity = _lightIntensityStart + Mathf.Sin (Game.Instance.Time * Mathf.PI * frequency+transform.position.x*0.1f) * amplitude;
+        }
+
+        public void Reset()
+        {
+            if (_breakCoroutine != null) StopCoroutine(_breakCoroutine);
+            Recharge();
         }
     }
 }
