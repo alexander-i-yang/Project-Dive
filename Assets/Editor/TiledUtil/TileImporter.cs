@@ -10,8 +10,8 @@ using SuperTiled2Unity;
 using SuperTiled2Unity.Editor;
 
 using Cinemachine;
+using Helpers;
 using MyBox;
-using TiledUtil;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -19,9 +19,9 @@ using UnityEngine.Tilemaps;
 
 using World;
 using Vector2 = UnityEngine.Vector2;
-using Vector3 = UnityEngine.Vector3;
+using LIL = TiledUtil.LayerImportLibrary;
 
-namespace Helpers {
+namespace TiledUtil {
 
     [AutoCustomTmxImporter()]
     public class TileImporter : CustomTmxImporter, IFilterLoggerTarget {
@@ -49,6 +49,7 @@ namespace Helpers {
             {
                 { "Lava", ImportLavaTilemap },
                 { "Ground", ImportGroundTilemap },
+                { "Semisolid", ImportSemisolidTilemap },
                 { "Water", ImportWaterTilemap },
                 { "Dirt", ImportGroundTilemap },
                 { "DecorBack", ImportDecorBackTilemap },
@@ -59,6 +60,7 @@ namespace Helpers {
             //Applies to children
             Dictionary<String, Action<GameObject, int>> tileLayerImports = new() {
                 { "Ground", ImportGround },
+                { "Semisolid", ImportSemisolid },
                 { "Dirt", ImportGround },
                 { "Breakable", ImportBreakable },
                 { "Lava", ImportLava },
@@ -156,52 +158,80 @@ namespace Helpers {
 
         private Tuple<GameObject, Vector2[]> ImportTileToPrefab(GameObject g, int index, String prefabName) {
             GameObject replacer = _prefabReplacements[prefabName];
-            Vector2[] points = LayerImportLibrary.EdgeToPoints(g);
+            Vector2[] points = LIL.EdgeToPoints(g);
 
-            g = LayerImportLibrary.ConvertToPrefab(g, replacer, index);
+            g = LIL.ConvertToPrefab(g, replacer, index);
             
-            LayerImportLibrary.SetEdgeCollider2DPoints(g, points);
-            LayerImportLibrary.AddShadowCast(g, points.ToVector3());
-            LayerImportLibrary.SetLayer(g, "Interactable");
+            //Set collider points
+            if (g.GetComponent<EdgeCollider2D>() != null)
+            {
+                LIL.SetEdgeCollider2DPoints(g, points);
+            }
+            else if (g.GetComponent<BoxCollider2D>() != null)
+            {
+                Vector2[] rectanglePoints = LIL.ColliderPointsToRectanglePoints(g, points);
+                LIL.SetBoxColliderPoints(g, rectanglePoints);
+            }
+            
+            //Set shadowcaster points
+            if (g.GetComponent<ShadowCaster2D>() != null) LIL.AddShadowCast(g, points.ToVector3());
+            
+            //Set Layer (kinda hacky I know)
+            LIL.SetLayer(g, "Interactable");
             return new Tuple<GameObject, Vector2[]>(g, points);
         }
 
+        private GameObject AddWaterfalCollision(GameObject g, Vector2[] points)
+        {
+            GameObject waterfallReplace = _prefabReplacements["WaterfallCollider"];
+            waterfallReplace = LIL.CreatePrefab(waterfallReplace, 0, g.transform);
+            LIL.SetEdgeCollider2DPoints(waterfallReplace, points);
+            return waterfallReplace;
+        }
+
         private void ImportGround(GameObject g, int index) {
-            ImportTileToPrefab(g, index, "Ground");
+            var ret = ImportTileToPrefab(g, index, "Ground");
+            AddWaterfalCollision(ret.Item1, ret.Item2);
+        }
+        
+        private void ImportSemisolid(GameObject g, int index) {
+            var ret = ImportTileToPrefab(g, index, "Semisolid");
         }
 
         private void ImportBreakable(GameObject g, int index) {
             var data = ImportTileToPrefab(g, index, "Breakable");
             g = data.Item1;
             Vector2[] colliderPoints = data.Item2;
-            Vector2[] spritePoints = LayerImportLibrary.ColliderPointsToSpritePoints(g, colliderPoints); 
+            Vector2[] spritePoints = LIL.ColliderPointsToRectanglePoints(g, colliderPoints); 
             
             Vector2 avgSpritePoint = spritePoints.ComputeAverage();
             colliderPoints = colliderPoints.ComputeNormalized(avgSpritePoint);
             g.transform.localPosition = avgSpritePoint;
             
-            LayerImportLibrary.SetNineSliceSprite(g, spritePoints);
-            LayerImportLibrary.SetEdgeCollider2DPoints(g, colliderPoints);
-            LayerImportLibrary.AddShadowCast(g, colliderPoints.ToVector3());
+            LIL.SetNineSliceSprite(g, spritePoints);
+            LIL.SetEdgeCollider2DPoints(g, colliderPoints);
+            LIL.AddShadowCast(g, colliderPoints.ToVector3());
             g.GetRequiredComponent<SpriteRenderer>().SetSortingLayer("Interactable");
+            AddWaterfalCollision(g, colliderPoints);
         }
 
         private void ImportLava(GameObject g, int _) {
             g.AddComponent<Lava>();
-            LayerImportLibrary.SetLayer(g, "Interactable");
-            Vector2[] colliderPoints = LayerImportLibrary.EdgeToPoints(g);
-            LayerImportLibrary.AddFreeformLightPrefab(g, _prefabReplacements["LavaLight"], colliderPoints.ToVector3());
+            LIL.SetLayer(g, "Interactable");
+            Vector2[] colliderPoints = LIL.EdgeToPoints(g);
+            LIL.AddFreeformLightPrefab(g, _prefabReplacements["LavaLight"], colliderPoints.ToVector3());
         }
 
         private void ImportWater(GameObject g, int _)
         {
             // g.GetComponentInChildren<>()<SpriteRenderer>().SetSortingLayer("Lava");
             // g.GetComponentInChildren<EdgeCollider2D>();
+            AddWaterfalCollision(g, LIL.EdgeToPoints(g));
         }
 
         private void ImportLavaTilemap(GameObject g)
         {
-            LayerImportLibrary.SetMaterial(g, "Lava");
+            LIL.SetMaterial(g, "Lava");
             g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Lava");
         }
 
@@ -223,14 +253,19 @@ namespace Helpers {
         private void ImportGroundTilemap(GameObject g)
         {
             g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Ground");
-            LayerImportLibrary.SetMaterial(g, "Underwater");
+            LIL.SetMaterial(g, "Underwater");
         }
         
+        private void ImportSemisolidTilemap(GameObject g)
+        {
+            g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Ground");
+        }
+
         private void ImportWaterTilemap(GameObject g)
         {
             g.SetLayerRecursively("Water");
             g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Lava");
-            LayerImportLibrary.SetMaterial(g, "Mask_Graph");
+            LIL.SetMaterial(g, "Mask_Graph");
         }
 
         private void ResolveTileLayerImports(Transform layer, Action<GameObject, int> import) {
