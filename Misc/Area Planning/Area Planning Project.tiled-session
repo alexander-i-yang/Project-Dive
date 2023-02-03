@@ -219,11 +219,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 4,
-            "selectedLayer": 0,
+            "scale": 3,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 127.875,
-                "y": 72.125
+                "x": 110.5,
+                "y": 52.5
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Hub.tmx": {
@@ -231,10 +231,10 @@
                 4
             ],
             "scale": 4,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 127.875,
-                "y": 72.125
+                "x": 238.375,
+                "y": 101.625
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/LavaIntro.tmx": {
@@ -300,11 +300,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 4,
+            "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 110.875,
-                "y": 239.375
+                "x": 110.16666666666667,
+                "y": 610.8333333333333
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Spike Intro.tmx": {
@@ -576,7 +576,7 @@
             "scale": 5.5,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 126.45454545454545,
+                "x": 126.45454545454544,
                 "y": 70.45454545454545
             }
         },
