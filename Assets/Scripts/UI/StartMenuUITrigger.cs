@@ -8,10 +8,16 @@ using UnityEngine;
 public class StartMenuUITrigger : MonoBehaviour {
     
     [SerializeField] private GameObject startMenu;
+    [SerializeField] private GameObject player;
+    [SerializeField] private float transitionStartDelay;
+
 
     private void OnTriggerEnter2D(Collider2D col) {
-        // make start menu appear with a 1 second delay
-        Invoke(nameof(BeginStartMenuTransition), 1.0f);
+        // disables player input for start menu
+        player.GetComponent<PlayerInputController>().enabled = false;
+
+        // make start menu appear with a delay (to account for camera pan down)
+        Invoke(nameof(BeginStartMenuTransition), transitionStartDelay);
     }
 
     private void BeginStartMenuTransition() {
