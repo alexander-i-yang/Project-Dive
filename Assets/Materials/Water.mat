@@ -82,7 +82,7 @@ Material:
     m_Colors:
     - _ReflectionAmbient: {r: 0.20334639, g: 0.28592196, b: 0.3018868, a: 0}
     - _ReflectionTint: {r: 0.5127803, g: 0.8568754, b: 0.9811321, a: 0}
-    - _RefractionTint: {r: 0.14330718, g: 0.33873105, b: 0.7830189, a: 0}
+    - _RefractionTint: {r: 0.18120001, g: 0.28328696, b: 0.4, a: 1}
     - _RoomPos: {r: 0, g: 0, b: 0, a: 0}
     - _RoomSize: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

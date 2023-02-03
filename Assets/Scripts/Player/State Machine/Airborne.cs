@@ -21,15 +21,17 @@ namespace Player
 
             public override void JumpPressed()
             {
+                if (Input.canDoubleJump)
+                {
+                    DoubleJump();
+                    return;
+                }
+                
                 base.JumpPressed();
                 TimerState coyoteState = GameTimer.GetTimerState(_jumpCoyoteTimer);
                 if (coyoteState == TimerState.Running)
                 {
                     JumpFromGround();
-                }
-                else if (Input.canDoubleJump)
-                {
-                    DoubleJump();
                 }
             }
 

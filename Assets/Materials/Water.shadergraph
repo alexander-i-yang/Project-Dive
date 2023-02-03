@@ -1609,7 +1609,7 @@
     "m_SourceType": 1,
     "m_FunctionName": "refraction",
     "m_FunctionSource": "",
-    "m_FunctionBody": "// map x back to [0, 1] before returning\nfloat2 uv = scr.xy;\nuv.x += wobble / 256.0 * round(sin(time * speed + scr.x * 10));\n\nc = preRender.Sample(state, uv);\nc = float4(c.x * tint.x, c.y * tint.y, c.z * tint.z, c.w);"
+    "m_FunctionBody": "// map x back to [0, 1] before returning\r\nfloat2 uv = scr.xy;\r\nuv.x += wobble / 256.0 * round(sin(time * speed + scr.x * 10));\r\n\r\nc = preRender.Sample(state, uv);\r\n\r\nc = float4((c.x + tint.x)/2.0, (c.y + tint.y)/2.0, (c.z + tint.z)/2.0, c.w);"
 }
 
 {
