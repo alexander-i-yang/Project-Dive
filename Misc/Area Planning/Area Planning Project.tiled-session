@@ -57,11 +57,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 4,
+            "scale": 3,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 131.125,
-                "y": 82.625
+                "x": 139.83333333333334,
+                "y": 94.16666666666666
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1 Prototype spike intro.tmx": {
@@ -92,11 +92,11 @@
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 8,
-            "selectedLayer": 3,
+            "scale": 2,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 97.0625,
-                "y": 101.0625
+                "x": 162.25,
+                "y": 52.25
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Branches.tsx": {
@@ -137,7 +137,7 @@
             "scale": 4,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 202.625,
+                "x": 202.375,
                 "y": 87.125
             }
         },
@@ -226,6 +226,14 @@
                 "y": 52.5
             }
         },
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Hub Big.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 354.16666666666663,
+                "y": 134.16666666666666
+            }
+        },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Hub.tmx": {
             "expandedObjectLayers": [
                 4
@@ -233,7 +241,7 @@
             "scale": 4,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 238.375,
+                "x": 77.125,
                 "y": 101.625
             }
         },
@@ -274,11 +282,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 4,
-            "selectedLayer": 4,
+            "scale": 8,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 125.875,
-                "y": 69.875
+                "x": 148.3125,
+                "y": 51.5625
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Line of crystals.tmx": {
@@ -304,7 +312,7 @@
             "selectedLayer": 2,
             "viewCenter": {
                 "x": 110.16666666666667,
-                "y": 610.8333333333333
+                "y": 610.5
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Spike Intro.tmx": {
@@ -382,7 +390,7 @@
             "scale": 4,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 142.625,
+                "x": 141.625,
                 "y": 53.375
             }
         },
@@ -432,11 +440,11 @@
             "scaleInDock": 5.5
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Luke_Choi/LukeChoi_room1Easy.tmx": {
-            "scale": 4,
+            "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 127.875,
-                "y": 72.125
+                "x": 70.25,
+                "y": 79.25
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Mechanics.tsx": {
@@ -592,13 +600,13 @@
         }
     },
     "last.externalTilesetPath": "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles",
-    "last.imagePath": "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles",
+    "last.imagePath": "C:/Users/uncle/Unity/Project-Dive/Assets/Sprites/Decor/Static/new vines_Slices",
     "map.fixedSize": true,
-    "map.height": 18,
+    "map.height": 36,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 8,
     "map.tileWidth": 8,
-    "map.width": 32,
+    "map.width": 64,
     "openFiles": [
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Mechanics.tsx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Level3.tmx",
@@ -618,6 +626,8 @@
     "project": "Area Planning Project.tiled-project",
     "property.type": "object",
     "recentFiles": [
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Luke_Choi/LukeChoi_room1Easy.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1 Thingy.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Level3.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapToDecorBack.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Shaft.tmx",
@@ -627,9 +637,7 @@
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Level1.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Spikes.tsx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Cool breakable stuff.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Hub.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/automapDecorBack.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Gate.tmx"
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Hub.tmx"
     ],
     "resizeMap.removeObjects": false,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",

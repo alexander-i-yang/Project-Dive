@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.9" tiledversion="1.9.2" name="Static Decorations" tilewidth="16" tileheight="16" tilecount="14" columns="0">
+<tileset version="1.9" tiledversion="1.9.2" name="Static Decorations" tilewidth="16" tileheight="16" tilecount="36" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="21">
   <image width="8" height="8" source="../Sprites/Decor/Static/decor placeholder dirt corner left.png"/>
@@ -25,12 +25,6 @@
  <tile id="2">
   <image width="8" height="8" source="../Sprites/Decor/Static/root.png"/>
  </tile>
- <tile id="4">
-  <image width="8" height="16" source="../Sprites/Decor/Static/vines long.png"/>
- </tile>
- <tile id="5">
-  <image width="8" height="8" source="../Sprites/Decor/Static/vines.png"/>
- </tile>
  <tile id="13">
   <image width="8" height="8" source="../Sprites/Decor/Static/mushroom 3.png"/>
  </tile>
@@ -42,5 +36,77 @@
  </tile>
  <tile id="22">
   <image width="16" height="16" source="../Sprites/Decor/Static/Flowers.png"/>
+ </tile>
+ <tile id="29">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_0.png"/>
+ </tile>
+ <tile id="30">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_1.png"/>
+ </tile>
+ <tile id="31">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_2.png"/>
+ </tile>
+ <tile id="32">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_3.png"/>
+ </tile>
+ <tile id="33">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_4.png"/>
+ </tile>
+ <tile id="34">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_5.png"/>
+ </tile>
+ <tile id="35">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_6.png"/>
+ </tile>
+ <tile id="36">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_7.png"/>
+ </tile>
+ <tile id="37">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_8.png"/>
+ </tile>
+ <tile id="38">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_9.png"/>
+ </tile>
+ <tile id="39">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_10.png"/>
+ </tile>
+ <tile id="40">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_11.png"/>
+ </tile>
+ <tile id="41">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_12.png"/>
+ </tile>
+ <tile id="42">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_13.png"/>
+ </tile>
+ <tile id="43">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_14.png"/>
+ </tile>
+ <tile id="44">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_15.png"/>
+ </tile>
+ <tile id="45">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_16.png"/>
+ </tile>
+ <tile id="46">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_17.png"/>
+ </tile>
+ <tile id="47">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_18.png"/>
+ </tile>
+ <tile id="48">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_19.png"/>
+ </tile>
+ <tile id="49">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_20.png"/>
+ </tile>
+ <tile id="50">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_21.png"/>
+ </tile>
+ <tile id="51">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_22.png"/>
+ </tile>
+ <tile id="52">
+  <image width="8" height="8" source="../Sprites/Decor/Static/new vines_Slices/Slice_23.png"/>
  </tile>
 </tileset>

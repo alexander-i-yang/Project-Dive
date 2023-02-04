@@ -238,6 +238,7 @@ namespace TiledUtil {
         private void ImportBranchesTilemap(GameObject g)
         {
             g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Ground");
+            LayerImportLibrary.SetMaterial(g, "Mask_Graph");
         }
         
         private void ImportSpikesTilemap(GameObject g)
