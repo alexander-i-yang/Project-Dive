@@ -93,6 +93,8 @@ public class DFRenderObject : ScriptableRendererFeature
             {
                 urpLightKeyword = $"USE_SHAPE_LIGHT_TYPE_{blendMode}";
             }
+
+            Debug.Log($"{passName} rf using mask { layerMask.value }");
         }
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
@@ -136,7 +138,6 @@ public class DFRenderObject : ScriptableRendererFeature
 
                 // however non-writable is for a reason. The temporary light texture is discarded by the time the commented line gets called
                 // so instead we will just have to deal with DF Render Objects not supporting URP lighting, unless it's the very last sorting layer
-                
 
                 context.DrawRenderers(renderingData.cullResults, ref drawingSettings, ref filteringSettings, ref m_RenderStateBlock);
 

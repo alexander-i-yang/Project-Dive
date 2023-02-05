@@ -15,31 +15,6 @@ MonoBehaviour:
   m_Active: 1
   rt: {fileID: 8400000, guid: 6a97591154f2fc9459fa04d62dbc260d, type: 2}
   trigger: 350
---- !u!114 &-3997568628273803268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14425bd540fc6774981eb582b63f2aec, type: 3}
-  m_Name: Override Ground Pass
-  m_EditorClassIdentifier: 
-  m_Active: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  trigger: 450
-  overrideTexture: {fileID: 0}
-  clearOverrideTextureBefore: 0
-  useURPLit: 1
-  overrideMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  useSortingLayer: 0
-  sortingLayer: 
-  lightBlendMode: 0
-  overrideMaterialPassIndex: 0
 --- !u!114 &-3943725525851770831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,16 +52,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14425bd540fc6774981eb582b63f2aec, type: 3}
   m_Name: Water Mask Pass
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 2147483647
-  trigger: 250
+  trigger: 300
   overrideTexture: {fileID: 8400000, guid: da3d68022ace0fa45994b6ee4d0bd41c, type: 2}
   clearOverrideTextureBefore: 1
   useURPLit: 0
   overrideMaterial: {fileID: 2100000, guid: 33cd5db6cbace70498816b6fe7e0b460, type: 2}
-  useSortingLayer: 1
+  useSortingLayer: 0
   sortingLayer: Ground
   lightBlendMode: 0
   overrideMaterialPassIndex: 0
@@ -107,10 +82,9 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: -7543897825618846353}
   - {fileID: -3943725525851770831}
-  - {fileID: -3997568628273803268}
   - {fileID: 3147613855000953012}
   - {fileID: -16438006295246296}
-  m_RendererFeatureMap: 6f9d259ae5b04e9731f0f66b871245c9fc8f7e3a83c885c8b4006ed51f92ae2b28caf469b899c5ff
+  m_RendererFeatureMap: 6f9d259ae5b04e9731f0f66b871245c9b4006ed51f92ae2b28caf469b899c5ff
   m_UseNativeRenderPass: 0
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 1, z: 0}
