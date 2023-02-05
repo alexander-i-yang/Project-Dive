@@ -36,6 +36,7 @@ MonoBehaviour:
   clearOverrideTextureBefore: 0
   useURPLit: 1
   overrideMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  sortingLayer: 5
   overrideMaterialPassIndex: 0
   passTag: Override Ground Pass
 --- !u!114 &-3943725525851770831
@@ -59,6 +60,7 @@ MonoBehaviour:
   clearOverrideTextureBefore: 0
   useURPLit: 1
   overrideMaterial: {fileID: 2100000, guid: b7ba06fb4e046504388011c5db793084, type: 2}
+  sortingLayer: 0
   overrideMaterialPassIndex: 0
   passTag: Override Water Pass
 --- !u!114 &11400000
@@ -160,5 +162,6 @@ MonoBehaviour:
   clearOverrideTextureBefore: 1
   useURPLit: 0
   overrideMaterial: {fileID: 2100000, guid: 00377a25236f1874baf77687f292ff3f, type: 2}
+  sortingLayer: 4
   overrideMaterialPassIndex: 0
   passTag: Water Stencil Pass

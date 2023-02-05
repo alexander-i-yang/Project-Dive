@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 public class DFRenderObject : ScriptableRendererFeature
 {
-    [SerializeField] LayerMask layerMask;
+    [SerializeField] short sortingLayer;
     [SerializeField] RenderPassEvent trigger;
 
     // render to RT instead of camear color, when chosen
@@ -39,7 +39,7 @@ public class DFRenderObject : ScriptableRendererFeature
 
         public DFRenderObjectPass(
             string passTag,
-            LayerMask layerMask,
+            short sortingLayer,
             RenderPassEvent trigger,
             bool cleareOverrideTextureBefore,
             RenderTexture overrideTexture,
@@ -55,7 +55,8 @@ public class DFRenderObject : ScriptableRendererFeature
 
             _m = overrideMaterial;
             renderPassEvent = trigger;
-            fSettings = new FilteringSettings(RenderQueueRange.opaque, layerMask);
+            fSettings = new FilteringSettings(RenderQueueRange.opaque);
+            fSettings.sortingLayerRange = new SortingLayerRange(sortingLayer, sortingLayer);
 
             m_ShaderTagIds = new List<ShaderTagId>() {
                 new ShaderTagId("SRPDefaultUnlit"),
@@ -74,12 +75,14 @@ public class DFRenderObject : ScriptableRendererFeature
             var criteria = SortingCriteria.CommonOpaque;
 
             var drawingSettings = CreateDrawingSettings(m_ShaderTagIds, ref renderingData, criteria);
+
             drawingSettings.overrideMaterial = _m;
             drawingSettings.overrideMaterialPassIndex = overrideMaterialPassIndex;
             if (useURPLit)
             {
                 drawingSettings.overrideMaterial.EnableKeyword("USE_SHAPE_LIGHT_TYPE_0");
             }
+
 
             CommandBuffer cmd = CommandBufferPool.Get(nameof(DFRenderObjectPass));
             using (new ProfilingScope(cmd, m_ProfilingSampler))
@@ -113,7 +116,7 @@ public class DFRenderObject : ScriptableRendererFeature
         var m = OverrideMaterialInstance != null ? OverrideMaterialInstance : OverrideMaterialPrototype;
         pass = new DFRenderObjectPass(
             passTag,
-            layerMask,
+            sortingLayer,
             trigger,
             clearOverrideTextureBefore,
             overrideTexture,
