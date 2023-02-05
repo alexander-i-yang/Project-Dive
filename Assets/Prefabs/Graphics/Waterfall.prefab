@@ -55,7 +55,7 @@ MonoBehaviour:
   onSelected: 1
   radius: 3
   color: {r: 0, g: 1, b: 0.92856526, a: 1}
-  offset: {x: 4, y: 0, z: 0}
+  offset: {x: 4, y: 0, z: 3}
 --- !u!1001 &1019137943197430165
 PrefabInstance:
   m_ObjectHideFlags: 0
