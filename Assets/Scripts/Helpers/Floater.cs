@@ -14,7 +14,7 @@ namespace Helpers
  
         void Start () {
             // Store the starting position & rotation of the object
-            posOffset = transform.position;
+            posOffset = transform.localPosition;
         }
      
         void Update () {
@@ -25,7 +25,7 @@ namespace Helpers
             tempPos = posOffset;
             tempPos.y += Mathf.Sin (Game.Instance.Time * Mathf.PI * frequency+transform.position.x*0.1f) * amplitude;
  
-            transform.position = tempPos;
+            transform.localPosition = tempPos;
         }
     }
 }

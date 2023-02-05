@@ -28,6 +28,7 @@
  </tile>
  <tile id="10" class="ConnectedSpike">
   <properties>
+   <property name="AttachedTo" type="object" value="0"/>
    <property name="SetDirectionFromCode" type="int" value="1"/>
   </properties>
   <objectgroup draworder="index" id="2">
@@ -36,6 +37,7 @@
  </tile>
  <tile id="11" class="ConnectedSpike">
   <properties>
+   <property name="AttachedTo" type="object" value="0"/>
    <property name="SetDirectionFromCode" type="int" value="2"/>
   </properties>
   <objectgroup draworder="index" id="2">
@@ -44,6 +46,7 @@
  </tile>
  <tile id="14" class="ConnectedSpike">
   <properties>
+   <property name="AttachedTo" type="object" value="0"/>
    <property name="SetDirectionFromCode" type="int" value="0"/>
   </properties>
   <objectgroup draworder="index" id="2">
@@ -52,6 +55,7 @@
  </tile>
  <tile id="15" class="ConnectedSpike">
   <properties>
+   <property name="AttachedTo" type="object" value="0"/>
    <property name="SetDirectionFromCode" type="int" value="3"/>
   </properties>
   <objectgroup draworder="index" id="2">

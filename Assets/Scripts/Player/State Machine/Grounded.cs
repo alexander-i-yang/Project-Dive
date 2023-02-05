@@ -21,7 +21,7 @@ namespace Player
 
             public override void JumpPressed()
             {
-                base.JumpPressed();
+                // base.JumpPressed();
                 JumpFromGround();
             }
 
