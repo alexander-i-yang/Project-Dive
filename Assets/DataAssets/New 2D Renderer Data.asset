@@ -52,16 +52,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14425bd540fc6774981eb582b63f2aec, type: 3}
   m_Name: Water Mask Pass
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 2147483647
-  trigger: 300
+    m_Bits: 1
+  trigger: 250
   overrideTexture: {fileID: 8400000, guid: da3d68022ace0fa45994b6ee4d0bd41c, type: 2}
   clearOverrideTextureBefore: 1
   useURPLit: 0
   overrideMaterial: {fileID: 2100000, guid: 33cd5db6cbace70498816b6fe7e0b460, type: 2}
-  useSortingLayer: 0
+  useSortingLayer: 1
   sortingLayer: Ground
   lightBlendMode: 0
   overrideMaterialPassIndex: 0

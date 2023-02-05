@@ -81,7 +81,7 @@
         "preventRotation": false
     },
     "m_Path": "Shader Graphs",
-    "m_GraphPrecision": 1,
+    "m_GraphPrecision": 2,
     "m_PreviewMode": 2,
     "m_OutputNode": {
         "m_Id": ""
@@ -213,7 +213,7 @@
     "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalTarget",
     "m_ObjectId": "4c737a3f3afc4863aef7a0f6db770334",
     "m_ActiveSubTarget": {
-        "m_Id": "57de0dd3265748cf9cdee7b8589fb402"
+        "m_Id": "c375342b68e4450e8e164e381d9ea520"
     },
     "m_AllowMaterialOverride": false,
     "m_SurfaceType": 0,
@@ -234,12 +234,6 @@
     "m_ObjectId": "55eab9f33749495a84416a5a833be98f",
     "m_Name": "",
     "m_ChildObjectList": []
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalUnlitSubTarget",
-    "m_ObjectId": "57de0dd3265748cf9cdee7b8589fb402"
 }
 
 {
@@ -370,6 +364,12 @@
         },
         "mode": 0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalUnlitSubTarget",
+    "m_ObjectId": "c375342b68e4450e8e164e381d9ea520"
 }
 
 {

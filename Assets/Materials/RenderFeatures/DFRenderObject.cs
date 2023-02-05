@@ -69,11 +69,11 @@ public class DFRenderObject : ScriptableRendererFeature
 
             _m = overrideMaterial;
             renderPassEvent = trigger;
-            filteringSettings = new FilteringSettings(RenderQueueRange.opaque, layerMask);
+            filteringSettings = new FilteringSettings(RenderQueueRange.all, layerMask);
 
             if (sortingLayer >= 0)
             {
-                // filteringSettings.sortingLayerRange = new SortingLayerRange(sortingLayer, sortingLayer);
+                filteringSettings.sortingLayerRange = new SortingLayerRange(sortingLayer, sortingLayer);
             }
 
             m_ShaderTagIds = new List<ShaderTagId>() {
@@ -93,8 +93,6 @@ public class DFRenderObject : ScriptableRendererFeature
             {
                 urpLightKeyword = $"USE_SHAPE_LIGHT_TYPE_{blendMode}";
             }
-
-            Debug.Log($"{passName} rf using mask { layerMask.value }");
         }
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
