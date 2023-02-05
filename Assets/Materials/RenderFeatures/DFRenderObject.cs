@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 public class DFRenderObject : ScriptableRendererFeature
 {
-    [SerializeField] short sortingLayer;
+    [SerializeField] LayerMask layerMask;
     [SerializeField] RenderPassEvent trigger;
 
     // render to RT instead of camear color, when chosen
@@ -18,6 +18,8 @@ public class DFRenderObject : ScriptableRendererFeature
     [SerializeField] Material overrideMaterial = null;
     public Material OverrideMaterialPrototype => overrideMaterial;
     public Material OverrideMaterialInstance { get; set; }
+
+    [SerializeField] short sortingLayer;
 
     // never actually used, hide for now
     [SerializeField, HideInInspector] int overrideMaterialPassIndex = 0;
@@ -39,6 +41,7 @@ public class DFRenderObject : ScriptableRendererFeature
 
         public DFRenderObjectPass(
             string passTag,
+            LayerMask layerMask,
             short sortingLayer,
             RenderPassEvent trigger,
             bool cleareOverrideTextureBefore,
@@ -55,7 +58,7 @@ public class DFRenderObject : ScriptableRendererFeature
 
             _m = overrideMaterial;
             renderPassEvent = trigger;
-            fSettings = new FilteringSettings(RenderQueueRange.opaque);
+            fSettings = new FilteringSettings(RenderQueueRange.opaque, layerMask);
             fSettings.sortingLayerRange = new SortingLayerRange(sortingLayer, sortingLayer);
 
             m_ShaderTagIds = new List<ShaderTagId>() {
@@ -116,6 +119,7 @@ public class DFRenderObject : ScriptableRendererFeature
         var m = OverrideMaterialInstance != null ? OverrideMaterialInstance : OverrideMaterialPrototype;
         pass = new DFRenderObjectPass(
             passTag,
+            layerMask,
             sortingLayer,
             trigger,
             clearOverrideTextureBefore,
