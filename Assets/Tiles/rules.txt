@@ -4,6 +4,7 @@ automapBreakable.tmx
 automapDirt.tmx
 automapLava.tmx
 automapWater.tmx
+automapSemisolids.tmx
 automapSpikes.tmx
 automapToDecorBack.tmx
 automapDecorBack.tmx
