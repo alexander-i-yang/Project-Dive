@@ -2,6 +2,7 @@
 using System.Data;
 using System.Reflection;
 using System.Xml.Linq;
+using Cinemachine.Utility;
 using Helpers;
 using MyBox;
 using SuperTiled2Unity.Editor;
@@ -50,8 +51,9 @@ namespace TiledUtil {
             return CreatePrefab(prefab, 0, parent.transform);
         }
         
-        public static ShadowCaster2D AddShadowCast(GameObject g, Vector3[] points) {
-            ShadowCaster2D caster = g.GetOrAddComponent<ShadowCaster2D>();
+        public static ShadowCaster2D AddShadowCast(GameObject g, Vector3[] points)
+        {
+            ShadowCaster2D caster = g.GetRequiredComponent<ShadowCaster2D>();
             shapePathField.SetValue(caster, points);
             meshField.SetValue(caster, null);
             onEnableMethod.Invoke(caster, new object[0]);
@@ -71,7 +73,7 @@ namespace TiledUtil {
             spriteRenderer.size = dimensions;
         }
 
-        public static Vector2[] ColliderPointsToSpritePoints(GameObject g, Vector2[] points) {
+        public static Vector2[] ColliderPointsToRectanglePoints(GameObject g, Vector2[] points) {
             points = points.Slice(0, points.Length - 1); // EdgeColliders have one extra point
             if (points.Length != 4) {
                 throw new ConstraintException($"GameObject {g} must be rectangular");
@@ -79,15 +81,23 @@ namespace TiledUtil {
             return points;
         }
 
-        #region ObjectLayers
-        public static void AnchorOffset(Transform layer, XElement docLayer) {
-            foreach (var xElement in docLayer.Elements()) {
-                Vector2 size = WidthAndHeight(xElement);
-                Transform transformObj = FindObjByID(layer, xElement.GetAttributeAs<string>("id"));
-                if (transformObj != null) transformObj.position += new Vector3(size.x / 2, size.y / 2, 0);
-            }
+        public static void SetBoxColliderPoints(GameObject g, Vector2[] rectanglePoints)
+        {
+            //Move the position up by 8 units, I think bc the layers all get set 8 units down.
+            g.transform.localPosition += Vector3.up * 8;
+            var boxCollider = g.GetRequiredComponent<BoxCollider2D>();
+            Vector2 size = (rectanglePoints[0] - rectanglePoints[2]).Abs();
+            Vector2 topRightBox = (Vector2)g.transform.position + size/2;
+            Vector2 topRightWorld = rectanglePoints.MaxManhattan();
+            Vector2 offset = topRightWorld - topRightBox;
+            boxCollider.offset = offset;
+            boxCollider.size = size;
+            //Reset position here.
+            g.transform.localPosition -= Vector3.up * 8;
         }
-        
+
+        #region ObjectLayers
+
         private static Vector2 WidthAndHeight(XElement xNode) {
             return new Vector2(xNode.GetAttributeAs<Int16>("width"), xNode.GetAttributeAs<Int16>("height"));
         }

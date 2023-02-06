@@ -214,6 +214,20 @@ namespace Helpers {
         public static T[] Slice<T>(this T[] arr, int from, int len) {
             return new System.ArraySegment<T>(arr, 0, len).ToArray();
         }
+
+        public static Vector2 MaxManhattan(this Vector2[] a)
+        {
+            Vector2 ret = a[0];
+            foreach (var v in a)
+            {
+                if (v.x + v.y >= ret.x + ret.y)
+                {
+                    ret = v;
+                }
+            }
+
+            return ret;
+        }
         
         public static List<Transform> GetChildren(this Transform t) => t.GetChildsWhere(_ => true);
         
