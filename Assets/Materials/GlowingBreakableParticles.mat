@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BreakableParticles
+  m_Name: GlowingBreakableParticles
   m_Shader: {fileID: -6465566751694194690, guid: 8ad9f0d423af1b14bae5cbd7d7b437fc, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -126,7 +126,7 @@ Material:
     - _Zoom: 0.4
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 191.74902, g: 191.74902, b: 191.74902, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

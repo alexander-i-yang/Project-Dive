@@ -42,7 +42,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     public void Land()
     {
         if (_dpInstance != null) {
-            _dpInstance?.GetComponent<ParticleSystem>().Stop();
+            _dpInstance?.GetComponent<DrillingParticles>()?.Stop();
         } 
         velocityY = 0;
     }
@@ -56,7 +56,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     /// <param name="jumpHeight"></param>
     public void Jump(int jumpHeight) {
         if (_dpInstance != null) {
-            _dpInstance?.GetComponent<ParticleSystem>().Stop();
+            _dpInstance?.GetComponent<DrillingParticles>()?.Stop();
         } 
         velocityY = GetJumpSpeedFromHeight(jumpHeight);
     }
@@ -107,9 +107,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public bool IsDiving()
     {
-        if (_dpInstance == null) {
-            _dpInstance = Instantiate(PlayerCore._diggingParticles, transform);
-        }
         return _stateMachine.IsOnState<PlayerStateMachine.Diving>();
     }
     #endregion
@@ -118,6 +115,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     public float Dogo() {
         float v = velocityX;
         velocityX = 0;
+        SpawnDrillingParticles();
         return v;
     }
 
@@ -162,6 +160,22 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         }
     }
     #endregion
+
+    public void SpawnDrillingParticles() {
+        if (_dpInstance == null) {
+            _dpInstance = Instantiate(PlayerCore._diggingParticles, transform);
+        } else {
+            _dpInstance.transform.parent = transform;
+            _dpInstance.transform.localPosition = new Vector3(0, 0, -10);
+        }
+    }
+
+    public bool IsDrilling() {
+        if (IsDogoing() || IsDiving()) {
+            return true;
+        }
+        return false;
+    }
 
     public void Die()
     {
