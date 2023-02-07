@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BreakableParticles
-  m_Shader: {fileID: -6465566751694194690, guid: ae85612247ea40a46894e2176f231beb, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 8ad9f0d423af1b14bae5cbd7d7b437fc, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4

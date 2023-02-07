@@ -60,8 +60,8 @@ namespace Mechanics {
         }
 
         public void Recharge() {
+            Charged = true;
             _reEnableCoroutine = StartCoroutine(Helper.DelayAction(RechargeTime, () => {
-                Charged = true;
                 _mySR.SetAlpha(1);
             }));
         }

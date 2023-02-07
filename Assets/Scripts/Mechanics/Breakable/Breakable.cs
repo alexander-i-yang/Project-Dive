@@ -21,6 +21,7 @@ namespace Mechanics {
 
         public override bool PlayerCollide(PlayerActor p, Vector2 direction) {
             if (p.IsDiving() && direction.y < 0) {
+                p.SpawnDrillingParticles();
                 Break();
                 return false;
             }
