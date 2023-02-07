@@ -188,5 +188,15 @@ namespace Phys {
         }
 
         public abstract bool Squish(PhysObj p, Vector2 d);
+        
+        public int ColliderBottomY()
+        {
+            return Convert.ToInt16(transform.position.y + myCollider.offset.y - myCollider.bounds.extents.y);
+        }
+        
+        public int ColliderTopY()
+        {
+            return Convert.ToInt16(transform.position.y + myCollider.offset.y + myCollider.bounds.extents.y);
+        }
     }
 }

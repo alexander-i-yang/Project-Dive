@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.9" tiledversion="1.9.2" name="Mechanics" tilewidth="24" tileheight="24" tilecount="6" columns="0">
+<tileset version="1.9" tiledversion="1.9.2" name="Mechanics" tilewidth="24" tileheight="24" tilecount="7" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0" class="Blue Crystal">
   <image width="8" height="8" source="../Sprites/Mechanics/Crystal Blue.png"/>
@@ -24,5 +24,8 @@
    <property name="Next" type="object" value="0"/>
   </properties>
   <image width="8" height="8" source="../Sprites/Mechanics/Firefly End.png"/>
+ </tile>
+ <tile id="8" class="Waterfall">
+  <image width="8" height="8" source="Waterfall.png"/>
  </tile>
 </tileset>
