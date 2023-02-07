@@ -254,7 +254,6 @@ namespace TiledUtil {
         private void ImportGroundTilemap(GameObject g)
         {
             g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Ground");
-            LIL.SetMaterial(g, "Underwater");
         }
         
         private void ImportSemisolidTilemap(GameObject g)

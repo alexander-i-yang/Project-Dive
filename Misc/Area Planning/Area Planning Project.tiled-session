@@ -111,7 +111,7 @@
             "scale": 3.7868055555555555,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 119.36181918210161,
+                "x": 119.09774436090227,
                 "y": 72.22446359801944
             }
         },
@@ -122,8 +122,8 @@
             "scale": 4,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 378.75,
-                "y": 91.625
+                "x": 253.875,
+                "y": 141.875
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Crystal Activate.tmx": {
@@ -133,8 +133,8 @@
             "scale": 4,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 128,
-                "y": 72.125
+                "x": 125.875,
+                "y": 69.875
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx": {
@@ -144,8 +144,8 @@
             "scale": 4,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 189,
-                "y": 100.875
+                "x": 127.75,
+                "y": 72.125
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Crystal Intro.tmx": {
@@ -161,10 +161,10 @@
                 5
             ],
             "scale": 4,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 46,
-                "y": 102.125
+                "x": 143,
+                "y": 79.375
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Filler Long.tmx": {
@@ -174,8 +174,8 @@
             "scale": 2.1838867187499997,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 255.9656575593615,
-                "y": 72.11912534096498
+                "x": 255.96565755936143,
+                "y": 72.119125340965
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Firefly Intro.tmx": {
@@ -191,9 +191,9 @@
                 3
             ],
             "scale": 3.7868055555555555,
-            "selectedLayer": 4,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 127.81221346048048,
+                "x": 128.34036310287917,
                 "y": 72.22446359801944
             }
         },
@@ -204,15 +204,15 @@
             "scale": 4,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 91.75,
-                "y": 105.375
+                "x": 125.875,
+                "y": 69.875
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Level3.tmx": {
             "scale": 3.7868055555555555,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 127.28406381808179,
+                "x": 127.28406381808182,
                 "y": 72.22446359801944
             }
         },
@@ -223,8 +223,8 @@
             "scale": 4,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 118.75,
-                "y": 122.625
+                "x": 125.875,
+                "y": 93.875
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Big Hub.tmx": {
@@ -789,18 +789,18 @@
     "project": "Area Planning Project.tiled-project",
     "property.type": "object",
     "recentFiles": [
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Idk.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Crystal Activate.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Gate 2.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Area 1 Thingy.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Level3.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Gate 2.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Filler Long.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Static Decorations.tsx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Crystal Activate.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Tall room 2.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Idk.tmx"
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Static Decorations.tsx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Filler Long.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Level3.tmx"
     ],
     "resizeMap.removeObjects": false,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
