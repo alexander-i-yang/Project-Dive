@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0efda4f2d227843bda07eef0bb95435f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneName: Area 1 Prototype
+  gameSceneName: Area 1

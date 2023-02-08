@@ -1,3 +1,29 @@
 {
-    "file.lastUsedOpenFilter": "All Files (*)"
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx": {
+            "scale": 4.3677734374999995,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 135.53816572016277,
+                "y": 69.71515449626615
+            }
+        },
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Gate 2.tmx": {
+            "scale": 4.3677734374999995,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.21177838393774,
+                "y": 72.00465053883649
+            }
+        }
+    },
+    "openFiles": [
+    ],
+    "project": "",
+    "recentFiles": [
+    ]
 }
