@@ -14,26 +14,31 @@ namespace Mechanics {
         public double rechargeTime = 1;
         
         private SpriteRenderer _mySR;
+        private Color _dischargedColor = new(0.5f, 0.5f, 0.5f, 0.5f);
         
         private UnityEngine.Rendering.Universal.Light2D _light;
         private float _lightIntensityStart;
-        [SerializeField] private bool flicker;
         [SerializeField] private float amplitude;
         [SerializeField] private float frequency;
         
         private IEnumerator _breakCoroutine;
         private Floater _floater;
 
+        public bool unlocked = false;
+
         new void Start() {
             _mySR = GetComponent<SpriteRenderer>();
             _floater = GetComponent<Floater>();
             _light = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
             _lightIntensityStart = _light.intensity;
+            
+            Discharge();
+            
             base.Start();
         }
 
         private void Update() {
-            if (flicker && !_broken) Flicker();
+            if (!_broken) Flicker();
         }
 
         public override bool Collidable()
@@ -43,7 +48,6 @@ namespace Mechanics {
 
         public override bool OnCollide(PhysObj p, Vector2 direction)
         {
-            FilterLogger.Log(this, $"Crystal Collided with {p}");
             if (!_broken)
             {
                 ICrystalResponse response = p.GetComponent<ICrystalResponse>();
@@ -77,7 +81,7 @@ namespace Mechanics {
         void Discharge()
         {
             _broken = true;
-            _mySR.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+            _mySR.color = _dischargedColor;
             _light.intensity = 0;
             _floater.enabled = false;
         }
@@ -102,6 +106,12 @@ namespace Mechanics {
         public void Reset()
         {
             if (_breakCoroutine != null) StopCoroutine(_breakCoroutine);
+            if (unlocked) Recharge();
+        }
+
+        public void Unlock()
+        {
+            unlocked = true;
             Recharge();
         }
     }
