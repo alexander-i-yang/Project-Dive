@@ -56,6 +56,9 @@ TagManager:
   - name: Ground
     uniqueID: 3841973759
     locked: 0
+  - name: Above Decor
+    uniqueID: 216755431
+    locked: 0
   - name: Firefly
     uniqueID: 437785363
     locked: 0
