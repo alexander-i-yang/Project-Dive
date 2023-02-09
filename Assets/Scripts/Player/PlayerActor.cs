@@ -272,6 +272,15 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         return Mathf.Sqrt(-2f * GravityUp * jumpHeight);
     }
     
+    public void UpdateDogoParticleFacing(int moveDirection)
+    {
+        if (moveDirection != 0 && _dpInstance != null)
+        {
+            Vector3 scale = _dpInstance.transform.localScale;
+            _dpInstance.transform.localScale = new Vector3(moveDirection, scale.y, scale.z);
+        }
+    }
+    
     #if UNITY_EDITOR
     private void OnDrawGizmosSelected() {
         Handles.Label(new Vector3(0, 56, 0) , $"Velocity: <{velocityX}, {velocityY}>");
