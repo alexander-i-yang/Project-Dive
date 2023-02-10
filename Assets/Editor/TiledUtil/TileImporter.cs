@@ -237,8 +237,8 @@ namespace TiledUtil {
 
         private void ImportBranchesTilemap(GameObject g)
         {
-            g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Ground");
-            LayerImportLibrary.SetMaterial(g, "Mask_Graph");
+            g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Above Ground");
+            // LayerImportLibrary.SetMaterial(g, "Mask_Graph");
         }
         
         private void ImportSpikesTilemap(GameObject g)
@@ -254,7 +254,6 @@ namespace TiledUtil {
         private void ImportGroundTilemap(GameObject g)
         {
             g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Ground");
-            LIL.SetMaterial(g, "Underwater");
         }
         
         private void ImportSemisolidTilemap(GameObject g)
