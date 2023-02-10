@@ -13,17 +13,19 @@ ScriptedImporter:
   - "Custom importer 'TileImporter' threw an exception. Message = 'Object reference
     not set to an instance of an object', Stack:\n  at TiledUtil.LayerImportLibrary.CreatePrefab
     (UnityEngine.GameObject prefab, System.Int32 index, UnityEngine.Transform parent)
-    [0x00000] in C:\\Users\\jonru\\Jonathan-design-\\Assets\\Editor\\TiledUtil\\LayerImportLibrary.cs:36
-    \r\n  at Helpers.TileImporter.AddWaterfalCollision (UnityEngine.GameObject g,
-    UnityEngine.Vector2[] points) [0x00016] in C:\\Users\\jonru\\Jonathan-design-\\Assets\\Editor\\TiledUtil\\TileImporter.cs:173
-    \r\n  at Helpers.TileImporter.ImportGround (UnityEngine.GameObject g, System.Int32
-    index) [0x0000e] in C:\\Users\\jonru\\Jonathan-design-\\Assets\\Editor\\TiledUtil\\TileImporter.cs:181
+    [0x00000] in C:\\Users\\jonru\\Jonathan-design-\\Assets\\Editor\\TiledUtil\\LayerImportLibrary.cs:37
+    \r\n  at TiledUtil.LayerImportLibrary.ConvertToPrefab (UnityEngine.GameObject
+    original, UnityEngine.GameObject prefab, System.Int32 index) [0x00000] in C:\\Users\\jonru\\Jonathan-design-\\Assets\\Editor\\TiledUtil\\LayerImportLibrary.cs:45
+    \r\n  at TiledUtil.TileImporter.ImportTileToPrefab (UnityEngine.GameObject g,
+    System.Int32 index, System.String prefabName) [0x00014] in C:\\Users\\jonru\\Jonathan-design-\\Assets\\Editor\\TiledUtil\\TileImporter.cs:163
+    \r\n  at TiledUtil.TileImporter.ImportGround (UnityEngine.GameObject g, System.Int32
+    index) [0x00000] in C:\\Users\\jonru\\Jonathan-design-\\Assets\\Editor\\TiledUtil\\TileImporter.cs:193
     \r\n  at Helpers.Helper.ForEachChild (UnityEngine.Transform t, System.Action`2[T1,T2]
-    f) [0x0000b] in C:\\Users\\jonru\\Jonathan-design-\\Assets\\Scripts\\Helpers\\Helper.cs:229
-    \r\n  at Helpers.TileImporter.ResolveTileLayerImports (UnityEngine.Transform
-    layer, System.Action`2[T1,T2] import) [0x00010] in C:\\Users\\jonru\\Jonathan-design-\\Assets\\Editor\\TiledUtil\\TileImporter.cs:252
-    \r\n  at Helpers.TileImporter.TmxAssetImported (SuperTiled2Unity.Editor.TmxAssetImportedArgs
-    data) [0x00201] in C:\\Users\\jonru\\Jonathan-design-\\Assets\\Editor\\TiledUtil\\TileImporter.cs:81
+    f) [0x0000b] in C:\\Users\\jonru\\Jonathan-design-\\Assets\\Scripts\\Helpers\\Helper.cs:243
+    \r\n  at TiledUtil.TileImporter.ResolveTileLayerImports (UnityEngine.Transform
+    layer, System.Action`2[T1,T2] import) [0x00010] in C:\\Users\\jonru\\Jonathan-design-\\Assets\\Editor\\TiledUtil\\TileImporter.cs:275
+    \r\n  at TiledUtil.TileImporter.TmxAssetImported (SuperTiled2Unity.Editor.TmxAssetImportedArgs
+    data) [0x0022f] in C:\\Users\\jonru\\Jonathan-design-\\Assets\\Editor\\TiledUtil\\TileImporter.cs:83
     \r\n  at SuperTiled2Unity.Editor.TmxAssetImporter.RunCustomImporterType (System.Type
     type) [0x00048] in C:\\Users\\jonru\\Jonathan-design-\\Assets\\SuperTiled2Unity\\Scripts\\Editor\\Importers\\TmxAssetImporter.cs:493 "
   warnings: []
