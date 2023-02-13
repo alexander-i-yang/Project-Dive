@@ -10,6 +10,7 @@ public class WaterController : MonoBehaviour
     public LayerMask obstacleLayerMask;
     public BoxCollider2D boxCollider2D;
     public GameObject splashEffectObject;
+    public ParticleSystem splashEffect;
 
     private float lastLength;
 
@@ -21,6 +22,7 @@ public class WaterController : MonoBehaviour
         for (int i = 0; i < 2; i++) {
             lineRenderer.SetPosition(i, transform.position);
         }
+        splashEffect = splashEffectObject.GetComponentInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -58,7 +60,15 @@ public class WaterController : MonoBehaviour
     }
 
     private void CheckForSplashEffect(float currentLength, float currentMaxLength) {
-        splashEffectObject.SetActive(currentLength >= currentMaxLength);
+        if (currentLength >= currentMaxLength - 30) {
+            if (!splashEffect.isPlaying) {
+                splashEffect.Play();
+            }
+        } else {
+            if (splashEffect.isPlaying) {
+                splashEffect.Stop();
+            }
+        }
         splashEffectObject.transform.position = transform.position - Vector3.up * currentLength;
     }
 }
