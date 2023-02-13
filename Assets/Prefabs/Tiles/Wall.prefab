@@ -72,7 +72,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 160822549
   m_Mesh: {fileID: 0}
-  m_InstanceId: 169046
+  m_InstanceId: 218658
 --- !u!68 &8085518301335351418
 EdgeCollider2D:
   m_ObjectHideFlags: 0
