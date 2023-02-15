@@ -21,40 +21,40 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 127.18150516478111,
-                "y": 72.23360014309351
+                "x": 127.98282877968074,
+                "y": 72.00465053883647
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx": {
             "scale": 4,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 200,
-                "y": 170.125
+                "x": 256,
+                "y": 143.875
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Crystal Activate.tmx": {
             "scale": 4.3677734374999995,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 127.18150516478111,
-                "y": 72.23360014309351
+                "x": 127.98282877968074,
+                "y": 72.00465053883647
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx": {
             "scale": 4.3677734374999995,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 127.18150516478111,
-                "y": 72.23360014309351
+                "x": 127.98282877968074,
+                "y": 72.00465053883647
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Firefly Intro.tmx": {
             "scale": 4.3677734374999995,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 157.86075213522338,
-                "y": 76.12574341546306
+                "x": 157.74627733309487,
+                "y": 76.35469301972007
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Fly Check.tmx": {
@@ -72,8 +72,8 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 127.18150516478111,
-                "y": 72.23360014309351
+                "x": 127.98282877968074,
+                "y": 72.00465053883647
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Get out.tmx": {
@@ -99,24 +99,43 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 146.87117113088584,
-                "y": 95.81540938156778
+                "x": 127.98282877968074,
+                "y": 72.00465053883647
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx": {
             "scale": 3,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 108.16666666666664,
-                "y": 58.83333333333333
+                "x": 110.66666666666666,
+                "y": 96.16666666666667
+            }
+        },
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Cave Intro Fly.tmx": {
+            "expandedObjectLayers": [
+                7
+            ],
+            "scale": 5.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 70.72727272727273,
+                "y": 101.9090909090909
+            }
+        },
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Cave Intro.tmx": {
+            "scale": 5.5,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 174.54545454545456,
+                "y": 67.9090909090909
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Tutorial.tmx": {
             "scale": 4.3677734374999995,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 127.86835397755223,
-                "y": 72.00465053883649
+                "x": 127.86835397755222,
+                "y": 72.00465053883647
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Branches.tsx": {
@@ -165,7 +184,7 @@
             }
         }
     },
-    "map.height": 18,
+    "map.height": 54,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 8,
     "map.tileWidth": 8,
