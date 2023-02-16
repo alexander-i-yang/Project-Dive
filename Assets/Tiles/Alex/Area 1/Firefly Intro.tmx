@@ -98,7 +98,7 @@
 </data>
  </layer>
  <objectgroup id="3" name="Mechanics">
-  <object id="100" gid="56" x="240" y="96" width="8" height="12"/>
+  <object id="100" gid="56" x="216" y="80" width="8" height="12"/>
   <object id="149" gid="47" x="88" y="64" width="8" height="8"/>
   <object id="150" gid="47" x="80" y="64" width="8" height="8"/>
   <object id="151" gid="47" x="136" y="80" width="8" height="8"/>

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Helpers;
+using UnityEditor;
 using World;
 
 namespace Collectibles {
@@ -13,6 +14,7 @@ namespace Collectibles {
         private FireflyAnimatorEnd _animatorEnd;
 
         private bool _moving = false;
+        [SerializeField] private float graceTouchMultipier;
 
         public override string ID => "Firefly";
 
@@ -55,6 +57,14 @@ namespace Collectibles {
                 {
                     _animator.EndPos = _coords[_coordInd];
                     _animator.PlayAnimation(OnTouchAnimFinish);
+                    /*StartCoroutine(Helper.DelayAction(
+                        _animator.GetAnimSpeed() * graceTouchMultipier, 
+                        () =>
+                        {
+                            print("Not moving");
+                            _moving = false;
+                        }
+                    ));*/
                 }
                 else
                 {
@@ -66,6 +76,7 @@ namespace Collectibles {
         private void OnTouchAnimFinish()
         {
             _moving = false;
+            print("Finish");
             _coordInd++;
         }
 
