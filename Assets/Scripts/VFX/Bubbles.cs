@@ -35,13 +35,13 @@ public class Bubbles : MonoBehaviour
     }
     
     private void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.layer == 4 && !inWater){
+        if(other.gameObject.layer == LayerMask.NameToLayer("Water") && !inWater){
             inWater = true;
             bubbles = Instantiate(bubblePrefab, this.gameObject.transform, false);
         }
     }
     private void OnTriggerExit2D(Collider2D other){
-        if(other.gameObject.layer == 4 && inWater){
+        if(other.gameObject.layer == LayerMask.NameToLayer("Water") && inWater){
             inWater = false;
             if (bubbles != null) {
                 Destroy(bubbles);
