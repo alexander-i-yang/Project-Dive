@@ -13,16 +13,32 @@
             "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 260.3333333333333,
-                "y": 131.83333333333331
+                "x": 328,
+                "y": 167.16666666666666
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Firefly Intro.tmx": {
+            "scale": 4.3677734374999995,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 116.0774493583151,
+                "y": 66.73880964092476
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx": {
-            "scale": 5.5,
+            "scale": 4,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 139.45454545454547,
-                "y": 60.81818181818181
+                "x": 135.75,
+                "y": 77.875
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Tutorial.tmx": {
+            "scale": 4.3677734374999995,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 134.1644680946206,
+                "y": 81.84948352188884
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Branches.tsx": {
@@ -32,14 +48,15 @@
             "scaleInDock": 1
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Dirt.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jonathan_Russell/Jonathan_TheRoom.tmx": {
-            "scale": 4.3677734374999995,
+            "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 109.66686043911818,
-                "y": 102.4549479050217
+                "x": 105.75,
+                "y": 56.875
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Lava.tsx": {
@@ -59,6 +76,7 @@
             "scaleInEditor": 11
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Spikes.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 5.5
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Static Decorations.tsx": {
@@ -292,7 +310,7 @@
             }
         }
     },
-    "last.imagePath": "C:/Users/uncle/Unity/Dive/Assets/Tiles",
+    "last.imagePath": "C:/Users/uncle/Unity/Dive/Assets/Sprites/Decor/Static",
     "map.height": 18,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 8,

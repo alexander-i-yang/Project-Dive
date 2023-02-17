@@ -8,6 +8,7 @@ namespace Core
 {
     public class Game : Singleton<Game>
     {
+        [SerializeField] private string musicName;
         [Range(0, 1)] public float TimeScale = 1;
         public bool IsPaused;
 
@@ -48,7 +49,7 @@ namespace Core
 
         private void Start()
         {
-            AudioManager.PlayMusic("Cave_Music");  //TEMPORARY
+            AudioManager.PlayMusic(musicName);  //TEMPORARY
         }
 
         void Update()

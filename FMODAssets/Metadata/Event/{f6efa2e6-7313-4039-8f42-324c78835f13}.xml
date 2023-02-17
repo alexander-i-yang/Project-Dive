@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{f6efa2e6-7313-4039-8f42-324c78835f13}">
 		<property name="name">
-			<value>CaveMusic</value>
+			<value>Area1Music</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -60,7 +60,7 @@
 	<object class="MarkerTrack" id="{f6304179-ee1c-473d-be4a-76fe1bc1d747}" />
 	<object class="GroupTrack" id="{5b0f253a-ce40-4e3f-abdb-0c45a9c09872}">
 		<relationship name="modules">
-			<destination>{aed2ca2f-5036-47d2-a605-0541ddb98d66}</destination>
+			<destination>{b4ea176b-b540-47dc-b589-5c9f93b2d85e}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{601c92d6-5778-4407-a1a4-032f8f6d381a}</destination>
@@ -68,7 +68,7 @@
 	</object>
 	<object class="Timeline" id="{893a5be9-1605-41c0-a30e-f9f340559819}">
 		<relationship name="modules">
-			<destination>{aed2ca2f-5036-47d2-a605-0541ddb98d66}</destination>
+			<destination>{b4ea176b-b540-47dc-b589-5c9f93b2d85e}</destination>
 		</relationship>
 		<relationship name="markers">
 			<destination>{7fdf3d13-144b-432b-b2f4-9dab2395c46d}</destination>
@@ -91,12 +91,12 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{264243a3-8e44-45d8-9987-810cef61a76c}" />
-	<object class="SingleSound" id="{aed2ca2f-5036-47d2-a605-0541ddb98d66}">
+	<object class="SingleSound" id="{b4ea176b-b540-47dc-b589-5c9f93b2d85e}">
 		<property name="length">
-			<value>83.539591836734701</value>
+			<value>161.26340136054421</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{fa73cdfb-b89f-4631-be07-47fe31d5327c}</destination>
+			<destination>{677b45dd-3742-42bf-9b9f-a79657a92a84}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{601c92d6-5778-4407-a1a4-032f8f6d381a}">
@@ -115,10 +115,10 @@
 	</object>
 	<object class="LoopRegion" id="{7fdf3d13-144b-432b-b2f4-9dab2395c46d}">
 		<property name="position">
-			<value>1</value>
+			<value>1.3729474548440066</value>
 		</property>
 		<property name="length">
-			<value>78</value>
+			<value>149.627052545156</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{893a5be9-1605-41c0-a30e-f9f340559819}</destination>
