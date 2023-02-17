@@ -9,19 +9,87 @@
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx": {
-            "scale": 4.3677734374999995,
-            "selectedLayer": 3,
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx": {
+            "scale": 3,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 135.53816572016277,
-                "y": 69.71515449626615
+                "x": 260.3333333333333,
+                "y": 131.83333333333331
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx": {
+            "scale": 5.5,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 139.45454545454547,
+                "y": 60.81818181818181
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Branches.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Breakable.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Dirt.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jonathan_Russell/Jonathan_TheRoom.tmx": {
+            "scale": 4.3677734374999995,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 109.66686043911818,
+                "y": 102.4549479050217
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Lava.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Mechanics.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Rocks.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Semisolid.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 11
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Spikes.tsx": {
+            "scaleInDock": 5.5
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Static Decorations.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Water.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx": {
+            "scale": 8,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 197.25,
+                "y": 59.0625
+            }
+        },
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Area 1 Thingy.tmx": {
+            "scale": 4.3677734374999995,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.21177838393774,
+                "y": 72.00465053883649
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Basic Lava.tmx": {
             "scale": 4.3677734374999995,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 127.18150516478111,
+                "x": 127.29597996690966,
                 "y": 72.23360014309351
             }
         },
@@ -29,32 +97,40 @@
             "scale": 4,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 200,
-                "y": 170.125
+                "x": 256,
+                "y": 143.875
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Crystal Activate.tmx": {
             "scale": 4.3677734374999995,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 127.18150516478111,
-                "y": 72.23360014309351
+                "x": 127.98282877968072,
+                "y": 72.00465053883649
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx": {
             "scale": 4.3677734374999995,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 194.1492644099629,
+                "y": 60.09927111747082
+            }
+        },
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Filler Long.tmx": {
+            "scale": 2.1838867187499997,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 127.18150516478111,
-                "y": 72.23360014309351
+                "x": 256.4235567678755,
+                "y": 72.119125340965
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Firefly Intro.tmx": {
             "scale": 4.3677734374999995,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 157.86075213522338,
-                "y": 76.12574341546306
+                "x": 142.6356034521308,
+                "y": 88.94692125385681
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Fly Check.tmx": {
@@ -72,7 +148,7 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 127.18150516478111,
+                "x": 127.29597996690966,
                 "y": 72.23360014309351
             }
         },
@@ -99,7 +175,7 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 146.87117113088584,
+                "x": 107.83526360506193,
                 "y": 95.81540938156778
             }
         },
@@ -107,15 +183,34 @@
             "scale": 3,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 108.16666666666664,
-                "y": 58.83333333333333
+                "x": 110.66666666666664,
+                "y": 96.16666666666666
+            }
+        },
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Cave Intro Fly.tmx": {
+            "expandedObjectLayers": [
+                7
+            ],
+            "scale": 5.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 70.72727272727273,
+                "y": 101.9090909090909
+            }
+        },
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Cave Intro.tmx": {
+            "scale": 5.5,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 174.54545454545456,
+                "y": 67.9090909090909
             }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Tutorial.tmx": {
             "scale": 4.3677734374999995,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 127.86835397755223,
+                "x": 127.98282877968072,
                 "y": 72.00465053883649
             }
         },
@@ -126,12 +221,43 @@
             "dynamicWrapping": false,
             "scaleInDock": 1
         },
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Brett_Steele/Brett_IHadToReinstallUnityPainPainPainTestRoom.tmx": {
+            "scale": 3.327827380952381,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 168.27795912891833,
+                "y": 112.23538881187676
+            }
+        },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Dirt.tsx": {
             "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Jonathan_Russell/Dirt.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Jonathan_Russell/Jonathan_TheRoom.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 4.3677734374999995,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 127.75387917542372,
+                "y": 68.79935607923802
+            }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Lava.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Luke_Choi/LukeChoi_room2.tmx": {
+            "scale": 4.3677734374999995,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.21177838393774,
+                "y": 72.00465053883649
+            }
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Mechanics.tsx": {
             "dynamicWrapping": true,
@@ -142,7 +268,8 @@
             "scaleInDock": 1
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Semisolid.tsx": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 11
         },
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Spikes.tsx": {
             "dynamicWrapping": false,
@@ -165,6 +292,7 @@
             }
         }
     },
+    "last.imagePath": "C:/Users/uncle/Unity/Dive/Assets/Tiles",
     "map.height": 18,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 8,
@@ -181,11 +309,14 @@
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Basic Lava.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Firefly Intro.tmx"
     ],
-    "project": "",
+    "project": "Area Planning Project.tiled-project",
     "recentFiles": [
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jonathan_Russell/Jonathan_TheRoom.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Semisolid.tsx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Tutorial.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx",
+        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Crystal Activate.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Gate 2.tmx",
         "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Level3.tmx",
