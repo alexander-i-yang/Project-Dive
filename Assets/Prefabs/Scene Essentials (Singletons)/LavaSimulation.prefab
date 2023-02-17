@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b4c33d04bb47b41a6c55381817cabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lavaSimMat: {fileID: 2100000, guid: 4cbe966184682404dab9e5743d704724, type: 2}
+  SimMat: {fileID: 2100000, guid: 4cbe966184682404dab9e5743d704724, type: 2}
+  SimListenerMats:
+  - {fileID: 2100000, guid: e21ced2dba1969a4c8133b8ec60dfff7, type: 2}
   impulseStrength: 0.3
   _testImage: {fileID: 0}
