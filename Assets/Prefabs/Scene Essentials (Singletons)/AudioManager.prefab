@@ -47,6 +47,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds: []
   music:
+  - name: Area 1
+    fmodEvent:
+      Guid:
+        Data1: 1233419304
+        Data2: 1117325144
+        Data3: -1585152580
+        Data4: -388645177
+      Path: event:/Music/Area 1 Music
+    emitter: {fileID: 595249429895139177}
   - name: Mus_Level_S
     fmodEvent:
       Guid:
@@ -88,11 +97,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 330407983
-      Data2: 1236839747
-      Data3: -242442857
-      Data4: 1802742122
-    Path: event:/Music/Mus_Level_S
+      Data1: 1233419304
+      Data2: 1117325144
+      Data3: -1585152580
+      Data4: -388645177
+    Path: event:/Music/Area_1_Music
   Event: 
   PlayEvent: 0
   StopEvent: 0
