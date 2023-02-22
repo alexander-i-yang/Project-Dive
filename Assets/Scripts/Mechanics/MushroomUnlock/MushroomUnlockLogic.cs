@@ -29,7 +29,7 @@ namespace Mechanics
         [SerializeField] LayerMask mask = default;
 
         private Crystal[] _mushrooms;
-
+        
         private void Awake()
         {
             _light = GetComponent<Light2D>();
@@ -84,7 +84,7 @@ namespace Mechanics
             }
         }
 
-        private void UnlockAllMushrooms()
+        public void UnlockAllMushrooms()
         {
             foreach (var mushroom in _mushrooms)
             {

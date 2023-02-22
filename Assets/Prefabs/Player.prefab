@@ -140,7 +140,7 @@ MonoBehaviour:
   maxDeceleration: 800
   cornerboostTimer: 0.08
   cornerboostMultiplier: 1.05
-  jumpHeight: 20
+  jumpHeight: 28
   doubleJumpHeight: 16
   jumpCoyoteTime: 0.1
   jumpBufferTime: 0.25
