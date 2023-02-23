@@ -50,12 +50,12 @@ MonoBehaviour:
   - name: Area 1
     fmodEvent:
       Guid:
-        Data1: 1233419304
-        Data2: 1117325144
-        Data3: -1585152580
-        Data4: -388645177
-      Path: event:/Music/Area 1 Music
-    emitter: {fileID: 595249429895139177}
+        Data1: -152067354
+        Data2: 1077506835
+        Data3: 1278362255
+        Data4: 325026680
+      Path: event:/Music/Area1Music
+    emitter: {fileID: 0}
   - name: Mus_Level_S
     fmodEvent:
       Guid:
@@ -64,7 +64,7 @@ MonoBehaviour:
         Data3: -242442857
         Data4: 1802742122
       Path: event:/Music/Mus_Level_S
-    emitter: {fileID: 595249429895139177}
+    emitter: {fileID: 0}
   - name: Cave_Music
     fmodEvent:
       Guid:
@@ -73,7 +73,7 @@ MonoBehaviour:
         Data3: 1278362255
         Data4: 325026680
       Path: event:/Music/CaveMusic
-    emitter: {fileID: 595249429895139177}
+    emitter: {fileID: 0}
   musicBusPath: 
   sfxBusPath: 
   soundDampenCurve:

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3534880987552250188}
   - component: {fileID: 506556835465713977}
+  - component: {fileID: 6726819217177476637}
   m_Layer: 3
   m_Name: Bubbles
   m_TagString: Untagged
@@ -46,7 +47,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubblePrefab: {fileID: 9115098835098109800, guid: 9b6e7ff029a96a644bdedd28c12f5bff, type: 3}
   inWater: 0
-  rend: {fileID: 7530315241682780777}
+  sr: {fileID: 0}
+--- !u!61 &6726819217177476637
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2166647925214451986}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.7597847, y: -0.81850433}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.5195694, y: 2.6370087}
+  m_EdgeRadius: 0
 --- !u!1 &2234600854425113967
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +167,7 @@ MonoBehaviour:
   maxDeceleration: 800
   cornerboostTimer: 0.08
   cornerboostMultiplier: 1.05
-  jumpHeight: 28
+  jumpHeight: 20
   doubleJumpHeight: 16
   jumpCoyoteTime: 0.1
   jumpBufferTime: 0.25

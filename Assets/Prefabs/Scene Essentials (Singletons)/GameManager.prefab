@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b4c60cd2544f4c9d5abb40294f8b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicName: Area_1
+  musicName: Area 1
   TimeScale: 1
   IsPaused: 0
 --- !u!114 &2422432752049154568
