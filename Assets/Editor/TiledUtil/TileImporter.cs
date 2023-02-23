@@ -231,7 +231,7 @@ namespace TiledUtil {
 
             //Disable edge collider and enable polygon collider (for now)
             g.GetRequiredComponent<EdgeCollider2D>().enabled = false;
-            LIL.AddPolygonColliderTrigger(g, colliderPoints);
+            LIL.AddPolygonCollider(g, colliderPoints);
         }
 
         private void ImportLavaTilemap(GameObject g)
