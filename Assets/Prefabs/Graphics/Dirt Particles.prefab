@@ -4753,6 +4753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c6a27f8943bd849af20093d5e60bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emissAirDuration: 0.3
 --- !u!199 &1299085037233978285
 ParticleSystemRenderer:
   serializedVersion: 6

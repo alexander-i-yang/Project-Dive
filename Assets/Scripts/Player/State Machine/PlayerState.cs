@@ -1,6 +1,8 @@
 ﻿using Helpers;
 using Mechanics;
 
+using UnityEngine;
+
 namespace Player
 {
     public partial class PlayerStateMachine
@@ -24,7 +26,8 @@ namespace Player
             public virtual void OnDeath() {
                 SpawnManager.Respawn();
                 MySM.Transition<Grounded>();
-                MySM.OnPlayerDeath();
+
+                MySM.OnPlayerDeath?.Invoke();
             }
 
             public void RefreshAbilities()

@@ -47,7 +47,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubblePrefab: {fileID: 9115098835098109800, guid: 9b6e7ff029a96a644bdedd28c12f5bff, type: 3}
   inWater: 0
-  sr: {fileID: 0}
 --- !u!61 &6726819217177476637
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -92,6 +91,7 @@ GameObject:
   - component: {fileID: 5359510742400265814}
   - component: {fileID: 522702724862650969}
   - component: {fileID: 7720975047318280968}
+  - component: {fileID: 2753513693888570401}
   - component: {fileID: 2234600854425113961}
   - component: {fileID: 3431285836361713353}
   m_Layer: 3
@@ -275,6 +275,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f367810978f36c44a9e54e9f5d34c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2753513693888570401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2234600854425113967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e721c8b0b2a42646b0bd68a2cb0e35e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hardSurfaceBounceHeight: 12
+  bouncySurfaceNeutralBounceHeight: 24
+  bouncySurfaceDiveBounceHeight: 48
 --- !u!114 &2234600854425113961
 MonoBehaviour:
   m_ObjectHideFlags: 0
