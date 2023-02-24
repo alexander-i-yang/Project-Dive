@@ -10,8 +10,11 @@
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx": {
+            "expandedObjectLayers": [
+                7
+            ],
             "scale": 3,
-            "selectedLayer": 4,
+            "selectedLayer": 1,
             "viewCenter": {
                 "x": 328,
                 "y": 167.16666666666666
@@ -59,8 +62,8 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 127.98282877968074,
-                "y": 72.00465053883647
+                "x": 128.21177838393774,
+                "y": -43.15700040245048
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx": {
