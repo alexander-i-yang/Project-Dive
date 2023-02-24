@@ -230,8 +230,11 @@ namespace TiledUtil {
             AddWaterfalCollision(g, colliderPoints);
 
             //Disable edge collider and enable polygon collider (for now)
-            g.GetRequiredComponent<EdgeCollider2D>().enabled = false;
+            //g.GetRequiredComponent<EdgeCollider2D>().enabled = false;
+
+            //Create a trigger collider around the water.
             LIL.AddPolygonCollider(g, colliderPoints);
+            g.GetRequiredComponent<PolygonCollider2D>().isTrigger = true;
         }
 
         private void ImportLavaTilemap(GameObject g)
