@@ -17,6 +17,7 @@ namespace Mechanics {
         private Color _dischargedColor = new(0.5f, 0.5f, 0.5f, 0.5f);
         
         private UnityEngine.Rendering.Universal.Light2D _light;
+        private CrystalAnimationStateManager _animator;
         private float _lightIntensityStart;
         [SerializeField] private float amplitude;
         [SerializeField] private float frequency;
@@ -29,6 +30,7 @@ namespace Mechanics {
         new void Start() {
             _mySR = GetComponent<SpriteRenderer>();
             _floater = GetComponent<Floater>();
+            _animator = GetComponent<CrystalAnimationStateManager>();
             _light = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
             _lightIntensityStart = _light.intensity;
             
@@ -71,11 +73,19 @@ namespace Mechanics {
         }
 
         public IEnumerator BreakCoroutine() {
-            Discharge();
+            //This eventually calls OnBounceAnimationEnd once the animation is done.
+            _broken = true;
+            _animator.Play(CrystalAnimations.BOUNCE);
             for (double i = 0; i < rechargeTime; i += Game.Instance.DeltaTime) {
                 yield return null;
             }
             Recharge();
+        }
+        
+        public void OnBounceAnimationEnd()
+        {
+            Discharge();
+            _animator.Play(CrystalAnimations.IDLE);
         }
 
         void Discharge()
