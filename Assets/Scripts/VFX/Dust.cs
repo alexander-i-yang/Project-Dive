@@ -67,7 +67,6 @@ public class Dust : MonoBehaviour
 
     private void TurnEmissionOff()
     {
-        Debug.Log("HELLOOOOO");
         emiss.rateOverDistanceMultiplier = 0;
     }
 }

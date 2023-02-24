@@ -12,6 +12,7 @@ public class Bubbles : MonoBehaviour
 
     private SpriteRenderer _sr;
     private GameObject _bubbleInstance;
+    private Collider2D _collider;
 
     // Start is called before the first frame update
 
@@ -19,10 +20,20 @@ public class Bubbles : MonoBehaviour
     private void Awake()
     {
         _sr = gameObject.transform.parent.Find("Player Sprite").GetComponent<SpriteRenderer>();
+        _collider = GetComponent<Collider2D>();
     }
 
     void Update()
     {
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.NoFilter();
+        filter.layerMask = LayerMask.GetMask("Water");
+        filter.useLayerMask = true;
+
+        var contacts = new List<Collider2D>();
+        int collisions = _collider.OverlapCollider(filter, contacts);
+        inWater = collisions > 0;
+
         if(inWater) {
             if (_bubbleInstance == null)
             {
@@ -47,16 +58,14 @@ public class Bubbles : MonoBehaviour
         }
     }
     
-    private void OnTriggerEnter2D(Collider2D other){
-        //Debug.Log("IN WATER");
-        if(other.gameObject.layer == LayerMask.NameToLayer("Water")){
-            inWater = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D other){
-        //Debug.Log("OUT OF WATER");
-        if(other.gameObject.layer == LayerMask.NameToLayer("Water")){
-            inWater = false;
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D other){
+    //    if(other.gameObject.layer == LayerMask.NameToLayer("Water")){
+    //        inWater = true;
+    //    }
+    //}
+    //private void OnTriggerExit2D(Collider2D other){
+    //    if(other.gameObject.layer == LayerMask.NameToLayer("Water")){
+    //        inWater = false;
+    //    }
+    //}
 }
