@@ -1,3 +1,4 @@
+using Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,12 +11,28 @@ namespace Helpers
         [SerializeField] private bool destroyInsteadOfDisable;
         [SerializeField] private float timeToDestroy = 1;
 
-        private PlayerActor p;
+        private GameTimer checkDestroyTimer;
 
-        void Start()
+        private PlayerActor Player => PlayerCore.Actor;
+
+        void Awake()
         {
-            StartCoroutine(DestroyMe(timeToDestroy));
-            p = GetComponentInParent<PlayerActor>();
+            checkDestroyTimer = GameTimer.StartNewTimer(timeToDestroy, "Check Destroy Timer");
+        }
+
+        private void OnEnable()
+        {
+            checkDestroyTimer.OnFinished += CheckDestroy;
+        }
+
+        private void OnDisable()
+        {
+            checkDestroyTimer.OnFinished -= CheckDestroy;
+        }
+
+        private void Update()
+        {
+            GameTimer.Update(checkDestroyTimer);
         }
 
         public void Stop() {
@@ -23,20 +40,26 @@ namespace Helpers
             transform.parent = null;
         }
 
-        private IEnumerator DestroyMe(float time)
+        private void CheckDestroy()
         {
-            yield return new WaitForSeconds(time);
-
-            if (p.IsDrilling()) {
-                StartCoroutine(DestroyMe(timeToDestroy));
+            if (Player.IsDrilling())
+            {
                 GetComponent<ParticleSystem>().Play();
-                transform.parent = p.transform;
-            } else {
-                if (destroyInsteadOfDisable)
-                    Destroy(gameObject);
-                else
-                    gameObject.SetActive(false);
+                //transform.parent = P.transform;
+                GameTimer.Reset(checkDestroyTimer);
+            } else
+            {
+                GameTimer.Clear(checkDestroyTimer);
+                DestroyOrDisable();
             }
+        }
+
+        private void DestroyOrDisable()
+        {
+            if (destroyInsteadOfDisable)
+                Destroy(gameObject);
+            else
+                gameObject.SetActive(false);
         }
     }
 }

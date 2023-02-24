@@ -4,6 +4,7 @@ using UnityEngine;
 
 using Helpers;
 using World;
+using System;
 
 namespace Player
 {
@@ -12,6 +13,8 @@ namespace Player
         private Room _currentRoom;
         private Spawn _currentSpawnPoint;
         public Room CurrentRoom => _currentRoom;
+
+        public event Action OnPlayerRespawn;
 
         public Spawn CurrentSpawnPoint
         {
@@ -42,6 +45,8 @@ namespace Player
                 _currentRoom.Reset();
                 transform.position = CurrentSpawnPoint.transform.position;
             }
+
+            OnPlayerRespawn?.Invoke();
         }
 
         private void OnRoomTransition(Room roomEntering)

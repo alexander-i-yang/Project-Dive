@@ -171,10 +171,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     }
 
     public bool IsDrilling() {
-        if (IsDogoing() || IsDiving()) {
-            return true;
-        }
-        return false;
+        return _stateMachine.UsingDrill;
     }
 
     public void Die()
