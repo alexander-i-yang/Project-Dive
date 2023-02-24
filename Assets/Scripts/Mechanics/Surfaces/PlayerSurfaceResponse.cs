@@ -9,30 +9,29 @@ namespace Mechanics
         [SerializeField] private int bouncySurfaceNeutralBounceHeight;
         [SerializeField] private int bouncySurfaceDiveBounceHeight;
 
+        private PlayerStateMachine PlayerSM => PlayerCore.StateMachine;
+
         public void OnHardSurfaceCollide(HardSurface hardSurface)
         {
-            PlayerStateMachine playerState = PlayerCore.StateMachine;
-            if (playerState.IsOnState<PlayerStateMachine.Diving>() || playerState.IsOnState<PlayerStateMachine.Dogoing>())
+            if (PlayerSM.UsingDrill)
             {
                 PlayerCore.Actor.Jump(hardSurfaceBounceHeight);
-                PlayerCore.StateMachine.RefreshAbilities();
-                PlayerCore.StateMachine.Transition<PlayerStateMachine.Airborne>();
+                PlayerSM.RefreshAbilities();
+                PlayerSM.Transition<PlayerStateMachine.Airborne>();
             }
         }
 
         public void OnBouncySurfaceCollide(BouncySurface bouncySurface)
         {
-            PlayerStateMachine playerState = PlayerCore.StateMachine;
-
-            if (playerState.IsOnState<PlayerStateMachine.Diving>() || playerState.IsOnState<PlayerStateMachine.Dogoing>())
+            if (PlayerCore.StateMachine.UsingDrill)
             {
                 PlayerCore.Actor.Jump(bouncySurfaceDiveBounceHeight);
             } else
             {
                 PlayerCore.Actor.Jump(bouncySurfaceNeutralBounceHeight);
             }
-            PlayerCore.StateMachine.RefreshAbilities();
-            PlayerCore.StateMachine.Transition<PlayerStateMachine.Airborne>();
+            PlayerSM.RefreshAbilities();
+            PlayerSM.Transition<PlayerStateMachine.Airborne>();
         }
     }
 }
