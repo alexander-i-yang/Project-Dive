@@ -26,13 +26,13 @@ public class Dust : MonoBehaviour
 
     private void Start()
     {
-        PlayerCore.StateMachine.OnPlayerDeath += TurnEmissionOff;
+        PlayerCore.StateMachine.OnPlayerRespawn += TurnEmissionOff;
         emissToggleTimer.OnFinished += TurnEmissionOff;
     }
 
     private void OnDisable()
     {
-        PlayerCore.StateMachine.OnPlayerDeath -= TurnEmissionOff;
+        PlayerCore.StateMachine.OnPlayerRespawn -= TurnEmissionOff;
         emissToggleTimer.OnFinished -= TurnEmissionOff;
     }
 

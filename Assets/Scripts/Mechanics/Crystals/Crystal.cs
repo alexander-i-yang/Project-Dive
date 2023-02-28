@@ -116,7 +116,11 @@ namespace Mechanics {
         public void Reset()
         {
             if (_breakCoroutine != null) StopCoroutine(_breakCoroutine);
-            if (unlocked) Recharge();
+            if (unlocked)
+            {
+                _animator.Play(CrystalAnimations.IDLE);
+                Recharge();
+            }
         }
 
         public void Unlock()

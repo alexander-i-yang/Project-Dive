@@ -104,6 +104,9 @@ namespace Player
 
         [SerializeField, Range(0f, 1f)] private float roomTransitionVCutY = 0.5f;
         public static float RoomTransistionVCutY => Instance.roomTransitionVCutY;
+        
+        [SerializeField] private float deathTime;
+        public static float DeathTime => Instance.deathTime;
 
         #endregion
 

@@ -8,7 +8,7 @@ using Player;
 using World;
 
 using MyBox;
-
+using SuperTiled2Unity.Editor;
 using UnityEditor;
 using UnityEngine;
 using VFX;
@@ -23,16 +23,18 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     private float _hitWallPrevSpeed;
     private GameObject _dpInstance;
 
-    private Death _deathManager;
+    [SerializeField] private Death _deathManager;
 
     private void OnEnable()
     {
         Room.RoomTransitionEvent += OnRoomTransition;
+        _stateMachine.OnPlayerRespawn += DisableDeathParticles;
     }
 
     private void OnDisable()
     {
         Room.RoomTransitionEvent -= OnRoomTransition;
+        _stateMachine.OnPlayerRespawn -= DisableDeathParticles;
     }
 
     #region Movement
@@ -177,21 +179,16 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         return _stateMachine.UsingDrill;
     }
 
-    public void Die()
+    public void Die(Vector3 diePos)
     {
-        /*_deathManager.transform.position = transform.position;
-        _deathManager.enabled = true;
-        _deathManager.Reset();*/
-        /*Helper.DelayAction(1f, () =>
-        {
-            _stateMachine.OnDeath();
-            velocity = Vector2.zero;
-            _deathManager.enabled = false;
-        });
-        */
-        _stateMachine.OnDeath();
+        _deathManager.transform.position = transform.position;
+        _deathManager.gameObject.SetActive(true);
+        _deathManager.Reset();
         velocity = Vector2.zero;
+        _stateMachine.OnDeath();
     }
+    
+    public void DisableDeathParticles() => _deathManager.gameObject.SetActive(false);
 
     #region Actor Overrides
     public override bool Collidable() {
@@ -232,7 +229,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         if (OnCollide(p, d))
         {
             Debug.Log("Squish " + p);
-            Die();
+            Die(transform.position);
         }
         return false;
     }

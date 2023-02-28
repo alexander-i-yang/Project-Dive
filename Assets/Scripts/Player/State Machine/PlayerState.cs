@@ -10,7 +10,6 @@ namespace Player
         public abstract class PlayerState : State<PlayerStateMachine, PlayerState, PlayerStateInput>
         {
             public PlayerActor PlayerActions => PlayerCore.Actor;
-            public PlayerSpawnManager SpawnManager => PlayerCore.SpawnManager;
             public PlayerAnimationStateManager PlayerAnim => MySM._playerAnim;
 
             public virtual void JumpPressed()
@@ -22,13 +21,6 @@ namespace Player
             public virtual void DivePressed() { }
             public virtual void SetGrounded(bool isGrounded, bool isMovingUp) { }
             public virtual void MoveX(int moveDirection) { }
-
-            public virtual void OnDeath() {
-                SpawnManager.Respawn();
-                MySM.Transition<Grounded>();
-
-                MySM.OnPlayerDeath?.Invoke();
-            }
 
             public void RefreshAbilities()
             {
