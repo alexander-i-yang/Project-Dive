@@ -179,15 +179,18 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public void Die()
     {
-        _deathManager.transform.position = transform.position;
+        /*_deathManager.transform.position = transform.position;
         _deathManager.enabled = true;
-        _deathManager.Reset();
-        Helper.DelayAction(1f, () =>
+        _deathManager.Reset();*/
+        /*Helper.DelayAction(1f, () =>
         {
             _stateMachine.OnDeath();
             velocity = Vector2.zero;
             _deathManager.enabled = false;
         });
+        */
+        _stateMachine.OnDeath();
+        velocity = Vector2.zero;
     }
 
     #region Actor Overrides
