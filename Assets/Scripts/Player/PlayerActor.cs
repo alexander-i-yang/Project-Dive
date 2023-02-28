@@ -164,6 +164,9 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     public void SpawnDrillingParticles() {
         if (_dpInstance == null) {
             _dpInstance = Instantiate(PlayerCore._diggingParticles, transform);
+            if (PlayerCore.StateMachine.CurrInput.facing == -1) {
+                _dpInstance.transform.localScale = new Vector3(-1, 1, 1);
+            }
         } else {
             _dpInstance.transform.parent = transform;
             _dpInstance.transform.localPosition = new Vector3(0, 0, -10);
