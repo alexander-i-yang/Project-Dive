@@ -11,6 +11,7 @@ using MyBox;
 
 using UnityEditor;
 using UnityEngine;
+using VFX;
 
 [RequireComponent(typeof(PlayerStateMachine))]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -21,6 +22,8 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     private bool _hitWallCoroutineRunning;
     private float _hitWallPrevSpeed;
     private GameObject _dpInstance;
+
+    private Death _deathManager;
 
     private void OnEnable()
     {
@@ -176,8 +179,15 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public void Die()
     {
-        _stateMachine.OnDeath();
-        velocity = Vector2.zero;
+        _deathManager.transform.position = transform.position;
+        _deathManager.enabled = true;
+        _deathManager.Reset();
+        Helper.DelayAction(1f, () =>
+        {
+            _stateMachine.OnDeath();
+            velocity = Vector2.zero;
+            _deathManager.enabled = false;
+        });
     }
 
     #region Actor Overrides
