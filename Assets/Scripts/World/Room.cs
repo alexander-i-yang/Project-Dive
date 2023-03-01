@@ -18,6 +18,7 @@ namespace World {
 
         private Spawn[] _spawns;
         private IResettable[] _resettables = new IResettable[0];
+        private GameObject _grid;
         public Spawn[] Spawns
         {
             get
@@ -43,6 +44,9 @@ namespace World {
             _vCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
             _vCam.Follow = _player.transform;
             _resettables = GetComponentsInChildren<IResettable>();
+            
+            _grid = transform.GetChild(0).gameObject;
+            DisableLogic(false);
         }
 
         private void OnValidate()
@@ -74,6 +78,7 @@ namespace World {
 
         public virtual void TransitionToThisRoom()
         {
+            DisableLogic(true);
             FilterLogger.Log(this, $"Transitioned to room: {gameObject.name}");
             if (_transitionRoutine != null)
             {
@@ -109,18 +114,23 @@ namespace World {
                 }
             }
         }
-
-        public LogLevel GetLogLevel()
-        {
-            return LogLevel.Error;
-        }
-
+        
         public void Reset()
         {
             foreach (var r in _resettables)
             {
                 if (r != null) r.Reset();
             }
+        }
+        
+        public void DisableLogic(bool setActive)
+        {
+            _grid.SetActive(setActive);
+        }
+
+        public LogLevel GetLogLevel()
+        {
+            return LogLevel.Error;
         }
     }
 }

@@ -41,10 +41,10 @@
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx": {
             "scale": 4.3677734374999995,
-            "selectedLayer": 2,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 127.86835397755222,
-                "y": 72.00465053883647
+                "x": 128.21177838393774,
+                "y": 72.00465053883649
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty End.tmx": {
@@ -56,11 +56,11 @@
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty.tmx": {
-            "scale": 4.3677734374999995,
-            "selectedLayer": 0,
+            "scale": 4,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 128.21177838393774,
-                "y": 72.23360014309351
+                "x": 121,
+                "y": 91.875
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Filler Long.tmx": {
@@ -84,10 +84,10 @@
                 5
             ],
             "scale": 4.3677734374999995,
-            "selectedLayer": 1,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 127.98282877968072,
-                "y": 72.23360014309351
+                "x": 132.1039216563073,
+                "y": 73.60729776863569
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk2.tmx": {
@@ -97,7 +97,7 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 179.03859052899884,
+                "x": 178.80964092474179,
                 "y": 74.52309618566382
             }
         },
@@ -159,7 +159,7 @@
             "scale": 4,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 174,
+                "x": 173.75,
                 "y": 89.375
             }
         },
@@ -179,11 +179,19 @@
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 11,
+            "scale": 8,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 192.09090909090912,
-                "y": 33.04545454545455
+                "x": 271.375,
+                "y": 74.9375
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_room1Easy.tmx": {
+            "scale": 4.3677734374999995,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.21177838393774,
+                "y": 72.00465053883649
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Mechanics.tsx": {

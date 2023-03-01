@@ -51,6 +51,7 @@ namespace Player
 
         private void OnRoomTransition(Room roomEntering)
         {
+            if (_currentRoom != null) _currentRoom.DisableLogic(false);
             _currentRoom = roomEntering;
             _currentSpawnPoint = FindClosestSpawnPoint();
         }
