@@ -12,7 +12,7 @@ namespace Player
                 //PlayerAnim.ChangeState(PlayerAnimations.IDLE);
                 Input.jumpedFromGround = false;
                 RefreshAbilities();
-                PlayerActions.Land();
+                Actor.Land();
                 if (GameTimer.GetTimerState(Input.jumpBufferTimer) == TimerState.Running && !MySM.PrevStateEquals<Diving>())
                 {
                     JumpFromGround();
@@ -39,7 +39,7 @@ namespace Player
                 UpdateSpriteFacing(moveDirection);
                 PlayerAnim.Animator.SetBool("Running", moveDirection != 0);
                 int acceleration = moveDirection == 0 ? PlayerCore.MaxAcceleration : PlayerCore.MaxDeceleration;
-                PlayerActions.UpdateMovementX(moveDirection, acceleration);
+                Actor.UpdateMovementX(moveDirection, acceleration);
             }
         }
     }

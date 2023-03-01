@@ -13,7 +13,7 @@ namespace Player
                 MySM._drillEmitter.SetParameter("PlayerGrounded", 0);
                 MySM._drillEmitter.Play();
                 PlayerAnim.Play(PlayerAnimations.DIVING);
-                PlayerActions.Dive();
+                Actor.Dive();
                 Input.canDive = false;
                 Input.canJumpCut = false;
                 Input.dogoDisabledSpikes = new HashSet<Spike>();
@@ -45,12 +45,12 @@ namespace Player
             }
 
             public override void FixedUpdate() {
-                PlayerActions.UpdateWhileDiving();
+                Actor.UpdateWhileDiving();
             }
 
             public override void MoveX(int moveDirection)
             {
-                PlayerActions.UpdateMovementX(moveDirection, PlayerCore.MaxAirAcceleration);
+                Actor.UpdateMovementX(moveDirection, PlayerCore.MaxAirAcceleration);
                 UpdateSpriteFacing(moveDirection);
             }
         }

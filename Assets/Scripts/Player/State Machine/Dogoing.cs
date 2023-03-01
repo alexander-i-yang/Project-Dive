@@ -12,7 +12,7 @@ namespace Player
                 PlayerAnim.Play(PlayerAnimations.DOGOING);
                 MySM._drillEmitter.SetParameter("PlayerGrounded", 1);
                 MySM._drillEmitter.Play();
-                i.oldVelocity = PlayerActions.Dogo();
+                i.oldVelocity = Actor.Dogo();
                 i.ultraTimer = GameTimerWindowed.StartNewWindowedTimer(
                     PlayerCore.UltraTimeDelay, 
                     PlayerCore.UltraTimeWindow
@@ -35,7 +35,7 @@ namespace Player
             public override void MoveX(int moveDirection)
             {
                 UpdateSpriteFacing(moveDirection);
-                PlayerActions.UpdateDogoParticleFacing(moveDirection);
+                Actor.UpdateDogoParticleFacing(moveDirection);
             }
 
             public override void Update()
