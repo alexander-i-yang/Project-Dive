@@ -226,7 +226,15 @@ namespace TiledUtil {
         {
             // g.GetComponentInChildren<>()<SpriteRenderer>().SetSortingLayer("Lava");
             // g.GetComponentInChildren<EdgeCollider2D>();
-            AddWaterfalCollision(g, LIL.EdgeToPoints(g));
+            Vector2[] colliderPoints = LIL.EdgeToPoints(g);
+            AddWaterfalCollision(g, colliderPoints);
+
+            //Disable edge collider and enable polygon collider (for now)
+            //g.GetRequiredComponent<EdgeCollider2D>().enabled = false;
+
+            //Create a trigger collider around the water.
+            LIL.AddPolygonCollider(g, colliderPoints);
+            g.GetRequiredComponent<PolygonCollider2D>().isTrigger = true;
         }
 
         private void ImportLavaTilemap(GameObject g)
@@ -237,8 +245,8 @@ namespace TiledUtil {
 
         private void ImportBranchesTilemap(GameObject g)
         {
-            g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Ground");
-            LayerImportLibrary.SetMaterial(g, "Mask_Graph");
+            g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Above Ground");
+            // LayerImportLibrary.SetMaterial(g, "Mask_Graph");
         }
         
         private void ImportSpikesTilemap(GameObject g)

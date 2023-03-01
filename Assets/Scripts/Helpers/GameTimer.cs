@@ -1,5 +1,5 @@
-﻿using System.Buffers.Text;
-using System.Timers;
+﻿using System;
+
 using Core;
 
 namespace Helpers
@@ -19,6 +19,8 @@ namespace Helpers
         private bool _paused;
 
         private bool _active;
+
+        public event Action OnFinished;
 
         internal GameTimer(float duration, string name)
         {
@@ -109,6 +111,11 @@ namespace Helpers
             {
                 TimerValue -= Game.Instance.DeltaTime;
                 FilterLogger.Log(this, $"{_name}: {TimerValue}");
+
+                if (Finished())
+                {
+                    OnFinished?.Invoke();
+                }
             }
 
         }

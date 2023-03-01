@@ -96,6 +96,19 @@ namespace TiledUtil {
             g.transform.localPosition -= Vector3.up * 8;
         }
 
+        public static void AddPolygonCollider(GameObject g, Vector2[] colliderPoints)
+        {
+            var polygonCollider = g.AddComponent<PolygonCollider2D>();
+            SetPolygonColliderPoints(g, colliderPoints);
+            //polygonCollider.isTrigger = true;
+        }
+
+        public static void SetPolygonColliderPoints(GameObject g, Vector2[] colliderPoints)
+        {
+            var polygonCollider = g.GetRequiredComponent<PolygonCollider2D>();
+            polygonCollider.points = colliderPoints;
+        }
+
         #region ObjectLayers
 
         private static Vector2 WidthAndHeight(XElement xNode) {

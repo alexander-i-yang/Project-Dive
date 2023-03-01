@@ -8,9 +8,10 @@ using Player;
 using World;
 
 using MyBox;
-
+using SuperTiled2Unity.Editor;
 using UnityEditor;
 using UnityEngine;
+using VFX;
 
 [RequireComponent(typeof(PlayerStateMachine))]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -22,14 +23,18 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     private float _hitWallPrevSpeed;
     private GameObject _dpInstance;
 
+    [SerializeField] private Death _deathManager;
+
     private void OnEnable()
     {
         Room.RoomTransitionEvent += OnRoomTransition;
+        _stateMachine.OnPlayerRespawn += DisableDeathParticles;
     }
 
     private void OnDisable()
     {
         Room.RoomTransitionEvent -= OnRoomTransition;
+        _stateMachine.OnPlayerRespawn -= DisableDeathParticles;
     }
 
     #region Movement
@@ -171,17 +176,19 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     }
 
     public bool IsDrilling() {
-        if (IsDogoing() || IsDiving()) {
-            return true;
-        }
-        return false;
+        return _stateMachine.UsingDrill;
     }
 
-    public void Die()
+    public void Die(Vector3 diePos)
     {
-        _stateMachine.OnDeath();
+        _deathManager.transform.position = transform.position;
+        _deathManager.gameObject.SetActive(true);
+        _deathManager.Reset();
         velocity = Vector2.zero;
+        _stateMachine.OnDeath();
     }
+    
+    public void DisableDeathParticles() => _deathManager.gameObject.SetActive(false);
 
     #region Actor Overrides
     public override bool Collidable() {
@@ -222,7 +229,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         if (OnCollide(p, d))
         {
             Debug.Log("Squish " + p);
-            Die();
+            Die(transform.position);
         }
         return false;
     }
@@ -270,6 +277,15 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     private float GetJumpSpeedFromHeight(float jumpHeight)
     {
         return Mathf.Sqrt(-2f * GravityUp * jumpHeight);
+    }
+    
+    public void UpdateDogoParticleFacing(int moveDirection)
+    {
+        if (moveDirection != 0 && _dpInstance != null)
+        {
+            Vector3 scale = _dpInstance.transform.localScale;
+            _dpInstance.transform.localScale = new Vector3(moveDirection, scale.y, scale.z);
+        }
     }
     
     #if UNITY_EDITOR

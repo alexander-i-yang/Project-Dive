@@ -1,6 +1,8 @@
 ﻿using Helpers;
 using Mechanics;
 
+using UnityEngine;
+
 namespace Player
 {
     public partial class PlayerStateMachine
@@ -8,7 +10,6 @@ namespace Player
         public abstract class PlayerState : State<PlayerStateMachine, PlayerState, PlayerStateInput>
         {
             public PlayerActor PlayerActions => PlayerCore.Actor;
-            public PlayerSpawnManager SpawnManager => PlayerCore.SpawnManager;
             public PlayerAnimationStateManager PlayerAnim => MySM._playerAnim;
 
             public virtual void JumpPressed()
@@ -21,12 +22,6 @@ namespace Player
             public virtual void SetGrounded(bool isGrounded, bool isMovingUp) { }
             public virtual void MoveX(int moveDirection) { }
 
-            public virtual void OnDeath() {
-                SpawnManager.Respawn();
-                MySM.Transition<Grounded>();
-                MySM.OnPlayerDeath();
-            }
-
             public void RefreshAbilities()
             {
                 Input.canDoubleJump = true;
@@ -37,7 +32,6 @@ namespace Player
             {
                 if (moveDirection != 0)
                 {
-
                     MySM.CurrInput.facing = moveDirection;
                     MySM._spriteR.flipX = moveDirection == -1;
                 }

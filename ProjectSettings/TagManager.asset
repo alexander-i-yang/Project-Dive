@@ -16,7 +16,7 @@ TagManager:
   - Velocity
   - PlayerLight
   - WaterfallCollision
-  - 
+  - PlayerDeathParticles
   - 
   - 
   - 
@@ -55,6 +55,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 3841973759
+    locked: 0
+  - name: Above Ground Decor
+    uniqueID: 216755431
     locked: 0
   - name: Firefly
     uniqueID: 437785363

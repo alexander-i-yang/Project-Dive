@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7956181918705408031}
   - component: {fileID: 3020037410321707303}
+  - component: {fileID: 1791043797141032997}
   m_Layer: 0
   m_Name: FireflyPoint
   m_TagString: Untagged
@@ -45,3 +46,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Next: {fileID: 0}
+--- !u!114 &1791043797141032997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8238224786223980396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cc5ba53e14e48a0ad3b3ffb8aaa48c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSelected: 1
+  radius: 1
+  color: {r: 0.9528302, g: 0.9342656, b: 0.7317017, a: 1}
+  offset: {x: 0, y: 0, z: 0}

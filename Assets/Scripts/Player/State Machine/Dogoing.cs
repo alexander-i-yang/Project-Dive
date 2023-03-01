@@ -35,6 +35,7 @@ namespace Player
             public override void MoveX(int moveDirection)
             {
                 UpdateSpriteFacing(moveDirection);
+                PlayerActions.UpdateDogoParticleFacing(moveDirection);
             }
 
             public override void Update()

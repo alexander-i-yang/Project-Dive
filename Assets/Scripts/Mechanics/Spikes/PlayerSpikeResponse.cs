@@ -12,13 +12,13 @@ namespace Mechanics
 
         private void Start()
         {
-            PlayerCore.StateMachine.OnPlayerDeath += RechargeSpikes;
+            PlayerCore.StateMachine.OnPlayerRespawn += RechargeSpikes;
             PlayerCore.StateMachine.StateTransition += OnPlayerStateChanged;
         }
 
         private void OnDisable()
         {
-            PlayerCore.StateMachine.OnPlayerDeath -= RechargeSpikes;
+            PlayerCore.StateMachine.OnPlayerRespawn -= RechargeSpikes;
             PlayerCore.StateMachine.StateTransition -= OnPlayerStateChanged;
         }
 
@@ -37,7 +37,7 @@ namespace Mechanics
                     shouldDie = directionalSpike.ShouldDieFromVelocity(PlayerCore.Actor.velocity);
                 }
                 
-                if (shouldDie) PlayerCore.Actor.Die();
+                if (shouldDie) PlayerCore.Actor.Die(PlayerCore.Actor.transform.position);
             }
         }
 

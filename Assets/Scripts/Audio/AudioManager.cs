@@ -148,7 +148,7 @@ namespace Audio
         public static void PlayMusic(string name, bool stopOtherTracks = true)
         {
             Music m = GetMusic(name);
-            Debug.Log($"Playing Music: {m}");
+            Debug.Log($"Playing Music: {m.name}");
 
             if (m == null)
                 return;
