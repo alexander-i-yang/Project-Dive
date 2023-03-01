@@ -182,7 +182,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public void Die(Vector3 diePos)
     {
-        _deathManager.transform.position = transform.position;
+        _deathManager.transform.position = diePos;
         _deathManager.gameObject.SetActive(true);
         _deathManager.Reset();
         velocity = Vector2.zero;
