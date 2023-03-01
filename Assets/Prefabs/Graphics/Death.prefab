@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 841295419821606302}
   - component: {fileID: 841295419821606297}
   - component: {fileID: 841295419821606296}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 841295420101089219}
   - component: {fileID: 841295420101089218}
   - component: {fileID: 841295420101089229}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Waist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 841295420474239832}
   - component: {fileID: 841295420474239835}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: Death
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityRange:
     Min: 100
-    Max: 200
+    Max: 143
 --- !u!1 &841295421062913594
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 841295421062913543}
   - component: {fileID: 841295421062913542}
   - component: {fileID: 841295421062913537}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 841295421287485688}
   - component: {fileID: 841295421287485691}
   - component: {fileID: 841295421287485690}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,7 +649,7 @@ GameObject:
   - component: {fileID: 841295421449809763}
   - component: {fileID: 841295421449809762}
   - component: {fileID: 841295421449809773}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
