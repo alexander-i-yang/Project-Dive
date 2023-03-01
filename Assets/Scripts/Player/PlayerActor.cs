@@ -18,12 +18,15 @@ using VFX;
 public class PlayerActor : Actor, IFilterLoggerTarget {
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private PlayerStateMachine _stateMachine;
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private BoxCollider2D _collider;
+    [SerializeField] private SpriteRenderer _sprite;
+    [SerializeField] private Transform diggingParticlesLoc;
+    [SerializeField] private Death _deathManager;
 
     private bool _hitWallCoroutineRunning;
     private float _hitWallPrevSpeed;
     private GameObject _dpInstance;
 
-    [SerializeField] private Death _deathManager;
+    public int Facing => _sprite.flipX ? -1 : 1;
 
     private void OnEnable()
     {
@@ -168,10 +171,8 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public void SpawnDrillingParticles() {
         if (_dpInstance == null) {
-            _dpInstance = Instantiate(PlayerCore._diggingParticles, transform);
-        } else {
-            _dpInstance.transform.parent = transform;
-            _dpInstance.transform.localPosition = new Vector3(0, 0, -10);
+            _dpInstance = Instantiate(PlayerCore._diggingParticles, diggingParticlesLoc);
+            UpdateDogoParticleFacing(Facing);
         }
     }
 
@@ -279,12 +280,12 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         return Mathf.Sqrt(-2f * GravityUp * jumpHeight);
     }
     
-    public void UpdateDogoParticleFacing(int moveDirection)
+    public void UpdateDogoParticleFacing(int facing)
     {
-        if (moveDirection != 0 && _dpInstance != null)
+        if (facing != 0 && _dpInstance != null)
         {
             Vector3 scale = _dpInstance.transform.localScale;
-            _dpInstance.transform.localScale = new Vector3(moveDirection, scale.y, scale.z);
+            _dpInstance.transform.localScale = new Vector3(facing, scale.y, scale.z);
         }
     }
     

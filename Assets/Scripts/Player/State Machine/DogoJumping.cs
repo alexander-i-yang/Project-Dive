@@ -26,7 +26,7 @@ namespace Player
             }
 
             private int GetDogoJumpDirection() {
-                int facing = MySM.CurrInput.facing;
+                int facing = Actor.Facing;
                 int moveDir = Input.moveDirection;
                 if (moveDir == 0) moveDir = facing;
                 return moveDir;
@@ -37,7 +37,7 @@ namespace Player
                 Input.canJumpCut = true;
                 _dogoJumpTimer = GameTimer.StartNewTimer(PlayerCore.DogoJumpTime);
                 int jumpDir = GetDogoJumpDirection();
-                PlayerActions.DogoJump(jumpDir, conserveMomentum, oldXV);
+                Actor.DogoJump(jumpDir, conserveMomentum, oldXV);
                 int oldJumpDir = jumpDir;
                 
                 yield return Helper.DelayAction(PlayerCore.DogoJumpGraceTime, () => {
@@ -45,7 +45,7 @@ namespace Player
                     if (jumpDir != oldJumpDir)
                     {
                         _dogoJumpTimer = GameTimer.StartNewTimer(PlayerCore.DogoJumpTime);
-                        PlayerActions.DogoJump(jumpDir, conserveMomentum, oldXV);
+                        Actor.DogoJump(jumpDir, conserveMomentum, oldXV);
                     }
                 });
             }
@@ -85,13 +85,13 @@ namespace Player
             public override void MoveX(int moveDirection)
             {
                 UpdateSpriteFacing(moveDirection);
-                PlayerActions.UpdateMovementX(moveDirection, PlayerCore.DogoJumpAcceleration);
+                Actor.UpdateMovementX(moveDirection, PlayerCore.DogoJumpAcceleration);
             }
 
             public override void FixedUpdate()
             {
                 GameTimer.FixedUpdate(_dogoJumpTimer);
-                PlayerActions.Fall();
+                Actor.Fall();
                 if (GameTimer.GetTimerState(_dogoJumpTimer) == TimerState.Finished)
                 {
                     MySM.Transition<Airborne>();
