@@ -191,6 +191,7 @@ namespace TiledUtil {
 
         private void ImportGround(GameObject g, int index) {
             var ret = ImportTileToPrefab(g, index, "Ground");
+            LIL.SetLayer(g, "Ground");
             AddWaterfalCollision(ret.Item1, ret.Item2);
         }
         
