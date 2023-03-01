@@ -18,8 +18,8 @@ namespace VFX
         void Start()
         {
             _parts = GetComponentsInChildren<DeathParticle>();
-            Launch();
-            StartCoroutine(Helper.DelayAction(3f, Reset));
+            // Launch();
+            // StartCoroutine(Helper.DelayAction(3f, Reset));
         }
 
         public void Launch()
