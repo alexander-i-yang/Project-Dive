@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Helpers
 {
-    //L: Another script I stole from Boomo
     public class DrillingParticles : MonoBehaviour
     {
         [SerializeField] private bool destroyInsteadOfDisable;

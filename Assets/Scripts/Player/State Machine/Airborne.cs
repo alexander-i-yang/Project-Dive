@@ -62,12 +62,12 @@ namespace Player
             public override void MoveX(int moveDirection)
             {
                 UpdateSpriteFacing(moveDirection);
-                PlayerActions.UpdateMovementX(moveDirection, PlayerCore.MaxAirAcceleration);
+                Actor.UpdateMovementX(moveDirection, PlayerCore.MaxAirAcceleration);
             }
 
             public override void FixedUpdate()
             {
-                PlayerActions.Fall();
+                Actor.Fall();
                 GameTimer.FixedUpdate(_jumpCoyoteTimer);
             }
         }
