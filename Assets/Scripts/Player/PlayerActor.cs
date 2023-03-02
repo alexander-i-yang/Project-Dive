@@ -183,13 +183,13 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     public void Die(Vector3 diePos)
     {
         _deathManager.transform.position = diePos;
-        _deathManager.gameObject.SetActive(true);
+        _deathManager.SetParticlesActive(true);
         _deathManager.Reset();
         velocity = Vector2.zero;
         _stateMachine.OnDeath();
     }
     
-    public void DisableDeathParticles() => _deathManager.gameObject.SetActive(false);
+    public void DisableDeathParticles() => _deathManager.SetParticlesActive(false);
 
     #region Actor Overrides
     public override bool Collidable() {

@@ -46,6 +46,10 @@ namespace World {
             _resettables = GetComponentsInChildren<IResettable>();
             
             _grid = transform.GetChild(0).gameObject;
+        }
+
+        void Start()
+        {
             DisableLogic(false);
         }
 
