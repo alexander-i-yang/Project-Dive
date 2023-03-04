@@ -11,6 +11,7 @@ namespace Player
     public class PlayerSpawnManager : MonoBehaviour, IFilterLoggerTarget
     {
         private Room _currentRoom;
+        private Room _prevRoom;
         private Spawn _currentSpawnPoint;
         public Room CurrentRoom => _currentRoom;
 
@@ -51,7 +52,8 @@ namespace Player
 
         private void OnRoomTransition(Room roomEntering)
         {
-            if (_currentRoom != null) _currentRoom.DisableLogic(false);
+            if (_prevRoom != null && _prevRoom != roomEntering) _prevRoom.DisableLogic(false);
+            _prevRoom = _currentRoom;
             _currentRoom = roomEntering;
             _currentSpawnPoint = FindClosestSpawnPoint();
         }

@@ -7,6 +7,7 @@ public interface IInputController
     public abstract int GetMovementInput();
     public abstract bool MovementStarted();
     public abstract bool MovementFinished();
+    public abstract bool RetryStarted();
     public abstract bool GetJumpInput();
     public abstract bool JumpStarted();
     public abstract bool JumpFinished();

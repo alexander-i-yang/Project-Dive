@@ -56,6 +56,11 @@ namespace Player
                 CurrState.DivePressed();
             }
 
+            if (PlayerCore.Input.RetryStarted())
+            {
+                PlayerCore.Actor.Die(PlayerCore.Actor.transform.position);
+            }
+            
             CurrInput.moveDirection = PlayerCore.Input.GetMovementInput();
         }
 

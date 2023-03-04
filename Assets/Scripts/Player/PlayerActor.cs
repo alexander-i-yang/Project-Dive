@@ -8,7 +8,6 @@ using Player;
 using World;
 
 using MyBox;
-using SuperTiled2Unity.Editor;
 using UnityEditor;
 using UnityEngine;
 using VFX;

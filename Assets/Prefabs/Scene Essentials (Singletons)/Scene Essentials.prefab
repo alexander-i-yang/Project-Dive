@@ -303,10 +303,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Global Light 2D
       objectReference: {fileID: 0}
-    - target: {fileID: 8812935168708795874, guid: c06aa4eea5809134296b78dcadeb705f, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[7]
-      value: 1294640433
-      objectReference: {fileID: 0}
     - target: {fileID: 8812935168708795875, guid: c06aa4eea5809134296b78dcadeb705f, type: 3}
       propertyPath: m_RootOrder
       value: 5
