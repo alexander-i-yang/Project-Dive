@@ -24,11 +24,11 @@
             "expandedObjectLayers": [
                 7
             ],
-            "scale": 3,
-            "selectedLayer": 1,
+            "scale": 4,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 256,
-                "y": 143.83333333333334
+                "x": 307.25,
+                "y": 120.625
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Activate.tmx": {
@@ -73,10 +73,10 @@
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Firefly Intro.tmx": {
             "scale": 4.3677734374999995,
-            "selectedLayer": 5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 116.0774493583151,
-                "y": 66.73880964092476
+                "x": 116.3063989625721,
+                "y": 66.96775924518177
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Fly Check.tmx": {
@@ -85,6 +85,17 @@
             "viewCenter": {
                 "x": 128.21177838393774,
                 "y": 72.23360014309351
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Gate 2.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 5.5,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 152.90909090909093,
+                "y": 130.27272727272728
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk.tmx": {
@@ -141,6 +152,14 @@
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Breakable.tsx": {
             "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Hub.tmx": {
+            "scale": 4.3677734374999995,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.21177838393774,
+                "y": 72.00465053883649
+            }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Lava.tsx": {
             "scaleInDock": 1
@@ -230,6 +249,14 @@
             "viewCenter": {
                 "x": 380.5,
                 "y": 174.75
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_longRoomNew.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 369.5,
+                "y": 97.75
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_room1Easy.tmx": {
