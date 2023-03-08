@@ -36,10 +36,18 @@
                 5
             ],
             "scale": 5.5,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 192,
-                "y": 53.72727272727273
+                "x": 128.72727272727272,
+                "y": 69.36363636363636
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoomLeft.tmx": {
+            "scale": 4.3677734374999995,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 137.59871215847605,
+                "y": 65.82301122389661
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Activate.tmx": {
@@ -215,6 +223,14 @@
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Breakable.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Brett_Steele/Brett_IHadToReinstallUnityPainPainPainTestRoom.tmx": {
+            "scale": 3.327827380952381,
+            "selectedLayer": 7,
+            "viewCenter": {
+                "x": 202.5345436658767,
+                "y": 106.52595805571701
+            }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Dirt.tsx": {
             "dynamicWrapping": false,
@@ -554,8 +570,8 @@
     ],
     "project": "Area Planning Project.tiled-project",
     "recentFiles": [
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoom.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/JacksRoomFlipped.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_longRoomNew.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk2.tmx",

@@ -98,3 +98,4 @@ MonoBehaviour:
   RechargeTime: 0.5
   Direction: {x: 0, y: 0}
   spikeSprites: {fileID: 11400000, guid: e95968d15dd7c8241be18c412eba6640, type: 2}
+  _dischargeOffsetTime: 0.03

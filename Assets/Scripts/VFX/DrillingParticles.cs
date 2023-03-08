@@ -21,27 +21,17 @@ namespace VFX
         private void OnEnable()
         {
             transform.parent = null;
-            checkDestroyTimer.OnFinished += CheckDestroy;
-        }
-
-        private void OnDisable()
-        {
-            checkDestroyTimer.OnFinished -= CheckDestroy;
         }
 
         private void Update()
         {
             GameTimer.Update(checkDestroyTimer);
+            if (GameTimer.GetTimerState(checkDestroyTimer) == TimerState.Finished) DestroyOrDisable();
         }
 
         public void Stop() {
             GetComponent<ParticleSystem>().Stop();
             checkDestroyTimer = GameTimer.StartNewTimer(timeToDestroy, "Check Destroy Timer");
-        }
-
-        private void CheckDestroy()
-        {
-            DestroyOrDisable();
         }
 
         private void DestroyOrDisable()
