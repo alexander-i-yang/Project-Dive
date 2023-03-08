@@ -12,9 +12,9 @@ namespace Audio
         {
             foreach (StudioEventEmitter e in emitters)
             {
-                FMOD.Studio.EventInstance eventInstance = e.EventInstance;
+                //FMOD.Studio.EventInstance eventInstance = e.EventInstance;
                 // eventInstance.setPaused(true);
-                eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                //eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 e.Stop();
             }
 
