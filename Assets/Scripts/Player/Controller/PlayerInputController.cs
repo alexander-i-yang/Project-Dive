@@ -44,7 +44,12 @@ namespace Player
             bool bothDirsSame = inputActions.MoveRight.IsPressed() == inputActions.MoveLeft.IsPressed();
             return MovementChanged() && bothDirsSame;
         }
-
+        
+        public bool RetryStarted()
+        {
+            return inputActions.Restart.WasPerformedThisFrame();
+        }
+        
         public bool GetJumpInput()
         {
             return inputActions.Jump.IsPressed();

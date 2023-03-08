@@ -153,11 +153,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3142978620854083331, guid: 145dfc2a706b8b4429ae37abae634751, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 783.90625
+      value: 1015.90625
       objectReference: {fileID: 0}
     - target: {fileID: 3142978620854083331, guid: 145dfc2a706b8b4429ae37abae634751, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -647.9429
+      value: -663.9429
       objectReference: {fileID: 0}
     - target: {fileID: 3142978620854083331, guid: 145dfc2a706b8b4429ae37abae634751, type: 3}
       propertyPath: m_LocalPosition.z
@@ -191,21 +191,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3142978620854083333, guid: 145dfc2a706b8b4429ae37abae634751, type: 3}
+      propertyPath: m_CustomBlends
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3142978620854083580, guid: 145dfc2a706b8b4429ae37abae634751, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.02538071
+      value: 0.0078125
       objectReference: {fileID: 0}
     - target: {fileID: 3142978620854083580, guid: 145dfc2a706b8b4429ae37abae634751, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.4158416
+      value: 0.15833333
       objectReference: {fileID: 0}
     - target: {fileID: 3142978620854083580, guid: 145dfc2a706b8b4429ae37abae634751, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.21658206
+      value: 0.26666668
       objectReference: {fileID: 0}
     - target: {fileID: 3142978620854083580, guid: 145dfc2a706b8b4429ae37abae634751, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.23762377
+      value: 0.26666665
       objectReference: {fileID: 0}
     - target: {fileID: 3142978620854083583, guid: 145dfc2a706b8b4429ae37abae634751, type: 3}
       propertyPath: m_Name
@@ -225,6 +229,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1705767316090389095}
     m_Modifications:
+    - target: {fileID: 2750709232575659384, guid: d6980d3b1cb2a0f4585fb4b02b5455c2, type: 3}
+      propertyPath: SimMat
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750709232575659384, guid: d6980d3b1cb2a0f4585fb4b02b5455c2, type: 3}
+      propertyPath: SimListenerMats.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2750709232575659385, guid: d6980d3b1cb2a0f4585fb4b02b5455c2, type: 3}
       propertyPath: m_Name
       value: LavaSimulation

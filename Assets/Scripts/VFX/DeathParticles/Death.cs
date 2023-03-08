@@ -15,11 +15,12 @@ namespace VFX
         [SerializeField]
         private RangedInt velocityRange = new RangedInt(100, 200);
 
-        void Start()
+        void Awake()
         {
             _parts = GetComponentsInChildren<DeathParticle>();
-            Launch();
-            StartCoroutine(Helper.DelayAction(3f, Reset));
+            SetParticlesActive(false);
+            // Launch();
+            // StartCoroutine(Helper.DelayAction(3f, Reset));
         }
 
         public void Launch()
@@ -40,6 +41,14 @@ namespace VFX
                 part.Reset();
             }
             Launch();
+        }
+
+        public void SetParticlesActive(bool setActive)
+        {
+            foreach (var part in _parts)
+            {
+                part.gameObject.SetActive(setActive);
+            }
         }
     }
 }

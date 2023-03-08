@@ -27,7 +27,8 @@ namespace Mechanics {
 
         public bool unlocked = false;
 
-        new void Start() {
+        void Awake()
+        {
             _mySR = GetComponent<SpriteRenderer>();
             _floater = GetComponent<Floater>();
             _animator = GetComponent<CrystalAnimationStateManager>();
@@ -35,7 +36,9 @@ namespace Mechanics {
             _lightIntensityStart = _light.intensity;
             
             Discharge();
-            
+        }
+
+        void Start() {
             base.Start();
         }
 

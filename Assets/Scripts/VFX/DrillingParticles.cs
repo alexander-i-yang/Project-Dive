@@ -1,11 +1,9 @@
+using Helpers;
 using Player;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Helpers
+namespace VFX
 {
-    //L: Another script I stole from Boomo
     public class DrillingParticles : MonoBehaviour
     {
         [SerializeField] private bool destroyInsteadOfDisable;
@@ -15,43 +13,25 @@ namespace Helpers
 
         private PlayerActor Player => PlayerCore.Actor;
 
-        void Awake()
+        /*void Awake()
         {
             checkDestroyTimer = GameTimer.StartNewTimer(timeToDestroy, "Check Destroy Timer");
-        }
+        }*/
 
         private void OnEnable()
         {
-            checkDestroyTimer.OnFinished += CheckDestroy;
-        }
-
-        private void OnDisable()
-        {
-            checkDestroyTimer.OnFinished -= CheckDestroy;
+            transform.parent = null;
         }
 
         private void Update()
         {
             GameTimer.Update(checkDestroyTimer);
+            if (GameTimer.GetTimerState(checkDestroyTimer) == TimerState.Finished) DestroyOrDisable();
         }
 
         public void Stop() {
             GetComponent<ParticleSystem>().Stop();
-            transform.parent = null;
-        }
-
-        private void CheckDestroy()
-        {
-            if (Player.IsDrilling())
-            {
-                GetComponent<ParticleSystem>().Play();
-                //transform.parent = P.transform;
-                GameTimer.Reset(checkDestroyTimer);
-            } else
-            {
-                GameTimer.Clear(checkDestroyTimer);
-                DestroyOrDisable();
-            }
+            checkDestroyTimer = GameTimer.StartNewTimer(timeToDestroy, "Check Destroy Timer");
         }
 
         private void DestroyOrDisable()

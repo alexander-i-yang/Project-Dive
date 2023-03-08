@@ -26,7 +26,7 @@ namespace Mechanics
             bool isOnLaunch = l.IsOverlapping(_myActor);
             if (isOnLaunch)
             {
-                PlayerCore.StateMachine.CurrInput.facing = Math.Sign(v.x);
+                //PlayerCore.StateMachine.CurrInput.facing = Math.Sign(v.x);
                 if(PlayerCore.Actor.IsDogoing())
                 {
                     PlayerCore.StateMachine.Transition<PlayerStateMachine.DogoJumping>();
@@ -34,7 +34,7 @@ namespace Mechanics
                 }
                 else
                 {
-                    int facing = Math.Sign(PlayerCore.StateMachine.CurrInput.facing);
+                    int facing = Math.Sign(PlayerCore.Actor.Facing);
                     Vector2 chadVelocity = new Vector2(facing*v.x, v.y); 
                     _myActor.ApplyVelocity(3*chadVelocity);
                 }

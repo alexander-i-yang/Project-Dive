@@ -8,9 +8,9 @@ using Player;
 using World;
 
 using MyBox;
-using SuperTiled2Unity.Editor;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VFX;
 
 [RequireComponent(typeof(PlayerStateMachine))]
@@ -18,12 +18,15 @@ using VFX;
 public class PlayerActor : Actor, IFilterLoggerTarget {
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private PlayerStateMachine _stateMachine;
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private BoxCollider2D _collider;
+    [SerializeField] private SpriteRenderer _sprite;
+    [SerializeField] private Transform diggingParticlesLoc;
+    [SerializeField] private Death _deathManager;
 
     private bool _hitWallCoroutineRunning;
     private float _hitWallPrevSpeed;
-    private GameObject _dpInstance;
+    [NonSerialized] public DrillingParticles DpInstance;
 
-    [SerializeField] private Death _deathManager;
+    public int Facing => _sprite.flipX ? -1 : 1;
 
     private void OnEnable()
     {
@@ -46,8 +49,8 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public void Land()
     {
-        if (_dpInstance != null) {
-            _dpInstance?.GetComponent<DrillingParticles>()?.Stop();
+        if (DpInstance != null) {
+            DpInstance?.GetComponent<DrillingParticles>()?.Stop();
         } 
         velocityY = 0;
     }
@@ -60,9 +63,9 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     /// </summary>
     /// <param name="jumpHeight"></param>
     public void Jump(int jumpHeight) {
-        if (_dpInstance != null) {
-            _dpInstance?.GetComponent<DrillingParticles>()?.Stop();
-        } 
+        if (DpInstance != null) {
+            DpInstance.Stop();
+        }
         velocityY = GetJumpSpeedFromHeight(jumpHeight);
     }
 
@@ -143,7 +146,9 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
                 velocityX = (float)Math.Min(oldXV - addSpeed, -PlayerCore.DogoJumpXV);
             }
         }
-
+        if (DpInstance != null) {
+            DpInstance.Stop();
+        }
         velocityY = GetJumpSpeedFromHeight(PlayerCore.DogoJumpHeight);
     }
     
@@ -167,12 +172,8 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     #endregion
 
     public void SpawnDrillingParticles() {
-        if (_dpInstance == null) {
-            _dpInstance = Instantiate(PlayerCore._diggingParticles, transform);
-        } else {
-            _dpInstance.transform.parent = transform;
-            _dpInstance.transform.localPosition = new Vector3(0, 0, -10);
-        }
+        DpInstance = Instantiate(PlayerCore._diggingParticles, diggingParticlesLoc).GetComponent<DrillingParticles>();
+        UpdateDogoParticleFacing(Facing);
     }
 
     public bool IsDrilling() {
@@ -181,14 +182,14 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public void Die(Vector3 diePos)
     {
-        _deathManager.transform.position = transform.position;
-        _deathManager.gameObject.SetActive(true);
+        _deathManager.transform.position = diePos;
+        _deathManager.SetParticlesActive(true);
         _deathManager.Reset();
         velocity = Vector2.zero;
         _stateMachine.OnDeath();
     }
     
-    public void DisableDeathParticles() => _deathManager.gameObject.SetActive(false);
+    public void DisableDeathParticles() => _deathManager.SetParticlesActive(false);
 
     #region Actor Overrides
     public override bool Collidable() {
@@ -279,12 +280,12 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         return Mathf.Sqrt(-2f * GravityUp * jumpHeight);
     }
     
-    public void UpdateDogoParticleFacing(int moveDirection)
+    public void UpdateDogoParticleFacing(int facing)
     {
-        if (moveDirection != 0 && _dpInstance != null)
+        if (facing != 0 && DpInstance != null)
         {
-            Vector3 scale = _dpInstance.transform.localScale;
-            _dpInstance.transform.localScale = new Vector3(moveDirection, scale.y, scale.z);
+            Vector3 scale = DpInstance.transform.localScale;
+            DpInstance.transform.localScale = new Vector3(facing, scale.y, scale.z);
         }
     }
     

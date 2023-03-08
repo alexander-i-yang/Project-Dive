@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx",
+    "activeFile": "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_longRoom.tmx",
     "automapping.whileDrawing": true,
     "expandedProjectPaths": [
     ],
@@ -13,22 +13,41 @@
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 3,
+            "scale": 4,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 127.66666666666664,
-                "y": 72.16666666666666
+                "x": 128,
+                "y": 72.125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx": {
             "expandedObjectLayers": [
                 7
             ],
-            "scale": 3,
-            "selectedLayer": 1,
+            "scale": 4,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 256,
-                "y": 143.83333333333334
+                "x": 307.25,
+                "y": 120.625
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoom.tmx": {
+            "expandedObjectLayers": [
+                5
+            ],
+            "scale": 5.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.72727272727272,
+                "y": 69.36363636363636
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoomLeft.tmx": {
+            "scale": 4.3677734374999995,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 137.59871215847605,
+                "y": 65.82301122389661
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Activate.tmx": {
@@ -41,10 +60,10 @@
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx": {
             "scale": 4.3677734374999995,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 126.15123194562447,
-                "y": 69.94410410052319
+                "x": 127.86835397755222,
+                "y": 72.00465053883647
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty End.tmx": {
@@ -56,11 +75,11 @@
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty.tmx": {
-            "scale": 4.3677734374999995,
-            "selectedLayer": 0,
+            "scale": 4,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 128.21177838393774,
-                "y": 72.00465053883649
+                "x": 126,
+                "y": 69.875
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Filler Long.tmx": {
@@ -73,10 +92,29 @@
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Firefly Intro.tmx": {
             "scale": 4.3677734374999995,
-            "selectedLayer": 5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 116.0774493583151,
-                "y": 66.73880964092476
+                "x": 116.3063989625721,
+                "y": 66.96775924518177
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Fly Check.tmx": {
+            "scale": 4.3677734374999995,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 128.21177838393774,
+                "y": 72.23360014309351
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Gate 2.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 5.5,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 152.90909090909093,
+                "y": 130.27272727272728
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk.tmx": {
@@ -84,10 +122,10 @@
                 5
             ],
             "scale": 4.3677734374999995,
-            "selectedLayer": 1,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 127.98282877968072,
-                "y": 72.00465053883649
+                "x": 126.15123194562447,
+                "y": 69.94410410052319
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk2.tmx": {
@@ -95,19 +133,70 @@
                 5
             ],
             "scale": 4.3677734374999995,
-            "selectedLayer": 2,
+            "selectedLayer": 7,
             "viewCenter": {
                 "x": 127.98282877968074,
                 "y": 72.00465053883647
             }
         },
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx": {
-            "scale": 4,
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/JacksRoomFlipped.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 5.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 135.75,
-                "y": 77.875
+                "x": 118.36363636363637,
+                "y": 72.81818181818181
             }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx": {
+            "scale": 4,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 127.5,
+                "y": 72.125
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx": {
+            "scale": 4.284895833333334,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 126.02406709614682,
+                "y": 93.93460556703536
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Branches.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Breakable.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Hub.tmx": {
+            "scale": 4.3677734374999995,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.21177838393774,
+                "y": 72.00465053883649
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Lava.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Mechanics.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Rocks.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Semisolid.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Spikes.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Static Decorations.tsx": {
+            "scaleInDock": 1
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Tutorial.tmx": {
             "scale": 4.3677734374999995,
@@ -124,8 +213,8 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 128.21177838393774,
-                "y": 72.00465053883649
+                "x": 126.15123194562447,
+                "y": 69.94410410052319
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Branches.tsx": {
@@ -135,32 +224,46 @@
             "dynamicWrapping": false,
             "scaleInDock": 1
         },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Brett_Steele/Brett_IHadToReinstallUnityPainPainPainTestRoom.tmx": {
+            "scale": 3.327827380952381,
+            "selectedLayer": 7,
+            "viewCenter": {
+                "x": 202.5345436658767,
+                "y": 106.52595805571701
+            }
+        },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Dirt.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 1
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jack/Jack_CrankThatYoinkySploinky.tmx": {
-            "scale": 4.3677734374999995,
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 128.21177838393774,
-                "y": 100.85230067522248
+                "x": 128,
+                "y": 72.125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jonathan_Russell/Jonathan_TheRoom.tmx": {
             "scale": 4,
-            "selectedLayer": 0,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 90.375,
-                "y": 79.75
+                "x": 173.75,
+                "y": 89.375
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Joyce_Li/Joyce_room.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
             "scale": 4.6467,
-            "selectedLayer": 1,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 127.18703596100458,
-                "y": 143.86553898465576
+                "x": 109.32489723890072,
+                "y": 89.63350334646091
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Lava.tsx": {
@@ -171,11 +274,30 @@
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 5.5,
-            "selectedLayer": 1,
+            "scale": 2,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 49.454545454545446,
-                "y": 88.0909090909091
+                "x": 636.5,
+                "y": 101.75
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_longRoomNew.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 4,
+            "selectedLayer": 7,
+            "viewCenter": {
+                "x": 686.5,
+                "y": 67.375
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_room1Easy.tmx": {
+            "scale": 4.3677734374999995,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 128.21177838393774,
+                "y": 72.00465053883649
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Mechanics.tsx": {
@@ -184,7 +306,7 @@
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Rocks.tsx": {
             "dynamicWrapping": false,
-            "scaleInDock": 1
+            "scaleInDock": 4
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Semisolid.tsx": {
             "dynamicWrapping": false,
@@ -433,21 +555,32 @@
     "map.tileWidth": 8,
     "map.width": 32,
     "openFiles": [
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx"
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_longRoom.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Above Idk.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jack/Jack_CrankThatYoinkySploinky.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk2.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_longRoomNew.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/JacksRoomFlipped.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoom.tmx"
     ],
     "project": "Area Planning Project.tiled-project",
     "recentFiles": [
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Joyce_Li/Joyce_room.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoom.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Tutorial.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Crystal Activate.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Gate 2.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Level3.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Basic Lava.tmx",
-        "C:/Users/uncle/Unity/Project-Dive/Assets/Tiles/Alex/Area 1/Firefly Intro.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk.tmx"
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/JacksRoomFlipped.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_longRoomNew.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk2.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jack/Jack_CrankThatYoinkySploinky.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Above Idk.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_longRoom.tmx"
     ]
 }

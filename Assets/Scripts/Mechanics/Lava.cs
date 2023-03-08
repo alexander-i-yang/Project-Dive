@@ -29,7 +29,8 @@ namespace Mechanics {
         public override bool PlayerCollide(PlayerActor p, Vector2 direction) {
             _lastPlayerTouched = p;
             _timerToDie = GameTimer.StartNewTimer(timeToDie);
-            _diePos = p.transform.position;
+            _diePos = p.transform.position;    
+            //Offset diePos to ensure particles break out of the lava 
 
             //Write to lava sim texture
             //Create Impact Particles

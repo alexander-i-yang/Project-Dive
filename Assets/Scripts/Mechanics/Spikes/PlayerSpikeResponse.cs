@@ -24,7 +24,7 @@ namespace Mechanics
 
         public void OnSpikeEnter(Spike spike)
         {
-            if (PlayerCore.StateMachine.IsOnState<PlayerStateMachine.Diving>())
+            if (PlayerCore.StateMachine.UsingDrill)
             {
                 spike.Discharge(_dogoDisabledSpikes);
             }
