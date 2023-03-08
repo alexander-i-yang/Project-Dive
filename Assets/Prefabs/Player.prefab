@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &282263606165164853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4917298249028837043}
+  - component: {fileID: 8261795308354153134}
+  m_Layer: 3
+  m_Name: Drill Particles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4917298249028837043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282263606165164853}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2234600854425113956}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8261795308354153134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282263606165164853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a125db30d33e320458aaa592f08a022c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2166647925214451986
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +164,7 @@ Transform:
   - {fileID: 2800930818661062524}
   - {fileID: 3534880987552250188}
   - {fileID: 6915993587281433945}
-  - {fileID: 3345320730690130183}
+  - {fileID: 4917298249028837043}
   - {fileID: 3875382336986566923}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -206,8 +250,8 @@ MonoBehaviour:
   _stateMachine: {fileID: 2234600854425113957}
   _collider: {fileID: 2234600854425113962}
   _sprite: {fileID: 7530315241682780777}
-  diggingParticlesLoc: {fileID: 3345320730690130183}
-  _deathManager: {fileID: 0}
+  diggingParticlesLoc: {fileID: 0}
+  _deathManager: {fileID: 3875382336986566920}
 --- !u!114 &7904916651983550451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,37 +396,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!1 &4797910099275051077
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3345320730690130183}
-  m_Layer: 3
-  m_Name: Drill Particles
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3345320730690130183
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4797910099275051077}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2234600854425113956}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5126528605196967166
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +405,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8497340634684970102}
-  - component: {fileID: 4475884335540723975}
   m_Layer: 3
   m_Name: Drill Emitter
   m_TagString: Untagged
@@ -415,36 +427,6 @@ Transform:
   m_Father: {fileID: 2234600854425113956}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4475884335540723975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5126528605196967166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 108113761
-      Data2: 1225977118
-      Data3: 760386728
-      Data4: 1857013363
-    Path: event:/SFX/Drilling
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 0
-  TriggerOnce: 0
-  Preload: 1
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1 &5389357683659332391
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,6 +997,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c95fa4d70909b244a2c28bb54bdcb9c, type: 3}
+--- !u!114 &3875382336986566920 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 841295420474239835, guid: 2c95fa4d70909b244a2c28bb54bdcb9c, type: 3}
+  m_PrefabInstance: {fileID: 4495997645523778131}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434e61e0ae554e2a8f613283ad60c3bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3875382336986566923 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 841295420474239832, guid: 2c95fa4d70909b244a2c28bb54bdcb9c, type: 3}

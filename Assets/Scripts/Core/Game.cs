@@ -47,11 +47,6 @@ namespace Core
             FMODUnity.RuntimeManager.LoadBank("Master", true);
         }
 
-        private void Start()
-        {
-            AudioManager.PlayMusic(musicName);  //TEMPORARY
-        }
-
         void Update()
         {
             DeltaTime = IsPaused ? 0 : UnityEngine.Time.deltaTime * TimeScale;
