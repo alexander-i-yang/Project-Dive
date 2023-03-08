@@ -10,6 +10,7 @@ using World;
 using MyBox;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VFX;
 
 [RequireComponent(typeof(PlayerStateMachine))]
@@ -23,7 +24,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     private bool _hitWallCoroutineRunning;
     private float _hitWallPrevSpeed;
-    private GameObject _dpInstance;
+    [NonSerialized] public DrillingParticles DpInstance;
 
     public int Facing => _sprite.flipX ? -1 : 1;
 
@@ -48,8 +49,8 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public void Land()
     {
-        if (_dpInstance != null) {
-            _dpInstance?.GetComponent<DrillingParticles>()?.Stop();
+        if (DpInstance != null) {
+            DpInstance?.GetComponent<DrillingParticles>()?.Stop();
         } 
         velocityY = 0;
     }
@@ -62,9 +63,9 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     /// </summary>
     /// <param name="jumpHeight"></param>
     public void Jump(int jumpHeight) {
-        if (_dpInstance != null) {
-            _dpInstance?.GetComponent<DrillingParticles>()?.Stop();
-        } 
+        if (DpInstance != null) {
+            DpInstance.Stop();
+        }
         velocityY = GetJumpSpeedFromHeight(jumpHeight);
     }
 
@@ -145,7 +146,9 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
                 velocityX = (float)Math.Min(oldXV - addSpeed, -PlayerCore.DogoJumpXV);
             }
         }
-
+        if (DpInstance != null) {
+            DpInstance.Stop();
+        }
         velocityY = GetJumpSpeedFromHeight(PlayerCore.DogoJumpHeight);
     }
     
@@ -169,10 +172,8 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     #endregion
 
     public void SpawnDrillingParticles() {
-        if (_dpInstance == null) {
-            _dpInstance = Instantiate(PlayerCore._diggingParticles, diggingParticlesLoc);
-            UpdateDogoParticleFacing(Facing);
-        }
+        DpInstance = Instantiate(PlayerCore._diggingParticles, diggingParticlesLoc).GetComponent<DrillingParticles>();
+        UpdateDogoParticleFacing(Facing);
     }
 
     public bool IsDrilling() {
@@ -281,10 +282,10 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     
     public void UpdateDogoParticleFacing(int facing)
     {
-        if (facing != 0 && _dpInstance != null)
+        if (facing != 0 && DpInstance != null)
         {
-            Vector3 scale = _dpInstance.transform.localScale;
-            _dpInstance.transform.localScale = new Vector3(facing, scale.y, scale.z);
+            Vector3 scale = DpInstance.transform.localScale;
+            DpInstance.transform.localScale = new Vector3(facing, scale.y, scale.z);
         }
     }
     

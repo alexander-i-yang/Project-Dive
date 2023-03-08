@@ -32,11 +32,14 @@
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoom.tmx": {
-            "scale": 4.3677734374999995,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                5
+            ],
+            "scale": 5.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 128.21177838393774,
-                "y": 72.00465053883649
+                "x": 192,
+                "y": 53.72727272727273
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Activate.tmx": {
@@ -237,10 +240,13 @@
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Joyce_Li/Joyce_room.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
             "scale": 4.6467,
-            "selectedLayer": 1,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 109.54010372952847,
+                "x": 109.32489723890072,
                 "y": 89.63350334646091
             }
         },
@@ -260,11 +266,14 @@
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_longRoomNew.tmx": {
-            "scale": 2,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 4,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 384,
-                "y": 72.25
+                "x": 686.5,
+                "y": 67.375
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_room1Easy.tmx": {

@@ -1,9 +1,8 @@
+using Helpers;
 using Player;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Helpers
+namespace VFX
 {
     public class DrillingParticles : MonoBehaviour
     {
@@ -14,13 +13,14 @@ namespace Helpers
 
         private PlayerActor Player => PlayerCore.Actor;
 
-        void Awake()
+        /*void Awake()
         {
             checkDestroyTimer = GameTimer.StartNewTimer(timeToDestroy, "Check Destroy Timer");
-        }
+        }*/
 
         private void OnEnable()
         {
+            transform.parent = null;
             checkDestroyTimer.OnFinished += CheckDestroy;
         }
 
@@ -36,21 +36,12 @@ namespace Helpers
 
         public void Stop() {
             GetComponent<ParticleSystem>().Stop();
-            transform.parent = null;
+            checkDestroyTimer = GameTimer.StartNewTimer(timeToDestroy, "Check Destroy Timer");
         }
 
         private void CheckDestroy()
         {
-            if (Player.IsDrilling())
-            {
-                GetComponent<ParticleSystem>().Play();
-                //transform.parent = P.transform;
-                GameTimer.Reset(checkDestroyTimer);
-            } else
-            {
-                GameTimer.Clear(checkDestroyTimer);
-                DestroyOrDisable();
-            }
+            DestroyOrDisable();
         }
 
         private void DestroyOrDisable()
