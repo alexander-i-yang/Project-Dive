@@ -10,6 +10,8 @@ public class StartMenuUITrigger : MonoBehaviour {
     [SerializeField] private GameObject startMenu;
     [SerializeField] private GameObject player;
     [SerializeField] private float transitionStartDelay;
+    [SerializeField] private float transitionDuration;
+    [SerializeField] private Transform finalLocationWorld;
 
 
     private void OnTriggerEnter2D(Collider2D col) {
@@ -25,18 +27,18 @@ public class StartMenuUITrigger : MonoBehaviour {
     }
 
     private IEnumerator StartMenuTransition() {
-        const float TRANSITION_DURATION = 1.0f;
-        const float FINAL_START_MENU_OFFSET = 30.0f;
 
         startMenu.SetActive(true);
         
         RectTransform startMenuTransform = startMenu.GetComponent<RectTransform>();
         CanvasGroup canvasG = startMenu.GetComponent<CanvasGroup>();
+
+        Vector3 finalScreenPos = Camera.main.WorldToScreenPoint(finalLocationWorld.transform.position);
         
         canvasG.alpha = 0;
         while (canvasG.alpha < 1) {
-            canvasG.alpha += Time.deltaTime * (1.0f / TRANSITION_DURATION);
-            startMenuTransform.SetPositionY(Mathf.SmoothStep(0, FINAL_START_MENU_OFFSET, canvasG.alpha));
+            canvasG.alpha += Time.deltaTime * (1.0f / transitionDuration);
+            startMenuTransform.SetPositionY(Mathf.SmoothStep(0, finalScreenPos.y, canvasG.alpha));
             yield return null;
         }
     }

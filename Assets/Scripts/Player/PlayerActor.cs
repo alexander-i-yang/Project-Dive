@@ -19,7 +19,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private PlayerStateMachine _stateMachine;
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private BoxCollider2D _collider;
     [SerializeField] private SpriteRenderer _sprite;
-    [SerializeField] private Transform diggingParticlesLoc;
     [SerializeField] private Death _deathManager;
 
     private bool _hitWallCoroutineRunning;
