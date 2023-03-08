@@ -24,9 +24,8 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     private bool _hitWallCoroutineRunning;
     private float _hitWallPrevSpeed;
-    [NonSerialized] public DrillingParticles DpInstance;
 
-    public int Facing => _sprite.flipX ? -1 : 1;
+    public int Facing => _sprite.flipX ? -1 : 1;    //-1 is facing left, 1 is facing right
 
     private void OnEnable()
     {
@@ -49,9 +48,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public void Land()
     {
-        if (DpInstance != null) {
-            DpInstance?.GetComponent<DrillingParticles>()?.Stop();
-        } 
         velocityY = 0;
     }
     #endregion
@@ -63,9 +59,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     /// </summary>
     /// <param name="jumpHeight"></param>
     public void Jump(int jumpHeight) {
-        if (DpInstance != null) {
-            DpInstance.Stop();
-        }
         velocityY = GetJumpSpeedFromHeight(jumpHeight);
     }
 
@@ -123,7 +116,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     public float Dogo() {
         float v = velocityX;
         velocityX = 0;
-        SpawnDrillingParticles();
         return v;
     }
 
@@ -146,9 +138,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
                 velocityX = (float)Math.Min(oldXV - addSpeed, -PlayerCore.DogoJumpXV);
             }
         }
-        if (DpInstance != null) {
-            DpInstance.Stop();
-        }
+
         velocityY = GetJumpSpeedFromHeight(PlayerCore.DogoJumpHeight);
     }
     
@@ -170,11 +160,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         }
     }
     #endregion
-
-    public void SpawnDrillingParticles() {
-        DpInstance = Instantiate(PlayerCore._diggingParticles, diggingParticlesLoc).GetComponent<DrillingParticles>();
-        UpdateDogoParticleFacing(Facing);
-    }
 
     public bool IsDrilling() {
         return _stateMachine.UsingDrill;
@@ -278,15 +263,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     private float GetJumpSpeedFromHeight(float jumpHeight)
     {
         return Mathf.Sqrt(-2f * GravityUp * jumpHeight);
-    }
-    
-    public void UpdateDogoParticleFacing(int facing)
-    {
-        if (facing != 0 && DpInstance != null)
-        {
-            Vector3 scale = DpInstance.transform.localScale;
-            DpInstance.transform.localScale = new Vector3(facing, scale.y, scale.z);
-        }
     }
     
     #if UNITY_EDITOR

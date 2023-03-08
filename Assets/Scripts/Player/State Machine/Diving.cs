@@ -10,8 +10,8 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
-                MySM._drillEmitter.SetParameter("PlayerGrounded", 0);
-                MySM._drillEmitter.Play();
+                //MySM._drillEmitter.SetParameter("PlayerGrounded", 0);
+                //MySM._drillEmitter.Play();
                 PlayerAnim.Play(PlayerAnimations.DIVING);
                 Actor.Dive();
                 Input.canDive = false;
@@ -22,7 +22,7 @@ namespace Player
             public override void Exit(PlayerStateInput i)
             {
                 base.Exit(i);
-                MySM._drillEmitter.Stop();
+                //MySM._drillEmitter.Stop();
             }
 
             public override void JumpPressed()
