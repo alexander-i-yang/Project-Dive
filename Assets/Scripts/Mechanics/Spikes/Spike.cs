@@ -4,9 +4,10 @@ using Helpers;
 using MyBox;
 using Phys;
 using UnityEngine;
+using World;
 
 namespace Mechanics {
-    public class Spike : Solid, IFilterLoggerTarget {
+    public class Spike : Solid, IFilterLoggerTarget, IResettable {
         public bool Charged { get; private set; } = true;
         public float RechargeTime = 0.5f;
         private Coroutine _reEnableCoroutine;
@@ -61,14 +62,25 @@ namespace Mechanics {
 
         public void Recharge() {
             Charged = true;
-            _reEnableCoroutine = StartCoroutine(Helper.DelayAction(RechargeTime, () => {
-                _mySR.SetAlpha(1);
-            }));
+            _reEnableCoroutine = StartCoroutine(
+                Helper.DelayAction(RechargeTime, () => { _mySR.SetAlpha(1); })
+            );
         }
 
         public LogLevel GetLogLevel()
         {
             return LogLevel.Error;
+        }
+
+        public void Reset()
+        {
+            Charged = true;
+            _mySR.SetAlpha(1);
+        }
+
+        public bool CanReset()
+        {
+            return gameObject != null && gameObject.activeSelf;
         }
     }
 }

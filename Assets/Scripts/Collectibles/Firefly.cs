@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,12 +29,16 @@ namespace Collectibles {
     
         private void Awake()
         {
-            _animator = GetComponent<FireflyAnimator>();
-            _animatorEnd = GetComponent<FireflyAnimatorEnd>();
             _coords = ReadCoords(Next);
             _startPos = transform.position;
         }
-        
+
+        private void OnEnable()
+        {
+            _animator = GetComponent<FireflyAnimator>();
+            _animatorEnd = GetComponent<FireflyAnimatorEnd>();
+        }
+
         public List<Vector2> ReadCoords(GameObject g)
         {
             List<Vector2> ret = new();
@@ -99,6 +104,11 @@ namespace Collectibles {
             _moving = false;
             _animator.StopAnimation();
             _animatorEnd.StopAnimation();
+        }
+
+        public bool CanReset()
+        {
+            return gameObject.activeSelf;
         }
     }
 }

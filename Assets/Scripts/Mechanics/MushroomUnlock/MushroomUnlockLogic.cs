@@ -28,12 +28,9 @@ namespace Mechanics
         
         [SerializeField] LayerMask mask = default;
 
-        private Crystal[] _mushrooms;
-        
         private void Awake()
         {
             _light = GetComponent<Light2D>();
-            _mushrooms = FindObjectsOfType<Crystal>();
         }
 
         public void Unlock()
@@ -76,7 +73,6 @@ namespace Mechanics
             foreach (var mushroomCol in c)
             {
                 Crystal mushroom = mushroomCol.gameObject.GetComponent<Crystal>();
-                print(mushroomCol.gameObject);
                 if (mushroom != null && !mushroom.unlocked)
                 {
                     mushroom.Unlock();
@@ -86,7 +82,7 @@ namespace Mechanics
 
         public void UnlockAllMushrooms()
         {
-            foreach (var mushroom in _mushrooms)
+            foreach (var mushroom in FindObjectsOfType<Crystal>(includeInactive: true))
             {
                 if (!mushroom.unlocked) mushroom.Unlock();
             }

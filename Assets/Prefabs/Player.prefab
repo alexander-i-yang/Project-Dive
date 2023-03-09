@@ -213,7 +213,7 @@ MonoBehaviour:
   maxDeceleration: 800
   cornerboostTimer: 0.08
   cornerboostMultiplier: 1.05
-  jumpHeight: 20
+  jumpHeight: 28
   doubleJumpHeight: 16
   jumpCoyoteTime: 0.1
   jumpBufferTime: 0.25
@@ -231,7 +231,7 @@ MonoBehaviour:
   dogoJumpGraceTime: 0.08
   roomTransitionVCutX: 0.5
   roomTransitionVCutY: 0.5
-  deathTime: 0
+  deathTime: 1
 --- !u!114 &2234600854425113960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403272a9b371a3c479a0561f5f58d8e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnAnimationTime: 0.5
 --- !u!114 &5359510742400265814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,7 +606,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: f511ae1e4f30fcd8387c7559cb8ddcd5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -670,8 +671,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animation:
-    _stateName: Not Assigned
-    _assigned: 0
+    _stateName: Player_Sleeping
+    _assigned: 1
     _linkedAnimator: {fileID: 1409684509464018053}
 --- !u!1 &6768050204460689540
 GameObject:
