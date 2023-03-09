@@ -24,11 +24,11 @@
             "expandedObjectLayers": [
                 7
             ],
-            "scale": 5.5,
+            "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 444.18181818181824,
-                "y": 147.9090909090909
+                "x": 313.33333333333326,
+                "y": 151
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoom.tmx": {
@@ -121,11 +121,11 @@
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 5.5,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 24.545454545454547,
-                "y": 63.18181818181818
+                "x": 177,
+                "y": 168.5
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk2.tmx": {
@@ -311,8 +311,8 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 127.98282877968072,
-                "y": 84.59687877297323
+                "x": 159.11997495863704,
+                "y": 71.3178017260654
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Rocks.tsx": {
