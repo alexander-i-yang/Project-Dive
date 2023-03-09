@@ -55,7 +55,7 @@ namespace World {
             Room curRoom = _player.CurrentRoom;
             if (this == _player.CurrentRoom)
             {
-                //
+                //DONT DISABLE CURRENT ROOM
             }
             else
             {
