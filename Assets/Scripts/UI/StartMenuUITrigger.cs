@@ -30,10 +30,6 @@ public class StartMenuUITrigger : MonoBehaviour {
         {
             bool cameraInPlaceCheck = Camera.main.transform.position.y <=
                                       PlayerCore.Actor.transform.position.y + cameraToPlayerTransitionThreshhold;
-            Debug.Log(Camera.main.transform.position.y);
-            Debug.Log(PlayerCore.Actor.transform.position.y + cameraToPlayerTransitionThreshhold);
-            Debug.Log(cameraToPlayerTransitionThreshhold);
-            Debug.Log($"Camera In Place: {cameraInPlaceCheck}");
             return cameraInPlaceCheck;
         });
 
