@@ -1,13 +1,15 @@
 ﻿using Helpers;
 using Mechanics;
 
+using UnityEngine;
+
 namespace Player
 {
     public partial class PlayerStateMachine
     {
         public abstract class PlayerState : State<PlayerStateMachine, PlayerState, PlayerStateInput>
         {
-            public PlayerActor PlayerActions => PlayerCore.Actor;
+            public PlayerActor Actor => PlayerCore.Actor;
             public PlayerSpawnManager SpawnManager => PlayerCore.SpawnManager;
             public PlayerAnimationStateManager PlayerAnim => MySM._playerAnim;
 
@@ -21,12 +23,6 @@ namespace Player
             public virtual void SetGrounded(bool isGrounded, bool isMovingUp) { }
             public virtual void MoveX(int moveDirection) { }
 
-            public virtual void OnDeath() {
-                SpawnManager.Respawn();
-                MySM.Transition<Grounded>();
-                MySM.OnPlayerDeath();
-            }
-
             public void RefreshAbilities()
             {
                 Input.canDoubleJump = true;
@@ -37,7 +33,6 @@ namespace Player
             {
                 if (moveDirection != 0)
                 {
-                    MySM.CurrInput.facing = moveDirection;
                     MySM._spriteR.flipX = moveDirection == -1;
                 }
             }
@@ -47,7 +42,7 @@ namespace Player
                 Input.jumpedFromGround = true;
                 Input.canJumpCut = true;
                 PlayerAnim.Play(PlayerAnimations.JUMP_INIT);
-                PlayerActions.Jump(PlayerCore.JumpHeight);
+                Actor.Jump(PlayerCore.JumpHeight);
                 SetGrounded(false, true);
                 //GameTimer.Clear(Input.jumpBufferTimer);
             }
@@ -55,7 +50,7 @@ namespace Player
             protected void DoubleJump()
             {
                 Input.canJumpCut = true;
-                PlayerActions.DoubleJump(PlayerCore.DoubleJumpHeight, Input.moveDirection);
+                Actor.DoubleJump(PlayerCore.DoubleJumpHeight, Input.moveDirection);
                 Input.canDoubleJump = false;
                 SetGrounded(false, true);
             }
@@ -64,7 +59,7 @@ namespace Player
             {
                 if (Input.canJumpCut)
                 {
-                    PlayerActions.JumpCut();
+                    Actor.JumpCut();
                     Input.canJumpCut = false;
                 }
             }

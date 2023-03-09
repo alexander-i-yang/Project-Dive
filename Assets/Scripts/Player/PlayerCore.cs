@@ -104,6 +104,9 @@ namespace Player
 
         [SerializeField, Range(0f, 1f)] private float roomTransitionVCutY = 0.5f;
         public static float RoomTransistionVCutY => Instance.roomTransitionVCutY;
+        
+        [SerializeField] private float deathTime;
+        public static float DeathTime => Instance.deathTime;
 
         #endregion
 
@@ -111,7 +114,6 @@ namespace Player
         public static IInputController Input { get; private set; }
         public static PlayerActor Actor { get; private set; }
         public static PlayerSpawnManager SpawnManager { get; private set; }
-        public static GameObject _diggingParticles;
 
         private void Awake()
         {
@@ -120,7 +122,6 @@ namespace Player
             Input = gameObject.GetComponent<PlayerInputController>();
             Actor = gameObject.GetComponent<PlayerActor>();
             SpawnManager = gameObject.GetComponent<PlayerSpawnManager>();
-            _diggingParticles = (GameObject) Resources.Load("PS_Drilling");
 
             //gameObject.AddComponent<PlayerCrystalResponse>();
             //gameObject.AddComponent<PlayerSpikeResponse>();

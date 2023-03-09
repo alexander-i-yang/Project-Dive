@@ -20,7 +20,6 @@ namespace Helpers.Animation
         private void Awake()
         {
             _animator = GetComponent<Animator>();
-            Debug.Log(_animator);
         }
 
         public void Play(T newAnimation)

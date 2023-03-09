@@ -10,9 +10,9 @@ namespace Player
             public override void Enter(PlayerStateInput i)
             {
                 PlayerAnim.Play(PlayerAnimations.DOGOING);
-                MySM._drillEmitter.SetParameter("PlayerGrounded", 1);
-                MySM._drillEmitter.Play();
-                i.oldVelocity = PlayerActions.Dogo();
+                //MySM._drillEmitter.SetParameter("PlayerGrounded", 1);
+                //MySM._drillEmitter.Play();
+                i.oldVelocity = Actor.Dogo();
                 i.ultraTimer = GameTimerWindowed.StartNewWindowedTimer(
                     PlayerCore.UltraTimeDelay, 
                     PlayerCore.UltraTimeWindow
@@ -35,7 +35,6 @@ namespace Player
             public override void MoveX(int moveDirection)
             {
                 UpdateSpriteFacing(moveDirection);
-                PlayerActions.UpdateDogoParticleFacing(moveDirection);
             }
 
             public override void Update()
@@ -57,7 +56,7 @@ namespace Player
             public override void Exit(PlayerStateInput playerStateInput)
             {
                 base.Exit(playerStateInput);
-                MySM._drillEmitter.Stop();
+                //MySM._drillEmitter.Stop();
                 if (PlayerCore.UltraHelper)
                 {
                     MySM._spriteR.color = Color.white;

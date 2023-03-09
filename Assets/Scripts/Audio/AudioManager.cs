@@ -145,6 +145,11 @@ namespace Audio
             s.source.Play();
         }
 
+        public static void PlayMusic(string name)
+        {
+            PlayMusic(name, true);
+        }
+
         public static void PlayMusic(string name, bool stopOtherTracks = true)
         {
             Music m = GetMusic(name);

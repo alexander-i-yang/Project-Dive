@@ -9,6 +9,7 @@ namespace Mechanics {
 
         private GameTimer _timerToDie;
         private PlayerActor _lastPlayerTouched;
+        private Vector3 _diePos;
 
         public override bool Collidable() {
             //return true;
@@ -20,7 +21,7 @@ namespace Mechanics {
             GameTimer.Update(_timerToDie);
             if (_lastPlayerTouched != null && GameTimer.TimerFinished(_timerToDie))
             {
-                _lastPlayerTouched.Die();
+                _lastPlayerTouched.Die(_diePos);
                 GameTimer.Clear(_timerToDie);
             }
         }
@@ -28,6 +29,8 @@ namespace Mechanics {
         public override bool PlayerCollide(PlayerActor p, Vector2 direction) {
             _lastPlayerTouched = p;
             _timerToDie = GameTimer.StartNewTimer(timeToDie);
+            _diePos = p.transform.position;    
+            //Offset diePos to ensure particles break out of the lava 
 
             //Write to lava sim texture
             //Create Impact Particles

@@ -4,14 +4,18 @@ using UnityEngine;
 
 using Helpers;
 using World;
+using System;
 
 namespace Player
 {
     public class PlayerSpawnManager : MonoBehaviour, IFilterLoggerTarget
     {
         private Room _currentRoom;
+        private Room _prevRoom;
         private Spawn _currentSpawnPoint;
         public Room CurrentRoom => _currentRoom;
+
+        public event Action OnPlayerRespawn;
 
         public Spawn CurrentSpawnPoint
         {
@@ -42,10 +46,14 @@ namespace Player
                 _currentRoom.Reset();
                 transform.position = CurrentSpawnPoint.transform.position;
             }
+
+            OnPlayerRespawn?.Invoke();
         }
 
         private void OnRoomTransition(Room roomEntering)
         {
+            if (_prevRoom != null && _prevRoom != roomEntering) _prevRoom.DisableLogic(false);
+            _prevRoom = _currentRoom;
             _currentRoom = roomEntering;
             _currentSpawnPoint = FindClosestSpawnPoint();
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 using Helpers;
 using FMODUnity;
+using MyBox;
 
 namespace Player
 {
@@ -11,10 +12,10 @@ namespace Player
         private PlayerAnimationStateManager _playerAnim;
         private SpriteRenderer _spriteR;
         private StudioEventEmitter _drillEmitter;
-
-        public event Action OnPlayerDeath;
+        public event Action OnPlayerRespawn;
 
         public bool UsingDrill => IsOnState<Diving>() || IsOnState<Dogoing>();
+        public bool DrillingIntoGround => IsOnState<Dogoing>();
 
         #region Overrides
         protected override void SetInitialState() 
@@ -27,7 +28,14 @@ namespace Player
         {
             _playerAnim = GetComponentInChildren<PlayerAnimationStateManager>();
             _spriteR = GetComponentInChildren<SpriteRenderer>();
-            _drillEmitter = GetComponentInChildren<StudioEventEmitter>();
+            //_drillEmitter = GetComponentInChildren<StudioEventEmitter>();
+
+            OnPlayerRespawn += () =>
+            {
+                _spriteR.SetAlpha(1);
+                PlayerCore.SpawnManager.Respawn();
+                Transition<Airborne>();
+            };
         }
 
         protected override void Update()
@@ -49,6 +57,11 @@ namespace Player
                 CurrState.DivePressed();
             }
 
+            if (PlayerCore.Input.RetryStarted())
+            {
+                PlayerCore.Actor.Die(PlayerCore.Actor.transform.position);
+            }
+            
             CurrInput.moveDirection = PlayerCore.Input.GetMovementInput();
         }
 
@@ -68,7 +81,8 @@ namespace Player
 
         public void OnDeath()
         {
-            CurrState.OnDeath();
+            _spriteR.SetAlpha(0);
+            Transition<Dead>();
         }
     }
 }
