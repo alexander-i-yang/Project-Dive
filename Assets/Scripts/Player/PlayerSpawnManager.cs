@@ -52,7 +52,11 @@ namespace Player
 
         private void OnRoomTransition(Room roomEntering)
         {
-            if (_prevRoom != null && _prevRoom != roomEntering) _prevRoom.DisableLogic(false);
+            //if (_prevRoom != null && _prevRoom != roomEntering)
+            //{
+            //    _prevRoom.SetRoomGridEnabled(false);
+            //}
+                               
             _prevRoom = _currentRoom;
             _currentRoom = roomEntering;
             _currentSpawnPoint = FindClosestSpawnPoint();

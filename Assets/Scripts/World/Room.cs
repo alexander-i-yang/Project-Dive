@@ -44,13 +44,13 @@ namespace World {
             _vCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
             _vCam.Follow = _player.transform;
             _resettables = GetComponentsInChildren<IResettable>();
-            
+
             _grid = transform.GetChild(0).gameObject;
         }
 
         void Start()
         {
-            DisableLogic(false);
+            SetRoomGridEnabled(false);
         }
 
         private void OnValidate()
@@ -60,6 +60,27 @@ namespace World {
             {
                 FilterLogger.LogWarning(this, $"The room {gameObject.name} does not have a spawn point. Every room should have at least one spawn point.");
             }
+        }
+
+        private void Update()
+        {
+            float dist2CameraToRoomCenter = Vector3.SqrMagnitude(Camera.main.transform.position - _roomCollider.transform.position);
+            bool shouldEnable = dist2CameraToRoomCenter < _roomCollider.bounds.size.sqrMagnitude * 3;   //Generous enabling range
+            if (shouldEnable != _grid.gameObject.activeSelf)
+            {
+                SetRoomGridEnabled(shouldEnable);
+            }
+        }
+
+        //Source: https://answers.unity.com/questions/501893/calculating-2d-camera-bounds.html
+        public static Bounds OrthograpicBounds(Camera camera)
+        {
+            float screenAspect = (float) Screen.width / (float) Screen.height;
+            float cameraHeight = camera.orthographicSize * 2;
+            Bounds bounds = new Bounds(
+                camera.transform.position,
+                new Vector3(cameraHeight * screenAspect, cameraHeight, 0));
+            return bounds;
         }
 
         private void OnTriggerStay2D(Collider2D other)
@@ -82,7 +103,7 @@ namespace World {
 
         public virtual void TransitionToThisRoom()
         {
-            DisableLogic(true);
+            SetRoomGridEnabled(true);
             FilterLogger.Log(this, $"Transitioned to room: {gameObject.name}");
             if (_transitionRoutine != null)
             {
@@ -127,7 +148,7 @@ namespace World {
             }
         }
         
-        public void DisableLogic(bool setActive)
+        public void SetRoomGridEnabled(bool setActive)
         {
             _grid.SetActive(setActive);
         }
