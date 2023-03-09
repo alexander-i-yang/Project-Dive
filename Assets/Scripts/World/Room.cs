@@ -64,12 +64,23 @@ namespace World {
 
         private void Update()
         {
-            float distToRoomCollider = _roomCollider.Distance(PlayerCore.Actor.GetComponent<Collider2D>()).distance;
-            bool shouldEnable =  distToRoomCollider * distToRoomCollider < _roomCollider.bounds.extents.sqrMagnitude;
+            float dist2CameraToRoomCenter = Vector3.SqrMagnitude(Camera.main.transform.position - _roomCollider.transform.position);
+            bool shouldEnable = dist2CameraToRoomCenter < _roomCollider.bounds.size.sqrMagnitude * 3;   //Generous enabling range
             if (shouldEnable != _grid.gameObject.activeSelf)
             {
                 SetRoomGridEnabled(shouldEnable);
             }
+        }
+
+        //Source: https://answers.unity.com/questions/501893/calculating-2d-camera-bounds.html
+        public static Bounds OrthograpicBounds(Camera camera)
+        {
+            float screenAspect = (float) Screen.width / (float) Screen.height;
+            float cameraHeight = camera.orthographicSize * 2;
+            Bounds bounds = new Bounds(
+                camera.transform.position,
+                new Vector3(cameraHeight * screenAspect, cameraHeight, 0));
+            return bounds;
         }
 
         private void OnTriggerStay2D(Collider2D other)
