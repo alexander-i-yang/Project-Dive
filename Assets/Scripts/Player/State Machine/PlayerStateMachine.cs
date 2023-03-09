@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 using UnityEngine;
 
@@ -33,9 +34,27 @@ namespace Player
             {
                 _spriteR.SetAlpha(1);
                 PlayerCore.SpawnManager.Respawn();
+                ShaderRespawn();
                 Transition<Airborne>();
             };
         }
+
+
+    private IEnumerator ShaderRespawnCo() {
+        _spriteR.material.SetFloat("_Progress", 0);
+        float timer = 0;
+        float spawnAnimTime = .5f;
+        while (timer < spawnAnimTime) {
+            timer += Time.deltaTime;
+            _spriteR.material.SetFloat("_Progress", timer/spawnAnimTime);
+            yield return null;
+        }
+        _spriteR.material.SetFloat("_Progress", 2);
+    }
+
+    public void ShaderRespawn() {
+        StartCoroutine(ShaderRespawnCo());
+    }
 
         protected override void Update()
         {
