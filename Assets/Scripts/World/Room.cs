@@ -44,13 +44,13 @@ namespace World {
             _vCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
             _vCam.Follow = _player.transform;
             _resettables = GetComponentsInChildren<IResettable>();
-            
+
             _grid = transform.GetChild(0).gameObject;
         }
 
         void Start()
         {
-            DisableLogic(false);
+            SetRoomGridEnabled(false);
         }
 
         private void OnValidate()
@@ -59,6 +59,16 @@ namespace World {
             if (spawn == null)
             {
                 FilterLogger.LogWarning(this, $"The room {gameObject.name} does not have a spawn point. Every room should have at least one spawn point.");
+            }
+        }
+
+        private void Update()
+        {
+            float distToRoomCollider = _roomCollider.Distance(PlayerCore.Actor.GetComponent<Collider2D>()).distance;
+            bool shouldEnable =  distToRoomCollider * distToRoomCollider < _roomCollider.bounds.extents.sqrMagnitude;
+            if (shouldEnable != _grid.gameObject.activeSelf)
+            {
+                SetRoomGridEnabled(shouldEnable);
             }
         }
 
@@ -82,7 +92,7 @@ namespace World {
 
         public virtual void TransitionToThisRoom()
         {
-            DisableLogic(true);
+            SetRoomGridEnabled(true);
             FilterLogger.Log(this, $"Transitioned to room: {gameObject.name}");
             if (_transitionRoutine != null)
             {
@@ -127,7 +137,7 @@ namespace World {
             }
         }
         
-        public void DisableLogic(bool setActive)
+        public void SetRoomGridEnabled(bool setActive)
         {
             _grid.SetActive(setActive);
         }

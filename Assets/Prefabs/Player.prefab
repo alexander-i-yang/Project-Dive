@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 3431285836361713353}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -250,7 +250,6 @@ MonoBehaviour:
   _stateMachine: {fileID: 2234600854425113957}
   _collider: {fileID: 2234600854425113962}
   _sprite: {fileID: 7530315241682780777}
-  diggingParticlesLoc: {fileID: 0}
   _deathManager: {fileID: 3875382336986566920}
 --- !u!114 &7904916651983550451
 MonoBehaviour:
