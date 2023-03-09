@@ -50,6 +50,10 @@ namespace World {
 
         void Start()
         {
+            if (_roomCollider.bounds.Contains(PlayerCore.Actor.transform.position))
+            {
+                SetRoomGridEnabled(true);   //Don't disable the room the player spawns in!
+            }
             SetRoomGridEnabled(false);
         }
 
