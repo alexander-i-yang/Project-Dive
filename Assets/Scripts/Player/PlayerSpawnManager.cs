@@ -52,13 +52,8 @@ namespace Player
 
         private void OnRoomTransition(Room roomEntering)
         {
-            //if (_prevRoom != null && _prevRoom != roomEntering)
-            //{
-            //    _prevRoom.SetRoomGridEnabled(false);
-            //}
-                               
-            _prevRoom = _currentRoom;
             _currentRoom = roomEntering;
+            
             _currentSpawnPoint = FindClosestSpawnPoint();
         }
 
@@ -103,6 +98,11 @@ namespace Player
             return closest;
         }
 
+        public bool IsTouchingRoom(Room r)
+        {
+            return Physics2D.IsTouching(GetComponent<Collider2D>(), r.GetComponent<Collider2D>());
+        }
+        
         public LogLevel GetLogLevel()
         {
             return LogLevel.Warning;

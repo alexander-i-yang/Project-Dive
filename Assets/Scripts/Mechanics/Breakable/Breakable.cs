@@ -47,5 +47,10 @@ namespace Mechanics {
         {
             gameObject.SetActive(true);
         }
+        
+        public bool CanReset()
+        {
+            return gameObject != null && gameObject.activeSelf;
+        }
     }
 }

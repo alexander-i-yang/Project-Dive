@@ -53,7 +53,7 @@ namespace Mechanics
         {
             foreach (Spike spike in _dogoDisabledSpikes)
             {
-                spike.Recharge();
+                if (spike != null) spike.Recharge();
             }
             _dogoDisabledSpikes.Clear();
         }

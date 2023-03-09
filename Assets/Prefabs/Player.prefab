@@ -231,7 +231,7 @@ MonoBehaviour:
   dogoJumpGraceTime: 0.08
   roomTransitionVCutX: 0.5
   roomTransitionVCutY: 0.5
-  deathTime: 0
+  deathTime: 1
 --- !u!114 &2234600854425113960
 MonoBehaviour:
   m_ObjectHideFlags: 0

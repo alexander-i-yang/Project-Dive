@@ -12,7 +12,7 @@ namespace Helpers
         Vector3 posOffset = new Vector3 ();
         Vector3 tempPos = new Vector3 ();
  
-        void Start () {
+        void Awake () {
             // Store the starting position & rotation of the object
             posOffset = transform.localPosition;
         }

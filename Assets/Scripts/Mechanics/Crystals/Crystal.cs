@@ -18,7 +18,7 @@ namespace Mechanics {
         
         private UnityEngine.Rendering.Universal.Light2D _light;
         private CrystalAnimationStateManager _animator;
-        private float _lightIntensityStart;
+        private float _lightIntensityStart = 5f;
         [SerializeField] private float amplitude;
         [SerializeField] private float frequency;
         
@@ -27,15 +27,14 @@ namespace Mechanics {
 
         public bool unlocked = false;
 
-        void Awake()
+        private void OnEnable()
         {
             _mySR = GetComponent<SpriteRenderer>();
             _floater = GetComponent<Floater>();
             _animator = GetComponent<CrystalAnimationStateManager>();
             _light = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
-            _lightIntensityStart = _light.intensity;
             
-            Discharge();
+            if (!unlocked) Discharge();
         }
 
         void Start() {
@@ -124,6 +123,11 @@ namespace Mechanics {
                 _animator.Play(CrystalAnimations.IDLE);
                 Recharge();
             }
+        }
+
+        public bool CanReset()
+        {
+            return gameObject != null && gameObject.activeSelf && unlocked;
         }
 
         public void Unlock()

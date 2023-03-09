@@ -55,6 +55,7 @@ namespace TiledUtil {
                 { "DecorBack", ImportDecorBackTilemap },
                 { "Spikes", ImportSpikesTilemap },
                 { "Branches", ImportBranchesTilemap },
+                { "Doors", ImportDoorsTilemap },
             };
             
             //Applies to children
@@ -65,6 +66,7 @@ namespace TiledUtil {
                 { "Breakable", ImportBreakable },
                 { "Lava", ImportLava },
                 { "Water", ImportWater },
+                { "Doors", ImportDoors },
             };
             
             Dictionary<String, Action<Transform, XElement>> objectLayerImports = new() {
@@ -224,17 +226,18 @@ namespace TiledUtil {
 
         private void ImportWater(GameObject g, int _)
         {
-            // g.GetComponentInChildren<>()<SpriteRenderer>().SetSortingLayer("Lava");
-            // g.GetComponentInChildren<EdgeCollider2D>();
             Vector2[] colliderPoints = LIL.EdgeToPoints(g);
             AddWaterfalCollision(g, colliderPoints);
-
-            //Disable edge collider and enable polygon collider (for now)
-            //g.GetRequiredComponent<EdgeCollider2D>().enabled = false;
 
             //Create a trigger collider around the water.
             LIL.AddPolygonCollider(g, colliderPoints);
             g.GetRequiredComponent<PolygonCollider2D>().isTrigger = true;
+        }
+
+        private void ImportDoors(GameObject g, int index)
+        {
+            var ret = ImportTileToPrefab(g, index, "Door");
+            LIL.SetLayer(ret.Item1, "Default");
         }
 
         private void ImportLavaTilemap(GameObject g)
@@ -247,6 +250,11 @@ namespace TiledUtil {
         {
             g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Above Ground Decor");
             // LayerImportLibrary.SetMaterial(g, "Mask_Graph");
+        }
+
+        private void ImportDoorsTilemap(GameObject g)
+        {
+            g.GetComponent<TilemapRenderer>().enabled = false;
         }
         
         private void ImportSpikesTilemap(GameObject g)
