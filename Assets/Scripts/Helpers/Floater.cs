@@ -9,12 +9,11 @@ namespace Helpers
         [SerializeField] private float frequency = 1f;
  
         // Position Storage Variables
-        Vector3 posOffset = new Vector3 ();
-        Vector3 tempPos = new Vector3 ();
+        Vector3? posOffset = null;
  
         void Awake () {
             // Store the starting position & rotation of the object
-            posOffset = transform.localPosition;
+            if (posOffset == null) posOffset = transform.localPosition;
         }
      
         void Update () {
@@ -22,8 +21,12 @@ namespace Helpers
             // transform.Rotate(new Vector3(0f, Time.deltaTime * degreesPerSecond, 0f), Space.World);
  
             // Float up/down with a Sin()
-            tempPos = posOffset;
-            tempPos.y += Mathf.Sin (Game.Instance.Time * Mathf.PI * frequency+transform.position.x*0.1f) * amplitude;
+            Vector3 tempPos = (Vector3)(posOffset == null ? transform.position : posOffset);
+            tempPos.y += Mathf.Sin (
+                Game.Instance.Time * Mathf.PI * frequency +
+                transform.position.x * 0.1f + 
+                transform.position.y * 0.1f
+            ) * amplitude;
  
             transform.localPosition = tempPos;
         }

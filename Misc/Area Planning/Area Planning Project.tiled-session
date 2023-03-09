@@ -17,7 +17,7 @@
             "selectedLayer": 7,
             "viewCenter": {
                 "x": 132,
-                "y": 62.875
+                "y": 83.125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx": {
@@ -318,7 +318,7 @@
             "scale": 4,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 125.875,
+                "x": 126,
                 "y": 69.875
             }
         },
@@ -329,8 +329,8 @@
             "scale": 4.6467,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 126.00340026255192,
-                "y": 70.049712699335
+                "x": 125.68059052661027,
+                "y": 135.90289883142873
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Lava.tsx": {
@@ -646,18 +646,18 @@
     ],
     "project": "Area Planning Project.tiled-project",
     "recentFiles": [
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Nicky_Turk/InTheBeginningThereWasNothing.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Brett_Steele/Brett_IHadToReinstallUnityPainPainPainTestRoom.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Spike Intro.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Doors.tsx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Rocks.tsx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Tutorial.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Twotorial.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Basic Lava.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoom.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoomLeft.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Activate.tmx"
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Above Idk.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Get out.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Jack_CrankThatYoinkySploinky.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Fly Check.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Shaft.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/JacksRoomFlipped.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Cave Intro.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty End.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jonathan_Russell/Jonathan_TheRoom.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

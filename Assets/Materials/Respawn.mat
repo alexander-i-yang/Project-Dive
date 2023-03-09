@@ -44,5 +44,5 @@ Material:
     - _Height_1: -0.7
     - _Progress: 1
     m_Colors:
-    - _Sparks_Color: {r: 0, g: 1, b: 0.990005, a: 0}
+    - _Sparks_Color: {r: 0.7725491, g: 0.69411767, b: 0.454902, a: 1}
   m_BuildTextureStacks: []

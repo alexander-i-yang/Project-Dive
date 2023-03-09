@@ -29,10 +29,10 @@ namespace Mechanics {
 
         private void OnEnable()
         {
-            _mySR = GetComponent<SpriteRenderer>();
-            _floater = GetComponent<Floater>();
-            _animator = GetComponent<CrystalAnimationStateManager>();
-            _light = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
+            _mySR = GetComponentInChildren<SpriteRenderer>(includeInactive:true);
+            _floater = GetComponentInChildren<Floater>(includeInactive:true);
+            _animator = GetComponentInChildren<CrystalAnimationStateManager>(includeInactive:true);
+            _light = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>(includeInactive:true);
             
             if (!unlocked) Discharge();
         }
