@@ -2,9 +2,17 @@ using UnityEngine;
 
 using Player;
 
+using Core;
+using UnityEngine.SceneManagement;
+using Audio;
+
 public class PauseUIController : MonoBehaviour
 {
     [SerializeField] private GameObject uiFrame;
+
+    [SerializeField] private string startSceneName;
+    [SerializeField] private string gameSceneName;
+
 
     public bool Paused {
         get
@@ -37,21 +45,23 @@ public class PauseUIController : MonoBehaviour
 
     public void OnResume()
     {
-
+        Paused = false;
     }
 
     public void OnRestart()
     {
-        
+        AudioManager.StopAllSoundAndMusic();
+        SceneManager.LoadScene(gameSceneName);
     }
 
     public void OnBackToStart()
     {
-
+        AudioManager.StopAllSoundAndMusic();
+        SceneManager.LoadScene(startSceneName);
     }
 
     public void OnQuit()
     {
-        
+        Game.Quit();
     }
 }
