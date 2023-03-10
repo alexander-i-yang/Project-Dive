@@ -58,5 +58,14 @@ namespace Core
             if (ResetNextFrameOffset != null) ResetNextFrameOffset();
             FixedDeltaTime = IsPaused ? 0 : UnityEngine.Time.fixedDeltaTime * TimeScale;
         }
+
+        public static void Quit()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+        }
     }
 }

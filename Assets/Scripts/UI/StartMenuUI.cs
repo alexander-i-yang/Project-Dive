@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using Core;
+
 public class StartMenuUI : MonoBehaviour {
     [SerializeField] private string gameSceneName;
     [SerializeField] private FmodEventStopper audioStopper;
@@ -14,10 +16,6 @@ public class StartMenuUI : MonoBehaviour {
     }
 
     public void OnQuitButtonPress() {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        Game.Quit();
     }
 }

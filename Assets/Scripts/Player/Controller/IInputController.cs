@@ -14,4 +14,5 @@ public interface IInputController
     public abstract bool GetDiveInput();
     public abstract bool DiveStarted();
     public abstract bool DiveFinished();
+    public abstract bool PausePressed();
 }
