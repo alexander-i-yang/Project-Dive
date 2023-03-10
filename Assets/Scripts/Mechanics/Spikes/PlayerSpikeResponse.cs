@@ -12,13 +12,11 @@ namespace Mechanics
 
         private void Start()
         {
-            PlayerCore.StateMachine.OnPlayerRespawn += RechargeSpikes;
             PlayerCore.StateMachine.StateTransition += OnPlayerStateChanged;
         }
 
         private void OnDisable()
         {
-            PlayerCore.StateMachine.OnPlayerRespawn -= RechargeSpikes;
             PlayerCore.StateMachine.StateTransition -= OnPlayerStateChanged;
         }
 

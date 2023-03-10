@@ -215,7 +215,7 @@ MonoBehaviour:
   cornerboostMultiplier: 1.05
   jumpHeight: 28
   doubleJumpHeight: 16
-  jumpCoyoteTime: 0.1
+  jumpCoyoteTime: 0.12
   jumpBufferTime: 0.25
   jumpCutMultiplier: 0.4
   diveVelocity: -350

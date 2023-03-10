@@ -37,10 +37,6 @@ namespace Mechanics {
             if (!unlocked) Discharge();
         }
 
-        void Start() {
-            base.Start();
-        }
-
         private void Update() {
             if (!_broken) Flicker();
         }

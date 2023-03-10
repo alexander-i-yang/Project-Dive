@@ -24,13 +24,12 @@ namespace Collectibles {
         [SerializeField] private List<Vector2> _coords = null;
         private int _coordInd;
 
-        public GameObject Next;
         private Vector3 _startPos;
     
         private void Awake()
         {
-            _coords = ReadCoords(Next);
-            _startPos = transform.position;
+            _coords = ReadCoords();
+            _startPos = _coords[0];
         }
 
         private void OnEnable()
@@ -39,10 +38,11 @@ namespace Collectibles {
             _animatorEnd = GetComponent<FireflyAnimatorEnd>();
         }
 
-        public List<Vector2> ReadCoords(GameObject g)
+        public List<Vector2> ReadCoords()
         {
             List<Vector2> ret = new();
             FireflyPoint f;
+            GameObject g = transform.parent.gameObject;
             while (g != null)
             {
                 f = g.GetComponent<FireflyPoint>();
@@ -58,6 +58,7 @@ namespace Collectibles {
             {
                 _moving = true;
                 FilterLogger.Log(this, $"{gameObject.name} Touched {collector}");
+                _coordInd++;
                 if (_coordInd < _coords.Count)
                 {
                     _animator.EndPos = _coords[_coordInd];
@@ -82,7 +83,6 @@ namespace Collectibles {
         {
             _moving = false;
             print("Finish");
-            _coordInd++;
         }
 
         private void OnFinishCollected(Collector collector)
@@ -99,6 +99,7 @@ namespace Collectibles {
 
         public void Reset()
         {
+            print("Reset");
             transform.position = _startPos;
             _coordInd = 0;
             _moving = false;

@@ -16,6 +16,10 @@ namespace Mechanics {
         protected new void Start()
         {
             base.Start();
+        }
+
+        private void OnEnable()
+        {
             _mySR = GetComponent<SpriteRenderer>();
         }
 

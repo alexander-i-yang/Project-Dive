@@ -50,7 +50,7 @@ namespace Mechanics {
         
         public bool CanReset()
         {
-            return gameObject != null && gameObject.activeSelf;
+            return gameObject != null;
         }
     }
 }
