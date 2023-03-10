@@ -8,6 +8,8 @@ namespace Player
         private PlayerControls controls;
         private PlayerControls.GameplayActions inputActions;
 
+        private System.Action PauseAction;
+
         private void OnEnable()
         {
             if (controls == null)
@@ -17,10 +19,13 @@ namespace Player
             }
 
             inputActions.Enable();
+
+            inputActions.Pause.performed += OnPause;
         }
 
         private void OnDisable()
         {
+            inputActions.Pause.performed -= OnPause;
             inputActions.Disable();
         }
 
@@ -78,6 +83,26 @@ namespace Player
         public bool DiveFinished()
         {
             return inputActions.Dive.WasReleasedThisFrame();
+        }
+
+        public void AddToPauseAction(System.Action action)
+        {
+            PauseAction += action;
+        }
+
+        public void RemoveFromPauseAction(System.Action action)
+        {
+            PauseAction -= action;
+        }
+
+        private void OnPause(InputAction.CallbackContext ctx)
+        {
+            PauseAction?.Invoke();
+        }
+
+        public bool PausePressed()
+        {
+            return inputActions.Pause.WasPressedThisFrame();
         }
 
         private bool MovementChanged()
