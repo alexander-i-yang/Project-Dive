@@ -190,6 +190,7 @@ namespace World {
                 }
             }
             SetRoomGridEnabled(enable);
+            Reset();
         }
 
         public LogLevel GetLogLevel()

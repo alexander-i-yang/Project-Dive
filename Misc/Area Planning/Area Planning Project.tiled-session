@@ -14,10 +14,10 @@
                 4
             ],
             "scale": 4,
-            "selectedLayer": 7,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 132,
-                "y": 83.125
+                "x": 128,
+                "y": 72.125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx": {
@@ -54,8 +54,8 @@
             "scale": 3,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 143.33333333333334,
-                "y": 86.5
+                "x": 128,
+                "y": 72.16666666666666
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoomLeft.tmx": {
@@ -78,8 +78,8 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 126.03675714349596,
-                "y": 69.94410410052319
+                "x": 127.98282877968072,
+                "y": 72.00465053883649
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty End.tmx": {
@@ -94,8 +94,8 @@
             "scale": 4,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 125.875,
-                "y": 69.875
+                "x": 128,
+                "y": 72.125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Filler Long.tmx": {
@@ -148,8 +148,8 @@
             "scale": 4,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 125.875,
-                "y": 69.875
+                "x": 128,
+                "y": 72.125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk2.tmx": {
@@ -157,10 +157,10 @@
                 5
             ],
             "scale": 4,
-            "selectedLayer": 5,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 125.875,
-                "y": 69.875
+                "x": 128,
+                "y": 72.125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Jack_CrankThatYoinkySploinky.tmx": {
@@ -178,16 +178,16 @@
             "scale": 4,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 125.875,
-                "y": 69.875
+                "x": 128,
+                "y": 72.125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx": {
             "scale": 4,
-            "selectedLayer": 6,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 125.875,
-                "y": 69.875
+                "x": 127.75,
+                "y": 72.125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx": {
@@ -197,8 +197,8 @@
             "scale": 4,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 125.875,
-                "y": 93.875
+                "x": 128,
+                "y": 96.125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Branches.tsx": {
@@ -355,15 +355,15 @@
             "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 381.16666666666663,
-                "y": 69.16666666666666
+                "x": 384,
+                "y": 72.16666666666666
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_room1Easy.tmx": {
             "scale": 4.3677734374999995,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 126.03675714349596,
+                "x": 126.15123194562447,
                 "y": 69.94410410052319
             }
         },
@@ -646,18 +646,18 @@
     ],
     "project": "Area Planning Project.tiled-project",
     "recentFiles": [
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jack/Jack_CrankThatYoinkySploinky.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_longRoom.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Above Idk.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Get out.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Jack_CrankThatYoinkySploinky.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Fly Check.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Shaft.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/JacksRoomFlipped.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Cave Intro.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty End.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jonathan_Russell/Jonathan_TheRoom.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx"
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk2.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_longRoomNew.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/JacksRoomFlipped.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoom.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
