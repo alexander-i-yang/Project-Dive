@@ -41,7 +41,7 @@ public class StartMenuUITrigger : MonoBehaviour {
         CanvasGroup canvasG = startMenu.GetComponent<CanvasGroup>();
 
         Vector3 finalScreenPos = Camera.main.WorldToScreenPoint(finalLocationWorld.transform.position);
-        startMenuTransform.SetPositionY(finalScreenPos.y);
+        //startMenuTransform.SetPositionY(finalScreenPos.y);
         canvasG.alpha = 0;
         while (canvasG.alpha < 1) {
             canvasG.alpha += Time.deltaTime * (1.0f / transitionDuration);
