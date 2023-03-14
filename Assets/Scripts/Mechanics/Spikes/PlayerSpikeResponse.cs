@@ -12,19 +12,17 @@ namespace Mechanics
 
         private void Start()
         {
-            PlayerCore.StateMachine.OnPlayerRespawn += RechargeSpikes;
             PlayerCore.StateMachine.StateTransition += OnPlayerStateChanged;
         }
 
         private void OnDisable()
         {
-            PlayerCore.StateMachine.OnPlayerRespawn -= RechargeSpikes;
             PlayerCore.StateMachine.StateTransition -= OnPlayerStateChanged;
         }
 
         public void OnSpikeEnter(Spike spike)
         {
-            if (PlayerCore.StateMachine.IsOnState<PlayerStateMachine.Diving>())
+            if (PlayerCore.StateMachine.UsingDrill)
             {
                 spike.Discharge(_dogoDisabledSpikes);
             }
@@ -53,7 +51,7 @@ namespace Mechanics
         {
             foreach (Spike spike in _dogoDisabledSpikes)
             {
-                spike.Recharge();
+                if (spike != null) spike.Recharge();
             }
             _dogoDisabledSpikes.Clear();
         }

@@ -91,3 +91,5 @@ MonoBehaviour:
     m_Prefab: {fileID: 1139700783278281427, guid: 181a8c26c8a30e242af17b1e5eb0be2b, type: 3}
   - m_TypeName: Semisolid
     m_Prefab: {fileID: 808481085618889319, guid: 5e007052310023a4498e6534424e8f96, type: 3}
+  - m_TypeName: Door
+    m_Prefab: {fileID: 4759459005841952986, guid: 350421599cf695a4c876fca52f65c288, type: 3}

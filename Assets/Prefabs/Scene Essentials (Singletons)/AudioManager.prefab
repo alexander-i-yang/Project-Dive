@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2882861766255059541}
   - component: {fileID: 799331240890616456}
-  - component: {fileID: 595249429895139177}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -56,24 +55,6 @@ MonoBehaviour:
         Data4: 325026680
       Path: event:/Music/Area1Music
     emitter: {fileID: 0}
-  - name: Mus_Level_S
-    fmodEvent:
-      Guid:
-        Data1: 330407983
-        Data2: 1236839747
-        Data3: -242442857
-        Data4: 1802742122
-      Path: event:/Music/Mus_Level_S
-    emitter: {fileID: 0}
-  - name: Cave_Music
-    fmodEvent:
-      Guid:
-        Data1: -152067354
-        Data2: 1077506835
-        Data3: 1278362255
-        Data4: 325026680
-      Path: event:/Music/CaveMusic
-    emitter: {fileID: 0}
   musicBusPath: 
   sfxBusPath: 
   soundDampenCurve:
@@ -82,33 +63,3 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &595249429895139177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8419252245774686859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1233419304
-      Data2: 1117325144
-      Data3: -1585152580
-      Data4: -388645177
-    Path: event:/Music/Area_1_Music
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20

@@ -11,7 +11,7 @@ namespace Player
     [RequireComponent(typeof(PlayerActor))]
     [RequireComponent(typeof(PlayerSpawnManager))]
     [RequireComponent(typeof(PlayerStateMachine))]
-    [RequireComponent(typeof(IInputController))]
+    [RequireComponent(typeof(PlayerInputController))]
     public class PlayerCore : Singleton<PlayerCore>
     {
         #region Player Properties
@@ -111,10 +111,9 @@ namespace Player
         #endregion
 
         public static PlayerStateMachine StateMachine { get; private set; }
-        public static IInputController Input { get; private set; }
+        public static PlayerInputController Input { get; private set; }
         public static PlayerActor Actor { get; private set; }
         public static PlayerSpawnManager SpawnManager { get; private set; }
-        public static GameObject _diggingParticles;
 
         private void Awake()
         {
@@ -123,7 +122,6 @@ namespace Player
             Input = gameObject.GetComponent<PlayerInputController>();
             Actor = gameObject.GetComponent<PlayerActor>();
             SpawnManager = gameObject.GetComponent<PlayerSpawnManager>();
-            _diggingParticles = (GameObject) Resources.Load("PS_Drilling");
 
             //gameObject.AddComponent<PlayerCrystalResponse>();
             //gameObject.AddComponent<PlayerSpikeResponse>();

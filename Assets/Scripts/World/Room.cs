@@ -1,9 +1,12 @@
-﻿using System.Collections;
-
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Cinemachine;
 
 using Helpers;
+using Phys;
 using Player;
 
 
@@ -19,18 +22,11 @@ namespace World {
         private Spawn[] _spawns;
         private IResettable[] _resettables = new IResettable[0];
         private GameObject _grid;
-        public Spawn[] Spawns
-        {
-            get
-            {
-                if (_spawns == null)
-                {
-                    _spawns = GetComponentsInChildren<Spawn>();
-                }
-                return _spawns;
-            }
-        }
+        public Spawn[] Spawns => _spawns;
         private static Coroutine _transitionRoutine;
+
+        private int _numEnables;
+        [SerializeField] private int _maxEnables = 4;
 
         public delegate void OnRoomTransition(Room roomEntering);
         public static event OnRoomTransition RoomTransitionEvent;
@@ -43,12 +39,29 @@ namespace World {
 
             _vCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
             _vCam.Follow = _player.transform;
-            _resettables = GetComponentsInChildren<IResettable>();
             
+            FetchMechanics();
             _grid = transform.GetChild(0).gameObject;
-            DisableLogic(false);
         }
 
+        void FetchMechanics()
+        {
+            _resettables = GetComponentsInChildren<IResettable>(includeInactive:true);
+            _spawns = GetComponentsInChildren<Spawn>(includeInactive:true);
+        }
+
+        void Start()
+        {
+            Room curRoom = _player.CurrentRoom;
+            if (this == _player.CurrentRoom)
+            {
+                //DONT DISABLE CURRENT ROOM
+            }
+            else
+            {
+                SetRoomGridEnabled(false);
+            }
+        }
         private void OnValidate()
         {
             Spawn spawn = GetComponentInChildren<Spawn>();
@@ -56,6 +69,28 @@ namespace World {
             {
                 FilterLogger.LogWarning(this, $"The room {gameObject.name} does not have a spawn point. Every room should have at least one spawn point.");
             }
+        }
+
+        /*private void Update()
+        {
+            float dist2CameraToRoomCenter = Vector3.SqrMagnitude(Camera.main.transform.position - _roomCollider.transform.position);
+            bool shouldEnable = dist2CameraToRoomCenter < _roomCollider.bounds.size.sqrMagnitude * 1.1;
+            if (_player.CurrentRoom == this) SetRoomGridEnabled(true);
+            if (shouldEnable != _grid.gameObject.activeSelf)
+            {
+                SetRoomGridEnabled(shouldEnable);
+            }
+        }*/
+
+        //Source: https://answers.unity.com/questions/501893/calculating-2d-camera-bounds.html
+        public static Bounds OrthograpicBounds(Camera camera)
+        {
+            float screenAspect = (float) Screen.width / (float) Screen.height;
+            float cameraHeight = camera.orthographicSize * 2;
+            Bounds bounds = new Bounds(
+                camera.transform.position,
+                new Vector3(cameraHeight * screenAspect, cameraHeight, 0));
+            return bounds;
         }
 
         private void OnTriggerStay2D(Collider2D other)
@@ -78,7 +113,7 @@ namespace World {
 
         public virtual void TransitionToThisRoom()
         {
-            DisableLogic(true);
+            SetRoomGridEnabled(true);
             FilterLogger.Log(this, $"Transitioned to room: {gameObject.name}");
             if (_transitionRoutine != null)
             {
@@ -119,18 +154,89 @@ namespace World {
         {
             foreach (var r in _resettables)
             {
-                if (r != null) r.Reset();
+                if (r != null && r.CanReset()) r.Reset();
             }
         }
         
-        public void DisableLogic(bool setActive)
+        private void SetRoomGridEnabled(bool setActive)
         {
             _grid.SetActive(setActive);
+        }
+
+        private void DestroyAndRecreateGrid()
+        {
+            GameObject gridObj = _grid.gameObject; 
+            var newGrid = Instantiate(
+                gridObj,
+                gridObj.transform.position,
+                Quaternion.identity,
+                gridObj.transform.parent
+            );
+
+            gridObj.transform.parent = null; //This is so the mechanics in _grid aren't counted in FetchMechanics.
+            Destroy(gridObj);
+            _grid = newGrid;
+            FetchMechanics();
+        }
+
+        public void RoomSetEnable(bool enable)
+        {
+            if (enable)
+            {
+                _numEnables++;
+                if (_numEnables > _maxEnables)
+                {
+                    DestroyAndRecreateGrid();
+                }
+            }
+            SetRoomGridEnabled(enable);
+            Reset();
         }
 
         public LogLevel GetLogLevel()
         {
             return LogLevel.Error;
+        }
+
+        public Door[] CalcAdjacentDoors(Vector2 doorAdjacencyTolerance, LayerMask doorLayerMask)
+        {
+            if (_roomCollider == null) _roomCollider = GetComponent<Collider2D>();
+            var bounds = _roomCollider.bounds;
+            Vector2 pointB = (Vector2)bounds.max + doorAdjacencyTolerance;
+            Vector2 pointA = (Vector2)bounds.min - doorAdjacencyTolerance;
+
+            Vector2 innerPointA = bounds.min + Vector3.one;
+            Vector2 innerPointB = bounds.max - Vector3.one;
+            
+            var innerHits = Physics2D.OverlapAreaAll(innerPointA, innerPointB, doorLayerMask);
+            HashSet<Door> innerDoors = new();
+            print("DOOR: " + this);
+            foreach (var innerHit in innerHits)
+            {
+                print("IHIT: " + innerHit);
+                Door d = innerHit.GetComponent<Door>();
+                if (d != null)
+                {
+                    print("INNER: "+ d);
+                    innerDoors.Add(d);
+                }
+            }
+
+
+            var hits = Physics2D.OverlapAreaAll(pointA, pointB, doorLayerMask);
+            List<Door> ret = new();
+            foreach (var hit in hits)
+            {
+                print("OHIT: " + hit);
+                Door d = hit.GetComponent<Door>();
+                if (d != null && !innerDoors.Contains(d))
+                {
+                    print("OUTER: "+ d);
+                    ret.Add(d);
+                }
+            }
+
+            return ret.ToArray();
         }
     }
 }

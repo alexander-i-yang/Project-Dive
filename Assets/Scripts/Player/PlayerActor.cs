@@ -8,9 +8,9 @@ using Player;
 using World;
 
 using MyBox;
-using SuperTiled2Unity.Editor;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VFX;
 
 [RequireComponent(typeof(PlayerStateMachine))]
@@ -19,14 +19,12 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private PlayerStateMachine _stateMachine;
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private BoxCollider2D _collider;
     [SerializeField] private SpriteRenderer _sprite;
-    [SerializeField] private Transform diggingParticlesLoc;
     [SerializeField] private Death _deathManager;
 
     private bool _hitWallCoroutineRunning;
     private float _hitWallPrevSpeed;
-    private GameObject _dpInstance;
 
-    public int Facing => _sprite.flipX ? -1 : 1;
+    public int Facing => _sprite.flipX ? -1 : 1;    //-1 is facing left, 1 is facing right
 
     private void OnEnable()
     {
@@ -49,9 +47,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public void Land()
     {
-        if (_dpInstance != null) {
-            _dpInstance?.GetComponent<DrillingParticles>()?.Stop();
-        } 
         velocityY = 0;
     }
     #endregion
@@ -63,9 +58,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     /// </summary>
     /// <param name="jumpHeight"></param>
     public void Jump(int jumpHeight) {
-        if (_dpInstance != null) {
-            _dpInstance?.GetComponent<DrillingParticles>()?.Stop();
-        } 
         velocityY = GetJumpSpeedFromHeight(jumpHeight);
     }
 
@@ -123,7 +115,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     public float Dogo() {
         float v = velocityX;
         velocityX = 0;
-        SpawnDrillingParticles();
         return v;
     }
 
@@ -169,13 +160,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     }
     #endregion
 
-    public void SpawnDrillingParticles() {
-        if (_dpInstance == null) {
-            _dpInstance = Instantiate(PlayerCore._diggingParticles, diggingParticlesLoc);
-            UpdateDogoParticleFacing(Facing);
-        }
-    }
-
     public bool IsDrilling() {
         return _stateMachine.UsingDrill;
     }
@@ -183,13 +167,13 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     public void Die(Vector3 diePos)
     {
         _deathManager.transform.position = diePos;
-        _deathManager.gameObject.SetActive(true);
+        _deathManager.SetParticlesActive(true);
         _deathManager.Reset();
         velocity = Vector2.zero;
         _stateMachine.OnDeath();
     }
     
-    public void DisableDeathParticles() => _deathManager.gameObject.SetActive(false);
+    public void DisableDeathParticles() => _deathManager.SetParticlesActive(false);
 
     #region Actor Overrides
     public override bool Collidable() {
@@ -278,15 +262,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     private float GetJumpSpeedFromHeight(float jumpHeight)
     {
         return Mathf.Sqrt(-2f * GravityUp * jumpHeight);
-    }
-    
-    public void UpdateDogoParticleFacing(int facing)
-    {
-        if (facing != 0 && _dpInstance != null)
-        {
-            Vector3 scale = _dpInstance.transform.localScale;
-            _dpInstance.transform.localScale = new Vector3(facing, scale.y, scale.z);
-        }
     }
     
     #if UNITY_EDITOR

@@ -21,7 +21,7 @@ namespace Mechanics {
 
         public override bool PlayerCollide(PlayerActor p, Vector2 direction) {
             if (p.IsDiving() && direction.y < 0) {
-                p.SpawnDrillingParticles();
+                //p.SpawnDrillingParticles();
                 Break();
                 return false;
             }
@@ -46,6 +46,11 @@ namespace Mechanics {
         public void Reset()
         {
             gameObject.SetActive(true);
+        }
+        
+        public bool CanReset()
+        {
+            return gameObject != null;
         }
     }
 }

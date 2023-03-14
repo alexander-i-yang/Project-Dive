@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 using UnityEngine;
 
@@ -15,6 +16,7 @@ namespace Player
         public event Action OnPlayerRespawn;
 
         public bool UsingDrill => IsOnState<Diving>() || IsOnState<Dogoing>();
+        public bool DrillingIntoGround => IsOnState<Dogoing>();
 
         #region Overrides
         protected override void SetInitialState() 
@@ -27,7 +29,7 @@ namespace Player
         {
             _playerAnim = GetComponentInChildren<PlayerAnimationStateManager>();
             _spriteR = GetComponentInChildren<SpriteRenderer>();
-            _drillEmitter = GetComponentInChildren<StudioEventEmitter>();
+            //_drillEmitter = GetComponentInChildren<StudioEventEmitter>();
 
             OnPlayerRespawn += () =>
             {
@@ -36,6 +38,9 @@ namespace Player
                 Transition<Airborne>();
             };
         }
+
+
+
 
         protected override void Update()
         {
@@ -56,6 +61,11 @@ namespace Player
                 CurrState.DivePressed();
             }
 
+            if (PlayerCore.Input.RetryStarted())
+            {
+                PlayerCore.Actor.Die(PlayerCore.Actor.transform.position);
+            }
+            
             CurrInput.moveDirection = PlayerCore.Input.GetMovementInput();
         }
 
