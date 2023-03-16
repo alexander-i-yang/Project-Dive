@@ -56,6 +56,7 @@ namespace TiledUtil {
                 { "Spikes", ImportSpikesTilemap },
                 { "Branches", ImportBranchesTilemap },
                 { "Doors", ImportDoorsTilemap },
+                { "Vines", ImportVinesTilemap },
             };
             
             //Applies to children
@@ -255,8 +256,14 @@ namespace TiledUtil {
         private void ImportDoorsTilemap(GameObject g)
         {
             g.GetComponent<TilemapRenderer>().enabled = false;
+            g.transform.parent = g.transform.parent.parent;
         }
         
+        private void ImportVinesTilemap(GameObject g)
+        {
+            g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Vines");
+        }
+
         private void ImportSpikesTilemap(GameObject g)
         {
             GameObject.DestroyImmediate(g);

@@ -114,6 +114,7 @@ namespace World {
         public virtual void TransitionToThisRoom()
         {
             SetRoomGridEnabled(true);
+            Reset();
             FilterLogger.Log(this, $"Transitioned to room: {gameObject.name}");
             if (_transitionRoutine != null)
             {
@@ -140,7 +141,6 @@ namespace World {
         {
             //L: Inefficient, but not terrible?
             this._vCam.gameObject.SetActive(true);
-            Reset();
             foreach (Room room in RoomList.Rooms)
             {
                 if (room != this)
@@ -210,14 +210,11 @@ namespace World {
             
             var innerHits = Physics2D.OverlapAreaAll(innerPointA, innerPointB, doorLayerMask);
             HashSet<Door> innerDoors = new();
-            print("DOOR: " + this);
             foreach (var innerHit in innerHits)
             {
-                print("IHIT: " + innerHit);
                 Door d = innerHit.GetComponent<Door>();
                 if (d != null)
                 {
-                    print("INNER: "+ d);
                     innerDoors.Add(d);
                 }
             }
@@ -227,11 +224,9 @@ namespace World {
             List<Door> ret = new();
             foreach (var hit in hits)
             {
-                print("OHIT: " + hit);
                 Door d = hit.GetComponent<Door>();
                 if (d != null && !innerDoors.Contains(d))
                 {
-                    print("OUTER: "+ d);
                     ret.Add(d);
                 }
             }

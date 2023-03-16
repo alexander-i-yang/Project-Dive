@@ -31,6 +31,10 @@ namespace Player
                 }
                 return _currentSpawnPoint;
             }
+            set
+            {
+                _currentSpawnPoint = value;
+            }
         }
 
         void Start() {

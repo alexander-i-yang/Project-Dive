@@ -1,17 +1,17 @@
-﻿using Mechanics;
+﻿using Helpers.Bakers;
 using UnityEditor;
 using UnityEngine;
 using World;
 
-namespace Helpers.Editor
+namespace Bakers.Editor
 {
-    [CustomEditor(typeof(Door))]
+    [CustomEditor(typeof(DoorBaker))]
     public class DoorEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
-            var doorScript = target as Door;
+            var doorScript = target as DoorBaker;
             if(GUILayout.Button("Calculate Doors"))
             {
                 doorScript.CalculateDoorsInScene();
