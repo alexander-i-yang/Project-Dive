@@ -53,6 +53,9 @@ TagManager:
   - name: Lava
     uniqueID: 1220263349
     locked: 0
+  - name: Vines
+    uniqueID: 1411810703
+    locked: 0
   - name: Ground
     uniqueID: 3841973759
     locked: 0

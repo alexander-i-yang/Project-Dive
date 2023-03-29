@@ -82,7 +82,16 @@ namespace Collectibles {
         private void OnTouchAnimFinish()
         {
             _moving = false;
-            print("Finish");
+            
+            Collider2D[] hits = new Collider2D[0];
+            ContactFilter2D filter = new ContactFilter2D();
+            filter.SetLayerMask(LayerMask.NameToLayer("Interactable"));
+            GetComponent<Collider2D>().OverlapCollider(filter, hits);
+
+            foreach (var hit in hits)
+            {
+                print(hit);
+            }
         }
 
         private void OnFinishCollected(Collector collector)

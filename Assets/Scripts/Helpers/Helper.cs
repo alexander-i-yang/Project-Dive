@@ -125,16 +125,25 @@ namespace Helpers {
             return c;
         }
 
-        public static IEnumerator Fade(SpriteRenderer sr, float time, Color newColor, Action<int> done = null)
+        public static IEnumerator FadeColor(float time, Color origColor, Color newColor, Action<Color> setColor, Action done = null)
         {
-            Color origColor = sr.color;
-            for (float ft = 0; ft < time; ft += Game.Instance.IsPaused ? 0 : Time.deltaTime)
+            for (float ft = 0; ft < time; ft += Time.deltaTime)
             {
-                sr.color = ColorLerp(origColor, newColor, ft / time);
+                setColor(ColorLerp(origColor, newColor, ft / time));
                 yield return null;
             }
 
-            if (done != null) done(0);
+            if (done != null) done();
+        }
+
+        public static IEnumerator Fade(UnityEngine.UI.Image im, float time, Color newColor, Action done = null)
+        {
+            return FadeColor(time, im.color, newColor, color => im.color = color, done);
+        }
+
+        public static IEnumerator Fade(SpriteRenderer sr, float time, Color newColor, Action done = null)
+        {
+            return FadeColor(time, sr.color, newColor, color => sr.color = color, done);
         }
 
         public static IEnumerator Shake(Transform t, float duration = 0.5f, float speed = 100f, float amount = 0.05f)

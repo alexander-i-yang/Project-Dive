@@ -657,6 +657,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7302252311024638061, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: df720cbf02132ea46b2b54ef90b32952, type: 2}
     - target: {fileID: 7302252311100050385, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
       propertyPath: m_Name
       value: Pause UI
