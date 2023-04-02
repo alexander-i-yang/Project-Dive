@@ -23,7 +23,8 @@ Material:
   m_Name: Waterfall
   m_Shader: {fileID: -6465566751694194690, guid: 74a050bd933871e48b02dc4757be5ece, type: 3}
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - USE_SHAPE_LIGHT_TYPE_0
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -90,9 +91,10 @@ Material:
     - _EnableExternalAlpha: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _fakeOpacity: 0.2
     - _length: 20
-    - _noiseScale: 0.1
-    - _noiseSpeed: 0.1
+    - _noiseScale: 0.3
+    - _noiseSpeed: 0.6
     - _offset: 0
     - _speed: 0.5
     - _test: 1

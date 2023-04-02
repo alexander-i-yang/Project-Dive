@@ -83,9 +83,8 @@ MonoBehaviour:
   - {fileID: -7543897825618846353}
   - {fileID: -3943725525851770831}
   - {fileID: 3147613855000953012}
-  - {fileID: 615064241929971710}
   - {fileID: -16438006295246296}
-  m_RendererFeatureMap: 6f9d259ae5b04e9731f0f66b871245c9b4006ed51f92ae2bfee74756ab25890828caf469b899c5ff
+  m_RendererFeatureMap: 6f9d259ae5b04e9731f0f66b871245c9b4006ed51f92ae2b28caf469b899c5ff
   m_UseNativeRenderPass: 0
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 1, z: 0}
@@ -128,31 +127,6 @@ MonoBehaviour:
   m_DefaultLitMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_DefaultUnlitMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_DefaultMaskMaterial: {fileID: 2100000, guid: 15d0c3709176029428a0da2f8cecf0b5, type: 2}
---- !u!114 &615064241929971710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14425bd540fc6774981eb582b63f2aec, type: 3}
-  m_Name: Waterfall Stencil Pass
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 8192
-  trigger: 250
-  overrideTexture: {fileID: 8400000, guid: e0d5b18c49d9cb54f85a8dfc13597935, type: 2}
-  clearOverrideTextureBefore: 1
-  useURPLit: 0
-  overrideMaterial: {fileID: 2100000, guid: 33cd5db6cbace70498816b6fe7e0b460, type: 2}
-  useSortingLayer: 0
-  sortingLayer: 
-  lightBlendMode: 0
-  overrideMaterialPassIndex: 0
 --- !u!114 &3147613855000953012
 MonoBehaviour:
   m_ObjectHideFlags: 0
