@@ -17,7 +17,7 @@ public class PlayerInventory : Collector, IFilterLoggerTarget
 
     public LogLevel GetLogLevel()
     {
-        return LogLevel.Info;
+        return LogLevel.Error;
     }
 
     public override void OnCollectFinished(Collectible collectible)
