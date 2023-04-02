@@ -44,10 +44,10 @@
                 7
             ],
             "scale": 2,
-            "selectedLayer": 8,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 256,
-                "y": 144.25
+                "x": 255.5,
+                "y": 18.25
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoom.tmx": {

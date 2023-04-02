@@ -631,8 +631,8 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": 0.0,
-            "y": 0.0
+            "x": 979.199951171875,
+            "y": 51.199974060058597
         },
         "m_Blocks": [
             {
@@ -648,8 +648,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 0.0,
-            "y": 200.0
+            "x": 979.199951171875,
+            "y": 251.2000274658203
         },
         "m_Blocks": [
             {
@@ -984,10 +984,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -396.8000183105469,
-            "y": 336.0000305175781,
-            "width": 208.00006103515626,
-            "height": 431.9999694824219
+            "x": -315.199951171875,
+            "y": 327.2000427246094,
+            "width": 207.99993896484376,
+            "height": 432.0000305175781
         }
     },
     "m_Slots": [
@@ -1718,10 +1718,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -334.39996337890627,
-            "y": -48.79999542236328,
+            "x": -61.600006103515628,
+            "y": 251.20001220703126,
             "width": 207.99996948242188,
-            "height": 301.5999450683594
+            "height": 301.5999755859375
         }
     },
     "m_Slots": [
@@ -2264,10 +2264,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -549.5999755859375,
-            "y": 51.19999694824219,
-            "width": 137.5999755859375,
-            "height": 33.60002136230469
+            "x": -257.5999450683594,
+            "y": 251.20004272460938,
+            "width": 137.6000213623047,
+            "height": 33.599945068359378
         }
     },
     "m_Slots": [
@@ -2902,10 +2902,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -568.0,
-            "y": 293.6000061035156,
+            "x": -504.800048828125,
+            "y": 327.2000427246094,
             "width": 132.800048828125,
-            "height": 33.5999755859375
+            "height": 33.59991455078125
         }
     },
     "m_Slots": [
@@ -3299,10 +3299,10 @@
     "m_Guid": {
         "m_GuidSerialized": "b3675242-e8be-4a99-8b58-6a2f7596b66a"
     },
-    "m_Name": "stencil",
+    "m_Name": "waterMask",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "stencil",
-    "m_DefaultReferenceName": "_stencil",
+    "m_RefNameGeneratedByDisplayName": "waterMask",
+    "m_DefaultReferenceName": "_waterMask",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,

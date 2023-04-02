@@ -60,7 +60,7 @@ public class WaterController : MonoBehaviour
     {
         var transform1 = _spriteRenderer.transform;
         Vector3 scale = transform1.localScale;
-        currentLength += 8;
+        currentLength += 4;
         transform1.localScale = new Vector3(scale.x, currentLength, scale.z);
         Vector3 pos = transform1.localPosition;
         transform1.localPosition = new Vector3(pos.x, -currentLength/2, pos.z);
