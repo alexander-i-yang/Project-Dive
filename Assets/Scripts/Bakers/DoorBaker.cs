@@ -2,15 +2,16 @@
 using UnityEngine;
 using World;
 
-namespace Helpers.Bakers
+namespace Bakers
 {
-    public class DoorBaker : MonoBehaviour
+    public class DoorBaker : MonoBehaviour, IBaker
     {
         public Vector2 DoorAdjacencyTolerance = Vector2.one * 4;
         public LayerMask DoorLayerMask;
+        public LayerMask RoomLayerMask;
 
         
-        public void CalculateDoorsInScene()
+        public void Bake()
         {
             Room[] rooms = FindObjectsOfType<Room>();
             foreach (var room in rooms)
@@ -18,11 +19,16 @@ namespace Helpers.Bakers
                 Door[] adjDoors = room.CalcAdjacentDoors(DoorAdjacencyTolerance, DoorLayerMask);
                 foreach (var door in adjDoors)
                 {
-                    door.r = room;
+                    door.connectRoom = room;
                     #if UNITY_EDITOR
                     EditorUtility.SetDirty(door);
                     #endif
                 }
+            }
+
+            foreach (var door in FindObjectsOfType<Door>())
+            {
+                door.CalcTransitionRooms(Core.Game.Instance.ScreenSize, RoomLayerMask);
             }
         }
     }

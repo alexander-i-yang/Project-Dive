@@ -1,3 +1,4 @@
+using Core;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,7 +32,12 @@ namespace Player
 
         public int GetMovementInput()
         {
-
+            if (Game.Instance.FakeControlsArrows != -2)
+            {
+                return Game.Instance.FakeControlsArrows;
+            }
+            
+            
             int rightInput = inputActions.MoveRight.IsPressed() ? 1 : 0;
             int leftInput = inputActions.MoveLeft.IsPressed() ? 1 : 0;
             return rightInput - leftInput;
@@ -57,16 +63,19 @@ namespace Player
         
         public bool GetJumpInput()
         {
+            if (!Game.Instance.FakeControlsZ.Disabled) return Game.Instance.FakeControlsZ.Value;
             return inputActions.Jump.IsPressed();
         }
 
         public bool JumpStarted()
         {
+            if (!Game.Instance.FakeControlsZ.Disabled) return Game.Instance.FakeControlsZ.WasPressedThisFrame();
             return inputActions.Jump.WasPressedThisFrame();
         }
 
         public bool JumpFinished()
         {
+            if (!Game.Instance.FakeControlsZ.Disabled) return Game.Instance.FakeControlsZ.WasReleasedThisFrame();
             return inputActions.Jump.WasReleasedThisFrame();
         }
 

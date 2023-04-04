@@ -2,11 +2,11 @@
 
 namespace Bakers
 {
-    public class PlayerBaker : MonoBehaviour
+    public class PlayerBaker : MonoBehaviour, IBaker
     {
         public Vector2 PlayerPos;
 
-        public void ResetPlayerPos()
+        public void Bake()
         {
             PlayerActor player = FindObjectOfType<PlayerActor>();
             if (player != null)

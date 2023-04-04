@@ -70,7 +70,7 @@ Material:
     - _scale: 10
     - _speed: 0.05
     m_Colors:
-    - _Color: {r: 0.05, g: 0.05, b: 0.05, a: 1}
+    - _Color: {r: 0.04, g: 0.04, b: 0.04, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _Vector2: {r: 0, g: 0, b: 0, a: 0}

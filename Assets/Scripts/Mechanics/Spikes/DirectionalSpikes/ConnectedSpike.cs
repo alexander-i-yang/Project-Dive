@@ -25,7 +25,7 @@ namespace Mechanics
             DischargeLogic(dogoDisabledSpikes, dischargeAnimation);
             
             Vector3 checkPos = transform.position + offset;
-            ConnectedSpike s = Helper.OnComponent<ConnectedSpike>(checkPos);
+            ConnectedSpike s = Helper.OnComponent<ConnectedSpike>(checkPos, LayerMask.GetMask("Interactable"));
             if (s != null && s.Charged)
             {
                 s.DischargeNext(dogoDisabledSpikes, offset, index+1);

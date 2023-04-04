@@ -1,4 +1,5 @@
 ﻿using UnityEditor;
+using UnityEditor.ShortcutManagement;
 using UnityEditorInternal;
 using UnityEngine;
 
@@ -337,6 +338,12 @@ namespace SuperTiled2Unity.Editor
             }
         }
 
+        [Shortcut("Reimport Tiled Assets", KeyCode.I, ShortcutModifiers.Action | ShortcutModifiers.Alt)]
+        public static void ReimportTiledAssetsShortcut()
+        {
+            ReimportTiledAssets(false);
+        }
+        
         private static void ReimportTiledAssets(bool applyDefaults)
         {
             if (applyDefaults)

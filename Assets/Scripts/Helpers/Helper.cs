@@ -72,14 +72,15 @@ namespace Helpers {
         /// At a given position, casts a vector up and down the z axis to find Components of type <typeparamref name="T"/>
         /// </summary>
         /// <param name="pos">Position</param>
+        /// <param name="l">LayerMask</param>
         /// <typeparam name="T">Component</typeparam>
         /// <returns>Component to find</returns>
-        public static T OnComponent<T>(Vector3 pos) where T : MonoBehaviour
+        public static T OnComponent<T>(Vector3 pos, LayerMask l) where T : MonoBehaviour
         {
             RaycastHit2D[] found = Physics2D.RaycastAll(
                 pos,
                 new Vector3(0, 0, 1),
-                LayerMask.GetMask("Interactable")
+                l
             );
             T highestComponent = default(T);
             foreach (RaycastHit2D curCol in found)

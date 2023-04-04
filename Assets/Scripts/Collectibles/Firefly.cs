@@ -108,7 +108,6 @@ namespace Collectibles {
 
         public void Reset()
         {
-            print("Reset");
             transform.position = _startPos;
             _coordInd = 0;
             _moving = false;

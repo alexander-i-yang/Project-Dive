@@ -24,11 +24,11 @@
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx": {
-            "scale": 4.3677734374999995,
+            "scale": 16,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 127.98282877968074,
-                "y": 72.00465053883647
+                "x": 135.0625,
+                "y": 19.78125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Basic Lava.tmx": {
@@ -43,11 +43,11 @@
             "expandedObjectLayers": [
                 7
             ],
-            "scale": 2,
+            "scale": 5.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 255.5,
-                "y": 18.25
+                "x": 322.72727272727275,
+                "y": 97.9090909090909
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoom.tmx": {
@@ -55,10 +55,10 @@
                 5
             ],
             "scale": 3,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 128,
-                "y": 72.16666666666666
+                "x": 117.66666666666664,
+                "y": 77.16666666666666
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoomLeft.tmx": {
@@ -78,11 +78,14 @@
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx": {
+            "expandedObjectLayers": [
+                6
+            ],
             "scale": 4.3677734374999995,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 127.98282877968072,
-                "y": 72.00465053883649
+                "x": 129.1275768009659,
+                "y": 73.14939856012164
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty End.tmx": {
@@ -107,6 +110,17 @@
             "viewCenter": {
                 "x": 256,
                 "y": 72.33333333333334
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Filler.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 4,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 152.75,
+                "y": 97.875
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Firefly Intro.tmx": {
@@ -195,19 +209,19 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 4,
-            "selectedLayer": 3,
+            "scale": 3,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 128,
-                "y": 72.125
+                "x": 156.33333333333334,
+                "y": 70.83333333333333
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Mineshaft.tmx": {
-            "scale": 3,
-            "selectedLayer": 4,
+            "scale": 8,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 125,
-                "y": 82.83333333333333
+                "x": 129.75,
+                "y": 126.8125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx": {

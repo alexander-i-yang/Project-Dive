@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using MyBox;
 
 using Audio;
 using FMODUnity;
+using Misc;
 
 namespace Core
 {
@@ -11,10 +13,19 @@ namespace Core
         [SerializeField] private string musicName;
         [Range(0, 1)] public float TimeScale = 1;
         public bool IsPaused;
+        public bool DebugBreak;
 
+        public Vector2 ScreenSize = new Vector2(256, 144);
+        
         public float DeltaTime { get; private set; }
         public float FixedDeltaTime { get; private set; }
         public float Time { get; private set; } = 0;
+
+        [SerializeField] private int stepFrames;
+        private int _frameCount;
+
+        public int FakeControlsArrows = -2;
+        public FakeControl FakeControlsZ;
 
         private Camera _mainCamera;
         public Camera MainCamera
@@ -35,8 +46,6 @@ namespace Core
         public event ResetNFOAction ResetNextFrameOffset;
         // public AudioClip music;
 
-
-
         void Awake()
         {
             Application.targetFrameRate = 60;
@@ -53,10 +62,18 @@ namespace Core
             Time += DeltaTime;
         }
 
+        private void LateUpdate()
+        {
+            FakeControlsZ.Update();
+        }
+
         private void FixedUpdate()
         {
             if (ResetNextFrameOffset != null) ResetNextFrameOffset();
             FixedDeltaTime = IsPaused ? 0 : UnityEngine.Time.fixedDeltaTime * TimeScale;
+            
+            if (DebugBreak && _frameCount % stepFrames == 0) Debug.Break();
+            _frameCount = (_frameCount + 1) % 10000;
         }
 
         public static void Quit()

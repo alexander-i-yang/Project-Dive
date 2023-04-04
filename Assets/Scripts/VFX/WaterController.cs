@@ -12,11 +12,12 @@ public class WaterController : MonoBehaviour
     private BoxCollider2D _boxCollider2D;
     private ParticleSystem splashEffect;
     private SpriteRenderer _spriteRenderer;
-    private Material _material;
+    // private Material _material;
     
-    private float lastLength;
-    private int _length;
-    private int _offset;
+    [SerializeField] private float lastLength;
+    [SerializeField] private float _bakedLength;
+    [SerializeField] private Material origMaterial;
+    
     // private static readonly int Length = Shader.PropertyToID("_length");
 
 
@@ -26,10 +27,9 @@ public class WaterController : MonoBehaviour
         _boxCollider2D = GetComponent<BoxCollider2D>();
         splashEffect = splashEffectObject.GetComponentInChildren<ParticleSystem>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        _material = new Material(_spriteRenderer.material);
-        _material = _spriteRenderer.material;
-        _length = Shader.PropertyToID("_length");
-        _offset = Shader.PropertyToID("_offset");
+        _spriteRenderer.material = new Material(origMaterial);
+        // _material = _spriteRenderer.material;
+        Resize(_bakedLength, _bakedLength);
     }
 
     // Update is called once per frame
@@ -37,11 +37,16 @@ public class WaterController : MonoBehaviour
     {
         GetCurrentLength(out float currentMaxLength);
         CalculateActualLength(currentMaxLength, out float currentLength);
+        Resize(currentLength, currentMaxLength);
+    }
+
+    void Resize(float currentLength, float currentMaxLength)
+    {
         ResizeLine(currentLength);
         RescaleCollider(currentLength);
         CheckForSplashEffect(currentLength, currentMaxLength);
     }
-
+    
     private void GetCurrentLength(out float currentMaxLength) {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, maxLength, obstacleLayerMask);
         if (hit)
@@ -63,8 +68,8 @@ public class WaterController : MonoBehaviour
         currentLength += 4;
         transform1.localScale = new Vector3(scale.x, currentLength, scale.z);
         Vector3 pos = transform1.localPosition;
-        transform1.localPosition = new Vector3(pos.x, -currentLength/2, pos.z);
-        _material.SetFloat("_length", currentLength);
+        transform1.localPosition = new Vector3(pos.x, -currentLength/2 + 4, pos.z);
+        // if (_material != null) _material.SetFloat("_length", currentLength);
     }
 
     private void RescaleCollider(float currentLength) {
@@ -83,5 +88,18 @@ public class WaterController : MonoBehaviour
             }
         }
         splashEffectObject.transform.position = transform.position - Vector3.up * currentLength;
+    }
+
+    public void Bake()
+    {
+        GetCurrentLength(out float l);
+        _bakedLength = l;
+        lastLength = l;
+        
+        _boxCollider2D = GetComponent<BoxCollider2D>();
+        splashEffect = splashEffectObject.GetComponentInChildren<ParticleSystem>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _spriteRenderer.material = new Material(origMaterial);
+        Resize(l, l);
     }
 }

@@ -126,6 +126,8 @@ namespace World {
         private IEnumerator TransitionRoutine()
         {
             SwitchCamera();
+            // Door curDoor = Helper.OnComponent<Door>(_player.transform.position, LayerMask.GetMask("Default"));
+            // print(curDoor);
             if (StopTime) Time.timeScale = 0f;
             /*
              * This is kinda "cheating". Instead of waiting for the camera to be done switching,
@@ -205,20 +207,7 @@ namespace World {
             Vector2 pointB = (Vector2)bounds.max + doorAdjacencyTolerance;
             Vector2 pointA = (Vector2)bounds.min - doorAdjacencyTolerance;
 
-            Vector2 innerPointA = bounds.min + Vector3.one;
-            Vector2 innerPointB = bounds.max - Vector3.one;
-            
-            var innerHits = Physics2D.OverlapAreaAll(innerPointA, innerPointB, doorLayerMask);
-            HashSet<Door> innerDoors = new();
-            foreach (var innerHit in innerHits)
-            {
-                Door d = innerHit.GetComponent<Door>();
-                if (d != null)
-                {
-                    innerDoors.Add(d);
-                }
-            }
-
+            var innerDoors = GetComponentsInChildren<Door>();
 
             var hits = Physics2D.OverlapAreaAll(pointA, pointB, doorLayerMask);
             List<Door> ret = new();

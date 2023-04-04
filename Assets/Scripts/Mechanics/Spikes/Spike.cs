@@ -7,7 +7,7 @@ using UnityEngine;
 using World;
 
 namespace Mechanics {
-    public class Spike : Solid, IFilterLoggerTarget, IResettable {
+    public class Spike : Actor, IFilterLoggerTarget, IResettable {
         public bool Charged { get; private set; } = true;
         public float RechargeTime = 0.5f;
         private Coroutine _reEnableCoroutine;
@@ -40,6 +40,11 @@ namespace Mechanics {
         }
 
         public override bool IsGround(PhysObj b) {
+            return false;
+        }
+
+        public override bool Squish(PhysObj p, Vector2 d)
+        {
             return false;
         }
 

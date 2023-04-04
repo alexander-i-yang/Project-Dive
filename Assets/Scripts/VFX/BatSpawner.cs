@@ -1,4 +1,5 @@
 ﻿using System;
+using Core;
 using Helpers;
 using MyBox;
 using UnityEngine;
@@ -10,7 +11,6 @@ namespace VFX
     public class BatSpawner : MonoBehaviour
     {
         private Camera _mainCamera;
-        private Vector2 _cameraSize;
         private GameTimer _batTimer;
         
         [SerializeField] private float spawnPosBuffer = 32f;
@@ -21,9 +21,6 @@ namespace VFX
         void Awake()
         {
             _mainCamera = FindObjectOfType<Camera>();
-            PixelPerfectCamera pix = _mainCamera.GetComponent<PixelPerfectCamera>();
-            print(pix);
-            _cameraSize = new Vector2(pix.refResolutionX, pix.refResolutionY);
             _batTimer = GameTimer.StartNewTimer(batSpawnDelay.GetRandom());
             _batTimer.OnFinished += SpawnBat;
         }
@@ -41,10 +38,11 @@ namespace VFX
         private void SpawnBat()
         {
             Vector2 cameraPos = _mainCamera.transform.position;
+            Vector2 cameraSize = Game.Instance.ScreenSize;
 
-            float xCoord = cameraPos.x - _cameraSize.x / 2 - spawnPosBuffer;
-            float yMin = cameraPos.y - _cameraSize.y/2;
-            float yMax = cameraPos.y + _cameraSize.y/2;
+            float xCoord = cameraPos.x - cameraSize.x / 2 - spawnPosBuffer;
+            float yMin = cameraPos.y - cameraSize.y/2;
+            float yMax = cameraPos.y + cameraSize.y/2;
 
             Vector2 batPos = new Vector2(xCoord, Random.Range(yMin, yMax));
             Instantiate(batPrefab, batPos, Quaternion.identity, transform);
