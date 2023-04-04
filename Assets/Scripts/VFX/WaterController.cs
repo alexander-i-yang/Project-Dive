@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
+using UnityEngine.Serialization;
+using VFX;
 
 public class WaterController : MonoBehaviour
 {
@@ -14,9 +17,11 @@ public class WaterController : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     // private Material _material;
     
-    [SerializeField] private float lastLength;
+    [FormerlySerializedAs("lastLength")] [SerializeField] private float _lastLength;
     [SerializeField] private float _bakedLength;
     [SerializeField] private Material origMaterial;
+
+    public GameObject WaterCutPrefab;
     
     // private static readonly int Length = Shader.PropertyToID("_length");
 
@@ -38,6 +43,7 @@ public class WaterController : MonoBehaviour
         GetCurrentLength(out float currentMaxLength);
         CalculateActualLength(currentMaxLength, out float currentLength);
         Resize(currentLength, currentMaxLength);
+        _lastLength = currentLength;
     }
 
     void Resize(float currentLength, float currentMaxLength)
@@ -56,19 +62,24 @@ public class WaterController : MonoBehaviour
     }
 
     private void CalculateActualLength(float currentMaxLength,out float currentLength) {
-        currentLength = lastLength + Time.deltaTime * fallSpeed;
+        currentLength = _lastLength + Game.Instance.DeltaTime * fallSpeed;
         currentLength = Mathf.Clamp(currentLength, 0, currentMaxLength);
-        lastLength = currentLength;
     }
 
     private void ResizeLine(float currentLength)
     {
+        /*if (_lastLength > currentLength)
+        {
+            WaterCut w = Instantiate(WaterCutPrefab, transform.position, Quaternion.identity, transform.parent).GetComponent<WaterCut>();
+            float cutLen = _lastLength - currentLength;
+            w.Init(transform.localPosition.y-_lastLength, cutLen+6, fallSpeed);
+        }*/
         var transform1 = _spriteRenderer.transform;
         Vector3 scale = transform1.localScale;
-        currentLength += 4;
+        currentLength += 6;
         transform1.localScale = new Vector3(scale.x, currentLength, scale.z);
         Vector3 pos = transform1.localPosition;
-        transform1.localPosition = new Vector3(pos.x, -currentLength/2 + 4, pos.z);
+        transform1.localPosition = new Vector3(pos.x, -currentLength/2 + 1, pos.z);
         // if (_material != null) _material.SetFloat("_length", currentLength);
     }
 
@@ -94,7 +105,7 @@ public class WaterController : MonoBehaviour
     {
         GetCurrentLength(out float l);
         _bakedLength = l;
-        lastLength = l;
+        _lastLength = l;
         
         _boxCollider2D = GetComponent<BoxCollider2D>();
         splashEffect = splashEffectObject.GetComponentInChildren<ParticleSystem>();
