@@ -7,6 +7,7 @@ using System.Linq;
 using MyBox;
 using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Helpers {
     /// <summary>
@@ -285,6 +286,11 @@ namespace Helpers {
             dir = Quaternion.Euler(0, 0, angle) * dir; // rotate it
             point = dir + pivot; // calculate rotated point
             return point; // return it
+        }
+
+        public static float GetRandom(this RangedInt range)
+        {
+            return Random.Range(range.Min, range.Max);
         }
     }
 }

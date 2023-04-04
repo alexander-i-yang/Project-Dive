@@ -14,7 +14,7 @@ namespace Helpers
     public class GameTimer : IFilterLoggerTarget
     {
         public float TimerValue { get; private set; }
-        protected float _duration { get; }
+        protected float _duration { get; private set; }
         private string _name;
         private bool _paused;
 
@@ -97,11 +97,16 @@ namespace Helpers
             }
         }
 
-        public static void Reset(GameTimer timer)
+        public static void Reset(GameTimer timer, float newDuration = -1)
         {
             if (timer != null)
             {
                 timer.Reset();
+            }
+
+            if (newDuration > 0 && timer != null)
+            {
+                timer._duration = newDuration;
             }
         }
 
