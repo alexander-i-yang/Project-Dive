@@ -13,6 +13,8 @@ public class PauseUIController : MonoBehaviour
     [SerializeField] private string startSceneName;
     [SerializeField] private string gameSceneName;
 
+    [SerializeField] private GameObject mainUI;
+    [SerializeField] private GameObject creditsUI;
 
     public bool Paused {
         get
@@ -58,6 +60,18 @@ public class PauseUIController : MonoBehaviour
     {
         AudioManager.StopAllSoundAndMusic();
         SceneManager.LoadScene(startSceneName);
+    }
+
+    public void OnCredits()
+    {
+        mainUI.SetActive(false);
+        creditsUI.SetActive(true);
+    }
+    
+    public void OnBackFromCredits()
+    {
+        mainUI.SetActive(true);
+        creditsUI.SetActive(false);
     }
 
     public void OnQuit()
