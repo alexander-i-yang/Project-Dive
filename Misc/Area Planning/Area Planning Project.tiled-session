@@ -121,11 +121,14 @@
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Fly Check.tmx": {
+            "expandedObjectLayers": [
+                5
+            ],
             "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 125.16666666666666,
-                "y": 69.16666666666666
+                "x": 63.66666666666666,
+                "y": 175.83333333333331
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Gate 2.tmx": {
@@ -143,8 +146,8 @@
             "scale": 4,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 125.875,
-                "y": 173.875
+                "x": 74.75,
+                "y": 172.125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk.tmx": {
@@ -193,10 +196,18 @@
                 3
             ],
             "scale": 4,
-            "selectedLayer": 1,
+            "selectedLayer": 3,
             "viewCenter": {
                 "x": 128,
                 "y": 72.125
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Mineshaft.tmx": {
+            "scale": 3,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 125,
+                "y": 82.83333333333333
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx": {
