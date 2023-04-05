@@ -48,6 +48,13 @@ MonoBehaviour:
   musicName: Area 1
   TimeScale: 1
   IsPaused: 0
+  DebugBreak: 0
+  ScreenSize: {x: 256, y: 144}
+  stepFrames: 0
+  FakeControlsArrows: -2
+  FakeControlsZ:
+    Disabled: 1
+    Value: 0
 --- !u!114 &2422432752049154568
 MonoBehaviour:
   m_ObjectHideFlags: 0

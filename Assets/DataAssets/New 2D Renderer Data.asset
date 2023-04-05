@@ -25,15 +25,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14425bd540fc6774981eb582b63f2aec, type: 3}
-  m_Name: Water Fill Pass
+  m_Name: Water Fill Tex Pass
   m_EditorClassIdentifier: 
   m_Active: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 16
   trigger: 450
-  overrideTexture: {fileID: 0}
-  clearOverrideTextureBefore: 0
+  overrideTexture: {fileID: 8400000, guid: cd63669631ddabd48ab88be7e2f89639, type: 2}
+  clearOverrideTextureBefore: 1
   useURPLit: 1
   overrideMaterial: {fileID: 2100000, guid: b7ba06fb4e046504388011c5db793084, type: 2}
   useSortingLayer: 0
@@ -81,10 +81,11 @@ MonoBehaviour:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
   m_RendererFeatures:
   - {fileID: -7543897825618846353}
+  - {fileID: 2251552579429973098}
   - {fileID: -3943725525851770831}
   - {fileID: 3147613855000953012}
   - {fileID: -16438006295246296}
-  m_RendererFeatureMap: 6f9d259ae5b04e9731f0f66b871245c9b4006ed51f92ae2b28caf469b899c5ff
+  m_RendererFeatureMap: 6f9d259ae5b04e976abc094a241f3f1f31f0f66b871245c9b4006ed51f92ae2b28caf469b899c5ff
   m_UseNativeRenderPass: 0
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 1, z: 0}
@@ -127,6 +128,31 @@ MonoBehaviour:
   m_DefaultLitMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_DefaultUnlitMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_DefaultMaskMaterial: {fileID: 2100000, guid: 15d0c3709176029428a0da2f8cecf0b5, type: 2}
+--- !u!114 &2251552579429973098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14425bd540fc6774981eb582b63f2aec, type: 3}
+  m_Name: Water Fill Pass
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 16
+  trigger: 450
+  overrideTexture: {fileID: 0}
+  clearOverrideTextureBefore: 0
+  useURPLit: 1
+  overrideMaterial: {fileID: 2100000, guid: b7ba06fb4e046504388011c5db793084, type: 2}
+  useSortingLayer: 0
+  sortingLayer: 
+  lightBlendMode: 0
+  overrideMaterialPassIndex: 0
 --- !u!114 &3147613855000953012
 MonoBehaviour:
   m_ObjectHideFlags: 0

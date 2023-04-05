@@ -56,7 +56,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 1
+    scalar: 0
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -284,8 +284,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     startSize:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 2
+      minMaxState: 3
+      scalar: 4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -337,7 +337,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -390,7 +390,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -866,9 +866,9 @@ ParticleSystem:
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 1
-      minScalar: 0.1
+      minMaxState: 3
+      scalar: 2
+      minScalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9785,7 +9785,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6861222548195039599
 Transform:
   m_ObjectHideFlags: 0
@@ -9824,7 +9824,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 1
+    scalar: 0
     minScalar: 0
     maxCurve:
       serializedVersion: 2
