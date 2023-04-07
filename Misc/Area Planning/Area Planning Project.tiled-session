@@ -27,8 +27,8 @@
             "scale": 3,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 128,
-                "y": 72.16666666666666
+                "x": 96,
+                "y": 84.5
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Basic Lava.tmx": {
@@ -222,6 +222,17 @@
             "viewCenter": {
                 "x": 128,
                 "y": 71.9375
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Sleep.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 4.3677734374999995,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 128.21177838393774,
+                "y": 72.00465053883649
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx": {
