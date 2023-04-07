@@ -43,11 +43,11 @@
             "expandedObjectLayers": [
                 7
             ],
-            "scale": 5.5,
-            "selectedLayer": 0,
+            "scale": 3,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 256,
-                "y": 143.9090909090909
+                "x": 163.33333333333334,
+                "y": 150.83333333333331
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoom.tmx": {
@@ -224,14 +224,22 @@
                 "y": 71.9375
             }
         },
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Sleep.tmx": {
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Pit.tmx": {
             "expandedObjectLayers": [
                 4
             ],
+            "scale": 4,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 113.5,
+                "y": 120.125
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Sleep.tmx": {
             "scale": 4.3677734374999995,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 128.21177838393774,
+                "x": 127.98282877968072,
                 "y": 72.00465053883649
             }
         },
@@ -380,10 +388,10 @@
                 4
             ],
             "scale": 4.6467,
-            "selectedLayer": 6,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 125.68059052661027,
-                "y": 135.90289883142873
+                "x": 126.5414164891213,
+                "y": 69.18888673682399
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Lava.tsx": {
