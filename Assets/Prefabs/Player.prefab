@@ -138,6 +138,9 @@ GameObject:
   - component: {fileID: 2753513693888570401}
   - component: {fileID: 2234600854425113961}
   - component: {fileID: 3431285836361713353}
+  - component: {fileID: 5643436505536328230}
+  - component: {fileID: 4903912946710276331}
+  - component: {fileID: 1575269221232313973}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -251,6 +254,33 @@ MonoBehaviour:
   _collider: {fileID: 2234600854425113962}
   _sprite: {fileID: 7530315241682780777}
   _deathManager: {fileID: 3875382336986566920}
+  OnJumpFromGround:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDoubleJump:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDiveStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5643436505536328230}
+        m_TargetAssemblyTypeName: PlayerSFX, Assembly-CSharp
+        m_MethodName: DiveStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDogo:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLand:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7904916651983550451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +305,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ac73b8be5f4a2c82f54128b3a85995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnPlayerStateChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5643436505536328230}
+        m_TargetAssemblyTypeName: PlayerSFX, Assembly-CSharp
+        m_MethodName: OnPlayerStateChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4863023254048345395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,6 +441,80 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5643436505536328230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2234600854425113967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5773066eaf6e394f9a64457cac67530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diveStartSFX: {fileID: 4903912946710276331}
+  diveLoopSFX: {fileID: 1575269221232313973}
+--- !u!114 &4903912946710276331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2234600854425113967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -185445066
+      Data2: 1295322657
+      Data3: 1856277888
+      Data4: -757250561
+    Path: event:/SFX/Dive/Diving_Start
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 0
+  TriggerOnce: 0
+  Preload: 1
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1575269221232313973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2234600854425113967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1522925564
+      Data2: 1075292042
+      Data3: -657067873
+      Data4: 1391940346
+    Path: event:/SFX/Dive/Diving_Loop
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 0
+  TriggerOnce: 0
+  Preload: 1
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &5126528605196967166
 GameObject:
   m_ObjectHideFlags: 0

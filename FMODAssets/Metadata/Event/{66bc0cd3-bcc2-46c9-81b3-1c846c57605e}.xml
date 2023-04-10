@@ -100,6 +100,9 @@
 		<property name="length">
 			<value>511.15095833333334</value>
 		</property>
+		<property name="name">
+			<value>Dandara_Temp_Title</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{05318d88-76a3-49e2-8d7a-c356cb017f8f}</destination>
 		</relationship>

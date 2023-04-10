@@ -15,7 +15,7 @@ namespace Mechanics
         {
             if (PlayerSM.UsingDrill)
             {
-                PlayerCore.Actor.Jump(hardSurfaceBounceHeight);
+                PlayerCore.Actor.Bounce(hardSurfaceBounceHeight);
                 PlayerSM.RefreshAbilities();
                 PlayerSM.Transition<PlayerStateMachine.Airborne>();
             }
@@ -25,10 +25,10 @@ namespace Mechanics
         {
             if (PlayerCore.StateMachine.UsingDrill)
             {
-                PlayerCore.Actor.Jump(bouncySurfaceDiveBounceHeight);
+                PlayerCore.Actor.Bounce(bouncySurfaceDiveBounceHeight);
             } else
             {
-                PlayerCore.Actor.Jump(bouncySurfaceNeutralBounceHeight);
+                PlayerCore.Actor.Bounce(bouncySurfaceNeutralBounceHeight);
             }
             PlayerSM.RefreshAbilities();
             PlayerSM.Transition<PlayerStateMachine.Airborne>();

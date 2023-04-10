@@ -10,7 +10,7 @@ using World;
 using MyBox;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.Events;
 using VFX;
 
 [RequireComponent(typeof(PlayerStateMachine))]
@@ -25,6 +25,13 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     private float _hitWallPrevSpeed;
 
     public int Facing => _sprite.flipX ? -1 : 1;    //-1 is facing left, 1 is facing right
+
+    [Foldout("Movement Events", true)]
+    public UnityEvent OnJumpFromGround;
+    public UnityEvent OnDoubleJump;
+    public UnityEvent OnDiveStart;
+    public UnityEvent OnDogo;
+    public UnityEvent OnLand;
 
     private void OnEnable()
     {
@@ -47,34 +54,40 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public void Land()
     {
+        OnLand?.Invoke();
         velocityY = 0;
     }
     #endregion
 
     #region Jumping
-    
+
     /// <summary>
     /// Function that bounces the player.
     /// </summary>
     /// <param name="jumpHeight"></param>
-    public void Jump(int jumpHeight) {
-        velocityY = GetJumpSpeedFromHeight(jumpHeight);
-    }
-
-    private void _mechanicBounceVelocity(Vector2 v)
+    public void Bounce(int jumpHeight)
     {
-        velocity = v;
+        velocityY = GetJumpSpeedFromHeight(jumpHeight);
     }
 
     public void DoubleJump(int jumpHeight, int moveDirection = 0)
     {
-        Jump(jumpHeight);
+        Bounce(jumpHeight);
 
         // If the player is trying to go in the opposite direction of their x velocity, instantly switch direction.
         if (moveDirection != 0 && moveDirection != Math.Sign(velocityX))
         {
             velocityX = 0;
         }
+
+        OnDoubleJump?.Invoke();
+    }
+
+    public void JumpFromGround(int jumpHeight)
+    {
+        Bounce(jumpHeight);
+
+        OnJumpFromGround?.Invoke();
     }
 
     public void JumpCut()
@@ -90,6 +103,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     public void Dive()
     {
         velocityY = PlayerCore.DiveVelocity;
+        OnDiveStart?.Invoke();
     }
 
     public void UpdateWhileDiving()
@@ -113,6 +127,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     #region Dogo
     public float Dogo() {
+        OnDogo?.Invoke();
         float v = velocityX;
         velocityX = 0;
         return v;
