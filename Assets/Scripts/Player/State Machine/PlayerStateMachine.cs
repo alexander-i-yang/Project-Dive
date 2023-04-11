@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections;
 
-using UnityEngine;
-
 using Helpers;
-using FMODUnity;
 using MyBox;
 using VFX;
+
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace Player
 {
     public partial class PlayerStateMachine : StateMachine<PlayerStateMachine, PlayerStateMachine.PlayerState, PlayerStateInput> {
         private PlayerAnimationStateManager _playerAnim;
         private SpriteRenderer _spriteR;
-        private StudioEventEmitter _drillEmitter;
         public event Action OnPlayerRespawn;
+
+        //Expose to inspector
+        public UnityEvent<PlayerStateMachine> OnPlayerStateChange;
 
         public bool UsingDrill => IsOnState<Diving>() || IsOnState<Dogoing>();
         public bool DrillingIntoGround => IsOnState<Dogoing>();
@@ -43,8 +45,20 @@ namespace Player
             };
         }
 
+        protected void OnEnable()
+        {
+            StateTransition += InvokeUnityStateChangeEvent;
+        }
 
+        protected void OnDisable()
+        {
+            StateTransition -= InvokeUnityStateChangeEvent;
+        }
 
+        private void InvokeUnityStateChangeEvent()
+        {
+            OnPlayerStateChange?.Invoke(this);
+        }
 
         protected override void Update()
         {

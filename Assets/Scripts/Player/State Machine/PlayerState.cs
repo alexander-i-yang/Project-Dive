@@ -42,9 +42,8 @@ namespace Player
                 Input.jumpedFromGround = true;
                 Input.canJumpCut = true;
                 PlayerAnim.Play(PlayerAnimations.JUMP_INIT);
-                Actor.Jump(PlayerCore.JumpHeight);
-                SetGrounded(false, true);
-                //GameTimer.Clear(Input.jumpBufferTimer);
+                Actor.JumpFromGround(PlayerCore.JumpHeight);
+                SetGrounded(false, true); 
             }
 
             protected void DoubleJump()

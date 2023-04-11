@@ -31,9 +31,6 @@
 		<relationship name="timeline">
 			<destination>{bd506cfc-7378-4f8c-a375-d54acc653991}</destination>
 		</relationship>
-		<relationship name="banks">
-			<destination>{b061f025-4dbc-49f5-8e73-9ca2cd6831de}</destination>
-		</relationship>
 	</object>
 	<object class="EventMixer" id="{22940797-cb18-4717-af5b-85cca663cc36}">
 		<relationship name="masterBus">
@@ -99,6 +96,9 @@
 	<object class="SingleSound" id="{e7856f48-8ffa-4cc6-80c8-7cdc950c9baf}">
 		<property name="length">
 			<value>511.15095833333334</value>
+		</property>
+		<property name="name">
+			<value>Dandara_Temp_Title</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{05318d88-76a3-49e2-8d7a-c356cb017f8f}</destination>

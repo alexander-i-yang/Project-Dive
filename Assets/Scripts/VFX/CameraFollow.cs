@@ -31,8 +31,7 @@ public class CameraFollow : MonoBehaviour
             }
             return;
         }
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
-
+        //transform.position = Vector3.MoveTowards(transform.position, target.position, step);
     }
     
     #if UNITY_EDITOR
