@@ -46,8 +46,8 @@
             "scale": 3,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 163.33333333333334,
-                "y": 150.5
+                "x": 256,
+                "y": 143.83333333333331
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoom.tmx": {
@@ -84,8 +84,8 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 127.98282877968072,
-                "y": 72.00465053883649
+                "x": 127.98282877968074,
+                "y": 72.00465053883647
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty End.tmx": {
@@ -239,8 +239,8 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 127.98282877968072,
-                "y": 72.23360014309351
+                "x": 127.98282877968074,
+                "y": 72.00465053883647
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx": {

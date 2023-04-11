@@ -49,13 +49,13 @@ namespace Player
 
         public void SwitchRooms(Room r)
         {
+            //Note: since CurShake doesn't get set to null from a burst shake,
+            //there may be a bug caused by diving into lava
+            //But it works just fine
             if (CurShake != null)
             {
                 if (_spawnManager.CurrentRoom != null)
                 {
-                    print(_spawnManager);
-                    print(_spawnManager.CurrentRoom);
-                    print(_spawnManager.CurrentRoom.VCam);
                     base.ScreenShakeContinuousOff(
                         _spawnManager.CurrentRoom.VCam,
                         CurShake
