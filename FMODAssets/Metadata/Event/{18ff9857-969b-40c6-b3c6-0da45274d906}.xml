@@ -2,13 +2,13 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{18ff9857-969b-40c6-b3c6-0da45274d906}">
 		<property name="name">
-			<value>snd_Dogo</value>
+			<value>Dogo</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{beb3b660-3590-45c4-85ae-2bdd67ffc341}</destination>
+			<destination>{977b3d3d-8b18-48cf-9723-ee963a6b2fa1}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{eb803460-54e8-4c38-9261-d1c40cd6258b}</destination>
@@ -50,7 +50,7 @@
 			<destination>{a6759c9f-fae3-4d3c-80ff-c90d293eb380}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{e406497b-f174-435f-84b9-42d30d272523}</destination>
+			<destination>{4f7ae1f8-3ad5-4ec8-82a0-64b9d610ede9}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{b592723e-4507-4ce2-a675-9b6c464f99a5}" />

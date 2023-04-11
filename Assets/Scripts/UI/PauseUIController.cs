@@ -52,13 +52,13 @@ public class PauseUIController : MonoBehaviour
 
     public void OnRestart()
     {
-        AudioManager.StopAllSoundAndMusic();
+        AudioManager.StopAllMusic();
         SceneManager.LoadScene(gameSceneName);
     }
 
     public void OnBackToStart()
     {
-        AudioManager.StopAllSoundAndMusic();
+        AudioManager.StopAllMusic();
         SceneManager.LoadScene(startSceneName);
     }
 

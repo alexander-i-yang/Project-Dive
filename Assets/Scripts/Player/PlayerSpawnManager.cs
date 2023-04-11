@@ -6,6 +6,7 @@ using UnityEngine;
 using Helpers;
 using World;
 using System;
+using MyBox;
 
 namespace Player
 {
@@ -18,6 +19,7 @@ namespace Player
 
         private SpriteRenderer _spriteR;
         [SerializeField] private float spawnAnimationTime = .5f;
+        [SerializeField] private float roomSizeMaxReverb;
 
         public event Action OnPlayerRespawn;
 
@@ -70,6 +72,15 @@ namespace Player
             _currentRoom = roomEntering;
             
             _currentSpawnPoint = FindClosestSpawnPoint();
+
+            //Set Global Reverb Amount for FMOD Events.
+            float roomSize = _currentRoom.GetRoomSize();
+            float clampedReverb = Mathf.Clamp01(roomSize / roomSizeMaxReverb);
+
+            FilterLogger.Log(this, $"New Room Size is {roomSize}");
+            FilterLogger.Log(this, $"Set Reverb to {clampedReverb}");
+
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("ReverbAmount", clampedReverb);
         }
 
         private IEnumerator ShaderRespawnCo() {
@@ -135,7 +146,7 @@ namespace Player
         
         public LogLevel GetLogLevel()
         {
-            return LogLevel.Warning;
+            return LogLevel.Info;
         }
     }
 }

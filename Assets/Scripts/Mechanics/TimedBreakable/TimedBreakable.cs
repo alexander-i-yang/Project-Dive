@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Mechanics {
     public class TimedBreakable : Solid {
         // public GameObject ParticlePrefab;
-        private bool _breaking = true;
+        //private bool _breaking = true;
         private GameTimer _breakingTimer;
         [AutoProperty, SerializeField] private SpriteRenderer _spriteR;
         [SerializeField] private float BreakTime = 0.16f;

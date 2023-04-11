@@ -111,6 +111,12 @@ namespace World {
             }
         }
 
+        public float GetRoomSize()
+        {
+            Vector3 dims = _roomCollider.bounds.size;
+            return dims.x * dims.y;
+        }
+
         public virtual void TransitionToThisRoom()
         {
             SetRoomGridEnabled(true);

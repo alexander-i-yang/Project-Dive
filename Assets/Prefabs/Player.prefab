@@ -333,6 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnAnimationTime: 0.5
+  roomSizeMaxReverb: 100000
 --- !u!114 &5359510742400265814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,7 +475,7 @@ MonoBehaviour:
       Data2: 1295322657
       Data3: 1856277888
       Data4: -757250561
-    Path: event:/SFX/Dive/Diving_Start
+    Path: event:/SFX/Player/Diving_Start
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -504,7 +505,7 @@ MonoBehaviour:
       Data2: 1075292042
       Data3: -657067873
       Data4: 1391940346
-    Path: event:/SFX/Dive/Diving_Loop
+    Path: event:/SFX/Player/Diving_Loop
   Event: 
   PlayEvent: 0
   StopEvent: 0

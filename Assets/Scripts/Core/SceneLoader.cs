@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : Singleton<SceneLoader>
-{
-    public delegate void SceneTransition();
-    public event SceneTransition SceneTransitionEarly;
+//public class SceneLoader : Singleton<SceneLoader>
+//{
+//    public delegate void SceneTransition();
+//    public event SceneTransition SceneTransitionEarly;
 
-    private void Awake()
-    {
-        InitializeSingleton();
-    }
+//    private void Awake()
+//    {
+//        InitializeSingleton();
+//    }
 
-    public void LoadScene(string sceneName)
-    {
+//    public void LoadScene(string sceneName)
+//    {
 
-        SceneManager.LoadScene("Area 1 Prototype");
-    }
-}
+//        SceneManager.LoadScene("Area 1 Prototype");
+//    }
+//}

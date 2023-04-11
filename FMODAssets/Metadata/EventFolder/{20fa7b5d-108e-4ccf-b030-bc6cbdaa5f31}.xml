@@ -5,7 +5,7 @@
 			<value>Refs</value>
 		</property>
 		<relationship name="folder">
-			<destination>{a06fabdd-7094-4617-9b6a-144d6afa40d1}</destination>
+			<destination>{977b3d3d-8b18-48cf-9723-ee963a6b2fa1}</destination>
 		</relationship>
 	</object>
 </objects>
