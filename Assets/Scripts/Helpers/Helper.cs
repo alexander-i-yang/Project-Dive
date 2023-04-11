@@ -170,7 +170,7 @@ namespace Helpers {
         }
         #endif
 
-        public static IEnumerator Delay(float delayTime)
+        public static IEnumerator Sleep(float delayTime)
         {
             yield return new WaitForSeconds(delayTime / Game.Instance.TimeScale);
         }

@@ -103,8 +103,14 @@ namespace Player
 
         public void OnDeath()
         {
-            _spriteR.SetAlpha(0);
+            // _spriteR.SetAlpha(0);
+            // CurrInput.diePos = diePos;
             Transition<Dead>();
+        }
+
+        public void Respawn()
+        {
+            OnPlayerRespawn?.Invoke();
         }
     }
 }

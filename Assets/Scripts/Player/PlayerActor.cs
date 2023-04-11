@@ -19,7 +19,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private PlayerStateMachine _stateMachine;
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private BoxCollider2D _collider;
     [SerializeField] private SpriteRenderer _sprite;
-    [SerializeField] private Death _deathManager;
+    [SerializeField] private DeathAnimationManager _deathManager;
 
     private bool _hitWallCoroutineRunning;
     private float _hitWallPrevSpeed;
@@ -36,13 +36,13 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     private void OnEnable()
     {
         Room.RoomTransitionEvent += OnRoomTransition;
-        _stateMachine.OnPlayerRespawn += DisableDeathParticles;
+        // _stateMachine.OnPlayerRespawn += DisableDeathParticles;
     }
 
     private void OnDisable()
     {
         Room.RoomTransitionEvent -= OnRoomTransition;
-        _stateMachine.OnPlayerRespawn -= DisableDeathParticles;
+        // _stateMachine.OnPlayerRespawn -= DisableDeathParticles;
     }
 
     #region Movement
@@ -181,9 +181,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public void Die(Vector3 diePos)
     {
-        _deathManager.transform.position = diePos;
-        _deathManager.SetParticlesActive(true);
-        _deathManager.Reset();
         velocity = Vector2.zero;
         _stateMachine.OnDeath();
         // Game.Instance.ScreenShakeManagerInstance.Screenshake(
@@ -191,12 +188,21 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         //     10,
         //     1
         //     );
+        GetComponentInChildren<PlayerAnimationStateManager>().Play(PlayerAnimations.DEATH);
         PlayerCore.MyScreenShakeActivator.ScreenShakeBurst(
             PlayerCore.MyScreenShakeActivator.DeathData
         );
     }
+
+    public void TriggerDeathParticles(Vector3 diePos)
+    {
+        _deathManager.transform.position = diePos;
+        _deathManager.SetParticlesActive(true);
+        _deathManager.Reset();
+
+    }
     
-    public void DisableDeathParticles() => _deathManager.SetParticlesActive(false);
+    // public void DisableDeathParticles() => _deathManager.SetParticlesActive(false);
 
     #region Actor Overrides
     public override bool Collidable() {

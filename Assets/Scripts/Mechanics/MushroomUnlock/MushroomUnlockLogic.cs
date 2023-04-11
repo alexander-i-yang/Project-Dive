@@ -53,7 +53,7 @@ namespace Mechanics
 
             UnlockAllMushrooms();
 
-            yield return Helper.Delay(cutsceneLengthWait);
+            yield return Helper.Sleep(cutsceneLengthWait);
             
             float curIntensity = _light.intensity;
             for (float t = 0; t < cutsceneLengthFade; t += Game.Instance.DeltaTime)
