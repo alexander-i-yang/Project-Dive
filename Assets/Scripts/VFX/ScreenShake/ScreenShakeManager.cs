@@ -12,18 +12,34 @@ namespace VFX
 
     public class ScreenShakeManager : MonoBehaviour
     {
-        public NoiseSettings myNoiseProfile;
-
-        public void Screenshake(CinemachineVirtualCamera vcam, float time, float strength)
+        private Coroutine _shakeRoutine;
+        
+        public void ScreenshakeBurst(CinemachineVirtualCamera vcam, ScreenShakeDataBurst s)
         {
             var c = vcam.GetComponentInChildren<CinemachineBasicMultiChannelPerlin>();
-            c.m_NoiseProfile = myNoiseProfile;
+            c.m_NoiseProfile = s.NoiseProfile;
 
-
-            /*Helper.DelayAction(() =>
+            if (_shakeRoutine != null)
             {
-                
-            });*/
+                StopCoroutine(_shakeRoutine);
+            }
+            
+            _shakeRoutine = StartCoroutine(Helper.DelayAction(s.Time, () =>
+            {
+                c.m_NoiseProfile = null;
+            }));
+        }
+
+        public void ScreenShakeContinuousOn(CinemachineVirtualCamera vcam, ScreenShakeDataContinuous s)
+        {
+            var c = vcam.GetComponentInChildren<CinemachineBasicMultiChannelPerlin>();
+            c.m_NoiseProfile = s.NoiseProfile;
+        }
+        
+        public void ScreenShakeContinuousOff(CinemachineVirtualCamera vcam, ScreenShakeDataContinuous s)
+        {
+            var c = vcam.GetComponentInChildren<CinemachineBasicMultiChannelPerlin>();
+            c.m_NoiseProfile = null;
         }
     }
 }

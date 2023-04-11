@@ -24,18 +24,18 @@ namespace World
 
        private void OnTriggerEnter2D(Collider2D other)
        {
-           bool isPlayer = other.gameObject == _player.gameObject;
+           /*bool isPlayer = other.gameObject == _player.gameObject;
            bool needTransition = _player.CurrentRoom != connectRoom;
            if (isPlayer && needTransition)
            {
                connectRoom.RoomSetEnable(true);
                foreach (var r in AdjacentRooms) r.RoomSetEnable(true);
-           }
+           }*/
        }
        
        private void OnTriggerExit2D(Collider2D other)
        {
-           bool isPlayer = other.gameObject == _player.gameObject;
+           /*bool isPlayer = other.gameObject == _player.gameObject;
            bool needTransition = _player.CurrentRoom != connectRoom;
            if (isPlayer && needTransition && !_player.IsTouchingRoom(connectRoom))
            {
@@ -43,7 +43,7 @@ namespace World
                foreach (var r in AdjacentRooms) {
                    r.RoomSetEnable(false);
                }
-           }
+           }*/
        }
 
        public void CalcTransitionRooms(Vector2 screenSize, LayerMask roomLayerMask)

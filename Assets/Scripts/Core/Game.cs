@@ -1,4 +1,5 @@
-﻿using CameraShake;
+﻿using System;
+using CameraShake;
 using Cinemachine;
 using UnityEngine;
 using MyBox;
@@ -32,7 +33,8 @@ namespace Core
         [SerializeField]
         PerlinShake.Params shakeParams;
 
-        [AutoProperty()] public ScreenShakeManager ScreenShakeManagerInstance;
+        [NonSerialized]
+        public ScreenShakeManager ScreenShakeManagerInstance;
         
         public Camera MainCamera
         {
@@ -58,6 +60,7 @@ namespace Core
             InitializeSingleton();
 
             _mainCamera = FindObjectOfType<Camera>();
+            ScreenShakeManagerInstance = FindObjectOfType<ScreenShakeManager>();
 
             FMODUnity.RuntimeManager.LoadBank("Master", true);
         }

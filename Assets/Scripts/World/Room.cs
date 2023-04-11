@@ -8,12 +8,14 @@ using Cinemachine;
 using Helpers;
 using Phys;
 using Player;
+using UnityEditor;
+using UnityEngine.Serialization;
 
 
 namespace World {
     public class Room : MonoBehaviour, IFilterLoggerTarget {
         private Collider2D _roomCollider;
-        private CinemachineVirtualCamera _vCam;
+        public CinemachineVirtualCamera VCam { get; private set; }
         private PlayerSpawnManager _player;
         private CinemachineBrain _cmBrain;
 
@@ -31,14 +33,16 @@ namespace World {
         public delegate void OnRoomTransition(Room roomEntering);
         public static event OnRoomTransition RoomTransitionEvent;
 
+        public Room[] AdjacentRooms;
+
         private void Awake()
         {
             _roomCollider = GetComponent<Collider2D>();
             _player = FindObjectOfType<PlayerSpawnManager>(true);
             _cmBrain = FindObjectOfType<CinemachineBrain>(true);
 
-            _vCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
-            _vCam.Follow = _player.transform;
+            VCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
+            VCam.Follow = _player.transform;
             
             FetchMechanics();
             _grid = transform.GetChild(0).gameObject;
@@ -52,10 +56,13 @@ namespace World {
 
         void Start()
         {
-            Room curRoom = _player.CurrentRoom;
             if (this == _player.CurrentRoom)
             {
-                //DONT DISABLE CURRENT ROOM
+                //Don't disable current room
+                /*foreach (var r in AdjacentRooms)
+                {
+                    r.RoomSetEnable(true);
+                }*/
             }
             else
             {
@@ -142,12 +149,12 @@ namespace World {
         private void SwitchCamera()
         {
             //L: Inefficient, but not terrible?
-            this._vCam.gameObject.SetActive(true);
+            this.VCam.gameObject.SetActive(true);
             foreach (Room room in RoomList.Rooms)
             {
                 if (room != this)
                 {
-                    room._vCam.gameObject.SetActive(false);
+                    room.VCam.gameObject.SetActive(false);
                 }
             }
         }
@@ -217,6 +224,27 @@ namespace World {
                 if (d != null && !innerDoors.Contains(d))
                 {
                     ret.Add(d);
+                }
+            }
+
+            return ret.ToArray();
+        }
+
+        public Room[] CalcAdjacentRooms(Vector2 roomAdjacencyTolerance, LayerMask roomLayerMask)
+        {
+            if (_roomCollider == null) _roomCollider = GetComponent<Collider2D>();
+            var bounds = _roomCollider.bounds;
+            Vector2 pointB = (Vector2)bounds.max + roomAdjacencyTolerance;
+            Vector2 pointA = (Vector2)bounds.min - roomAdjacencyTolerance;
+
+            var hits = Physics2D.OverlapAreaAll(pointA, pointB, roomLayerMask);
+            List<Room> ret = new();
+            foreach (var hit in hits)
+            {
+                Room r = hit.GetComponent<Room>();
+                if (r != null && r != this)
+                {
+                    ret.Add(r);
                 }
             }
 

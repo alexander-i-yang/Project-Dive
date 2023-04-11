@@ -6,6 +6,7 @@ using UnityEngine;
 using Helpers;
 using World;
 using System;
+using System.Linq;
 using Cinemachine;
 
 namespace Player
@@ -16,11 +17,14 @@ namespace Player
         private Room _prevRoom;
         private Spawn _currentSpawnPoint;
         public Room CurrentRoom => _currentRoom;
+        public CinemachineVirtualCamera CurrentVCam => _currentRoom.VCam;
 
         private SpriteRenderer _spriteR;
         [SerializeField] private float spawnAnimationTime = .5f;
 
         public event Action OnPlayerRespawn;
+
+        // public event Action OnRoomTransition;
 
         public Spawn CurrentSpawnPoint
         {
@@ -67,9 +71,29 @@ namespace Player
 
         private void OnRoomTransition(Room roomEntering)
         {
-            _currentRoom = roomEntering;
+            Room[] prevRooms = Array.Empty<Room>();
+            if (_currentRoom != null)
+            {
+                prevRooms = _currentRoom.AdjacentRooms;
+            }
             
+            _currentRoom = roomEntering;
             _currentSpawnPoint = FindClosestSpawnPoint();
+            Room[] newRooms = roomEntering.AdjacentRooms;
+
+            Room[] disableRooms = prevRooms.Except(newRooms).ToArray();
+            
+            print(newRooms.Length + " " + prevRooms.Length);
+            
+            foreach (var r in disableRooms)
+            {
+                //Idk why but except isn't working
+                if (r != _currentRoom) r.RoomSetEnable(false);
+            }
+            foreach (var r in newRooms)
+            {
+                r.RoomSetEnable(true);
+            }
         }
 
         private IEnumerator ShaderRespawnCo() {

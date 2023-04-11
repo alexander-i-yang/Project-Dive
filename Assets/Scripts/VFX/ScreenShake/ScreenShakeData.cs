@@ -1,13 +1,22 @@
 ﻿using System;
 using Cinemachine;
+using MyBox;
 using UnityEngine;
 namespace VFX
 {
-    // [CreateAssetMenu(fileName = "ScreenShakeData", menuName = "ScriptableObjects/ScreenShakeData", order = 1)]
-    [Serializable]
-    public class ScreenShakeData
+    public abstract class ScreenShakeData
     {
         public NoiseSettings NoiseProfile;
+    }
+    
+    [Serializable]
+    public class ScreenShakeDataBurst : ScreenShakeData
+    {
         public float Time;
+    }
+    
+    [Serializable]
+    public class ScreenShakeDataContinuous : ScreenShakeData
+    {
     }
 }

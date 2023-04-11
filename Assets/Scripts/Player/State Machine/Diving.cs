@@ -10,18 +10,22 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
-                //MySM._drillEmitter.SetParameter("PlayerGrounded", 0);
+                // MySM._drillEmitter.SetParameter("PlayerGrounded", 0);
                 //MySM._drillEmitter.Play();
                 PlayerAnim.Play(PlayerAnimations.DIVING);
                 Actor.Dive();
                 Input.canDive = false;
                 Input.canJumpCut = false;
                 Input.dogoDisabledSpikes = new HashSet<Spike>();
+                
+                MySM._screenshakeActivator.ScreenShakeContinuousOn(MySM._screenshakeActivator.DiveData);
             }
 
             public override void Exit(PlayerStateInput i)
             {
+                MySM._screenshakeActivator.ScreenShakeContinuousOff(MySM._screenshakeActivator.DiveData);
                 base.Exit(i);
+                
                 //MySM._drillEmitter.Stop();
             }
 

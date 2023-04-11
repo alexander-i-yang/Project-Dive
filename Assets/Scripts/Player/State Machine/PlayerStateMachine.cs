@@ -6,6 +6,7 @@ using UnityEngine;
 using Helpers;
 using FMODUnity;
 using MyBox;
+using VFX;
 
 namespace Player
 {
@@ -18,6 +19,8 @@ namespace Player
         public bool UsingDrill => IsOnState<Diving>() || IsOnState<Dogoing>();
         public bool DrillingIntoGround => IsOnState<Dogoing>();
 
+        private PlayerScreenShakeActivator _screenshakeActivator;
+
         #region Overrides
         protected override void SetInitialState() 
         {
@@ -29,6 +32,7 @@ namespace Player
         {
             _playerAnim = GetComponentInChildren<PlayerAnimationStateManager>();
             _spriteR = GetComponentInChildren<SpriteRenderer>();
+            _screenshakeActivator = GetComponent<PlayerScreenShakeActivator>();
             //_drillEmitter = GetComponentInChildren<StudioEventEmitter>();
 
             OnPlayerRespawn += () =>
