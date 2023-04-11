@@ -47,7 +47,7 @@
             "selectedLayer": 5,
             "viewCenter": {
                 "x": 163.33333333333334,
-                "y": 150.83333333333331
+                "y": 150.5
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoom.tmx": {
@@ -84,8 +84,8 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 127.98282877968074,
-                "y": 72.00465053883647
+                "x": 127.98282877968072,
+                "y": 72.00465053883649
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty End.tmx": {
@@ -228,11 +228,11 @@
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 4,
+            "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 113.5,
-                "y": 120.125
+                "x": 128,
+                "y": 96.16666666666666
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Sleep.tmx": {
@@ -240,7 +240,7 @@
             "selectedLayer": 4,
             "viewCenter": {
                 "x": 127.98282877968072,
-                "y": 72.00465053883649
+                "y": 72.23360014309351
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx": {
@@ -387,11 +387,11 @@
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 4.6467,
-            "selectedLayer": 7,
+            "scale": 5.5,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 126.5414164891213,
-                "y": 69.18888673682399
+                "x": 128,
+                "y": 71.9090909090909
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Lava.tsx": {
@@ -447,7 +447,7 @@
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Semisolid.tsx": {
             "dynamicWrapping": false,
-            "scaleInDock": 1,
+            "scaleInDock": 4,
             "scaleInEditor": 11
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Spikes.tsx": {
@@ -716,7 +716,10 @@
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Mineshaft.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx"
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Sleep.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Pit.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Joyce_Li/Joyce_room.tmx"
     ],
     "project": "Area Planning Project.tiled-project",
     "recentFiles": [
@@ -725,13 +728,13 @@
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoom.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Filler.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Joyce_Li/Joyce_room.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Pit.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Sleep.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Mineshaft.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Above Idk.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk2.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk.tmx"
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

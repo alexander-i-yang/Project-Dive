@@ -42,7 +42,6 @@ namespace World
                connectRoom.RoomSetEnable(false);
                foreach (var r in AdjacentRooms) {
                    r.RoomSetEnable(false);
-                   print(r);
                }
            }
        }

@@ -6,6 +6,7 @@ using UnityEngine;
 using Helpers;
 using World;
 using System;
+using Cinemachine;
 
 namespace Player
 {
@@ -58,7 +59,6 @@ namespace Player
             if (CurrentSpawnPoint != null)
             {
                 _currentRoom.Reset();
-                print("Reset");
                 transform.position = CurrentSpawnPoint.transform.position;
             }
 

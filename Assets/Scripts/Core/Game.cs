@@ -1,10 +1,10 @@
-﻿using System;
+﻿using CameraShake;
+using Cinemachine;
 using UnityEngine;
 using MyBox;
-
-using Audio;
-using FMODUnity;
 using Misc;
+using Player;
+using VFX;
 
 namespace Core
 {
@@ -28,6 +28,12 @@ namespace Core
         public FakeControl FakeControlsZ;
 
         private Camera _mainCamera;
+        
+        [SerializeField]
+        PerlinShake.Params shakeParams;
+
+        [AutoProperty()] public ScreenShakeManager ScreenShakeManagerInstance;
+        
         public Camera MainCamera
         {
             get
