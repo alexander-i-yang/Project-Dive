@@ -53,10 +53,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3534880987552250188}
+  - component: {fileID: 83368111843003653}
+  - component: {fileID: 9211615023286975988}
   - component: {fileID: 506556835465713977}
   - component: {fileID: 6726819217177476637}
   m_Layer: 3
-  m_Name: Bubbles
+  m_Name: PlayerHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,6 +79,40 @@ Transform:
   m_Father: {fileID: 2234600854425113956}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &83368111843003653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2166647925214451986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c6b827147dd94483f7d05267c87d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaterEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  WaterStay:
+    m_PersistentCalls:
+      m_Calls: []
+  WaterExit:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &9211615023286975988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2166647925214451986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59226418bf9c9fb47ace9a53ffbe3203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dampSpeed: 0.1
 --- !u!114 &506556835465713977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,7 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubblePrefab: {fileID: 9115098835098109800, guid: 9b6e7ff029a96a644bdedd28c12f5bff, type: 3}
-  inWater: 0
 --- !u!61 &6726819217177476637
 BoxCollider2D:
   m_ObjectHideFlags: 0

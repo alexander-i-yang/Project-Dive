@@ -146,7 +146,7 @@ namespace Player
         
         public LogLevel GetLogLevel()
         {
-            return LogLevel.Info;
+            return LogLevel.Warning;
         }
     }
 }
