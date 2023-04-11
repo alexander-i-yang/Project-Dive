@@ -7,6 +7,8 @@ using Helpers;
 using World;
 using System;
 using MyBox;
+using System.Linq;
+using Cinemachine;
 
 namespace Player
 {
@@ -16,12 +18,15 @@ namespace Player
         private Room _prevRoom;
         private Spawn _currentSpawnPoint;
         public Room CurrentRoom => _currentRoom;
+        public CinemachineVirtualCamera CurrentVCam => _currentRoom.VCam;
 
         private SpriteRenderer _spriteR;
         [SerializeField] private float spawnAnimationTime = .5f;
         [SerializeField] private float roomSizeMaxReverb;
 
         public event Action OnPlayerRespawn;
+
+        // public event Action OnRoomTransition;
 
         public Spawn CurrentSpawnPoint
         {
@@ -60,7 +65,6 @@ namespace Player
             if (CurrentSpawnPoint != null)
             {
                 _currentRoom.Reset();
-                print("Reset");
                 transform.position = CurrentSpawnPoint.transform.position;
             }
 
@@ -69,8 +73,13 @@ namespace Player
 
         private void OnRoomTransition(Room roomEntering)
         {
-            _currentRoom = roomEntering;
+            Room[] prevRooms = Array.Empty<Room>();
+            if (_currentRoom != null)
+            {
+                prevRooms = _currentRoom.AdjacentRooms;
+            }
             
+            _currentRoom = roomEntering;
             _currentSpawnPoint = FindClosestSpawnPoint();
 
             //Set Global Reverb Amount for FMOD Events.
@@ -81,6 +90,22 @@ namespace Player
             FilterLogger.Log(this, $"Set Reverb to {clampedReverb}");
 
             FMODUnity.RuntimeManager.StudioSystem.setParameterByName("ReverbAmount", clampedReverb);
+
+            Room[] newRooms = roomEntering.AdjacentRooms;
+
+            Room[] disableRooms = prevRooms.Except(newRooms).ToArray();
+            
+            print(newRooms.Length + " " + prevRooms.Length);
+            
+            foreach (var r in disableRooms)
+            {
+                //Idk why but except isn't working
+                if (r != _currentRoom) r.RoomSetEnable(false);
+            }
+            foreach (var r in newRooms)
+            {
+                r.RoomSetEnable(true);
+            }
         }
 
         private IEnumerator ShaderRespawnCo() {

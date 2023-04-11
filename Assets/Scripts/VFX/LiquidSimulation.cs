@@ -77,7 +77,7 @@ namespace VFX
 
         private void OnDestroy()
         {
-            Debug.Log("Clear material edits");
+            FilterLogger.Log(this, "Clear material edits");
             foreach(var m in SimListenerMats)
             {
                 m.SetVector("_Impulse", new Vector3(0, 0, 0));

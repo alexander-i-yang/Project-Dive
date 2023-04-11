@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-
+using Cinemachine;
 using Core;
 using Helpers;
 using Phys;
@@ -186,6 +186,14 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         _deathManager.Reset();
         velocity = Vector2.zero;
         _stateMachine.OnDeath();
+        // Game.Instance.ScreenShakeManagerInstance.Screenshake(
+        //     PlayerCore.SpawnManager.CurrentRoom.GetComponentInChildren<CinemachineVirtualCamera>(),
+        //     10,
+        //     1
+        //     );
+        PlayerCore.MyScreenShakeActivator.ScreenShakeBurst(
+            PlayerCore.MyScreenShakeActivator.DeathData
+        );
     }
     
     public void DisableDeathParticles() => _deathManager.SetParticlesActive(false);

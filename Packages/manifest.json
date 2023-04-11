@@ -2,6 +2,7 @@
   "dependencies": {
     "com.aarthificial.pixelgraphics": "https://github.com/aarthificial/pixelgraphics.git",
     "com.domybest.mybox": "https://github.com/Deadcows/MyBox.git",
+    "com.gasgiant.camera-shake": "https://github.com/gasgiant/Camera-Shake.git#upm",
     "com.unity.2d.animation": "7.0.9",
     "com.unity.2d.pixel-perfect": "5.0.3",
     "com.unity.2d.psdimporter": "6.0.6",

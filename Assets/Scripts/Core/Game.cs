@@ -1,10 +1,11 @@
 ﻿using System;
+using CameraShake;
+using Cinemachine;
 using UnityEngine;
 using MyBox;
-
-using Audio;
-using FMODUnity;
 using Misc;
+using Player;
+using VFX;
 
 namespace Core
 {
@@ -28,6 +29,13 @@ namespace Core
         public FakeControl FakeControlsZ;
 
         private Camera _mainCamera;
+        
+        [SerializeField]
+        PerlinShake.Params shakeParams;
+
+        [NonSerialized]
+        public ScreenShakeManager ScreenShakeManagerInstance;
+        
         public Camera MainCamera
         {
             get
@@ -52,6 +60,7 @@ namespace Core
             InitializeSingleton();
 
             _mainCamera = FindObjectOfType<Camera>();
+            ScreenShakeManagerInstance = FindObjectOfType<ScreenShakeManager>();
 
             FMODUnity.RuntimeManager.LoadBank("Master", true);
         }

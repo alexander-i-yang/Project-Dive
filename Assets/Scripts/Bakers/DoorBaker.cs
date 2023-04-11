@@ -24,6 +24,12 @@ namespace Bakers
                     EditorUtility.SetDirty(door);
                     #endif
                 }
+
+                Room[] adjRooms = room.CalcAdjacentRooms(DoorAdjacencyTolerance, RoomLayerMask);
+                room.AdjacentRooms = adjRooms;
+                #if UNITY_EDITOR
+                EditorUtility.SetDirty(room);
+                #endif
             }
 
             foreach (var door in FindObjectsOfType<Door>())
