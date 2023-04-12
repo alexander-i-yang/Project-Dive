@@ -13,6 +13,8 @@ namespace Mechanics {
         private Coroutine _reEnableCoroutine;
         private SpriteRenderer _mySR;
 
+        [SerializeField] private float recoilMultiplier = -1;
+
         protected new void Start()
         {
             base.Start();
@@ -90,6 +92,11 @@ namespace Mechanics {
         public bool CanReset()
         {
             return gameObject != null && gameObject.activeSelf;
+        }
+
+        public Vector2 RecoilFunc(Vector2 v)
+        {
+            return -v * recoilMultiplier;
         }
     }
 }

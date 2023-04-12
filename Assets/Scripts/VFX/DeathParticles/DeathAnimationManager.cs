@@ -28,13 +28,10 @@ namespace VFX
         private InfluencedParticleSystem _smokeParticles;
         private InfluencedParticleSystem _sparkParticles;
 
-        [SerializeField] private float smokeParticleInheritVWeight = 1f;
-        [SerializeField] private int smokeParticleCount = 15;
-        
         [SerializeField] private float deathParticleInheritVWeight = 1f;
         [SerializeField] private float deathParticlePersistTime = 1f;
         [SerializeField] private float deathParticleFadeTime = 1f;
-
+        
         [MinMaxRange(0, 200), SerializeField]
         private RangedInt velocityRange = new(100, 200);
 
@@ -59,7 +56,6 @@ namespace VFX
 
         void OnEnable()
         {
-            print("Add respawn");
             _spawnManager = GetComponentInParent<PlayerSpawnManager>();
             _spawnManager.OnPlayerRespawn += OnRespawn;
         }
@@ -101,14 +97,13 @@ namespace VFX
             }
         }
 
-        public void DeadStop()
+        private void DeadStop()
         {
             _actor.DeadStop();
         }
 
         private void OnRespawn()
         {
-            print("Play respawn");
             Play(PlayerDeathAnimations.RESPAWN);
         }
         
@@ -117,11 +112,16 @@ namespace VFX
 
         public void TriggerParticles()
         {
-            Vector3 actorV = _actor.velocity;
-            _smokeParticles.Emit(actorV);
-            _sparkParticles.Emit(actorV);
+            Vector2 appliedV = _actor.velocity;
+            _smokeParticles.Emit(appliedV);
+            _sparkParticles.Emit(appliedV);
             DeadStop();
-            Launch(actorV);
+            Launch(appliedV);
+        }
+        
+        public void DeathRecoil()
+        {
+            _actor.DeathRecoil();
         }
         
         public void Respawn()

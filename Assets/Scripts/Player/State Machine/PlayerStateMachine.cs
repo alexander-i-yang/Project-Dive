@@ -79,7 +79,7 @@ namespace Player
 
             if (PlayerCore.Input.RetryStarted())
             {
-                PlayerCore.Actor.Die(PlayerCore.Actor.transform.position);
+                PlayerCore.Actor.Die(v => v);
             }
             
             CurrInput.moveDirection = PlayerCore.Input.GetMovementInput();
@@ -108,7 +108,6 @@ namespace Player
 
         public void OnRespawn()
         {
-            print("Tran to Airborne");
             Transition<Airborne>();
         }
     }

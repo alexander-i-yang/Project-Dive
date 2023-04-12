@@ -31,6 +31,8 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     public UnityEvent OnDiveStart;
     public UnityEvent OnDogo;
     public UnityEvent OnLand;
+    
+    private Func<Vector2, Vector2> _deathRecoilFunc;
 
     private void OnEnable()
     {
@@ -178,9 +180,10 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         return _stateMachine.UsingDrill;
     }
 
-    public void Die(Vector3 diePos)
+    public void Die(Func<Vector2, Vector2> recoilFunc = null)
     {
-        // velocity = Vector2.zero;
+        if (recoilFunc == null) recoilFunc = v => v;
+        _deathRecoilFunc = recoilFunc;
         _stateMachine.OnDeath();
         // Game.Instance.ScreenShakeManagerInstance.Screenshake(
         //     PlayerCore.SpawnManager.CurrentRoom.GetComponentInChildren<CinemachineVirtualCamera>(),
@@ -191,8 +194,16 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
             PlayerCore.MyScreenShakeActivator.DeathData
         );
     }
-    
-    public void DeadStop() {velocity = Vector2.zero;}
+
+    public void DeathRecoil()
+    {
+        velocity = _deathRecoilFunc(velocity);
+    }
+
+    public void DeadStop()
+    {
+        velocity = Vector2.zero;
+    }
 
     // public void DisableDeathParticles() => _deathManager.SetParticlesActive(false);
 
@@ -235,7 +246,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         if (OnCollide(p, d))
         {
             Debug.Log("Squish " + p);
-            Die(transform.position);
+            Die();
         }
         return false;
     }

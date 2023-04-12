@@ -125,7 +125,7 @@
   <object id="15" gid="166" x="48" y="16" width="8" height="8"/>
   <object id="16" gid="166" x="56" y="16" width="8" height="8"/>
   <object id="17" gid="166" x="64" y="16" width="8" height="8"/>
-  <object id="27" gid="161" x="124" y="40" width="8" height="12"/>
+  <object id="27" gid="161" x="124" y="56" width="8" height="12"/>
   <object id="28" gid="166" x="224" y="8" width="8" height="8"/>
   <object id="29" gid="166" x="232" y="8" width="8" height="8"/>
   <object id="31" gid="166" x="216" y="80" width="8" height="8"/>

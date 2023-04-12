@@ -166,8 +166,8 @@
 </data>
  </layer>
  <objectgroup id="3" name="Mechanics">
-  <object id="100" gid="56" x="208" y="72" width="8" height="12"/>
-  <object id="154" gid="56" x="16" y="88" width="8" height="12"/>
+  <object id="100" gid="56" x="232" y="96" width="8" height="12"/>
+  <object id="154" gid="56" x="16" y="96" width="8" height="12"/>
   <object id="148" gid="59" x="80" y="32" width="8" height="8">
    <properties>
     <property name="Next" type="object" value="167"/>

@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3f8d67b200b0a49bb69ca710bc7652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredFireflies: 3
+  requiredFireflies: 8
   gateL: {fileID: 7577498518246237912}
   gateR: {fileID: 7577498517913833698}
 --- !u!61 &7577498517139833187
@@ -217,7 +217,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -163342673
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 86768500, guid: e01f22bedd7decc47b13a74a16d6b7da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -439,7 +439,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -163342673
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1935498535, guid: e01f22bedd7decc47b13a74a16d6b7da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
