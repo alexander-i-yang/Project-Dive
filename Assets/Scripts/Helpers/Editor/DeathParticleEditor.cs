@@ -13,11 +13,7 @@ namespace Helpers.Editor
             var death = target as DeathAnimationManager;
             if(GUILayout.Button("Launch"))
             {
-                death.Launch();
-            }
-            if(GUILayout.Button("Reset"))
-            {
-                death.Reset();
+                death.Launch(Vector3.zero);
             }
         }
     }

@@ -14,53 +14,81 @@ namespace VFX
         
         private Material _whiteMaterial;
 
-        [MinMaxRange(0, 1000)]
-        [SerializeField]
-        private RangedInt velocityRange = new RangedInt(100, 200);
+        private PlayerActor _actor;
+        private PlayerStateMachine _stateMachine;
+        private InfluencedParticleSystem _smokeParticles;
+        private InfluencedParticleSystem _sparkParticles;
+
+        [SerializeField] private float smokeParticleInheritVWeight = 1f;
+        [SerializeField] private int smokeParticleCount = 15;
+        
+        [SerializeField] private float deathParticleInheritVWeight = 1f;
+        [SerializeField] private float deathParticlePersistTime = 1f;
+        [SerializeField] private float deathParticleFadeTime = 1f;
+
+        [MinMaxRange(0, 200), SerializeField]
+        private RangedInt velocityRange = new(100, 200);
+
+        private DeathParticlePool _deathParticlePool;
 
         void Awake()
         {
-            // _whiteMaterial = Resources.Load("White", typeof(Material)) as Material;
             _parts = GetComponentsInChildren<DeathParticle>();
-            SetParticlesActive(false);
-            // Launch();
-            // StartCoroutine(Helper.DelayAction(3f, Reset));
+            _actor = GetComponentInParent<PlayerActor>();
+            _stateMachine = GetComponentInParent<PlayerStateMachine>();
+
+            InfluencedParticleSystem[] psystems = GetComponentsInChildren<InfluencedParticleSystem>();
+            _smokeParticles = psystems[0];
+            _sparkParticles = psystems[1];
+            
+            _deathParticlePool = FindObjectOfType<DeathParticlePool>();
+            
+            foreach (var part in _parts)
+            {
+                part.gameObject.SetActive(false);
+            }
         }
 
-        public void Launch()
+        public void Launch(Vector3 actorV)
         {
             foreach (var part in _parts)
             {
                 float angle = Random.Range(0, 360);
                 float magnitude = Random.Range(velocityRange.Min, velocityRange.Max);
                 Vector2 v = new Vector2((float)(Math.Cos(angle) * magnitude), (float)(Math.Sin(angle) * magnitude));
-                part.Launch(v);
+                
+                DeathParticle newPart = Instantiate(part.gameObject, _deathParticlePool.transform).GetComponent<DeathParticle>();
+                newPart.transform.position = part.transform.position;
+                newPart.gameObject.SetActive(true);
+                newPart.Init();
+                newPart.Launch(
+                    v + (Vector2) actorV * deathParticleInheritVWeight,
+                    deathParticlePersistTime,
+                    deathParticleFadeTime
+                );
             }
         }
 
-        public void Reset()
+        public void DeadStop()
         {
-            SetParticlesActive(true);
-            foreach (var part in _parts)
-            {
-                part.Reset();
-            }
-            Launch();
+            _actor.DeadStop();
         }
-
-        public void SetParticlesActive(bool setActive)
+        
+        //Called in Unity Animator - Do not delete
+        #region AnimatorEvents
+        public void TriggerParticles()
         {
-            foreach (var part in _parts)
-            {
-                part.gameObject.SetActive(setActive);
-            }
+            Vector3 actorV = _actor.velocity;
+            _smokeParticles.Emit(actorV);
+            _sparkParticles.Emit(actorV);
+            DeadStop();
+            Launch(actorV);
         }
-
-        public void DisableParticles() => SetParticlesActive(false);
-
+        
         public void Respawn()
         {
-            PlayerCore.StateMachine.Respawn();
+            _stateMachine.Respawn();
         }
+        #endregion
     }
 }
