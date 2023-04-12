@@ -95,8 +95,6 @@ namespace Player
 
             Room[] disableRooms = prevRooms.Except(newRooms).ToArray();
             
-            print(newRooms.Length + " " + prevRooms.Length);
-            
             foreach (var r in disableRooms)
             {
                 //Idk why but except isn't working

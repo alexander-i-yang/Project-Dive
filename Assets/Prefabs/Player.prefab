@@ -15904,10 +15904,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathData:
-    NoiseProfile: {fileID: 0}
-    Time: 0
+    NoiseProfile: {fileID: 11400000, guid: 592b1e453d46f9341a77f2075fa3f15a, type: 2}
+    Time: 0.25
   DiveData:
-    NoiseProfile: {fileID: 0}
+    NoiseProfile: {fileID: 11400000, guid: 592b1e453d46f9341a77f2075fa3f15a, type: 2}
   CurShake:
     NoiseProfile: {fileID: 0}
 --- !u!1 &5126528605196967166
