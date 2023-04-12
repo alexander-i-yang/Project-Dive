@@ -19,7 +19,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private PlayerStateMachine _stateMachine;
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private BoxCollider2D _collider;
     [SerializeField] private SpriteRenderer _sprite;
-    [SerializeField] private DeathAnimationManager _deathManager;
 
     private bool _hitWallCoroutineRunning;
     private float _hitWallPrevSpeed;
@@ -188,7 +187,6 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         //     10,
         //     1
         //     );
-        GetComponentInChildren<PlayerAnimationStateManager>().Play(PlayerAnimations.DEATH);
         PlayerCore.MyScreenShakeActivator.ScreenShakeBurst(
             PlayerCore.MyScreenShakeActivator.DeathData
         );

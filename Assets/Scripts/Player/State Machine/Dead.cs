@@ -12,6 +12,7 @@ namespace Player
             
             public override void Enter(PlayerStateInput i)
             {
+                MySM._deathAnim.Trigger();
                 /*MySM._playerAnim.StartCoroutine(Helper.DelayAction(0.1f, () =>
                 {
                     

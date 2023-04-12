@@ -84,7 +84,7 @@ namespace Phys {
             Vector2 sizeMult = colliderSize - Vector2.one;
             List<RaycastHit2D> hits = new List<RaycastHit2D>();
             ContactFilter2D filter = new ContactFilter2D();
-            filter.layerMask = LayerMask.GetMask("Interactable");
+            filter.layerMask = LayerMask.GetMask("Interactable", "Ground");
             filter.useLayerMask = true;
             Physics2D.BoxCast(transform.position, sizeMult, 0, direction, filter, hits, 8f);
 

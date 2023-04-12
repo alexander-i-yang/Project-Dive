@@ -14,7 +14,6 @@ namespace Player
         DIVING,
         DOGOING,
         SLEEPING,
-        DEATH
     }
 
     public class PlayerAnimationStateManager : AnimationStateManager<PlayerAnimations>
@@ -29,7 +28,6 @@ namespace Player
             { PlayerAnimations.LANDING, "Player_Landing" },
             { PlayerAnimations.DIVING, "Player_Diving" },
             { PlayerAnimations.DOGOING, "Player_Dogoing" },
-            { PlayerAnimations.DEATH, "Player_Death" }
         };
     }
 }

@@ -12,8 +12,9 @@ namespace Player
 {
     public partial class PlayerStateMachine : StateMachine<PlayerStateMachine, PlayerStateMachine.PlayerState, PlayerStateInput> {
         private PlayerAnimationStateManager _playerAnim;
+        private PlayerSpawnManager _spawnManager;
+        private DeathAnimationManager _deathAnim;
         private SpriteRenderer _spriteR;
-        public event Action OnPlayerRespawn;
 
         //Expose to inspector
         public UnityEvent<PlayerStateMachine> OnPlayerStateChange;
@@ -33,26 +34,23 @@ namespace Player
         protected override void Init()
         {
             _playerAnim = GetComponentInChildren<PlayerAnimationStateManager>();
+            _deathAnim = GetComponentInChildren<DeathAnimationManager>();
             _spriteR = GetComponentInChildren<SpriteRenderer>();
             _screenshakeActivator = GetComponent<PlayerScreenShakeActivator>();
             //_drillEmitter = GetComponentInChildren<StudioEventEmitter>();
-
-            OnPlayerRespawn += () =>
-            {
-                _spriteR.SetAlpha(1);
-                PlayerCore.SpawnManager.Respawn();
-                Transition<Airborne>();
-            };
         }
 
         protected void OnEnable()
         {
             StateTransition += InvokeUnityStateChangeEvent;
+            _spawnManager = GetComponentInParent<PlayerSpawnManager>();
+            _spawnManager.OnPlayerRespawn += OnRespawn;
         }
 
         protected void OnDisable()
         {
             StateTransition -= InvokeUnityStateChangeEvent;
+            _spawnManager.OnPlayerRespawn -= OnRespawn;
         }
 
         private void InvokeUnityStateChangeEvent()
@@ -108,9 +106,10 @@ namespace Player
             Transition<Dead>();
         }
 
-        public void Respawn()
+        public void OnRespawn()
         {
-            OnPlayerRespawn?.Invoke();
+            print("Tran to Airborne");
+            Transition<Airborne>();
         }
     }
 }

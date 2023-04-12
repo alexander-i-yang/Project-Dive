@@ -341,6 +341,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434e61e0ae554e2a8f613283ad60c3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animation:
+    _stateName: Not Assigned
+    _assigned: 0
+    _linkedAnimator: {fileID: 0}
+  smokeParticleInheritVWeight: 1
+  smokeParticleCount: 15
+  deathParticleInheritVWeight: 1
+  deathParticlePersistTime: 1
+  deathParticleFadeTime: 1
   velocityRange:
     Min: 100
     Max: 143

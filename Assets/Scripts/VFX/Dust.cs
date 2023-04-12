@@ -7,6 +7,7 @@ using UnityEngine;
 public class Dust : MonoBehaviour
 {
     [SerializeField] private float emissAirDuration;
+    private PlayerSpawnManager _spawnManager;
 
     private ParticleSystem dust;
     private ParticleSystem.EmissionModule emiss;
@@ -24,15 +25,16 @@ public class Dust : MonoBehaviour
         GameTimer.Pause(emissToggleTimer);
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        PlayerCore.StateMachine.OnPlayerRespawn += TurnEmissionOff;
+        _spawnManager = GetComponentInParent<PlayerSpawnManager>();
+        _spawnManager.OnPlayerRespawn += TurnEmissionOff;
         emissToggleTimer.OnFinished += TurnEmissionOff;
     }
 
     private void OnDisable()
     {
-        PlayerCore.StateMachine.OnPlayerRespawn -= TurnEmissionOff;
+        PlayerCore.SpawnManager.OnPlayerRespawn -= TurnEmissionOff;
         emissToggleTimer.OnFinished -= TurnEmissionOff;
     }
 

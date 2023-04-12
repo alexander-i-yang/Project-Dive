@@ -159,7 +159,7 @@ namespace TiledUtil {
             confiner.m_BoundingShape2D = boundingShape;
         }
 
-        private Tuple<GameObject, Vector2[]> ImportTileToPrefab(GameObject g, int index, String prefabName) {
+        private (GameObject gameObject, Vector2[] collisionPts) ImportTileToPrefab(GameObject g, int index, String prefabName) {
             GameObject replacer = _prefabReplacements[prefabName];
             Vector2[] points = LIL.EdgeToPoints(g);
 
@@ -181,7 +181,7 @@ namespace TiledUtil {
             
             //Set Layer (kinda hacky I know)
             LIL.SetLayer(g, "Interactable");
-            return new Tuple<GameObject, Vector2[]>(g, points);
+            return (g, points);
         }
 
         private GameObject AddWaterfalCollision(GameObject g, Vector2[] points)
@@ -194,7 +194,8 @@ namespace TiledUtil {
 
         private void ImportGround(GameObject g, int index) {
             var ret = ImportTileToPrefab(g, index, "Ground");
-            AddWaterfalCollision(ret.Item1, ret.Item2);
+            AddWaterfalCollision(ret.gameObject, ret.collisionPts);
+            LIL.SetLayer(ret.gameObject, "Ground");
         }
         
         private void ImportSemisolid(GameObject g, int index) {
@@ -203,8 +204,8 @@ namespace TiledUtil {
 
         private void ImportBreakable(GameObject g, int index) {
             var data = ImportTileToPrefab(g, index, "Breakable");
-            g = data.Item1;
-            Vector2[] colliderPoints = data.Item2;
+            g = data.gameObject;
+            Vector2[] colliderPoints = data.collisionPts;
             Vector2[] spritePoints = LIL.ColliderPointsToRectanglePoints(g, colliderPoints); 
             
             Vector2 avgSpritePoint = spritePoints.ComputeAverage();
@@ -238,7 +239,7 @@ namespace TiledUtil {
         private void ImportDoors(GameObject g, int index)
         {
             var ret = ImportTileToPrefab(g, index, "Door");
-            LIL.SetLayer(ret.Item1, "Default");
+            LIL.SetLayer(ret.gameObject, "Default");
         }
 
         private void ImportLavaTilemap(GameObject g)

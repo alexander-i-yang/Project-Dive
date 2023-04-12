@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Helpers;
+using Helpers.Animation;
 using MyBox;
 using Player;
 using UnityEngine;
@@ -8,14 +10,21 @@ using Random = UnityEngine.Random;
 
 namespace VFX
 {
-    public class DeathAnimationManager : MonoBehaviour
+    public enum PlayerDeathAnimations
     {
-        private DeathParticle[] _parts;
+        EMPTY,
+        ACTIVE,
+        RESPAWN
+    }
+    
+    public class DeathAnimationManager : AnimationStateManager<PlayerDeathAnimations>
+    {
+        private DeathParticle[] _originalParticles;
         
         private Material _whiteMaterial;
 
         private PlayerActor _actor;
-        private PlayerStateMachine _stateMachine;
+        private PlayerSpawnManager _spawnManager;
         private InfluencedParticleSystem _smokeParticles;
         private InfluencedParticleSystem _sparkParticles;
 
@@ -33,9 +42,8 @@ namespace VFX
 
         void Awake()
         {
-            _parts = GetComponentsInChildren<DeathParticle>();
+            _originalParticles = GetComponentsInChildren<DeathParticle>();
             _actor = GetComponentInParent<PlayerActor>();
-            _stateMachine = GetComponentInParent<PlayerStateMachine>();
 
             InfluencedParticleSystem[] psystems = GetComponentsInChildren<InfluencedParticleSystem>();
             _smokeParticles = psystems[0];
@@ -43,15 +51,39 @@ namespace VFX
             
             _deathParticlePool = FindObjectOfType<DeathParticlePool>();
             
-            foreach (var part in _parts)
+            foreach (var part in _originalParticles)
             {
                 part.gameObject.SetActive(false);
             }
         }
 
+        void OnEnable()
+        {
+            print("Add respawn");
+            _spawnManager = GetComponentInParent<PlayerSpawnManager>();
+            _spawnManager.OnPlayerRespawn += OnRespawn;
+        }
+        
+        void OnDisable()
+        {
+            _spawnManager.OnPlayerRespawn -= OnRespawn;
+        }
+        
+        public override Dictionary<PlayerDeathAnimations, string> Animations => new()
+        {
+            { PlayerDeathAnimations.EMPTY, "Player_Death_Empty"},
+            { PlayerDeathAnimations.ACTIVE, "Player_Death_Active"},
+            { PlayerDeathAnimations.RESPAWN, "Player_Respawn" },
+        };
+        
+        public void Trigger()
+        {
+            Play(PlayerDeathAnimations.ACTIVE);
+        }
+
         public void Launch(Vector3 actorV)
         {
-            foreach (var part in _parts)
+            foreach (var part in _originalParticles)
             {
                 float angle = Random.Range(0, 360);
                 float magnitude = Random.Range(velocityRange.Min, velocityRange.Max);
@@ -73,9 +105,16 @@ namespace VFX
         {
             _actor.DeadStop();
         }
+
+        private void OnRespawn()
+        {
+            print("Play respawn");
+            Play(PlayerDeathAnimations.RESPAWN);
+        }
         
         //Called in Unity Animator - Do not delete
         #region AnimatorEvents
+
         public void TriggerParticles()
         {
             Vector3 actorV = _actor.velocity;
@@ -87,7 +126,8 @@ namespace VFX
         
         public void Respawn()
         {
-            _stateMachine.Respawn();
+            // _spawnManager.OnPlayerRespawn += OnRespawn;
+            _spawnManager.Respawn();
         }
         #endregion
     }

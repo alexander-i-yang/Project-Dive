@@ -9,6 +9,7 @@ using System;
 using MyBox;
 using System.Linq;
 using Cinemachine;
+using UnityEditor;
 
 namespace Player
 {
@@ -36,15 +37,14 @@ namespace Player
                 {
                     _currentSpawnPoint = FindClosestSpawnPoint();
                 }
+
                 return _currentSpawnPoint;
             }
-            set
-            {
-                _currentSpawnPoint = value;
-            }
+            set { _currentSpawnPoint = value; }
         }
 
-        void Start() {
+        void Start()
+        {
             _spriteR = GetComponentInChildren<SpriteRenderer>();
         }
 
@@ -67,7 +67,7 @@ namespace Player
                 _currentRoom.Reset();
                 transform.position = CurrentSpawnPoint.transform.position;
             }
-
+            
             OnPlayerRespawn?.Invoke();
         }
 
@@ -78,7 +78,7 @@ namespace Player
             {
                 prevRooms = _currentRoom.AdjacentRooms;
             }
-            
+
             _currentRoom = roomEntering;
             _currentSpawnPoint = FindClosestSpawnPoint();
 
@@ -94,31 +94,36 @@ namespace Player
             Room[] newRooms = roomEntering.AdjacentRooms;
 
             Room[] disableRooms = prevRooms.Except(newRooms).ToArray();
-            
+
             foreach (var r in disableRooms)
             {
                 //Idk why but except isn't working
                 if (r != _currentRoom) r.RoomSetEnable(false);
             }
+
             foreach (var r in newRooms)
             {
                 r.RoomSetEnable(true);
             }
         }
 
-        private IEnumerator ShaderRespawnCo() {
+        private IEnumerator ShaderRespawnCo()
+        {
+            _spriteR.material = new Material(_spriteR.material);
             _spriteR.material.SetFloat("_Progress", 0);
             float timer = 0;
-            while (timer < spawnAnimationTime) {
+            while (timer < spawnAnimationTime)
+            {
                 timer += Time.deltaTime;
-                _spriteR.material.SetFloat("_Progress", timer/spawnAnimationTime);
+                _spriteR.material.SetFloat("_Progress", timer / spawnAnimationTime);
                 yield return null;
             }
+
             _spriteR.material.SetFloat("_Progress", 2);
         }
 
         public void ShaderRespawn() {
-            StartCoroutine(ShaderRespawnCo());
+            // StartCoroutine(ShaderRespawnCo());
         }
 
         private Spawn FindClosestSpawnPoint()
