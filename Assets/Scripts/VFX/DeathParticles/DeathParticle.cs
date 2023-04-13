@@ -18,9 +18,10 @@ namespace VFX
             _mySR = GetComponent<SpriteRenderer>();
         }
 
-        public void Launch(Vector2 v, float persistTime, float fadeTime)
+        public void Launch(Vector2 v, float rotationV, float persistTime, float fadeTime)
         {
             _myRB.AddForce(v, ForceMode2D.Impulse);
+            _myRB.AddTorque(rotationV, ForceMode2D.Impulse);
             StartCoroutine(FadeCoroutine(persistTime, fadeTime));
         }
 

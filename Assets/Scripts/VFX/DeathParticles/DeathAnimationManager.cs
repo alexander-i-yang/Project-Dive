@@ -34,6 +34,9 @@ namespace VFX
         
         [MinMaxRange(0, 200), SerializeField]
         private RangedInt velocityRange = new(100, 200);
+        
+        [MinMaxRange(0, 500), SerializeField]
+        private RangedInt rotationVRange = new(10, 50);
 
         private DeathParticlePool _deathParticlePool;
 
@@ -84,13 +87,18 @@ namespace VFX
                 float angle = Random.Range(0, 360);
                 float magnitude = Random.Range(velocityRange.Min, velocityRange.Max);
                 Vector2 v = new Vector2((float)(Math.Cos(angle) * magnitude), (float)(Math.Sin(angle) * magnitude));
-                
+
+                float rotationalV = Random.Range(rotationVRange.Min, rotationVRange.Max);
+                if (Random.value > 0.5) rotationalV *= -1;
+                print(rotationalV);
+
                 DeathParticle newPart = Instantiate(part.gameObject, _deathParticlePool.transform).GetComponent<DeathParticle>();
                 newPart.transform.position = part.transform.position;
                 newPart.gameObject.SetActive(true);
                 newPart.Init();
                 newPart.Launch(
                     v + (Vector2) actorV * deathParticleInheritVWeight,
+                    rotationalV,
                     deathParticlePersistTime,
                     deathParticleFadeTime
                 );

@@ -11316,6 +11316,9 @@ MonoBehaviour:
   velocityRange:
     Min: 40
     Max: 60
+  rotationVRange:
+    Min: 104
+    Max: 282
 --- !u!1 &6768050204460689540
 GameObject:
   m_ObjectHideFlags: 0

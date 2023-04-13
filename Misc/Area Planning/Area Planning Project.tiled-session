@@ -4,7 +4,7 @@
         "width": 2
     },
     "activeFile": "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx",
-    "automapping.whileDrawing": true,
+    "automapping.whileDrawing": false,
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -28,11 +28,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 4,
+            "scale": 5.5,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 122.5,
-                "y": 70.875
+                "x": 154.36363636363637,
+                "y": 96.63636363636365
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Basic Lava.tmx": {
@@ -47,12 +47,15 @@
             "expandedObjectLayers": [
                 7
             ],
-            "scale": 3,
+            "scale": 5.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 256,
-                "y": 143.5
+                "x": 297.4545454545455,
+                "y": 279.54545454545456
             }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Bricks.tsx": {
+            "dynamicWrapping": false
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/CircleRoom.tmx": {
             "expandedObjectLayers": [
@@ -153,11 +156,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 3,
-            "selectedLayer": 4,
+            "scale": 5.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 128,
-                "y": 72.16666666666666
+                "x": 138,
+                "y": 78.81818181818181
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Get out.tmx": {
@@ -448,7 +451,8 @@
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Mechanics.tsx": {
             "dynamicWrapping": true,
-            "scaleInDock": 2.521
+            "scaleInDock": 2.521,
+            "scaleInEditor": 3
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Nicky_Turk/InTheBeginningThereWasNothing.tmx": {
             "scale": 4.3677734374999995,
@@ -472,6 +476,9 @@
             "dynamicWrapping": false,
             "scaleInDock": 5.5
         },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Stalagtite.tsx": {
+            "dynamicWrapping": false
+        },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Static Decorations.tsx": {
             "dynamicWrapping": true,
             "scaleInDock": 3,
@@ -485,7 +492,7 @@
             "scale": 5.5,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 103.0909090909091,
+                "x": 102.72727272727272,
                 "y": 10.63636363636364
             }
         },
@@ -501,7 +508,7 @@
             "scale": 4,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 128,
+                "x": 127.5,
                 "y": 72.125
             }
         },
@@ -728,7 +735,7 @@
             }
         }
     },
-    "last.imagePath": "C:/Users/uncle/Unity/Dive/Assets/Sprites/Decor/Static",
+    "last.imagePath": "C:/Users/uncle/Unity/Dive/Assets/Tiles",
     "map.height": 18,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 8,
@@ -748,18 +755,18 @@
     ],
     "project": "Area Planning Project.tiled-project",
     "recentFiles": [
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jonathan_Russell/Jonathan_TheRoom.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Mechanics.tsx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/automapToDecorBack.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Static Decorations.tsx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Gate 2.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Firefly Intro.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/automapDecorBack.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/automapGlowingMushroom.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jonathan_Russell/Jonathan_TheRoom.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Gate 2.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Static Decorations.tsx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/automapToDecorBack.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Above Idk.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk2.tmx"
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Above Idk.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
