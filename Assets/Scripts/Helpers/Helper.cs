@@ -44,6 +44,16 @@ namespace Helpers {
             Gizmos.DrawRay(pos + direction / 2, left * arrowHeadLength);
         }
 
+        public static void DrawPolygon(Vector2[] pts, Vector2 center)
+        {
+            for(int i = 0; i < pts.Length-1; i++)
+            {
+                Vector2 p0 = new Vector3(pts[i].x + center.x, pts[i].y + center.y);
+                Vector2 p1 = new Vector3(pts[i + 1].x + center.x, pts[i + 1].y + center.y);
+                Gizmos.DrawLine(p0, p1);
+            }
+        }
+
         public static String DictToString<Key, Val>(Dictionary<Key, Val> d)
         {
             return "{" + string.Join(",", d.Select(kv => kv.Key + "=" + kv.Value).ToArray()) + "}";
