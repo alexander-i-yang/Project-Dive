@@ -20,6 +20,7 @@ namespace Bakers
         [SerializeField] private TileBase fillTile;
         [SerializeField] private Vector2Int topLeftCorner;
         [SerializeField] private Vector2Int bottomRightCorner;
+        [SerializeField] private bool floodFill = true;
 
         // [SerializeField] private Room r0;
         // [SerializeField] private Room r1;
@@ -34,6 +35,7 @@ namespace Bakers
 
         public void ClearTiles()
         {
+            SetFillMap();
             fillMap.ClearAllTiles();
         }
 
@@ -51,9 +53,16 @@ namespace Bakers
         public void CalculatePoints()
         {
             Room[] rooms = FindObjectsOfType<Room>();
-            Paths64 ret = null;
+            Paths64 ret = new Paths64();
+            var initPaths = PointsToPath(
+                rooms[0].GetComponent<PolygonCollider2D>().points,
+                rooms[0].transform.position
+            );
+            ret.Add(Clipper.MakePath(initPaths));
+
             foreach (var room in rooms)
             {
+                print(room);
                 var roomPts = room.GetComponent<PolygonCollider2D>().points;
                 ret = CombinePoints(ret, PointsToPath(roomPts, room.transform.position));
             }
@@ -64,6 +73,7 @@ namespace Bakers
 
         public void SetTiles()
         {
+            SetFillMap();
             ClearTiles();
             var col = GetComponent<EdgeCollider2D>();
             if (col == null)
@@ -87,7 +97,18 @@ namespace Bakers
             }
 
             SetTileSquare(topLeftCorner, bottomRightCorner);
-            fillMap.FloodFill((Vector3Int)(topLeftCorner + new Vector2Int(2, -2)), fillTile);
+            if (floodFill) fillMap.FloodFill((Vector3Int)(topLeftCorner + new Vector2Int(2, -2)), fillTile);
+        }
+
+        public void SetFillMap()
+        {
+            var f = FindObjectOfType<FillTilemap>();
+            if (f == null)
+            {
+                throw new Exception("Must have a fill map present. Add one by creating a tilemap with the FillTilemap component");
+            }
+
+            fillMap = f.GetComponent<Tilemap>();
         }
 
         private void SetTileSquare(Vector2Int corner0, Vector2Int corner2)
@@ -127,14 +148,12 @@ namespace Bakers
             }
 
             Vector2Int direction = new Vector2Int(Math.Sign(diff.x), Math.Sign(diff.y));
-            print(p0 + " " + p1 + " " + direction);
             for (int i = 0; i < len; ++i)
             {
                 var add = p0 + direction * i;
                 tilePts.Add(new Vector3Int(add.x, add.y));
                 tiles.Add(fillTile);
             }
-            print(tilePts.ToArray().ToString());
 
             return (tilePts: tilePts.ToArray(), tileObjs: tiles.ToArray());
         }
@@ -151,9 +170,7 @@ namespace Bakers
 
         private Paths64 CombinePoints(Paths64 subj, int[] p1)
         {
-            // Paths64 subj = new Paths64();
             Paths64 clip = new Paths64();
-            // subj.Add(Clipper.MakePath(p0));
             clip.Add(Clipper.MakePath(p1));
             return Clipper.Union(subj, clip, FillRule.NonZero);
         }

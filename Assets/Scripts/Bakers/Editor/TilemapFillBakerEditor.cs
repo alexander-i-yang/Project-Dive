@@ -14,6 +14,10 @@ namespace Bakers.Editor
             {
                 s.SetTile();
             }
+            if(GUILayout.Button("Set Fill Map"))
+            {
+                s.SetFillMap();
+            }
             if(GUILayout.Button("Clear Tiles"))
             {
                 s.ClearTiles();

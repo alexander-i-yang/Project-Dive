@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6227624701414545520}
   - component: {fileID: 1371642879446862535}
   - component: {fileID: 5334829592456576757}
+  - component: {fileID: 6994732361447014047}
   m_Layer: 0
   m_Name: Baker
   m_TagString: Untagged
@@ -91,3 +92,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f63fe8448722414eb88b573eff6c280d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6994732361447014047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142342418826405552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4cf581388514c3998a562a6efc631b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fillMap: {fileID: 0}
+  fillTileRef: {fileID: 0}
+  fillTilePosRef: {x: -224, y: 40, z: 0}
+  fillTile: {fileID: 5149249597816793638, guid: 4c2fd74b3836d004787ec0a87b667bf5, type: 3}
+  topLeftCorner: {x: -50, y: 50}
+  bottomRightCorner: {x: 300, y: -150}
