@@ -21,6 +21,7 @@ namespace Bakers
         [SerializeField] private Vector2Int topLeftCorner;
         [SerializeField] private Vector2Int bottomRightCorner;
         [SerializeField] private bool floodFill = true;
+        [SerializeField] private Vector2 offset;
 
         // [SerializeField] private Room r0;
         // [SerializeField] private Room r1;
@@ -191,7 +192,7 @@ namespace Bakers
             List<Vector2> ret = new();
             foreach (Point64 i in p)
             {
-                ret.Add(new Vector2(i.X, i.Y-8));
+                ret.Add(new Vector2(i.X, i.Y)+offset);
             }
             return ret.ToArray();
         }

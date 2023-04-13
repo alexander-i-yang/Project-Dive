@@ -274,9 +274,9 @@
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Cave Intro.tmx": {
             "scale": 4.3677734374999995,
-            "selectedLayer": 1,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 126.03675714349596,
+                "x": 126.15123194562447,
                 "y": 69.94410410052319
             }
         },
@@ -423,7 +423,7 @@
             "scale": 2,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 636.5,
+                "x": 380,
                 "y": 101.75
             }
         },
