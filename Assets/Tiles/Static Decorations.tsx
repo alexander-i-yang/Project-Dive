@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.9" tiledversion="1.9.2" name="Static Decorations" tilewidth="32" tileheight="32" tilecount="38" columns="0">
+<tileset version="1.9" tiledversion="1.9.2" name="Static Decorations" tilewidth="16" tileheight="19" tilecount="40" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="21">
   <image width="8" height="8" source="../Sprites/Decor/Static/decor placeholder dirt corner left.png"/>
@@ -114,5 +114,14 @@
  </tile>
  <tile id="54">
   <image width="8" height="8" source="../Sprites/Decor/Static/muskaan_grass.png"/>
+ </tile>
+ <tile id="56" class="Glowing Mushroom">
+  <image width="8" height="8" source="../Sprites/Decor/Static/Glowing Mushroom.png"/>
+  <objectgroup draworder="index" id="3">
+   <object id="3" class="Glowing Mushroom" x="0" y="0" width="1" height="1"/>
+  </objectgroup>
+ </tile>
+ <tile id="58">
+  <image width="8" height="8" source="../Sprites/Decor/Static/Glowing Mushroom Placeholder.png"/>
  </tile>
 </tileset>

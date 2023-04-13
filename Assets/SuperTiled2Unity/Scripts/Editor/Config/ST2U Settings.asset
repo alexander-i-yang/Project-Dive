@@ -93,3 +93,5 @@ MonoBehaviour:
     m_Prefab: {fileID: 808481085618889319, guid: 5e007052310023a4498e6534424e8f96, type: 3}
   - m_TypeName: Door
     m_Prefab: {fileID: 4759459005841952986, guid: 350421599cf695a4c876fca52f65c288, type: 3}
+  - m_TypeName: Glowing Mushroom
+    m_Prefab: {fileID: 1809376595774978973, guid: bf117932651268546a1ad683abe85ea3, type: 3}

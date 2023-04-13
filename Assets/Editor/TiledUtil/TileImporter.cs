@@ -20,6 +20,7 @@ using UnityEngine.Tilemaps;
 using World;
 using Vector2 = UnityEngine.Vector2;
 using LIL = TiledUtil.LayerImportLibrary;
+using Random = System.Random;
 
 namespace TiledUtil {
 
@@ -53,6 +54,7 @@ namespace TiledUtil {
                 { "Water", ImportWaterTilemap },
                 { "Dirt", ImportGroundTilemap },
                 { "DecorBack", ImportDecorBackTilemap },
+                { "GlowingMushrooms", ImportGlowingMushroomTilemap },
                 { "Spikes", ImportSpikesTilemap },
                 { "Branches", ImportBranchesTilemap },
                 { "Doors", ImportDoorsTilemap },
@@ -65,6 +67,7 @@ namespace TiledUtil {
                 { "Semisolid", ImportSemisolid },
                 { "Dirt", ImportGround },
                 { "Breakable", ImportBreakable },
+                { "GlowingMushrooms", ImportGlowingMushroom },
                 { "Lava", ImportLava },
                 { "Water", ImportWater },
                 { "Doors", ImportDoors },
@@ -198,6 +201,13 @@ namespace TiledUtil {
             LIL.SetLayer(ret.gameObject, "Ground");
         }
         
+        private void ImportGlowingMushroom(GameObject g, int index)
+        {
+            var ret = ImportTileToPrefab(g, index, "Glowing Mushroom");
+            ret.gameObject.transform.position = ret.collisionPts[2] + new Vector2(4, -12);
+            ret.gameObject.transform.localScale = new Vector3(Mathf.Round(UnityEngine.Random.value)*2-1, 1, 1);
+        }
+        
         private void ImportSemisolid(GameObject g, int index) {
             var ret = ImportTileToPrefab(g, index, "Semisolid");
         }
@@ -273,6 +283,11 @@ namespace TiledUtil {
         private void ImportDecorBackTilemap(GameObject g)
         {
             g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Bg");
+        }
+
+        private void ImportGlowingMushroomTilemap(GameObject g)
+        {
+            g.GetRequiredComponent<TilemapRenderer>().enabled = false;
         }
         
         private void ImportGroundTilemap(GameObject g)
