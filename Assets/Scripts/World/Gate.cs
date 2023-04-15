@@ -5,6 +5,8 @@ using UnityEngine;
 using MyBox;
 
 using Core;
+using Helpers;
+using VFX;
 
 namespace Mechanics
 {
@@ -15,21 +17,40 @@ namespace Mechanics
         [SerializeField] private GateAnimator gateL;
         [SerializeField] private GateAnimator gateR;
 
+        [SerializeField] private FadeLightAnimator[] otherLights;
+
+        [SerializeField] private float delayTime = 1f;
+
+        private Coroutine _openRoutine;
+        
+        // private Animator _animator;
+
 
         public bool Opened { get; private set; }
 
-        public void OnRequirementMet()
+        public void OnRequirementMet(PlayerActor p)
         {
-            //This seems stupid, but there's gonna be more complicated stuff later.
             Open();
+            GetComponent<Animator>().Play("Gate_Open");
+            p.FloorDisappear();
         }
 
         public void Open()
         {
-            gateL.PlayAnimation(OnFinishOpen);
-            gateR.PlayAnimation();
+            gateL.gameObject.SetActive(false);
+            gateR.gameObject.SetActive(false);
             Opened = true;
-            Debug.Log("Gate Opened");
+            GetComponentInChildren<ParticleSystem>().gameObject.SetActive(false);
+            GetComponentInChildren<FadeLightAnimator>().Fade();
+            foreach (var f in otherLights) f.Fade();
+        }
+
+        public void Reset()
+        {
+            gateL.gameObject.SetActive(true);
+            gateR.gameObject.SetActive(true);
+            GetComponent<Animator>().Play("Gate_None");
+            Opened = false;
         }
 
         public void OnFinishOpen()
@@ -45,10 +66,13 @@ namespace Mechanics
                 if (inventory != null)
                 {
                     int numFireflies = inventory.NumCollectibles("Firefly");
-
                     if (numFireflies >= requiredFireflies)
                     {
-                        OnRequirementMet();
+                        PlayerActor p = other.GetComponent<PlayerActor>();
+                        if (p != null && _openRoutine == null)
+                        {
+                            _openRoutine = StartCoroutine(Helper.DelayAction(delayTime, () => OnRequirementMet(p)));
+                        }
                     }
                 }
             }

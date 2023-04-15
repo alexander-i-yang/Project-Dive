@@ -255,6 +255,15 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     public void BonkHead() {
         velocityY = Math.Min(10, velocityY);
     }
+    
+    public void FloorDisappear()
+    {
+        if (IsDogoing())
+        {
+            velocity = Vector2.zero;
+            _stateMachine.Transition<PlayerStateMachine.Airborne>();    
+        }
+    }
 
     private void HitWall(int direction) {
         if (!_hitWallCoroutineRunning) {

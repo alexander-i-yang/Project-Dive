@@ -21,7 +21,8 @@ namespace Bakers
         [SerializeField] private Vector2Int topLeftCorner;
         [SerializeField] private Vector2Int bottomRightCorner;
         [SerializeField] private bool floodFill = true;
-        [SerializeField] private Vector2 offset;
+        [SerializeField] private Vector2 pointsOffset;
+        [SerializeField] private Vector2Int pointsMargin;
 
         // [SerializeField] private Room r0;
         // [SerializeField] private Room r1;
@@ -67,7 +68,10 @@ namespace Bakers
                 var roomPts = room.GetComponent<PolygonCollider2D>().points;
                 ret = CombinePoints(ret, PointsToPath(roomPts, room.transform.position));
             }
-            
+
+            Paths64 translatedPath = Clipper.TranslatePaths(ret, pointsMargin.x, pointsMargin.y);
+            ret = Clipper.Union(ret, translatedPath, FillRule.NonZero);
+
             var col = gameObject.GetOrAddComponent<EdgeCollider2D>();
             col.points = PathToPoints(ret[0]);
         }
@@ -192,7 +196,7 @@ namespace Bakers
             List<Vector2> ret = new();
             foreach (Point64 i in p)
             {
-                ret.Add(new Vector2(i.X, i.Y)+offset);
+                ret.Add(new Vector2(i.X, i.Y) + pointsOffset);
             }
             return ret.ToArray();
         }

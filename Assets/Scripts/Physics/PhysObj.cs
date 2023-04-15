@@ -170,7 +170,7 @@ namespace Phys {
         }
         
         private void OnDrawGizmosSelected() {
-            Vector2 direction = velocity == Vector2.zero ? Vector2.up : velocity.normalized;
+            Vector2 direction = velocity == Vector2.zero ? Vector2.up: velocity.normalized;
             var col = GetComponent<BoxCollider2D>();
             if (col == null) return;
             Vector2 colliderSize = col.size;
