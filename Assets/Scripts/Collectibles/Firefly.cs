@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 
 using Helpers;
 using UnityEditor;
+using UnityEngine.Rendering.Universal;
 using World;
 
 namespace Collectibles {
@@ -14,7 +16,10 @@ namespace Collectibles {
         private FireflyAnimator _animator;
         private FireflyAnimatorEnd _animatorEnd;
 
+        private ParticleSystem[] _particleSystems;
+
         private bool _moving = false;
+        private bool _collected = false;
         [SerializeField] private float graceTouchMultipier;
 
         public override string ID => "Firefly";
@@ -34,8 +39,10 @@ namespace Collectibles {
 
         private void OnEnable()
         {
+            if (_collected) gameObject.SetActive(false);
             _animator = GetComponent<FireflyAnimator>();
             _animatorEnd = GetComponent<FireflyAnimatorEnd>();
+            _particleSystems = GetComponentsInChildren<ParticleSystem>();
         }
 
         public List<Vector2> ReadCoords()
@@ -63,6 +70,7 @@ namespace Collectibles {
                 {
                     _animator.EndPos = _coords[_coordInd];
                     _animator.PlayAnimation(OnTouchAnimFinish);
+                    // _particleSystem.emission.rateOverTime = ;
                     /*StartCoroutine(Helper.DelayAction(
                         _animator.GetAnimSpeed() * graceTouchMultipier, 
                         () =>
@@ -98,7 +106,22 @@ namespace Collectibles {
         {
             collector.OnCollectFinished(this);
             _moving = false;
-            gameObject.SetActive(false);
+            Disable();
+            _collected = true;
+        }
+
+        private void Disable()
+        {
+            GetComponentInChildren<SpriteRenderer>().enabled = false;
+            GetComponentInChildren<Light2D>().gameObject.SetActive(false);
+            GetComponentInChildren<Collider2D>().enabled = false;
+            GetComponentInChildren<Floater>().enabled = false;
+            foreach (var p in _particleSystems)
+            {
+                var emissionModule = p.emission;
+                emissionModule.enabled = false;
+                // p.SetCustomParticleData(emissionModule);
+            }
         }
 
         public LogLevel GetLogLevel()
@@ -108,16 +131,18 @@ namespace Collectibles {
 
         public void Reset()
         {
+            foreach (var p in _particleSystems) p.Pause();
             transform.position = _startPos;
             _coordInd = 0;
             _moving = false;
             _animator.StopAnimation();
             _animatorEnd.StopAnimation();
+            foreach (var p in _particleSystems) p.Play();
         }
 
         public bool CanReset()
         {
-            return gameObject.activeSelf;
+            return !_collected && gameObject.activeSelf;
         }
     }
 }
