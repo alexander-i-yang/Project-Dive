@@ -99,7 +99,6 @@
 </data>
  </layer>
  <objectgroup id="3" name="Mechanics">
-  <object id="1" gid="84" x="112" y="104" width="24" height="8"/>
   <object id="9" gid="85" x="200" y="24" width="8" height="8">
    <properties>
     <property name="Next" type="object" value="21"/>

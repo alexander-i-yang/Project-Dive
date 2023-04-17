@@ -79,11 +79,14 @@
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Activate.tmx": {
+            "expandedObjectLayers": [
+                5
+            ],
             "scale": 4.3677734374999995,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 163.01211823100658,
-                "y": 73.14939856012164
+                "x": 165.759513482091,
+                "y": 81.62053391763182
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx": {
@@ -158,11 +161,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 1.5,
-            "selectedLayer": 2,
+            "scale": 4,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 78.66666666666669,
-                "y": 219.66666666666666
+                "x": 135,
+                "y": 85.875
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Get out.tmx": {
@@ -180,7 +183,7 @@
             "scale": 4,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 105,
+                "x": 104.75,
                 "y": 71.125
             }
         },
@@ -188,11 +191,11 @@
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 4,
-            "selectedLayer": 2,
+            "scale": 23,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 118,
-                "y": 96.375
+                "x": 95.95652173913044,
+                "y": 72.02173913043478
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Jack_CrankThatYoinkySploinky.tmx": {
@@ -290,7 +293,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 128.21177838393774,
-                "y": 72.00465053883649
+                "y": 72.23360014309351
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Lava.tsx": {
@@ -445,10 +448,10 @@
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_room1Easy.tmx": {
             "scale": 4.3677734374999995,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 126.15123194562447,
-                "y": 69.94410410052319
+                "x": 133.2486696775925,
+                "y": 73.14939856012164
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Mechanics.tsx": {
@@ -761,16 +764,16 @@
     "recentFiles": [
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Firefly Intro.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Gate 2.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Bricks.tsx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Stalagtite.tsx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jonathan_Russell/Jonathan_TheRoom.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/automapGlowingMushroom.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/automapDecorBack.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Mechanics.tsx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/automapToDecorBack.tmx"
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/automapDecorBack.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/automapGlowingMushroom.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jonathan_Russell/Jonathan_TheRoom.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Stalagtite.tsx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Bricks.tsx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty End.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk2.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

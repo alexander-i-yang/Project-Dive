@@ -13,7 +13,8 @@ namespace Mechanics {
         private bool _broken = false;
         public double rechargeTime = 1;
         
-        private SpriteRenderer _mySR;
+        private SpriteRenderer _sr;
+        private ParticleSystem _particleSystem;
         private Color _dischargedColor = new(0.5f, 0.5f, 0.5f, 0.5f);
         
         private UnityEngine.Rendering.Universal.Light2D _light;
@@ -29,11 +30,11 @@ namespace Mechanics {
 
         private void OnEnable()
         {
-            _mySR = GetComponentInChildren<SpriteRenderer>(includeInactive:true);
+            _sr = GetComponentInChildren<SpriteRenderer>(includeInactive:true);
             _floater = GetComponentInChildren<Floater>(includeInactive:true);
             _animator = GetComponentInChildren<CrystalAnimationStateManager>(includeInactive:true);
             _light = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>(includeInactive:true);
-            
+            _particleSystem = GetComponentInChildren<ParticleSystem>();
             if (!unlocked) Discharge();
         }
 
@@ -73,6 +74,7 @@ namespace Mechanics {
         public IEnumerator BreakCoroutine() {
             //This eventually calls OnBounceAnimationEnd once the animation is done.
             _broken = true;
+            _particleSystem.Emit(15);
             _animator.Play(CrystalAnimations.BOUNCE);
             for (double i = 0; i < rechargeTime; i += Game.Instance.DeltaTime) {
                 yield return null;
@@ -89,14 +91,14 @@ namespace Mechanics {
         void Discharge()
         {
             _broken = true;
-            _mySR.color = _dischargedColor;
+            _sr.color = _dischargedColor;
             _light.intensity = 0;
             _floater.enabled = false;
         }
 
         void Recharge()
         {
-            _mySR.color = Color.white;
+            _sr.color = Color.white;
             _broken = false;
             _light.intensity = _lightIntensityStart;
             _floater.enabled = true;

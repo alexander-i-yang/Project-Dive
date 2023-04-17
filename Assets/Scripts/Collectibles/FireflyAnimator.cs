@@ -28,9 +28,9 @@ namespace Collectibles
             _curveAnim = new CurveAnimator(this, this);
         }
 
-        public void PlayAnimation(System.Action OnAnimationFinish)
+        public void PlayAnimation(System.Action OnAnimationFinish, System.Action<float> hook = null)
         {
-            _curveAnim.PlayAnimation(OnAnimationFinish);
+            _curveAnim.PlayAnimation(OnAnimationFinish, hook);
         }
         
         public void StopAnimation() {_curveAnim.StopAnimation();}

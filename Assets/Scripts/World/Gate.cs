@@ -6,13 +6,14 @@ using MyBox;
 
 using Core;
 using Helpers;
+using UnityEngine.Serialization;
 using VFX;
 
 namespace Mechanics
 {
     public class Gate : MonoBehaviour
     {
-        [SerializeField] private int requiredFireflies;
+        public int RequiredFireflies;
 
         [SerializeField] private GateAnimator gateL;
         [SerializeField] private GateAnimator gateR;
@@ -20,11 +21,7 @@ namespace Mechanics
         [SerializeField] private FadeLightAnimator[] otherLights;
 
         [SerializeField] private float delayTime = 1f;
-
         private Coroutine _openRoutine;
-        
-        // private Animator _animator;
-
 
         public bool Opened { get; private set; }
 
@@ -40,9 +37,10 @@ namespace Mechanics
             gateL.gameObject.SetActive(false);
             gateR.gameObject.SetActive(false);
             Opened = true;
-            GetComponentInChildren<ParticleSystem>().gameObject.SetActive(false);
-            GetComponentInChildren<FadeLightAnimator>().Fade();
-            foreach (var f in otherLights) f.Fade();
+            var emissionModule = GetComponentInChildren<ParticleSystem>().emission;
+            emissionModule.rateOverTime = 0;
+            GetComponentInChildren<FadeLightAnimator>().FadeOut();
+            foreach (var f in otherLights) f.FadeOut();
         }
 
         public void Reset()
@@ -53,11 +51,6 @@ namespace Mechanics
             Opened = false;
         }
 
-        public void OnFinishOpen()
-        {
-
-        }
-
         private void OnTriggerStay2D(Collider2D other)
         {
             if (!Opened)
@@ -66,7 +59,7 @@ namespace Mechanics
                 if (inventory != null)
                 {
                     int numFireflies = inventory.NumCollectibles("Firefly");
-                    if (numFireflies >= requiredFireflies)
+                    if (numFireflies >= RequiredFireflies)
                     {
                         PlayerActor p = other.GetComponent<PlayerActor>();
                         if (p != null && _openRoutine == null)
