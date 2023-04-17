@@ -16,6 +16,8 @@ namespace VFX
         private Light2D _light2D;
         private LightFlicker _flicker;
 
+        private Coroutine _curRoutine;
+
         void Awake()
         {
             _light2D = GetComponent<Light2D>();
@@ -46,7 +48,8 @@ namespace VFX
 
         public void FadeBetween(float startI, float endI, System.Action onEnd = null)
         {
-            StartCoroutine(Animate(startI, endI, onEnd));
+            if (_curRoutine != null) StopCoroutine(_curRoutine);
+            _curRoutine = StartCoroutine(Animate(startI, endI, onEnd));
         }
         
         private IEnumerator Animate(float startI, float endI, System.Action onEnd = null)
@@ -55,7 +58,7 @@ namespace VFX
             while (t <= animTime)
             {
                 t += Game.Instance.DeltaTime;
-                float s = animCurve.Evaluate(t);
+                float s = animCurve.Evaluate(t/animTime);
                 _light2D.intensity = Mathf.Lerp(startI, endI, s);
                 yield return null;
             }

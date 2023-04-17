@@ -16,6 +16,10 @@ namespace Helpers.Editor
             {
                 gate.OnRequirementMet(PlayerCore.Actor);
             }
+            if(GUILayout.Button("Special Finish"))
+            {
+                gate.IndicatorShowFinish(PlayerCore.Instance.GetComponent<PlayerInventory>(), PlayerCore.Actor);
+            }
             if(GUILayout.Button("Close"))
             {
                 gate.Reset();

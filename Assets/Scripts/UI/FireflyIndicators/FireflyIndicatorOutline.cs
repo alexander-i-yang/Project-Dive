@@ -27,7 +27,7 @@ namespace UI
 
         public void Show(float delay)
         {
-            AnimateTo(delay, _endPos, AnimHookScale);
+            AnimateTo(delay, _endPos, AnimHookScale, () => transform.localScale = Vector3.one);
         }
 
         public void ShowInner(float delay)
@@ -37,24 +37,27 @@ namespace UI
 
         public void Hide(float delay)
         {
-            AnimateTo(delay, _startPos, t => AnimHookScale(1 - t));
+            AnimateTo(delay, _startPos, t => AnimHookScale(1 - t), null);
             if (_innerRoutine != null) StopCoroutine(_innerRoutine);
             _inner.Hide();
         }
 
-        private void AnimateTo(float delay, Vector2 whereTo, Action<float> hook)
+        private void AnimateTo(float delay, Vector2 whereTo, Action<float> hook, Action onFinish)
         {
             _animator.EndPos = whereTo;
             if (_moveRoutine != null) StopCoroutine(_moveRoutine);
-            _moveRoutine = StartCoroutine(Helper.DelayAction(delay, () =>
-            {
-                _animator.PlayAnimation(null, hook);
-            }));
+            _moveRoutine = StartCoroutine(Helper.DelayAction(delay,
+                () => { _animator.PlayAnimation(onFinish, hook); }));
+        }
+
+        public void SpecialFinish()
+        {
+            _inner.SpecialFinish();
         }
 
         private void AnimHookScale(float t)
         {
-            transform.localScale = Vector3.one * t;
+            transform.localScale = Vector3.one * Mathf.Lerp(0, 1, t);
         }
     }
 }

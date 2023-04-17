@@ -6,6 +6,7 @@ using MyBox;
 
 using Core;
 using Helpers;
+using UI;
 using UnityEngine.Serialization;
 using VFX;
 
@@ -22,6 +23,13 @@ namespace Mechanics
 
         [SerializeField] private float delayTime = 1f;
         private Coroutine _openRoutine;
+
+        private FireflyIndicatorController _indicatorController;
+
+        void Awake()
+        {
+            _indicatorController = GetComponentInChildren<FireflyIndicatorController>();
+        }
 
         public bool Opened { get; private set; }
 
@@ -51,22 +59,40 @@ namespace Mechanics
             Opened = false;
         }
 
-        private void OnTriggerStay2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!Opened)
+            {
+                PlayerInventory inventory = other.GetComponent<PlayerInventory>();
+                PlayerActor actor = other.GetComponent<PlayerActor>();
+                if (inventory != null && actor != null)
+                {
+                    int numFireflies = inventory.NumCollectibles("Firefly");
+                    _indicatorController.Show(numFireflies, () => IndicatorShowFinish(inventory, actor));
+                }
+            }
+        }
+
+        public void IndicatorShowFinish(PlayerInventory inventory, PlayerActor actor) {
+            int numFireflies = inventory.NumCollectibles("Firefly");
+            if (numFireflies >= RequiredFireflies)
+            {
+                if (_openRoutine == null)
+                {
+                    StartCoroutine(Helper.DelayAction(delayTime / 2, _indicatorController.SpecialFinish));
+                    _openRoutine = StartCoroutine(Helper.DelayAction(delayTime, () => OnRequirementMet(actor)));
+                }
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
         {
             if (!Opened)
             {
                 PlayerInventory inventory = other.GetComponent<PlayerInventory>();
                 if (inventory != null)
                 {
-                    int numFireflies = inventory.NumCollectibles("Firefly");
-                    if (numFireflies >= RequiredFireflies)
-                    {
-                        PlayerActor p = other.GetComponent<PlayerActor>();
-                        if (p != null && _openRoutine == null)
-                        {
-                            _openRoutine = StartCoroutine(Helper.DelayAction(delayTime, () => OnRequirementMet(p)));
-                        }
-                    }
+                    _indicatorController.Hide();
                 }
             }
         }

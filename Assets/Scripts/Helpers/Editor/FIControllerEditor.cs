@@ -15,7 +15,7 @@ namespace Helpers.Editor
             var targ = target as FireflyIndicatorController;
             if(GUILayout.Button("Show"))
             {
-                targ.Show();
+                targ.Show(4, () => {});
             }
             if(GUILayout.Button("Hide"))
             {

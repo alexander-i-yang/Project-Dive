@@ -171,6 +171,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   animLength: 0.2
+  specialFinishIntensity: 10
 --- !u!212 &2590307965813255615
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -339,7 +340,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 0.6862745, a: 1}
   m_Intensity: 0
   m_LightVolumeIntensity: 0.1
-  m_LightVolumeIntensityEnabled: 1
+  m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000a39a746baf9643f6f9381fb1b5bdbb48ffddffe4
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}

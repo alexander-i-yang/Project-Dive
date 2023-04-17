@@ -90,7 +90,6 @@ namespace VFX
 
                 float rotationalV = Random.Range(rotationVRange.Min, rotationVRange.Max);
                 if (Random.value > 0.5) rotationalV *= -1;
-                print(rotationalV);
 
                 DeathParticle newPart = Instantiate(part.gameObject, _deathParticlePool.transform).GetComponent<DeathParticle>();
                 newPart.transform.position = part.transform.position;

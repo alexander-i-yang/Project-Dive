@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using Collectibles;
 using Helpers;
 using Mechanics;
+using Player;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -11,6 +14,13 @@ using Vector3 = UnityEngine.Vector3;
 
 namespace UI
 {
+    enum FICState{
+        SHOWING,
+        FILLING,
+        FILLED,
+        HIDDEN,
+    }
+
     public class FireflyIndicatorController : MonoBehaviour
     {
         [SerializeField] private GameObject indicator;
@@ -25,12 +35,20 @@ namespace UI
 
         private FireflyIndicatorOutline[] _indicators;
         private Coroutine _showInnerRoutine;
+        private Coroutine _finishRoutine;
+
+        private FICState _state;
+        private int _curFireflies;
+        private Action _onFillInnerFinish;
 
         private void Awake()
         {
             int numIndicators = GetComponentInParent<Gate>().RequiredFireflies;
             Vector2[] points = CalcPoints(numIndicators);
             _indicators = InstantiateIndicators(points);
+
+            FindObjectOfType<PlayerInventory>().OnCollectibleAdded += OnFireflyCollect;
+            _state = FICState.HIDDEN;
         }
 
         private Vector2[] CalcPoints(int numIndicators)
@@ -61,30 +79,82 @@ namespace UI
             return ret.ToArray();
         }
 
-        public void Show()
+        public void Show(int numCollected, Action onFinish)
         {
+            _state = FICState.SHOWING;
+            _curFireflies = numCollected;
+            _onFillInnerFinish = onFinish;
             for (var i = 0; i < _indicators.Length; i++)
             {
                 FireflyIndicatorOutline indicatorOutline = _indicators[i];
                 indicatorOutline.Show(timeStagger * i);
             }
 
-            _showInnerRoutine = StartCoroutine(Helper.DelayAction(innerDelay, () => ShowInners()));
+            _showInnerRoutine = StartCoroutine(ShowInnerRoutine(innerDelay));
         }
 
-        private void ShowInners()
+        public void OnFireflyCollect(string id, int quantity)
         {
-            int numCollected = 4;
+            if (id != Firefly.s_ID) return;
+            _curFireflies = quantity;
+            print(_state + " " + quantity);
+            if (quantity > _indicators.Length) return;
+            
+            switch (_state)
+            {
+                case FICState.SHOWING:
+                    break;
+                case FICState.FILLED:
+                    FireflyIndicatorOutline indicatorOutline = _indicators[quantity-1];
+                    indicatorOutline.ShowInner(0);
+                    RunFinishRoutine(innerTimeStagger);
+                    break;
+                case FICState.FILLING:
+                    break;
+                case FICState.HIDDEN:
+                    break;
+            }
+        }
+
+        public void SpecialFinish()
+        {
+            foreach (var ind in _indicators) ind.SpecialFinish();
+        }
+
+        public void RunFinishRoutine(float delay)
+        {
+            print("Run finish routine");
+            _finishRoutine = StartCoroutine(
+                Helper.DelayAction(delay, () =>
+                {
+                    print("filled");
+                    _state = FICState.FILLED;
+                    _onFillInnerFinish();
+                })
+            );
+        }
+
+        private IEnumerator ShowInnerRoutine(float initialDelay)
+        {
+            var numCollected = Math.Min(_curFireflies, _indicators.Length);
+            yield return new WaitForSeconds(initialDelay);
+            RunFinishRoutine(innerTimeStagger * (numCollected+1));
+            _state = FICState.FILLING;
             for (var i = 0; i < numCollected; i++)
             {
+                numCollected = Math.Min(_curFireflies, _indicators.Length);
+                print($"Num Collected: {numCollected}");
                 FireflyIndicatorOutline indicatorOutline = _indicators[i];
-                indicatorOutline.ShowInner(innerTimeStagger * i);
+                indicatorOutline.ShowInner(0);
+                yield return new WaitForSeconds(innerTimeStagger);
             }
         }
         
         public void Hide()
         {
+            _state = FICState.HIDDEN;
             if (_showInnerRoutine != null) StopCoroutine(_showInnerRoutine);
+            if (_finishRoutine != null) StopCoroutine(_finishRoutine);
             for (var i = 0; i < _indicators.Length; i++)
             {
                 FireflyIndicatorOutline indicatorOutline = _indicators[i];

@@ -50,8 +50,8 @@
             "scale": 5.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 256,
-                "y": 143.9090909090909
+                "x": 278,
+                "y": 275.3636363636364
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Bricks.tsx": {
@@ -161,11 +161,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 4,
-            "selectedLayer": 4,
+            "scale": 8,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 135,
-                "y": 85.875
+                "x": 107.875,
+                "y": 38.4375
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Get out.tmx": {

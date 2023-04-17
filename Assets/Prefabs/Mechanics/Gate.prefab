@@ -5952,4 +5952,4 @@ MonoBehaviour:
   radius: 48
   timeStagger: 0.05
   innerTimeStagger: 0.1
-  innerDelay: 1
+  innerDelay: 0.75

@@ -15,6 +15,7 @@ namespace UI
         private Coroutine _curRoutine;
 
         private bool _showing;
+        [SerializeField] private float specialFinishIntensity;
 
         private void Awake()
         {
@@ -60,6 +61,11 @@ namespace UI
                 transform.localScale = Vector3.one * (1-mult);
                 yield return null;
             }
+        }
+
+        public void SpecialFinish()
+        {
+            _fadeAnimator.FadeBetween(1.5f, specialFinishIntensity);
         }
     }
 }
