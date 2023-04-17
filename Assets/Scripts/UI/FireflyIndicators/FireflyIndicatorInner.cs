@@ -38,7 +38,7 @@ namespace UI
             if (_showing)
             {
                 _curRoutine = StartCoroutine(HideRoutine());
-                _fadeAnimator.FadeBetween(0, 1.5f);
+                _fadeAnimator.FadeBetween(1.5f, 0);
             }
             _showing = false;
         }
