@@ -148,4 +148,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e3b3059719c88844b16731dd2b80aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleDensity: 0.1
+  particleDensity: 0.03

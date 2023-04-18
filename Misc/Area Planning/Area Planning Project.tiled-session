@@ -50,7 +50,7 @@
             "scale": 8,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 260.125,
+                "x": 260.0625,
                 "y": 252.9375
             }
         },
@@ -164,8 +164,8 @@
             "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 100.33333333333334,
-                "y": 80.16666666666666
+                "x": 128,
+                "y": 71.83333333333331
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Get out.tmx": {
@@ -292,8 +292,8 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": -498.194338863301,
-                "y": 72.23360014309351
+                "x": 127.98282877968074,
+                "y": 72.00465053883649
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Lava.tsx": {

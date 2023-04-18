@@ -18,8 +18,8 @@ namespace Player
                 Input.canJumpCut = false;
                 Input.dogoDisabledSpikes = new HashSet<Spike>();
                 
-                var divePEmission = MySM._diveParticles.emission;
-                divePEmission.enabled = true;
+                // var divePEmission = MySM._diveParticles.emission;
+                // divePEmission.enabled = true;
                 
                 MySM._screenshakeActivator.ScreenShakeContinuousOn(MySM._screenshakeActivator.DiveData);
             }
@@ -27,8 +27,8 @@ namespace Player
             public override void Exit(PlayerStateInput i)
             {
                 MySM._screenshakeActivator.ScreenShakeContinuousOff(MySM._screenshakeActivator.DiveData);
-                var divePEmission = MySM._diveParticles.emission;
-                divePEmission.enabled = false;
+                // var divePEmission = MySM._diveParticles.emission;
+                // divePEmission.enabled = false;
                 base.Exit(i);
                 
                 //MySM._drillEmitter.Stop();
