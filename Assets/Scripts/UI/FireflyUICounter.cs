@@ -1,19 +1,16 @@
-using Player;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-using TMPro;
 using Collectibles;
 using Helpers;
+using UnityEngine.UI;
 
 public class FireflyUICounter : MonoBehaviour, IFilterLoggerTarget
 {
     // private PlayerInventory _inventory;
-    private TextMeshProUGUI _tmText;
+    private Text _tmText;
     private void Start()
     {
-        _tmText = GetComponent<TextMeshProUGUI>();
+        _tmText = GetComponent<Text>();
         UpdateCounter(0);
     }
 

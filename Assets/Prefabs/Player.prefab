@@ -10297,7 +10297,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5b50413c0527e5f49bd9aa3b7a27bb44, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10360,7 +10360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e02c3be4cc46fcb4afdeab77d09390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleCount: 5
+  particleCount: 10
   influenceWeight: 1.5
 --- !u!1 &1774159425
 GameObject:
@@ -10861,6 +10861,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _diveParticles: {fileID: 0}
 --- !u!114 &4863023254048345395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10887,6 +10888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307d24678b363de49bb1b8239037494d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugFirefliesCollected: 0
 --- !u!114 &522702724862650969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11123,7 +11125,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 1
   m_FalloffIntensity: 0.7
   m_Color: {r: 0.9811321, g: 0.81301457, b: 0.60534, a: 1}
-  m_Intensity: 2.5
+  m_Intensity: 4
   m_LightVolumeIntensity: 0.1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000a39a746baf9643f6ffddffe4e76ceb0c
