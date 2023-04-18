@@ -76,6 +76,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ParticleMask:
+        m_Texture: {fileID: 18700000, guid: 299a1219233cec444af4b9b62556846b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -110,6 +114,8 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _LifetimeCutoff: 8.09
+    - _MaskArrayLen: 9
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -123,7 +129,7 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _Zoom: 0.88
+    - _Zoom: 0.2
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 51.780285, g: 77.87429, b: 42.810474, a: 1}

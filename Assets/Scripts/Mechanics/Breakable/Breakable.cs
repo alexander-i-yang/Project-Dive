@@ -7,7 +7,7 @@ namespace Mechanics {
     public class Breakable : Solid, IResettable {
         private GameObject _particles;
         private Vector2 _boxSize;
-        private float particleDensity = 0.01f;
+        [SerializeField] private float particleDensity = 0.01f;
         
         protected virtual string ParticlePath() => "PS_Breakable";
 
