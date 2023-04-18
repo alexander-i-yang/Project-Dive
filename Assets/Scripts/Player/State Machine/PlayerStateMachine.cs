@@ -18,6 +18,7 @@ namespace Player
 
         //Expose to inspector
         public UnityEvent<PlayerStateMachine> OnPlayerStateChange;
+        [SerializeField] private ParticleSystem _diveParticles;
 
         public bool UsingDrill => IsOnState<Diving>() || IsOnState<Dogoing>();
         public bool DrillingIntoGround => IsOnState<Dogoing>();

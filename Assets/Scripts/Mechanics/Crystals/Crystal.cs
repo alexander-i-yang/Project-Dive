@@ -125,7 +125,7 @@ namespace Mechanics {
 
         public bool CanReset()
         {
-            return gameObject != null && gameObject.activeSelf && unlocked;
+            return gameObject != null && gameObject.activeSelf && _animator.gameObject.activeSelf && unlocked;
         }
 
         public void Unlock()

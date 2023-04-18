@@ -30,6 +30,9 @@ namespace Collectibles {
         private int _coordInd;
 
         private Vector3 _startPos;
+        
+        public delegate void CollectAnimFinish(int quantity);
+        public static event CollectAnimFinish OnCollectAnimFinish;
     
         private void Awake()
         {
@@ -82,7 +85,10 @@ namespace Collectibles {
                 }
                 else
                 {
-                    _animatorEnd.PlayAnimation(() => OnFinishCollected(collector));
+                    collector.OnCollectFinished(this);
+                    var pInventory = collector.GetComponent<PlayerInventory>();
+                    _collected = true;
+                    _animatorEnd.PlayAnimation(() => OnFinishCollected(pInventory));
                 }
             }
         }
@@ -91,6 +97,7 @@ namespace Collectibles {
         {
             _moving = false;
             
+            /*
             Collider2D[] hits = new Collider2D[0];
             ContactFilter2D filter = new ContactFilter2D();
             filter.SetLayerMask(LayerMask.NameToLayer("Interactable"));
@@ -99,15 +106,14 @@ namespace Collectibles {
             foreach (var hit in hits)
             {
                 print(hit);
-            }
+            }*/
         }
 
-        private void OnFinishCollected(Collector collector)
+        private void OnFinishCollected(PlayerInventory p)
         {
-            collector.OnCollectFinished(this);
             _moving = false;
             Disable();
-            _collected = true;
+            OnCollectAnimFinish?.Invoke(p.NumCollectibles(s_ID));
         }
 
         private void Disable()

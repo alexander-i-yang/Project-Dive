@@ -9,48 +9,39 @@ using Helpers;
 
 public class FireflyUICounter : MonoBehaviour, IFilterLoggerTarget
 {
-    private PlayerInventory _inventory;
+    // private PlayerInventory _inventory;
     private TextMeshProUGUI _tmText;
     private void Start()
     {
-        _inventory = PlayerCore.Actor.GetComponent<PlayerInventory>();
-        _inventory.OnCollectibleAdded += HandleCollectibleAdded;
         _tmText = GetComponent<TextMeshProUGUI>();
-
-        UpdateCounter();
+        UpdateCounter(0);
     }
 
     private void OnEnable()
     {
-        if (_inventory != null)
-        {
-            _inventory.OnCollectibleAdded += HandleCollectibleAdded;
-        }
+        Firefly.OnCollectAnimFinish += HandleCollectibleAdded;
     }
 
     private void OnDisable()
     {
-        _inventory.OnCollectibleAdded -= HandleCollectibleAdded;
+        Firefly.OnCollectAnimFinish -= HandleCollectibleAdded;
     }
 
-    private void HandleCollectibleAdded(string id, int quantity)
+    private void HandleCollectibleAdded(int quantity)
     {
         FilterLogger.Log(this, $"Firefly UI Received message of collectibles: {quantity}");
-        if (id.Equals(Firefly.s_ID))
-        {
-            FilterLogger.Log(this, $"Firefly Updated Collectibles Text to {quantity}");
-            UpdateCounter();
-        }
+        UpdateCounter(quantity);
+        FilterLogger.Log(this, $"Firefly Updated Collectibles Text to {quantity}");
     }
 
-    private void UpdateCounter()
+    private void UpdateCounter(int quantity)
     {
 
-        _tmText.text = _inventory.NumCollectibles("Firefly").ToString();
+        _tmText.text = quantity.ToString();
     }
 
     public LogLevel GetLogLevel()
     {
-        return LogLevel.Info;
+        return LogLevel.Error;
     }
 }

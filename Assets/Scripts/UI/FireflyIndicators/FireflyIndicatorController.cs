@@ -97,7 +97,6 @@ namespace UI
         {
             if (id != Firefly.s_ID) return;
             _curFireflies = quantity;
-            print(_state + " " + quantity);
             if (quantity > _indicators.Length) return;
             
             switch (_state)
@@ -123,11 +122,9 @@ namespace UI
 
         public void RunFinishRoutine(float delay)
         {
-            print("Run finish routine");
             _finishRoutine = StartCoroutine(
                 Helper.DelayAction(delay, () =>
                 {
-                    print("filled");
                     _state = FICState.FILLED;
                     _onFillInnerFinish();
                 })
@@ -143,7 +140,6 @@ namespace UI
             for (var i = 0; i < numCollected; i++)
             {
                 numCollected = Math.Min(_curFireflies, _indicators.Length);
-                print($"Num Collected: {numCollected}");
                 FireflyIndicatorOutline indicatorOutline = _indicators[i];
                 indicatorOutline.ShowInner(0);
                 yield return new WaitForSeconds(innerTimeStagger);
