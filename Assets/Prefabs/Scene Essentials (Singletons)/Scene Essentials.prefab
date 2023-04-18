@@ -748,6 +748,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1705767316090389095}
     m_Modifications:
+    - target: {fileID: 1039804941291910373, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039804941291910373, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039804941291910373, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1986254094663954504, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1986254094663954504, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1986254094663954504, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2537998462321903216, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2537998462321903216, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2537998462321903216, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335132885702025773, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335132885702025773, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335132885702025773, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382707399620506370, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382707399620506370, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382707399620506370, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7302252310213258452, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -839,6 +899,10 @@ PrefabInstance:
     - target: {fileID: 7302252311100050385, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
       propertyPath: m_Name
       value: Pause UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7302252311100050386, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: startSceneName
+      value: New Start Scene
       objectReference: {fileID: 0}
     - target: {fileID: 7302252311100050390, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
       propertyPath: m_Pivot.x
@@ -951,6 +1015,18 @@ PrefabInstance:
     - target: {fileID: 7302252311123370154, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488364418369101859, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488364418369101859, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488364418369101859, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23a5456937c1e614cb11e1ba2e87a0e0, type: 3}

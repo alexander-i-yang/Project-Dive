@@ -25,7 +25,7 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - m_From: VCam_Room
-    m_To: Shaft Room
+    m_To: Shaft_Room
     m_Blend:
       m_Style: 4
       m_Time: 12.8

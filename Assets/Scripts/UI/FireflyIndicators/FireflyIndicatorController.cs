@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
 using Collectibles;
 using Helpers;
 using Mechanics;
-using Player;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -47,7 +44,7 @@ namespace UI
             Vector2[] points = CalcPoints(numIndicators);
             _indicators = InstantiateIndicators(points);
 
-            FindObjectOfType<PlayerInventory>().OnCollectibleAdded += OnFireflyCollect;
+            Firefly.OnCollectAnimFinish += OnFireflyCollect;
             _state = FICState.HIDDEN;
         }
 
@@ -93,9 +90,8 @@ namespace UI
             _showInnerRoutine = StartCoroutine(ShowInnerRoutine(innerDelay));
         }
 
-        public void OnFireflyCollect(string id, int quantity)
+        public void OnFireflyCollect(int quantity)
         {
-            if (id != Firefly.s_ID) return;
             _curFireflies = quantity;
             if (quantity > _indicators.Length) return;
             

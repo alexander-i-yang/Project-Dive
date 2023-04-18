@@ -309,11 +309,11 @@
             "scaleInDock": 1
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Shaft.tmx": {
-            "scale": 2,
-            "selectedLayer": 1,
+            "scale": 5.5,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 123.75,
-                "y": 1195.75
+                "x": 134.27272727272725,
+                "y": 2379.727272727273
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Spike Intro.tmx": {
@@ -357,10 +357,10 @@
                 3
             ],
             "scale": 4.3677734374999995,
-            "selectedLayer": 3,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 142.86455305638782,
-                "y": 71.54675133032241
+                "x": 142.75007825425928,
+                "y": 71.54675133032242
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Branches.tsx": {
