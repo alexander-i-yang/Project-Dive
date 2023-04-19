@@ -25,11 +25,14 @@
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Above Jonathan.tmx": {
-            "scale": 4,
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 143.25,
-                "y": 218.25
+                "x": 100.33333333333334,
+                "y": 79.66666666666666
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx": {
@@ -432,11 +435,11 @@
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 5.5,
-            "selectedLayer": 1,
+            "scale": 4,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 186.72727272727275,
-                "y": 43.27272727272728
+                "x": 163,
+                "y": 65.75
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Joyce_Li/Joyce_room.tmx": {
@@ -791,18 +794,18 @@
     ],
     "project": "Area Planning Project.tiled-project",
     "recentFiles": [
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/TeachMushrooms.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Activate.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Crystal Intro Flipped.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Joyce_Li/Joyce_room.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jonathan_Russell/Jonathan_TheRoom.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Gate 2.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Hub.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Twotorial.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Shaft.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Start Cieling.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jonathan_Russell/Jonathan_TheRoom.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Sleep.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Eldritch Horror.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Luke_Choi/LukeChoi_longRoomNew.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Firefly Intro.tmx"
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Shaft.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
