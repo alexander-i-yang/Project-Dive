@@ -56,12 +56,13 @@ namespace Player
             {
                 if (_spawnManager.CurrentRoom != null)
                 {
+                    // print("SC off");
                     base.ScreenShakeContinuousOff(
                         _spawnManager.CurrentRoom.VCam,
                         CurShake
                     );
                 }
-                
+                // print("SC on");
                 base.ScreenShakeContinuousOn(
                     r.VCam,
                     CurShake

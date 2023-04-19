@@ -67,7 +67,7 @@
  <objectgroup id="6" name="Mechanics">
   <object id="1" gid="174" x="128" y="80" width="8" height="8"/>
   <object id="3" gid="177" x="240" y="72" width="8" height="12"/>
-  <object id="4" gid="180" x="24" y="72" width="8" height="8"/>
+  <object id="4" gid="180" x="40" y="56" width="8" height="8"/>
   <object id="7" gid="182" x="184" y="24" width="8" height="8"/>
   <object id="8" gid="182" x="176" y="24" width="8" height="8"/>
  </objectgroup>
