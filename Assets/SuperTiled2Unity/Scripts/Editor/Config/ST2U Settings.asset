@@ -95,3 +95,5 @@ MonoBehaviour:
     m_Prefab: {fileID: 4759459005841952986, guid: 350421599cf695a4c876fca52f65c288, type: 3}
   - m_TypeName: Glowing Mushroom
     m_Prefab: {fileID: 1809376595774978973, guid: bf117932651268546a1ad683abe85ea3, type: 3}
+  - m_TypeName: PS_Teardrop
+    m_Prefab: {fileID: 1653722657518129784, guid: d8d9ce6d9c48f59429dc1a9a07f36de5, type: 3}

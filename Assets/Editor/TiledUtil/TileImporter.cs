@@ -55,6 +55,7 @@ namespace TiledUtil {
                 { "Dirt", ImportGroundTilemap },
                 { "DecorBack", ImportDecorBackTilemap },
                 { "GlowingMushrooms", ImportGlowingMushroomTilemap },
+                { "Stalagtites", ImportStalagtitesTilemap },
                 { "Spikes", ImportSpikesTilemap },
                 { "Branches", ImportBranchesTilemap },
                 { "Doors", ImportDoorsTilemap },
@@ -68,6 +69,7 @@ namespace TiledUtil {
                 { "Dirt", ImportGround },
                 { "Breakable", ImportBreakable },
                 { "GlowingMushrooms", ImportGlowingMushroom },
+                { "Stalagtites", ImportStalagtites },
                 { "Lava", ImportLava },
                 { "Water", ImportWater },
                 { "Doors", ImportDoors },
@@ -207,6 +209,12 @@ namespace TiledUtil {
             ret.gameObject.transform.position = ret.collisionPts[2] + new Vector2(4, -12);
             ret.gameObject.transform.localScale = new Vector3(Mathf.Round(UnityEngine.Random.value)*2-1, 1, 1);
         }
+
+        private void ImportStalagtites(GameObject g, int index)
+        {
+            var ret = ImportTileToPrefab(g, index, "PS_Teardrop");
+            ret.gameObject.transform.position = ret.collisionPts[2] + new Vector2(0.5f, -8.5f);
+        }
         
         private void ImportSemisolid(GameObject g, int index) {
             var ret = ImportTileToPrefab(g, index, "Semisolid");
@@ -288,6 +296,13 @@ namespace TiledUtil {
         private void ImportGlowingMushroomTilemap(GameObject g)
         {
             g.GetRequiredComponent<TilemapRenderer>().enabled = false;
+        }
+
+        private void ImportStalagtitesTilemap(GameObject g)
+        {
+            var r = g.GetRequiredComponent<TilemapRenderer>();
+            r.SetSortingLayer("Bg");
+            r.sortingOrder = 5;
         }
         
         private void ImportGroundTilemap(GameObject g)
