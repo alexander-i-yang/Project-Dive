@@ -43,7 +43,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809376595774978973}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
@@ -208,7 +208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5587708714831572935
 Transform:
   m_ObjectHideFlags: 0
@@ -5013,6 +5013,10 @@ PrefabInstance:
     - target: {fileID: 1139700783278281427, guid: 181a8c26c8a30e242af17b1e5eb0be2b, type: 3}
       propertyPath: m_Name
       value: WaterfallCollider
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139700783278281427, guid: 181a8c26c8a30e242af17b1e5eb0be2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5247684770632381717, guid: 181a8c26c8a30e242af17b1e5eb0be2b, type: 3}
       propertyPath: m_Points.Array.size
