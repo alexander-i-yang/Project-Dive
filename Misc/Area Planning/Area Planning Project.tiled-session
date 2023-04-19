@@ -274,7 +274,7 @@
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 127.98282877968072,
-                "y": 71.89017573670797
+                "y": 72.11912534096498
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx": {
@@ -367,8 +367,8 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 127.98282877968074,
-                "y": 71.89017573670796
+                "x": 127.98282877968072,
+                "y": 71.89017573670797
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Static Decorations.tsx": {
@@ -392,8 +392,8 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 127.98282877968074,
-                "y": 71.89017573670796
+                "x": 118.13799579662839,
+                "y": 84.02450476233064
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Branches.tsx": {
