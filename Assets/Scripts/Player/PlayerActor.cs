@@ -40,6 +40,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     #region Movement
     public void UpdateMovementX(int moveDirection, int acceleration) {
+        
         int targetVelocityX = moveDirection * PlayerCore.MoveSpeed;
         int maxSpeedChange = (int) (acceleration * Game.Instance.FixedDeltaTime);
         velocityX = Mathf.MoveTowards(velocityX, targetVelocityX, maxSpeedChange);
