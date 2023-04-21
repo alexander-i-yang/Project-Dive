@@ -5,6 +5,7 @@ using Player;
 using Core;
 using UnityEngine.SceneManagement;
 using Audio;
+using UnityEngine.Rendering.Universal;
 
 public class PauseUIController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PauseUIController : MonoBehaviour
 
     [SerializeField] private GameObject mainUI;
     [SerializeField] private GameObject creditsUI;
+    [SerializeField] private GameObject optionsUI;
 
     public bool Paused {
         get
@@ -25,6 +27,13 @@ public class PauseUIController : MonoBehaviour
         set
         {
             uiFrame.SetActive(value);
+            mainUI.SetActive(value);
+            Game.Instance.IsPaused = value;
+            if (value == false)
+            {
+                creditsUI.SetActive(false);
+                optionsUI.SetActive(false);
+            }
         }
     }
 
@@ -43,13 +52,11 @@ public class PauseUIController : MonoBehaviour
     {
         Debug.Log("Pause Pressed.");
         Paused = !Paused;
-        Game.Instance.IsPaused = Paused;
     }
 
     public void OnResume()
     {
         Paused = false;
-        Game.Instance.IsPaused = false;
     }
 
     public void OnRestart()
@@ -70,10 +77,22 @@ public class PauseUIController : MonoBehaviour
         creditsUI.SetActive(true);
     }
     
+    public void OnOptions()
+    {
+        mainUI.SetActive(false);
+        optionsUI.SetActive(true);
+    }
+
     public void OnBackFromCredits()
     {
         mainUI.SetActive(true);
         creditsUI.SetActive(false);
+    }
+
+    public void OnBackFromOptions()
+    {
+        mainUI.SetActive(true);
+        optionsUI.SetActive(false);
     }
 
     public void OnQuit()
