@@ -3,6 +3,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using MyBox;
 using UnityEditor;
@@ -179,6 +180,29 @@ namespace Helpers {
             Handles.Label(pos, text, style);
         }
         #endif
+
+        public static string ExpandToTwoDigits(int x)
+        {
+            if (x < 0) throw new ArgumentException("x must be >= 0");
+            return $"{(x < 10 ? "0" : "")}{x}";
+        }
+
+        public static string TruncFloat(float x, int places)
+        {
+            if (x < 0) throw new ArgumentException("x must be >= 0");
+            double ex = Math.Pow(10, places);
+            return Math.Floor(x * ex).ToString(CultureInfo.InvariantCulture);
+        }
+
+        public static string FormatTime(float seconds)
+        {
+            int totalSeconds = (int)Math.Floor(seconds);
+            int hours = totalSeconds / 3600;
+            int mins = (totalSeconds / 60) % 60;
+            int secs = totalSeconds % 60;
+            float milis = seconds - totalSeconds;
+            return $"{ExpandToTwoDigits(hours)}:{ExpandToTwoDigits(mins)}:{ExpandToTwoDigits(secs)}.{TruncFloat(milis, 3)}";
+        }
 
         public static IEnumerator Sleep(float delayTime)
         {

@@ -43,11 +43,13 @@ public class PauseUIController : MonoBehaviour
     {
         Debug.Log("Pause Pressed.");
         Paused = !Paused;
+        Game.Instance.IsPaused = Paused;
     }
 
     public void OnResume()
     {
         Paused = false;
+        Game.Instance.IsPaused = false;
     }
 
     public void OnRestart()

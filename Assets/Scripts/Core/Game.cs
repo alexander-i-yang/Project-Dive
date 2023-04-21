@@ -12,7 +12,7 @@ namespace Core
     public class Game : Singleton<Game>
     {
         [SerializeField] private string musicName;
-        [Range(0, 1)] public float TimeScale = 1;
+        public float TimeScale = 1;
         public bool IsPaused;
         public bool DebugBreak;
 
