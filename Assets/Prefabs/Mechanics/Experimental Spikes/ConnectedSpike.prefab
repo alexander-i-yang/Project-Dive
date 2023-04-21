@@ -95,7 +95,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fe5e8cbab60423c9f2ca872b364bf6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GravityDown: 0
+  GravityUp: 0
+  MaxFall: 0
   RechargeTime: 0.5
+  recoilMultiplier: 0.5
   Direction: {x: 0, y: 0}
   spikeSprites: {fileID: 11400000, guid: e95968d15dd7c8241be18c412eba6640, type: 2}
   _dischargeOffsetTime: 0.03

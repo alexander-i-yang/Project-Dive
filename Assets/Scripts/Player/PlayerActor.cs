@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-
+using Cinemachine;
 using Core;
 using Helpers;
 using Phys;
@@ -10,7 +10,7 @@ using World;
 using MyBox;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.Events;
 using VFX;
 
 [RequireComponent(typeof(PlayerStateMachine))]
@@ -19,23 +19,31 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private PlayerStateMachine _stateMachine;
     [SerializeField, AutoProperty(AutoPropertyMode.Parent)] private BoxCollider2D _collider;
     [SerializeField] private SpriteRenderer _sprite;
-    [SerializeField] private Death _deathManager;
 
     private bool _hitWallCoroutineRunning;
     private float _hitWallPrevSpeed;
 
     public int Facing => _sprite.flipX ? -1 : 1;    //-1 is facing left, 1 is facing right
 
+    [Foldout("Movement Events", true)]
+    public UnityEvent OnJumpFromGround;
+    public UnityEvent OnDoubleJump;
+    public UnityEvent OnDiveStart;
+    public UnityEvent OnDogo;
+    public UnityEvent OnLand;
+    
+    private Func<Vector2, Vector2> _deathRecoilFunc;
+
     private void OnEnable()
     {
         Room.RoomTransitionEvent += OnRoomTransition;
-        _stateMachine.OnPlayerRespawn += DisableDeathParticles;
+        // _stateMachine.OnPlayerRespawn += DisableDeathParticles;
     }
 
     private void OnDisable()
     {
         Room.RoomTransitionEvent -= OnRoomTransition;
-        _stateMachine.OnPlayerRespawn -= DisableDeathParticles;
+        // _stateMachine.OnPlayerRespawn -= DisableDeathParticles;
     }
 
     #region Movement
@@ -48,34 +56,40 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public void Land()
     {
+        OnLand?.Invoke();
         velocityY = 0;
     }
     #endregion
 
     #region Jumping
-    
+
     /// <summary>
     /// Function that bounces the player.
     /// </summary>
     /// <param name="jumpHeight"></param>
-    public void Jump(int jumpHeight) {
-        velocityY = GetJumpSpeedFromHeight(jumpHeight);
-    }
-
-    private void _mechanicBounceVelocity(Vector2 v)
+    public void Bounce(int jumpHeight)
     {
-        velocity = v;
+        velocityY = GetJumpSpeedFromHeight(jumpHeight);
     }
 
     public void DoubleJump(int jumpHeight, int moveDirection = 0)
     {
-        Jump(jumpHeight);
+        Bounce(jumpHeight);
 
         // If the player is trying to go in the opposite direction of their x velocity, instantly switch direction.
         if (moveDirection != 0 && moveDirection != Math.Sign(velocityX))
         {
             velocityX = 0;
         }
+
+        OnDoubleJump?.Invoke();
+    }
+
+    public void JumpFromGround(int jumpHeight)
+    {
+        Bounce(jumpHeight);
+
+        OnJumpFromGround?.Invoke();
     }
 
     public void JumpCut()
@@ -91,6 +105,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     public void Dive()
     {
         velocityY = PlayerCore.DiveVelocity;
+        OnDiveStart?.Invoke();
     }
 
     public void UpdateWhileDiving()
@@ -114,6 +129,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     #region Dogo
     public float Dogo() {
+        OnDogo?.Invoke();
         float v = velocityX;
         velocityX = 0;
         return v;
@@ -165,16 +181,32 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         return _stateMachine.UsingDrill;
     }
 
-    public void Die(Vector3 diePos)
+    public void Die(Func<Vector2, Vector2> recoilFunc = null)
     {
-        _deathManager.transform.position = diePos;
-        _deathManager.SetParticlesActive(true);
-        _deathManager.Reset();
-        velocity = Vector2.zero;
+        if (recoilFunc == null) recoilFunc = v => v;
+        _deathRecoilFunc = recoilFunc;
         _stateMachine.OnDeath();
+        // Game.Instance.ScreenShakeManagerInstance.Screenshake(
+        //     PlayerCore.SpawnManager.CurrentRoom.GetComponentInChildren<CinemachineVirtualCamera>(),
+        //     10,
+        //     1
+        //     );
+        PlayerCore.MyScreenShakeActivator.ScreenShakeBurst(
+            PlayerCore.MyScreenShakeActivator.DeathData
+        );
     }
-    
-    public void DisableDeathParticles() => _deathManager.SetParticlesActive(false);
+
+    public void DeathRecoil()
+    {
+        velocity = _deathRecoilFunc(velocity);
+    }
+
+    public void DeadStop()
+    {
+        velocity = Vector2.zero;
+    }
+
+    // public void DisableDeathParticles() => _deathManager.SetParticlesActive(false);
 
     #region Actor Overrides
     public override bool Collidable() {
@@ -215,7 +247,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         if (OnCollide(p, d))
         {
             Debug.Log("Squish " + p);
-            Die(transform.position);
+            Die();
         }
         return false;
     }
@@ -223,6 +255,15 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public void BonkHead() {
         velocityY = Math.Min(10, velocityY);
+    }
+    
+    public void FloorDisappear()
+    {
+        if (IsDogoing())
+        {
+            velocity = Vector2.zero;
+            _stateMachine.Transition<PlayerStateMachine.Airborne>();    
+        }
     }
 
     private void HitWall(int direction) {

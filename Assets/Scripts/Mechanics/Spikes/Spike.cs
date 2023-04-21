@@ -7,11 +7,13 @@ using UnityEngine;
 using World;
 
 namespace Mechanics {
-    public class Spike : Solid, IFilterLoggerTarget, IResettable {
+    public class Spike : Actor, IFilterLoggerTarget, IResettable {
         public bool Charged { get; private set; } = true;
         public float RechargeTime = 0.5f;
         private Coroutine _reEnableCoroutine;
         private SpriteRenderer _mySR;
+
+        [SerializeField] private float recoilMultiplier = -1;
 
         protected new void Start()
         {
@@ -40,6 +42,11 @@ namespace Mechanics {
         }
 
         public override bool IsGround(PhysObj b) {
+            return false;
+        }
+
+        public override bool Squish(PhysObj p, Vector2 d)
+        {
             return false;
         }
 
@@ -85,6 +92,11 @@ namespace Mechanics {
         public bool CanReset()
         {
             return gameObject != null && gameObject.activeSelf;
+        }
+
+        public Vector2 RecoilFunc(Vector2 v)
+        {
+            return -v * recoilMultiplier;
         }
     }
 }

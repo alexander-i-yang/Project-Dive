@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{c6f9d269-e153-47c9-8dd7-76976d2c968a}">
+		<property name="name">
+			<value>InWater</value>
+		</property>
+		<relationship name="folder">
+			<destination>{5e791333-6cd4-4652-bc4a-ab9b102713b0}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{07ac8843-667a-4a6d-b45c-36b25950fb8f}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{07ac8843-667a-4a6d-b45c-36b25950fb8f}">
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>

@@ -6,6 +6,10 @@ using UnityEngine;
 using Helpers;
 using World;
 using System;
+using MyBox;
+using System.Linq;
+using Cinemachine;
+using UnityEditor;
 
 namespace Player
 {
@@ -15,11 +19,15 @@ namespace Player
         private Room _prevRoom;
         private Spawn _currentSpawnPoint;
         public Room CurrentRoom => _currentRoom;
+        public CinemachineVirtualCamera CurrentVCam => _currentRoom.VCam;
 
         private SpriteRenderer _spriteR;
         [SerializeField] private float spawnAnimationTime = .5f;
+        [SerializeField] private float roomSizeMaxReverb;
 
         public event Action OnPlayerRespawn;
+
+        // public event Action OnRoomTransition;
 
         public Spawn CurrentSpawnPoint
         {
@@ -29,15 +37,14 @@ namespace Player
                 {
                     _currentSpawnPoint = FindClosestSpawnPoint();
                 }
+
                 return _currentSpawnPoint;
             }
-            set
-            {
-                _currentSpawnPoint = value;
-            }
+            set { _currentSpawnPoint = value; }
         }
 
-        void Start() {
+        void Start()
+        {
             _spriteR = GetComponentInChildren<SpriteRenderer>();
         }
 
@@ -58,33 +65,65 @@ namespace Player
             if (CurrentSpawnPoint != null)
             {
                 _currentRoom.Reset();
-                print("Reset");
                 transform.position = CurrentSpawnPoint.transform.position;
             }
-
+            
             OnPlayerRespawn?.Invoke();
         }
 
         private void OnRoomTransition(Room roomEntering)
         {
+            Room[] prevRooms = Array.Empty<Room>();
+            if (_currentRoom != null)
+            {
+                prevRooms = _currentRoom.AdjacentRooms;
+            }
+
             _currentRoom = roomEntering;
-            
             _currentSpawnPoint = FindClosestSpawnPoint();
+
+            //Set Global Reverb Amount for FMOD Events.
+            float roomSize = _currentRoom.GetRoomSize();
+            float clampedReverb = Mathf.Clamp01(roomSize / roomSizeMaxReverb);
+
+            FilterLogger.Log(this, $"New Room Size is {roomSize}");
+            FilterLogger.Log(this, $"Set Reverb to {clampedReverb}");
+
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("ReverbAmount", clampedReverb);
+
+            Room[] newRooms = roomEntering.AdjacentRooms;
+
+            Room[] disableRooms = prevRooms.Except(newRooms).ToArray();
+
+            foreach (var r in disableRooms)
+            {
+                //Idk why but except isn't working
+                if (r != _currentRoom) r.RoomSetEnable(false);
+            }
+
+            foreach (var r in newRooms)
+            {
+                r.RoomSetEnable(true);
+            }
         }
 
-        private IEnumerator ShaderRespawnCo() {
+        private IEnumerator ShaderRespawnCo()
+        {
+            _spriteR.material = new Material(_spriteR.material);
             _spriteR.material.SetFloat("_Progress", 0);
             float timer = 0;
-            while (timer < spawnAnimationTime) {
+            while (timer < spawnAnimationTime)
+            {
                 timer += Time.deltaTime;
-                _spriteR.material.SetFloat("_Progress", timer/spawnAnimationTime);
+                _spriteR.material.SetFloat("_Progress", timer / spawnAnimationTime);
                 yield return null;
             }
+
             _spriteR.material.SetFloat("_Progress", 2);
         }
 
         public void ShaderRespawn() {
-            StartCoroutine(ShaderRespawnCo());
+            // StartCoroutine(ShaderRespawnCo());
         }
 
         private Spawn FindClosestSpawnPoint()

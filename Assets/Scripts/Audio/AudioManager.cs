@@ -10,18 +10,11 @@ namespace Audio
     //Source: Slider by Daniel Carr
     public class AudioManager : Singleton<AudioManager>
     {
-        [SerializeField] private Sound[] sounds;
-        private static Sound[] _sounds;
-
         [SerializeField] private Music[] music;
         private static Music[] _music;
 
-        [SerializeField] private string musicBusPath;
         [SerializeField] private string sfxBusPath;
-
-        [SerializeField] private AnimationCurve soundDampenCurve;
-        private static AnimationCurve _soundDampenCurve;
-        private static Coroutine soundDampenCoroutine;
+        [SerializeField] private string musicBusPath;
 
         private static float sfxVolume = 1f; // [0..1]
         private static float musicVolume = 1f;
@@ -35,19 +28,7 @@ namespace Audio
             InitializeSingleton();
             DontDestroyOnLoad(gameObject);
 
-            _sounds = sounds;
             _music = music;
-            _soundDampenCurve = soundDampenCurve;
-
-            foreach (Sound s in _sounds)
-            {
-                s.source = gameObject.AddComponent<AudioSource>();
-                s.source.clip = s.clip;
-
-                s.source.volume = s.volume;
-                s.source.pitch = s.pitch;
-                s.source.loop = s.loop;
-            }
 
             foreach (Music m in _music)
             {
@@ -81,68 +62,6 @@ namespace Audio
             }
 
             return m;
-        }
-
-        public static void Play(string name)
-        {
-            if (_sounds == null)
-                return;
-            Sound s = Array.Find(_sounds, sound => sound.name == name);
-
-            if (s == null)
-            {
-                Debug.LogError("Sound: " + name + " not found!");
-                return;
-            }
-
-            if (s.doRandomPitch)
-                s.source.pitch = s.pitch * UnityEngine.Random.Range(.95f, 1.05f);
-            else
-                s.source.pitch = s.pitch;
-
-            s.source.Play();
-        }
-
-        public static void PlayWithPitch(string name, float pitch) //Used In Ocean Scene
-        {
-            if (_sounds == null)
-                return;
-            Sound s = Array.Find(_sounds, sound => sound.name == name);
-
-            if (s == null)
-            {
-                Debug.LogError("Sound: " + name + " not found!");
-                return;
-            }
-
-            if (s.doRandomPitch)
-                s.source.pitch = s.pitch * UnityEngine.Random.Range(.95f, 1.05f) * pitch;
-            else
-                s.source.pitch = s.pitch * pitch;
-
-            s.source.Play();
-        }
-
-
-        public static void PlayWithVolume(string name, float volumeMultiplier)
-        {
-            if (_sounds == null)
-                return;
-            Sound s = Array.Find(_sounds, sound => sound.name == name);
-
-            if (s == null)
-            {
-                Debug.LogError("Sound: " + name + " not found!");
-                return;
-            }
-
-            if (s.doRandomPitch)
-                s.source.pitch = s.pitch * UnityEngine.Random.Range(.95f, 1.05f);
-            else
-                s.source.pitch = s.pitch;
-
-            s.source.volume = s.volume * sfxVolume * volumeMultiplier;
-            s.source.Play();
         }
 
         public static void PlayMusic(string name)
@@ -179,30 +98,14 @@ namespace Audio
             m.emitter.Stop();
         }
 
-        public static void StopSound(string name)
+        public static void StopAllMusic()
         {
-            if (_sounds == null)
-                return;
-            Sound s = Array.Find(_sounds, sound => sound.name == name);
-
-            if (s == null)
+            foreach (Music m in _music)
             {
-                Debug.LogError("Sound: " + name + " not found!");
-                return;
-            }
-
-            s.source.Stop();
-        }
-
-        public static void StopAllSoundAndMusic()
-        {
-            foreach (Music m in Instance.music)
-            {
-                m.emitter.Stop();
-            }
-            foreach (Sound s in Instance.sounds)
-            {
-                s.source.Stop();
+                if (m.emitter.IsPlaying())
+                {
+                    m.emitter.Stop();
+                }
             }
         }
 
@@ -220,28 +123,16 @@ namespace Audio
             m.emitter.SetParameter(parameterName, value);
         }
 
-
-        public static void SetSFXVolume(float value)
-        {
-            value = Mathf.Clamp(value, 0, 1);
-            sfxVolume = value;
-
-            if (_sounds == null)
-                return;
-            foreach (Sound s in _sounds)
-            {
-                if (s == null || s.source == null)
-                    continue;
-                s.source.volume = s.volume * value;
-            }
-
-            sfxBus.setVolume(value);
-        }
-
         public static void SetMusicVolume(float value)
         {
             musicVolume = Mathf.Clamp(value, 0, 1);
             UpdateMusicVolume();
+        }
+
+        public static void SetSFXVolume(float value)
+        {
+            sfxVolume = Mathf.Clamp(value, 0, 1);
+            UpdateSFXVolume();
         }
 
         public static void SetMusicVolumeMultiplier(float value)
@@ -260,35 +151,11 @@ namespace Audio
             musicBus.setVolume(vol);
         }
 
-        public static void DampenMusic(float amount, float length)
+        private static void UpdateSFXVolume()
         {
-            StopDampen();
-            soundDampenCoroutine = Instance.StartCoroutine(_DampenMusic(amount, length));
-        }
+            float vol = Mathf.Clamp(sfxVolume, 0, 1);
 
-        public static void StopDampen()
-        {
-            if (soundDampenCoroutine != null)
-            {
-                Instance.StopCoroutine(soundDampenCoroutine);
-                soundDampenCoroutine = null;
-            }
-        }
-
-        private static IEnumerator _DampenMusic(float amount, float length)
-        {
-            float t = 0;
-
-            while (t < length)
-            {
-                SetMusicVolumeMultiplier(Mathf.Lerp(amount, 1, _soundDampenCurve.Evaluate(t / length)));
-
-                yield return null;
-                t += Time.deltaTime;
-            }
-
-            SetMusicVolumeMultiplier(1);
-            soundDampenCoroutine = null;
+            sfxBus.setVolume(vol);
         }
 
         public static float GetSFXVolume()
@@ -299,20 +166,6 @@ namespace Audio
         public static float GetMusicVolume()
         {
             return musicVolume;
-        }
-
-        public static void SetSFXPitch(float value)
-        {
-            value = Mathf.Clamp(value, 0.3f, 3f);
-
-            if (_sounds == null)
-                return;
-            foreach (Sound s in _sounds)
-            {
-                if (s == null || s.source == null)
-                    continue;
-                s.source.pitch = s.pitch * value;
-            }
         }
     }
 }

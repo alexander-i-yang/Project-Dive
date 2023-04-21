@@ -1,5 +1,4 @@
-﻿using Helpers.Bakers;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Bakers.Editor
@@ -13,7 +12,7 @@ namespace Bakers.Editor
             var playerScript = target as PlayerBaker;
             if(GUILayout.Button("Bake Player"))
             {
-                playerScript.ResetPlayerPos();
+                playerScript.Bake();
             }
         }
     }

@@ -9,7 +9,8 @@ public class GateAnimator : MonoBehaviour
 {
     [SerializeField] private Transform startPos;
     [SerializeField] private Transform endPos;
-    [SerializeField] private AnimationCurve _animCurve;
+    [SerializeField] private AnimationCurve animCurve;
+    [SerializeField] private float animTime = 0.5f;
 
     private Coroutine _animCorout;
 
@@ -22,10 +23,10 @@ public class GateAnimator : MonoBehaviour
     private IEnumerator Animate()
     {
         float t = 0f;
-        while (t <= 1f)
+        while (t <= animTime)
         {
             t += Game.Instance.DeltaTime;
-            float s = _animCurve.Evaluate(t);
+            float s = animCurve.Evaluate(t);
             transform.position = Vector3.Lerp(startPos.position, endPos.position, s);
             yield return null;
         }

@@ -35,7 +35,7 @@ namespace Mechanics
                     shouldDie = directionalSpike.ShouldDieFromVelocity(PlayerCore.Actor.velocity);
                 }
                 
-                if (shouldDie) PlayerCore.Actor.Die(PlayerCore.Actor.transform.position);
+                if (shouldDie) PlayerCore.Actor.Die(spike.RecoilFunc);
             }
         }
 

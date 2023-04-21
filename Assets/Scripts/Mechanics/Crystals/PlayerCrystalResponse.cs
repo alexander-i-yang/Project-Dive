@@ -12,7 +12,7 @@ namespace Mechanics
         {
             if (PlayerCore.StateMachine.IsOnState<PlayerStateMachine.Diving>())
             {
-                PlayerCore.Actor.Jump(bounceHeight);
+                PlayerCore.Actor.Bounce(bounceHeight);
                 PlayerCore.StateMachine.RefreshAbilities();
                 PlayerCore.StateMachine.Transition<PlayerStateMachine.Airborne>();
                 crystal.Break();

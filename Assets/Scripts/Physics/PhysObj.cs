@@ -84,19 +84,34 @@ namespace Phys {
             Vector2 sizeMult = colliderSize - Vector2.one;
             List<RaycastHit2D> hits = new List<RaycastHit2D>();
             ContactFilter2D filter = new ContactFilter2D();
-            filter.layerMask = LayerMask.GetMask("Interactable");
+            filter.layerMask = LayerMask.GetMask("Interactable", "Ground");
             filter.useLayerMask = true;
             Physics2D.BoxCast(transform.position, sizeMult, 0, direction, filter, hits, 8f);
 
+            List<Solid> solids = new();
+            List<Actor> actors = new();
+
             foreach (var hit in hits) {
-                var p = hit.transform.GetComponent<PhysObj>();
                 if (hit.transform == transform)
                 {
                     continue;
                 }
+                var s = hit.transform.GetComponent<Solid>();
+                var a = hit.transform.GetComponent<Actor>();
+                if (s != null)
+                {
+                    solids.Add(s);
+                } else if (a != null)
+                {
+                    actors.Add(a);
+                }
+            }
+            
+            foreach (var s in solids)
+            {
                 bool proactiveCollision = ProactiveBoxCast(
-                    p.transform, 
-                    p.NextFrameOffset,
+                    s.transform, 
+                    s.NextFrameOffset,
                     sizeMult,
                     1,
                     direction, 
@@ -104,14 +119,34 @@ namespace Phys {
                 );
                 if (proactiveCollision)
                 {
-                    bool col = onCollide.Invoke(p, direction);
+                    bool col = onCollide.Invoke(s, direction);
                     if (col)
                     {
                         return true;
                     }
                 }
             }
-
+            
+            foreach (var a in actors)
+            {
+                bool proactiveCollision = ProactiveBoxCast(
+                    a.transform, 
+                    a.NextFrameOffset,
+                    sizeMult,
+                    1,
+                    direction, 
+                    filter
+                );
+                if (proactiveCollision)
+                {
+                    bool col = onCollide.Invoke(a, direction);
+                    if (col)
+                    {
+                        return true;
+                    }
+                }
+            }
+            
             return false;
         }
 
@@ -135,7 +170,7 @@ namespace Phys {
         }
         
         private void OnDrawGizmosSelected() {
-            Vector2 direction = velocity == Vector2.zero ? Vector2.up : velocity.normalized;
+            Vector2 direction = velocity == Vector2.zero ? Vector2.up: velocity.normalized;
             var col = GetComponent<BoxCollider2D>();
             if (col == null) return;
             Vector2 colliderSize = col.size;

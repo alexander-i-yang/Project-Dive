@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/M2/Start Scene.unity
     guid: 13b033da3f5ee334384bb89b3b588ee1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/M2/Area 1.unity
     guid: 967eccb17740c3f4190075ea5e26a638
   - enabled: 0
@@ -17,19 +17,19 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Dev/Alex/Start Scene.unity
     guid: ef2385a27f1229c49b5504d58367ca5e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Dev/Alex/New Start Scene.unity
     guid: a3e1b26086d9a154da4584422c89a7f2
   - enabled: 0
     path: Assets/Scenes/Dev/Alex/Area 1.unity
     guid: 0be57b29ef654bd40956e0cdc0c51735
   - enabled: 0
-    path: Assets/Scenes/Dev/Logan/Area 1.unity
+    path: Assets/Scenes/Dev/Logan/M2/Area 1.unity
     guid: ebe50feb4c1f76a4fb8f5269f6fe5c35
   - enabled: 0
-    path: Assets/Scenes/Dev/Logan/Start Scene.unity
+    path: Assets/Scenes/Dev/Logan/M2/Start Scene.unity
     guid: 52e4b73db2b681a48b3c140a8d4de25e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Dev/Alex/New Area 1.unity
     guid: 23ec55981efe9c2428f65033362c5c13
   m_configObjects: {}

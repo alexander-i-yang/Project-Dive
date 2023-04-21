@@ -20,6 +20,7 @@ using UnityEngine.Tilemaps;
 using World;
 using Vector2 = UnityEngine.Vector2;
 using LIL = TiledUtil.LayerImportLibrary;
+using Random = System.Random;
 
 namespace TiledUtil {
 
@@ -53,6 +54,8 @@ namespace TiledUtil {
                 { "Water", ImportWaterTilemap },
                 { "Dirt", ImportGroundTilemap },
                 { "DecorBack", ImportDecorBackTilemap },
+                { "GlowingMushrooms", ImportGlowingMushroomTilemap },
+                { "Stalagtites", ImportStalagtitesTilemap },
                 { "Spikes", ImportSpikesTilemap },
                 { "Branches", ImportBranchesTilemap },
                 { "Doors", ImportDoorsTilemap },
@@ -65,6 +68,8 @@ namespace TiledUtil {
                 { "Semisolid", ImportSemisolid },
                 { "Dirt", ImportGround },
                 { "Breakable", ImportBreakable },
+                { "GlowingMushrooms", ImportGlowingMushroom },
+                { "Stalagtites", ImportStalagtites },
                 { "Lava", ImportLava },
                 { "Water", ImportWater },
                 { "Doors", ImportDoors },
@@ -159,7 +164,7 @@ namespace TiledUtil {
             confiner.m_BoundingShape2D = boundingShape;
         }
 
-        private Tuple<GameObject, Vector2[]> ImportTileToPrefab(GameObject g, int index, String prefabName) {
+        private (GameObject gameObject, Vector2[] collisionPts) ImportTileToPrefab(GameObject g, int index, String prefabName) {
             GameObject replacer = _prefabReplacements[prefabName];
             Vector2[] points = LIL.EdgeToPoints(g);
 
@@ -181,7 +186,7 @@ namespace TiledUtil {
             
             //Set Layer (kinda hacky I know)
             LIL.SetLayer(g, "Interactable");
-            return new Tuple<GameObject, Vector2[]>(g, points);
+            return (g, points);
         }
 
         private GameObject AddWaterfalCollision(GameObject g, Vector2[] points)
@@ -194,7 +199,21 @@ namespace TiledUtil {
 
         private void ImportGround(GameObject g, int index) {
             var ret = ImportTileToPrefab(g, index, "Ground");
-            AddWaterfalCollision(ret.Item1, ret.Item2);
+            AddWaterfalCollision(ret.gameObject, ret.collisionPts);
+            LIL.SetLayer(ret.gameObject, "Ground");
+        }
+        
+        private void ImportGlowingMushroom(GameObject g, int index)
+        {
+            var ret = ImportTileToPrefab(g, index, "Glowing Mushroom");
+            ret.gameObject.transform.position = ret.collisionPts[2] + new Vector2(4, -12);
+            ret.gameObject.transform.localScale = new Vector3(Mathf.Round(UnityEngine.Random.value)*2-1, 1, 1);
+        }
+
+        private void ImportStalagtites(GameObject g, int index)
+        {
+            var ret = ImportTileToPrefab(g, index, "PS_Teardrop");
+            ret.gameObject.transform.position = ret.collisionPts[2] + new Vector2(0.5f, -8.5f);
         }
         
         private void ImportSemisolid(GameObject g, int index) {
@@ -203,8 +222,8 @@ namespace TiledUtil {
 
         private void ImportBreakable(GameObject g, int index) {
             var data = ImportTileToPrefab(g, index, "Breakable");
-            g = data.Item1;
-            Vector2[] colliderPoints = data.Item2;
+            g = data.gameObject;
+            Vector2[] colliderPoints = data.collisionPts;
             Vector2[] spritePoints = LIL.ColliderPointsToRectanglePoints(g, colliderPoints); 
             
             Vector2 avgSpritePoint = spritePoints.ComputeAverage();
@@ -238,7 +257,7 @@ namespace TiledUtil {
         private void ImportDoors(GameObject g, int index)
         {
             var ret = ImportTileToPrefab(g, index, "Door");
-            LIL.SetLayer(ret.Item1, "Default");
+            LIL.SetLayer(ret.gameObject, "Default");
         }
 
         private void ImportLavaTilemap(GameObject g)
@@ -272,6 +291,18 @@ namespace TiledUtil {
         private void ImportDecorBackTilemap(GameObject g)
         {
             g.GetRequiredComponent<TilemapRenderer>().SetSortingLayer("Bg");
+        }
+
+        private void ImportGlowingMushroomTilemap(GameObject g)
+        {
+            g.GetRequiredComponent<TilemapRenderer>().enabled = false;
+        }
+
+        private void ImportStalagtitesTilemap(GameObject g)
+        {
+            var r = g.GetRequiredComponent<TilemapRenderer>();
+            r.SetSortingLayer("Bg");
+            r.sortingOrder = 5;
         }
         
         private void ImportGroundTilemap(GameObject g)

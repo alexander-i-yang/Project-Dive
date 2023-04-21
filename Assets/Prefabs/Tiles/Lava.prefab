@@ -67,4 +67,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbca1976323946c6a97c5c83b522a9ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToDie: 0.1
+  timeToDie: 0.05
+  recoilMult: -0.5

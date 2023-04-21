@@ -13,12 +13,12 @@ namespace Player
         LANDING,
         DIVING,
         DOGOING,
-        SLEEPING
+        SLEEPING,
     }
 
     public class PlayerAnimationStateManager : AnimationStateManager<PlayerAnimations>
     {
-        public override Dictionary<PlayerAnimations, string> Animations => new Dictionary<PlayerAnimations, string>()
+        public override Dictionary<PlayerAnimations, string> Animations => new()
         {
             { PlayerAnimations.IDLE, "Player_Idle"},
             { PlayerAnimations.SLEEPING, "Player_Sleeping"},
@@ -27,7 +27,7 @@ namespace Player
             { PlayerAnimations.FREEFALL, "Player_Freefall" },
             { PlayerAnimations.LANDING, "Player_Landing" },
             { PlayerAnimations.DIVING, "Player_Diving" },
-            { PlayerAnimations.DOGOING, "Player_Dogoing" }
+            { PlayerAnimations.DOGOING, "Player_Dogoing" },
         };
     }
 }

@@ -12,6 +12,7 @@ namespace Player
     [RequireComponent(typeof(PlayerSpawnManager))]
     [RequireComponent(typeof(PlayerStateMachine))]
     [RequireComponent(typeof(PlayerInputController))]
+    [RequireComponent(typeof(PlayerScreenShakeActivator))]
     public class PlayerCore : Singleton<PlayerCore>
     {
         #region Player Properties
@@ -114,6 +115,7 @@ namespace Player
         public static PlayerInputController Input { get; private set; }
         public static PlayerActor Actor { get; private set; }
         public static PlayerSpawnManager SpawnManager { get; private set; }
+        public static PlayerScreenShakeActivator MyScreenShakeActivator { get; private set; }
 
         private void Awake()
         {
@@ -122,6 +124,7 @@ namespace Player
             Input = gameObject.GetComponent<PlayerInputController>();
             Actor = gameObject.GetComponent<PlayerActor>();
             SpawnManager = gameObject.GetComponent<PlayerSpawnManager>();
+            MyScreenShakeActivator = gameObject.GetComponent<PlayerScreenShakeActivator>();
 
             //gameObject.AddComponent<PlayerCrystalResponse>();
             //gameObject.AddComponent<PlayerSpikeResponse>();

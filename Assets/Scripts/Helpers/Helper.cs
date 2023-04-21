@@ -3,10 +3,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using MyBox;
 using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Helpers {
     /// <summary>
@@ -43,6 +45,16 @@ namespace Helpers {
             Gizmos.DrawRay(pos + direction / 2, left * arrowHeadLength);
         }
 
+        public static void DrawPolygon(Vector2[] pts, Vector2 center)
+        {
+            for(int i = 0; i < pts.Length-1; i++)
+            {
+                Vector2 p0 = new Vector3(pts[i].x + center.x, pts[i].y + center.y);
+                Vector2 p1 = new Vector3(pts[i + 1].x + center.x, pts[i + 1].y + center.y);
+                Gizmos.DrawLine(p0, p1);
+            }
+        }
+
         public static String DictToString<Key, Val>(Dictionary<Key, Val> d)
         {
             return "{" + string.Join(",", d.Select(kv => kv.Key + "=" + kv.Value).ToArray()) + "}";
@@ -71,14 +83,15 @@ namespace Helpers {
         /// At a given position, casts a vector up and down the z axis to find Components of type <typeparamref name="T"/>
         /// </summary>
         /// <param name="pos">Position</param>
+        /// <param name="l">LayerMask</param>
         /// <typeparam name="T">Component</typeparam>
         /// <returns>Component to find</returns>
-        public static T OnComponent<T>(Vector3 pos) where T : MonoBehaviour
+        public static T OnComponent<T>(Vector3 pos, LayerMask l) where T : MonoBehaviour
         {
             RaycastHit2D[] found = Physics2D.RaycastAll(
                 pos,
                 new Vector3(0, 0, 1),
-                LayerMask.GetMask("Interactable")
+                l
             );
             T highestComponent = default(T);
             foreach (RaycastHit2D curCol in found)
@@ -125,16 +138,25 @@ namespace Helpers {
             return c;
         }
 
-        public static IEnumerator Fade(SpriteRenderer sr, float time, Color newColor, Action<int> done = null)
+        public static IEnumerator FadeColor(float time, Color origColor, Color newColor, Action<Color> setColor, Action done = null)
         {
-            Color origColor = sr.color;
-            for (float ft = 0; ft < time; ft += Game.Instance.IsPaused ? 0 : Time.deltaTime)
+            for (float ft = 0; ft < time; ft += Time.deltaTime)
             {
-                sr.color = ColorLerp(origColor, newColor, ft / time);
+                setColor(ColorLerp(origColor, newColor, ft / time));
                 yield return null;
             }
 
-            if (done != null) done(0);
+            if (done != null) done();
+        }
+
+        public static IEnumerator Fade(UnityEngine.UI.Image im, float time, Color newColor, Action done = null)
+        {
+            return FadeColor(time, im.color, newColor, color => im.color = color, done);
+        }
+
+        public static IEnumerator Fade(SpriteRenderer sr, float time, Color newColor, Action done = null)
+        {
+            return FadeColor(time, sr.color, newColor, color => sr.color = color, done);
         }
 
         public static IEnumerator Shake(Transform t, float duration = 0.5f, float speed = 100f, float amount = 0.05f)
@@ -159,7 +181,30 @@ namespace Helpers {
         }
         #endif
 
-        public static IEnumerator Delay(float delayTime)
+        public static string ExpandToTwoDigits(int x)
+        {
+            if (x < 0) throw new ArgumentException("x must be >= 0");
+            return $"{(x < 10 ? "0" : "")}{x}";
+        }
+
+        public static string TruncFloat(float x, int places)
+        {
+            if (x < 0) throw new ArgumentException("x must be >= 0");
+            double ex = Math.Pow(10, places);
+            return Math.Floor(x * ex).ToString(CultureInfo.InvariantCulture);
+        }
+
+        public static string FormatTime(float seconds)
+        {
+            int totalSeconds = (int)Math.Floor(seconds);
+            int hours = totalSeconds / 3600;
+            int mins = (totalSeconds / 60) % 60;
+            int secs = totalSeconds % 60;
+            float milis = seconds - totalSeconds;
+            return $"{ExpandToTwoDigits(hours)}:{ExpandToTwoDigits(mins)}:{ExpandToTwoDigits(secs)}.{TruncFloat(milis, 3)}";
+        }
+
+        public static IEnumerator Sleep(float delayTime)
         {
             yield return new WaitForSeconds(delayTime / Game.Instance.TimeScale);
         }
@@ -276,6 +321,11 @@ namespace Helpers {
             dir = Quaternion.Euler(0, 0, angle) * dir; // rotate it
             point = dir + pivot; // calculate rotated point
             return point; // return it
+        }
+
+        public static float GetRandom(this RangedInt range)
+        {
+            return Random.Range(range.Min, range.Max);
         }
     }
 }

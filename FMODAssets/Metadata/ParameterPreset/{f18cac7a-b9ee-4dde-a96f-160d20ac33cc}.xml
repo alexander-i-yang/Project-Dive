@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{f18cac7a-b9ee-4dde-a96f-160d20ac33cc}">
+		<property name="name">
+			<value>WhooshVolume</value>
+		</property>
+		<relationship name="folder">
+			<destination>{5e791333-6cd4-4652-bc4a-ab9b102713b0}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{cc49a922-2fb7-4cfc-a3ea-f5ffd7aa7604}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{cc49a922-2fb7-4cfc-a3ea-f5ffd7aa7604}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

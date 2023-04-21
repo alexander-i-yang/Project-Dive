@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Helpers;
 using Mechanics;
+using UnityEngine;
 
 namespace Player
 {
@@ -26,6 +27,8 @@ namespace Player
         public double oldVelocity;
         public GameTimerWindowed ultraTimer;
 
+        public Vector3 diePos;
+        
         public void RefillAbilities()
         {
             canDive = true;

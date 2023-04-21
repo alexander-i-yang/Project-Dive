@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 
 using Helpers;
 using UnityEditor;
+using UnityEngine.Rendering.Universal;
 using World;
 
 namespace Collectibles {
@@ -14,7 +16,10 @@ namespace Collectibles {
         private FireflyAnimator _animator;
         private FireflyAnimatorEnd _animatorEnd;
 
+        private ParticleSystem[] _particleSystems;
+
         private bool _moving = false;
+        private bool _collected = false;
         [SerializeField] private float graceTouchMultipier;
 
         public override string ID => "Firefly";
@@ -25,6 +30,9 @@ namespace Collectibles {
         private int _coordInd;
 
         private Vector3 _startPos;
+        
+        public delegate void CollectAnimFinish(int quantity);
+        public static event CollectAnimFinish OnCollectAnimFinish;
     
         private void Awake()
         {
@@ -34,8 +42,10 @@ namespace Collectibles {
 
         private void OnEnable()
         {
+            if (_collected) gameObject.SetActive(false);
             _animator = GetComponent<FireflyAnimator>();
             _animatorEnd = GetComponent<FireflyAnimatorEnd>();
+            _particleSystems = GetComponentsInChildren<ParticleSystem>();
         }
 
         public List<Vector2> ReadCoords()
@@ -63,6 +73,7 @@ namespace Collectibles {
                 {
                     _animator.EndPos = _coords[_coordInd];
                     _animator.PlayAnimation(OnTouchAnimFinish);
+                    // _particleSystem.emission.rateOverTime = ;
                     /*StartCoroutine(Helper.DelayAction(
                         _animator.GetAnimSpeed() * graceTouchMultipier, 
                         () =>
@@ -74,7 +85,10 @@ namespace Collectibles {
                 }
                 else
                 {
-                    _animatorEnd.PlayAnimation(() => OnFinishCollected(collector));
+                    collector.OnCollectFinished(this);
+                    var pInventory = collector.GetComponent<PlayerInventory>();
+                    _collected = true;
+                    _animatorEnd.PlayAnimation(() => OnFinishCollected(pInventory));
                 }
             }
         }
@@ -82,14 +96,38 @@ namespace Collectibles {
         private void OnTouchAnimFinish()
         {
             _moving = false;
-            print("Finish");
+            
+            /*
+            Collider2D[] hits = new Collider2D[0];
+            ContactFilter2D filter = new ContactFilter2D();
+            filter.SetLayerMask(LayerMask.NameToLayer("Interactable"));
+            GetComponent<Collider2D>().OverlapCollider(filter, hits);
+
+            foreach (var hit in hits)
+            {
+                print(hit);
+            }*/
         }
 
-        private void OnFinishCollected(Collector collector)
+        private void OnFinishCollected(PlayerInventory p)
         {
-            collector.OnCollectFinished(this);
             _moving = false;
-            gameObject.SetActive(false);
+            Disable();
+            OnCollectAnimFinish?.Invoke(p.NumCollectibles(s_ID));
+        }
+
+        private void Disable()
+        {
+            GetComponentInChildren<SpriteRenderer>().enabled = false;
+            GetComponentInChildren<Light2D>().gameObject.SetActive(false);
+            GetComponentInChildren<Collider2D>().enabled = false;
+            GetComponentInChildren<Floater>().enabled = false;
+            foreach (var p in _particleSystems)
+            {
+                var emissionModule = p.emission;
+                emissionModule.enabled = false;
+                // p.SetCustomParticleData(emissionModule);
+            }
         }
 
         public LogLevel GetLogLevel()
@@ -99,17 +137,18 @@ namespace Collectibles {
 
         public void Reset()
         {
-            print("Reset");
+            foreach (var p in _particleSystems) p.Pause();
             transform.position = _startPos;
             _coordInd = 0;
             _moving = false;
             _animator.StopAnimation();
             _animatorEnd.StopAnimation();
+            foreach (var p in _particleSystems) p.Play();
         }
 
         public bool CanReset()
         {
-            return gameObject.activeSelf;
+            return !_collected && gameObject.activeSelf;
         }
     }
 }

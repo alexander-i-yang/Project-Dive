@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using Helpers;
+using UnityEngine;
 
 namespace VFX
 {
@@ -7,23 +9,38 @@ namespace VFX
     {
         private Vector3 _startPosLocal;
         private Rigidbody2D _myRB;
+        private SpriteRenderer _mySR;
         
-        void Awake()
+        public void Init()
         {
             _startPosLocal = transform.localPosition;
             _myRB = GetComponent<Rigidbody2D>();
+            _mySR = GetComponent<SpriteRenderer>();
         }
 
-        public void Launch(Vector2 v)
+        public void Launch(Vector2 v, float rotationV, float persistTime, float fadeTime)
         {
             _myRB.AddForce(v, ForceMode2D.Impulse);
+            _myRB.AddTorque(rotationV, ForceMode2D.Impulse);
+            StartCoroutine(FadeCoroutine(persistTime, fadeTime));
         }
 
-        public void Reset()
+        private IEnumerator FadeCoroutine(float persistTime, float fadeTime)
         {
-            transform.localPosition = _startPosLocal;
-            transform.rotation = Quaternion.identity;
-            // _myRB.for
+            yield return Helper.Sleep(persistTime);
+            Color origColor = _mySR.color;
+            Color newColor = _mySR.color;
+            newColor.a = 0;
+            yield return Helper.FadeColor(
+                fadeTime, 
+                origColor, 
+                newColor,
+                c =>
+                {
+                    _mySR.color = c;
+                }
+            );
+            Destroy(gameObject);
         }
     }
 }

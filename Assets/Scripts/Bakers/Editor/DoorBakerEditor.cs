@@ -1,12 +1,10 @@
-﻿using Helpers.Bakers;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
-using World;
 
 namespace Bakers.Editor
 {
     [CustomEditor(typeof(DoorBaker))]
-    public class DoorEditor : UnityEditor.Editor
+    public class DoorBakerEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
@@ -14,7 +12,7 @@ namespace Bakers.Editor
             var doorScript = target as DoorBaker;
             if(GUILayout.Button("Calculate Doors"))
             {
-                doorScript.CalculateDoorsInScene();
+                doorScript.Bake();
             }
         }
     }
