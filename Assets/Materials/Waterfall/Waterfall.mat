@@ -95,7 +95,7 @@ Material:
     - _EnableExternalAlpha: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _fakeOpacity: 0.08
+    - _fakeOpacity: 0.15
     - _length: 73.5
     - _noiseScale: 0.2
     - _noiseSpeed: 1

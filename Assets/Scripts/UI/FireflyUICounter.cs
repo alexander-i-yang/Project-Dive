@@ -24,7 +24,7 @@ public class FireflyUICounter : MonoBehaviour, IFilterLoggerTarget
         Firefly.OnCollectAnimFinish -= HandleCollectibleAdded;
     }
 
-    private void HandleCollectibleAdded(int quantity)
+    public void HandleCollectibleAdded(int quantity)
     {
         FilterLogger.Log(this, $"Firefly UI Received message of collectibles: {quantity}");
         UpdateCounter(quantity);

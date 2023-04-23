@@ -32,12 +32,14 @@ namespace UI
         private void OnEnable()
         {
             SpeedrunTimerToggleReceiver.ToggleEvent += SetShowing;
+            Game.Instance.OnDebugEvent += GrayOut;
             Room.RoomTransitionEvent += OnRoomTransition;
         }
 
         private void OnDisable()
         {
             SpeedrunTimerToggleReceiver.ToggleEvent -= SetShowing;
+            Game.Instance.OnDebugEvent -= GrayOut;
             Room.RoomTransitionEvent -= OnRoomTransition;
         }
 
@@ -45,7 +47,7 @@ namespace UI
         {
             running = false;
             float bestTime = _bestTime < 0 ? _curTime : Mathf.Min(_bestTime, _curTime);
-            PlayerPrefs.SetFloat(_savePropertyId, bestTime);
+            if (!Game.Instance.IsDebug) PlayerPrefs.SetFloat(_savePropertyId, bestTime);
             _text.text = GetText(_curTime, Helper.FormatTime(bestTime));
         }
 
@@ -71,6 +73,13 @@ namespace UI
         private void SetShowing(bool e)
         {
             _text.SetAlpha(e ? 1 : 0);
+        }
+
+        private void GrayOut()
+        {
+            float prevAlpha = _text.color.a;
+            _text.color = Color.gray;
+            _text.SetAlpha(prevAlpha);
         }
     }
 }

@@ -76,7 +76,7 @@
 </data>
  </layer>
  <objectgroup id="4" name="Mechanics">
-  <object id="1" gid="129" x="24" y="128" width="8" height="12"/>
+  <object id="1" gid="129" x="24" y="136" width="8" height="12"/>
   <object id="16" gid="132" x="72" y="24" width="8" height="8"/>
   <object id="17" gid="182" x="144" y="96" width="8" height="8"/>
   <object id="18" gid="182" x="96" y="72" width="8" height="8"/>

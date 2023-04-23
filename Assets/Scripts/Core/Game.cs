@@ -5,6 +5,7 @@ using UnityEngine;
 using MyBox;
 using Misc;
 using Player;
+using UI;
 using VFX;
 
 namespace Core
@@ -27,6 +28,24 @@ namespace Core
 
         public int FakeControlsArrows = -2;
         public FakeControl FakeControlsZ;
+
+        public delegate void OnDebug();
+        public event OnDebug OnDebugEvent;
+
+        private bool _isDebug;
+        public bool IsDebug
+        {
+            get => _isDebug;
+            set
+            {
+                _isDebug = value;
+                if (value)
+                {
+                    FindObjectOfType<DevConsole>(includeInactive: true).gameObject.SetActive(true);
+                    OnDebugEvent?.Invoke();
+                }
+            }
+        }
 
         private Camera _mainCamera;
         

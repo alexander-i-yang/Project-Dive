@@ -27,13 +27,13 @@ public class PlayerInventory : Collector, IFilterLoggerTarget
         AddItem(collectible.ID);
     }
 
-    public void AddItem(string id)
+    public void AddItem(string id, int numtoAdd = 1)
     {
         if (!itemQuantities.ContainsKey(id))
         {
             itemQuantities.Add(id, 0);
         }
-        itemQuantities[id]++;
+        itemQuantities[id] += numtoAdd;
 
         OnCollectibleAdded?.Invoke(id, itemQuantities[id] + debugFirefliesCollected);
         FilterLogger.Log(this, $"Player Has {itemQuantities[id] + debugFirefliesCollected} {id}'s");
