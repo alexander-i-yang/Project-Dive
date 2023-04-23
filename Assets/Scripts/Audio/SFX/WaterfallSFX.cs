@@ -3,6 +3,7 @@ using UnityEngine;
 using Player;
 
 using FMOD.Studio;
+using World;
 
 public class WaterfallSFX : MonoBehaviour
 {
@@ -14,9 +15,12 @@ public class WaterfallSFX : MonoBehaviour
 
     private Collider2D[] _colliders;
 
+    private Room room;
+
     private void Awake()
     {
         _colliders = GetComponentsInChildren<Collider2D>();
+        room = GetComponentInParent<Room>();
     }
 
     private void OnEnable()
@@ -51,11 +55,13 @@ public class WaterfallSFX : MonoBehaviour
 
     private float GetSqDistToPlayer()
     {
+        if (PlayerCore.SpawnManager.CurrentRoom != room) return 10000;
         float minDist = float.MaxValue;
         foreach (Collider2D col in _colliders)
         {
-            Vector2 closestPt = col.ClosestPoint(PlayerCore.Actor.transform.position);
-            float sqDist = Vector2.SqrMagnitude((Vector2)PlayerCore.Actor.transform.position - closestPt);
+            var position = PlayerCore.Actor.transform.position;
+            Vector2 closestPt = col.ClosestPoint(position);
+            float sqDist = Vector2.SqrMagnitude((Vector2)position - closestPt);
             if (sqDist < minDist)
             {
                 minDist = sqDist;

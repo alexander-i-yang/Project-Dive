@@ -3,37 +3,40 @@ using UnityEngine;
 using Player;
 
 using Core;
-using UnityEngine.SceneManagement;
 using Audio;
-using UnityEngine.Rendering.Universal;
+using UI;
+using UnityEngine.UI;
+using World;
 
 public class PauseUIController : MonoBehaviour
 {
-    [SerializeField] private GameObject uiFrame;
+    [SerializeField] private MyScenes curScene;
+    [SerializeField] private MyScenes startScene;
 
-    [SerializeField] private string startSceneName;
-    [SerializeField] private string gameSceneName;
+    [SerializeField] private UIPage mainUI;
+    [SerializeField] private UIPage creditsUI;
+    [SerializeField] private UIPage optionsUI;
 
-    [SerializeField] private GameObject mainUI;
-    [SerializeField] private GameObject creditsUI;
-    [SerializeField] private GameObject optionsUI;
+    [SerializeField] private Image bg;
 
+    private bool _paused;
     public bool Paused {
         get
         {
-            return uiFrame.activeSelf;
+            return _paused;
         }
 
         set
         {
-            uiFrame.SetActive(value);
-            mainUI.SetActive(value);
-            Game.Instance.IsPaused = value;
-            if (value == false)
+            _paused = value;
+            mainUI.Show(value);
+            bg.enabled = value;
+            if (!value)
             {
-                creditsUI.SetActive(false);
-                optionsUI.SetActive(false);
+                creditsUI.Show(false);
+                optionsUI.Show(false);
             }
+            Game.Instance.IsPaused = value;
         }
     }
 
@@ -59,40 +62,40 @@ public class PauseUIController : MonoBehaviour
         Paused = false;
     }
 
-    public void OnRestart()
+    public void OnRestartArea()
     {
         AudioManager.StopAllMusic();
-        SceneManager.LoadScene(gameSceneName);
+        FindObjectOfType<LoadSceneManager>().LoadSceneAsync(curScene);
     }
 
     public void OnBackToStart()
     {
         AudioManager.StopAllMusic();
-        SceneManager.LoadScene(startSceneName);
+        FindObjectOfType<LoadSceneManager>().LoadSceneAsync(startScene);
     }
 
     public void OnCredits()
     {
-        mainUI.SetActive(false);
-        creditsUI.SetActive(true);
+        mainUI.Show(false);
+        creditsUI.Show(true);
     }
     
     public void OnOptions()
     {
-        mainUI.SetActive(false);
-        optionsUI.SetActive(true);
+        mainUI.Show(false);
+        optionsUI.Show(true);
     }
 
     public void OnBackFromCredits()
     {
-        mainUI.SetActive(true);
-        creditsUI.SetActive(false);
+        mainUI.Show(true);
+        creditsUI.Show(false);
     }
 
     public void OnBackFromOptions()
     {
-        mainUI.SetActive(true);
-        optionsUI.SetActive(false);
+        mainUI.Show(true);
+        optionsUI.Show(false);
     }
 
     public void OnQuit()

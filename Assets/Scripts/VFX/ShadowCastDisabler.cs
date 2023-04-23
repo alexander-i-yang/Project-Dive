@@ -7,29 +7,30 @@ namespace VFX
 {
     public class ShadowCastDisabler : MonoBehaviour
     {
-        [SerializeField] private ShadowCaster2D[] _casters;
-        
-        void Awake()
-        {
-            _casters = FindObjectsOfType<ShadowCaster2D>();
-        }
+        [SerializeField] private ShadowCaster2D[] casters;
 
         private void OnEnable()
         {
-            OptionsController.GraphicsQualityToggleEvent += SetShadowsEnabled;
+            GraphicsQualityToggleReceiver.ToggleEvent += SetShadowsEnabled;
         }
         
         private void OnDisable()
         {
-            OptionsController.GraphicsQualityToggleEvent -= SetShadowsEnabled;
+            GraphicsQualityToggleReceiver.ToggleEvent -= SetShadowsEnabled;
         }
 
         public void SetShadowsEnabled(bool e)
         {
-            foreach (var caster in _casters)
+            foreach (var caster in casters)
             {
-                caster.enabled = e;
+                if (caster != null) caster.enabled = e;
             }
+        }
+
+        public void Bake()
+        {
+            casters = FindObjectsOfType<ShadowCaster2D>();
+            print($"Baked {casters.Length} ShadowCasters into the SC disabler");
         }
     }
 }

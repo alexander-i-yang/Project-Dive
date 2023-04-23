@@ -4,6 +4,7 @@ using UnityEngine;
 using FMODUnity;
 
 using MyBox;
+using UI;
 
 namespace Audio
 {
@@ -43,6 +44,27 @@ namespace Audio
                 SetSFXVolume(sfxVolume);
                 SetMusicVolume(musicVolume);
             }
+        }
+
+        /*private void OnEnable()
+        {
+            OptionsController.SFXToggleEvent += SetSFXMute;
+        }
+        
+        private void OnDisable()
+        {
+            OptionsController.SFXToggleEvent -= SetSFXMute;
+        }*/
+
+        private void SetSFXMute(bool e)
+        {
+            SetSFXVolume(e ? 1 : 0);
+            print("SFX volume: " + sfxVolume);
+        }
+        
+        private void SetMusicMute(bool e)
+        {
+            musicBus.setMute(!e);
         }
 
         private static Music GetMusic(string name)

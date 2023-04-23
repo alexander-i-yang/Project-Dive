@@ -1,18 +1,18 @@
 using Audio;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 using Core;
+using World;
 
 public class StartMenuUI : MonoBehaviour {
     [SerializeField] private string gameSceneName;
     [SerializeField] private FmodEventStopper audioStopper;
+    [SerializeField] private LoadSceneManager sceneManager;
     
     public void OnStartButtonPress() {
         audioStopper.Stop();
-        SceneManager.LoadScene(gameSceneName);
+        sceneManager.LoadSceneAsync(MyScenes.Area1Scene);
+        // sceneManager.SwitchScene(MyScenes.Area1Scene);
     }
 
     public void OnQuitButtonPress() {

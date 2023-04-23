@@ -103,6 +103,10 @@ namespace Bakers
 
             SetTileSquare(topLeftCorner, bottomRightCorner);
             if (floodFill) fillMap.FloodFill((Vector3Int)(topLeftCorner + new Vector2Int(2, -2)), fillTile);
+            
+            #if UNITY_EDITOR
+            EditorUtility.SetDirty(fillMap);
+            #endif
         }
 
         public void SetFillMap()

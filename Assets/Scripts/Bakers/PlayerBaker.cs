@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 namespace Bakers
 {
@@ -12,6 +13,9 @@ namespace Bakers
             if (player != null)
             {
                 player.transform.position = PlayerPos;
+                #if UNITY_EDITOR
+                EditorUtility.SetDirty(player);
+                #endif
             }
         }
     }
