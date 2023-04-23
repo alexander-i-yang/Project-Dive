@@ -44,7 +44,7 @@ namespace UI
         public void StopTimer()
         {
             running = false;
-            float bestTime = Mathf.Min(_bestTime, _curTime);
+            float bestTime = _bestTime < 0 ? _curTime : Mathf.Min(_bestTime, _curTime);
             PlayerPrefs.SetFloat(_savePropertyId, bestTime);
             _text.text = GetText(_curTime, Helper.FormatTime(bestTime));
         }

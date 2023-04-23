@@ -137,6 +137,7 @@ namespace Collectibles {
 
         public void Reset()
         {
+            if (_collected) return;
             foreach (var p in _particleSystems) p.Pause();
             transform.position = _startPos;
             _coordInd = 0;
