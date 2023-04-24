@@ -37,6 +37,8 @@ namespace Player
         
         public void ScreenShakeContinuousOn(ScreenShakeDataContinuous d)
         {
+            print(_spawnManager);
+            print(_spawnManager.CurrentRoom);
             base.ScreenShakeContinuousOn(_spawnManager.CurrentVCam, d);
             CurShake = d;
         }

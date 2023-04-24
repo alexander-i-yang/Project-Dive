@@ -39,13 +39,14 @@ namespace Mechanics
         {
             if (PlayerCore.StateMachine.UsingDrill)
             {
-                PlayerCore.Actor.Bounce(bouncySurfaceDiveBounceHeight);
+                PlayerCore.Actor.BeegBounce(bouncySurfaceDiveBounceHeight);
                 onDive.Invoke();
             } else
             {
-                PlayerCore.Actor.Bounce(bouncySurfaceNeutralBounceHeight);
+                PlayerCore.Actor.SmolBounce(bouncySurfaceNeutralBounceHeight);
                 onBounce.Invoke();
             }
+            print(PlayerCore.Actor.velocityY);
             PlayerSM.RefreshAbilities();
             PlayerSM.Transition<PlayerStateMachine.Airborne>();
         }

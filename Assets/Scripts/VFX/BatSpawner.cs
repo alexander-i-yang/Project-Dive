@@ -4,6 +4,7 @@ using Helpers;
 using MyBox;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using World;
 using Random = UnityEngine.Random;
 
 namespace VFX
@@ -25,14 +26,24 @@ namespace VFX
             _batTimer.OnFinished += SpawnBat;
         }
 
-        /*private void OnDisable()
+        private void OnEnable()
         {
-            _batTimer.OnFinished -= SpawnBat;
-        }*/
+            EndCutsceneManager.EndCutsceneEvent += StopSpawning;
+        }
+
+        private void OnDisable()
+        {
+            EndCutsceneManager.EndCutsceneEvent -= StopSpawning;
+        }
 
         void Update()
         {
             GameTimer.Update(_batTimer);
+        }
+
+        void StopSpawning()
+        {
+            gameObject.SetActive(false);
         }
 
         private void SpawnBat()

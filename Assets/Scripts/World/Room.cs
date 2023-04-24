@@ -34,6 +34,7 @@ namespace World {
         public static event OnRoomTransition RoomTransitionEvent;
 
         public Room[] AdjacentRooms;
+        private EndCutsceneManager _endCutsceneManager;
 
         private void Awake()
         {
@@ -41,11 +42,28 @@ namespace World {
             _player = FindObjectOfType<PlayerSpawnManager>(true);
             _cmBrain = FindObjectOfType<CinemachineBrain>(true);
 
+            _endCutsceneManager = FindObjectOfType<EndCutsceneManager>();
+
             VCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
             VCam.Follow = _player.transform;
             
             FetchMechanics();
             _grid = transform.GetChild(0).gameObject;
+        }
+
+        private void OnEnable()
+        {
+            EndCutsceneManager.BeegBounceStartEvent += TurnOffStopTime;
+        }
+
+        private void OnDisable()
+        {
+            EndCutsceneManager.BeegBounceStartEvent -= TurnOffStopTime;
+        }
+
+        void TurnOffStopTime()
+        {
+            StopTime = false;
         }
 
         void FetchMechanics()
@@ -138,7 +156,11 @@ namespace World {
 
         private IEnumerator TransitionRoutine()
         {
-            SwitchCamera();
+            if (!EndCutsceneManager.IsBeegBouncing)
+            {
+                SwitchCamera();
+            }
+            // SwitchCamera();
             // Door curDoor = Helper.OnComponent<Door>(_player.transform.position, LayerMask.GetMask("Default"));
             // print(curDoor);
             if (StopTime) Time.timeScale = 0f;
@@ -152,7 +174,7 @@ namespace World {
             RoomTransitionEvent?.Invoke(this);
         }
 
-        private void SwitchCamera()
+        protected void SwitchCamera()
         {
             //L: Inefficient, but not terrible?
             this.VCam.gameObject.SetActive(true);
@@ -173,9 +195,17 @@ namespace World {
             }
         }
         
-        private void SetRoomGridEnabled(bool setActive)
+        public void SetRoomGridEnabled(bool setActive)
         {
-            _grid.SetActive(setActive);
+            if (!EndCutsceneManager.IsBeegBouncing)
+            {
+                _grid.SetActive(setActive);
+            }
+            else
+            {
+                bool shouldEnable = _endCutsceneManager.roomsToEnable.Contains(this);
+                _grid.SetActive(shouldEnable);
+            }
         }
 
         private void DestroyAndRecreateGrid()

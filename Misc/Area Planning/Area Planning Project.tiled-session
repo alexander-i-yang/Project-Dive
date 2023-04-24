@@ -4,7 +4,7 @@
         "width": 2
     },
     "activeFile": "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly Real.tmx",
-    "automapping.whileDrawing": true,
+    "automapping.whileDrawing": false,
     "expandedProjectPaths": [
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles",
@@ -40,10 +40,18 @@
                 2
             ],
             "scale": 3,
-            "selectedLayer": 3,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 99.66666666666664,
-                "y": 79.5
+                "x": 99.49999999999999,
+                "y": 79.16666666666667
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/AboveJonathan2.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 89.83333333333331,
+                "y": 121.16666666666664
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx": {
@@ -148,8 +156,8 @@
             "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 137.875,
-                "y": 142.125
+                "x": 127.875,
+                "y": 95.625
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty.tmx": {
@@ -224,16 +232,16 @@
             "scale": 1.5,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 154.33333333333334,
-                "y": 68.33333333333334
+                "x": 210.99999999999997,
+                "y": 241.66666666666669
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly Real.tmx": {
             "scale": 4,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 129.375,
-                "y": 91.625
+                "x": 128.875,
+                "y": 91.125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly.tmx": {
@@ -243,8 +251,8 @@
             "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 129.5,
-                "y": 153.5
+                "x": 128.83333333333331,
+                "y": 152.16666666666663
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk.tmx": {
@@ -286,6 +294,14 @@
             "viewCenter": {
                 "x": 96.625,
                 "y": 71.625
+            }
+        },
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/LastRoom.tmx": {
+            "scale": 4,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 111.625,
+                "y": 157.375
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx": {
@@ -333,8 +349,8 @@
             "scale": 3,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 128,
-                "y": 96.16666666666666
+                "x": 127.83333333333331,
+                "y": 95.83333333333334
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/TeachMushrooms.tmx": {
@@ -344,8 +360,8 @@
             "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 126,
-                "y": 171.125
+                "x": 125.875,
+                "y": 170.625
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Truly Empty.tmx": {
@@ -394,8 +410,8 @@
             "scale": 3,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 310.16666666666663,
-                "y": 286.3333333333333
+                "x": 129.5,
+                "y": 285.5
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Spike Intro.tmx": {
@@ -841,7 +857,7 @@
         }
     },
     "last.imagePath": "C:/Users/uncle/Unity/Dive/Assets/Tiles",
-    "map.height": 18,
+    "map.height": 300,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 8,
     "map.tileWidth": 8,

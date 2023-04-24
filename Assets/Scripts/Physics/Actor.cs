@@ -39,7 +39,7 @@ namespace Phys {
             return false;
         }
 
-        public void Fall() {
+        public virtual void Fall() {
             velocityY = Math.Max(MaxFall, velocityY + EffectiveGravity() * Game.Instance.FixedDeltaTime);
         }
 
@@ -48,7 +48,7 @@ namespace Phys {
             return velocityY < MaxFall;
         }
 
-        private int EffectiveGravity()
+        protected int EffectiveGravity()
         {
             return (velocityY > 0 ? GravityUp : GravityDown);
         }
