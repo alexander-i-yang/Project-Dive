@@ -4,7 +4,7 @@
         "width": 2
     },
     "activeFile": "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx",
-    "automapping.whileDrawing": true,
+    "automapping.whileDrawing": false,
     "expandedProjectPaths": [
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles",
@@ -146,10 +146,10 @@
                 5
             ],
             "scale": 4,
-            "selectedLayer": 3,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 127.375,
-                "y": 95.375
+                "x": 138.125,
+                "y": 142.375
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty.tmx": {
@@ -213,11 +213,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 4,
+            "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 135.125,
-                "y": 91.625
+                "x": 139.83333333333334,
+                "y": 84.5
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Get out.tmx": {
@@ -233,10 +233,10 @@
                 6
             ],
             "scale": 3,
-            "selectedLayer": 4,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 141.16666666666663,
-                "y": 111.16666666666667
+                "x": 129.83333333333334,
+                "y": 154.5
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk.tmx": {
@@ -325,8 +325,8 @@
             "scale": 3,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 167.16666666666663,
-                "y": 118.16666666666664
+                "x": 166.16666666666663,
+                "y": 117.83333333333334
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/TeachMushrooms.tmx": {
@@ -336,8 +336,8 @@
             "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 134.875,
-                "y": 121.125
+                "x": 126,
+                "y": 171.125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Truly Empty.tmx": {
@@ -845,6 +845,7 @@
     "project": "Area Planning Project.tiled-project",
     "property.type": "float",
     "recentFiles": [
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Gate 2.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/TeachMushrooms.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Truly Empty.tmx",
@@ -855,8 +856,7 @@
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Jack_CrankThatYoinkySploinky.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk2.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Get out.tmx"
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

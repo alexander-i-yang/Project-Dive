@@ -1,9 +1,10 @@
 using UnityEngine;
 using Player;
+using UnityEngine.Events;
 
 namespace Mechanics
 {
-    public class PlayerSurfaceResponse : MonoBehaviour, IHardSurfaceResponse, IBouncySurfaceResponse
+    public class PlayerSurfaceResponse : MonoBehaviour, IHardSurfaceResponse, IBouncySurfaceResponse, IBeegSurfaceResponse
     {
         [SerializeField] private int hardSurfaceBounceHeight;
         [SerializeField] private int bouncySurfaceNeutralBounceHeight;
@@ -29,6 +30,21 @@ namespace Mechanics
             } else
             {
                 PlayerCore.Actor.Bounce(bouncySurfaceNeutralBounceHeight);
+            }
+            PlayerSM.RefreshAbilities();
+            PlayerSM.Transition<PlayerStateMachine.Airborne>();
+        }
+
+        public void OnBeegSurfaceCollide(BouncySurface bouncySurface, UnityEvent onBounce, UnityEvent onDive)
+        {
+            if (PlayerCore.StateMachine.UsingDrill)
+            {
+                PlayerCore.Actor.Bounce(bouncySurfaceDiveBounceHeight);
+                onBounce.Invoke();
+            } else
+            {
+                PlayerCore.Actor.Bounce(bouncySurfaceNeutralBounceHeight);
+                onDive.Invoke();
             }
             PlayerSM.RefreshAbilities();
             PlayerSM.Transition<PlayerStateMachine.Airborne>();
