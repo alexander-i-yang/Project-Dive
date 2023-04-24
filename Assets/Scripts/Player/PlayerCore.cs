@@ -58,7 +58,11 @@ namespace Player
         public static int DiveVelocity => Instance.diveVelocity;
 
         [SerializeField] private int diveDeceleration;
-        public static int DiveDeceleration => Instance.diveDeceleration;
+        public static int DiveDeceleration
+        {
+            get => Instance.diveDeceleration;
+            set => Instance.diveDeceleration = value;
+        }
 
         [Foldout("Dogo", true)]
         [SerializeField] private float dogoJumpHeight;

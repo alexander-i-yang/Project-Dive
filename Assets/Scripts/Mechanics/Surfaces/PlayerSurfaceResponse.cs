@@ -40,11 +40,11 @@ namespace Mechanics
             if (PlayerCore.StateMachine.UsingDrill)
             {
                 PlayerCore.Actor.Bounce(bouncySurfaceDiveBounceHeight);
-                onBounce.Invoke();
+                onDive.Invoke();
             } else
             {
                 PlayerCore.Actor.Bounce(bouncySurfaceNeutralBounceHeight);
-                onDive.Invoke();
+                onBounce.Invoke();
             }
             PlayerSM.RefreshAbilities();
             PlayerSM.Transition<PlayerStateMachine.Airborne>();

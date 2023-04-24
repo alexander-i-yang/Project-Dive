@@ -35,7 +35,6 @@ namespace Helpers
             // Check if any key is pressed
             if (cheatCode[index]()) {
                 // Add 1 to index to check the next key in the code
-                print(index);
                 index++;
                 _keyTimer = GameTimer.StartNewTimer(keyDelay);
             }
@@ -46,7 +45,6 @@ namespace Helpers
                 if (GameTimer.TimerFinished(_keyTimer))
                 {
                     index = 0;
-                    print("OH no!");
                 }
             }
 

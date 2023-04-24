@@ -34,16 +34,18 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     
     private Func<Vector2, Vector2> _deathRecoilFunc;
 
+    
+    
     private void OnEnable()
     {
         Room.RoomTransitionEvent += OnRoomTransition;
-        // _stateMachine.OnPlayerRespawn += DisableDeathParticles;
+        EndCutsceneManager.EndCutsceneEvent += StartEndCutscene;
     }
 
     private void OnDisable()
     {
         Room.RoomTransitionEvent -= OnRoomTransition;
-        // _stateMachine.OnPlayerRespawn -= DisableDeathParticles;
+        EndCutsceneManager.EndCutsceneEvent += StartEndCutscene;
     }
 
     #region Movement
@@ -176,6 +178,8 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     }
     #endregion
 
+    #region  Death
+
     public bool IsDrilling() {
         return _stateMachine.UsingDrill;
     }
@@ -205,7 +209,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         velocity = Vector2.zero;
     }
 
-    // public void DisableDeathParticles() => _deathManager.SetParticlesActive(false);
+    #endregion
 
     #region Actor Overrides
     public override bool Collidable() {
@@ -304,6 +308,15 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     private float GetJumpSpeedFromHeight(float jumpHeight)
     {
         return Mathf.Sqrt(-2f * GravityUp * jumpHeight);
+    }
+    
+    public void StartEndCutscene()
+    {
+        GravityDown = 100;
+        GravityUp = 100;
+        // PlayerCore.DiveDeceleration = 0;
+        PlayerCore.DiveDeceleration = 0;
+        MaxFall = -1000000;
     }
     
     #if UNITY_EDITOR

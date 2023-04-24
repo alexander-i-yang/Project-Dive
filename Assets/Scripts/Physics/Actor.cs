@@ -8,11 +8,12 @@ using UnityEngine;
 
 namespace Phys {
     public abstract class Actor : PhysObj {
-
+        
         [SerializeField, Foldout("Gravity")] protected int GravityDown;
         [SerializeField, Foldout("Gravity")] protected int GravityUp;
         [SerializeField, Foldout("Gravity")] protected int MaxFall;
         public bool IsMovingUp => velocityY >= 0;
+
         /// <summary>
         /// Moves this actor a specified number of pixels.
         /// </summary>
