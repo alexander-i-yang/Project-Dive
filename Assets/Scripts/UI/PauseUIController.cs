@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 using Player;
@@ -46,17 +47,27 @@ public class PauseUIController : MonoBehaviour
         PlayerCore.Input.AddToPauseAction(OnPausePressed);
     }
 
+    private void OnEnable()
+    {
+        Game.Instance.OnDebugEvent += OnPause;
+    }
+
     private void OnDisable()
     {
         PlayerCore.Input.RemoveFromPauseAction(OnPausePressed);
+        Game.Instance.OnDebugEvent -= OnPause;
     }
 
     private void OnPausePressed()
     {
-        Debug.Log("Pause Pressed.");
         Paused = !Paused;
     }
 
+    public void OnPause()
+    {
+        Paused = true;
+    }
+    
     public void OnResume()
     {
         Paused = false;

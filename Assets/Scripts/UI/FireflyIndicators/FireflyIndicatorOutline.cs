@@ -46,8 +46,20 @@ namespace UI
         {
             _animator.EndPos = whereTo;
             if (_moveRoutine != null) StopCoroutine(_moveRoutine);
-            _moveRoutine = StartCoroutine(Helper.DelayAction(delay,
-                () => { _animator.PlayAnimation(onFinish, hook); }));
+            
+            _moveRoutine = StartCoroutine(
+                Helper.DelayAction(
+                    delay,
+                    () =>
+                    {
+                        _animator.PlayAnimation(OnAnimationFinish: () =>
+                        {
+                            transform.position = whereTo;
+                            if (onFinish != null) onFinish();
+                        }, hook: hook);
+                    }
+                )
+            );
         }
 
         public void SpecialFinish()

@@ -1,5 +1,6 @@
 using System;
 using Collectibles;
+using Core;
 using Player;
 using TMPro;
 using UnityEngine;
@@ -12,8 +13,8 @@ namespace UI
 
         private TextField _input;
 
-        public static readonly String[] COMMANDS = {"give", "teleport"};
-        public Action<string>[] COMMAND_ACTIONS = {Give, Teleport};
+        public static readonly String[] COMMANDS = {"give", "teleport", "time"};
+        public Action<string>[] COMMAND_ACTIONS = {Give, Teleport, TimeScale};
 
         void Awake() {
             SetShow(true); //We manually set everything inactive to make it easier to edit, undo this to find references
@@ -39,7 +40,7 @@ namespace UI
                 COMMAND_ACTIONS[ind](cmd);
             } catch (Exception e) {
                 Debug.LogException(e);
-                print(ind);
+                //print(ind);
             }
         }
 
@@ -56,7 +57,7 @@ namespace UI
         }
 
         void FocusField() {
-            _input.SelectAll();
+            //_input.SelectAll();
             // _input.
         }
 
@@ -74,6 +75,13 @@ namespace UI
             int x = Convert.ToInt32(cmdArr[1]);
             int y = Convert.ToInt32(cmdArr[2]);
             PlayerCore.Actor.transform.position = new Vector3(x, y);
+        }
+
+        static void TimeScale(string cmd)
+        {
+            var cmdArr = cmd.Split(" ");
+            double scale = Convert.ToDouble(cmdArr[1]);
+            Game.Instance.TimeScale = (float)scale;
         }
 
         /*static void ClearTutorial(string e) {

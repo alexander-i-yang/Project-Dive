@@ -274,6 +274,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         }
     }
 
+    //Todo: change to fixedUpdate GameTimer
     private IEnumerator HitWallLogic(int direction) {
         for (float t = 0; t < PlayerCore.CornerboostTimer; t += Game.Instance.FixedDeltaTime) {
             bool movingWithDir = Math.Sign(velocityX) == Math.Sign(direction) || velocityX == 0;
@@ -289,7 +290,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
                 velocityX = _hitWallPrevSpeed * PlayerCore.CornerboostMultiplier;
                 break;
             }
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
         _hitWallCoroutineRunning = false;
     }
