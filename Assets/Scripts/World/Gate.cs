@@ -79,7 +79,7 @@ namespace Mechanics
             {
                 if (_openRoutine == null)
                 {
-                    StartCoroutine(Helper.DelayAction(delayTime / 2, _indicatorController.SpecialFinish));
+                    _indicatorController.SpecialFinish(delayTime);
                     _openRoutine = StartCoroutine(Helper.DelayAction(delayTime, () => OnRequirementMet(actor)));
                 }
             }

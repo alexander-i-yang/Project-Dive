@@ -51,7 +51,7 @@ namespace World {
             _grid = transform.GetChild(0).gameObject;
         }
 
-        private void OnEnable()
+        /*private void OnEnable()
         {
             EndCutsceneManager.BeegBounceStartEvent += TurnOffStopTime;
         }
@@ -59,7 +59,7 @@ namespace World {
         private void OnDisable()
         {
             EndCutsceneManager.BeegBounceStartEvent -= TurnOffStopTime;
-        }
+        }*/
 
         void TurnOffStopTime()
         {
@@ -156,7 +156,7 @@ namespace World {
 
         private IEnumerator TransitionRoutine()
         {
-            if (!EndCutsceneManager.IsBeegBouncing)
+            if (!EndCutsceneManager.IsEndCutscene)
             {
                 SwitchCamera();
             }
@@ -197,7 +197,7 @@ namespace World {
         
         public void SetRoomGridEnabled(bool setActive)
         {
-            if (!EndCutsceneManager.IsBeegBouncing)
+            if (!EndCutsceneManager.IsEndCutscene)
             {
                 _grid.SetActive(setActive);
             }

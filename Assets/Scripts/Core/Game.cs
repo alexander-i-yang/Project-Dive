@@ -41,7 +41,6 @@ namespace Core
                 _isDebug = value;
                 if (value)
                 {
-                    FindObjectOfType<DevConsole>(includeInactive: true).gameObject.SetActive(true);
                     OnDebugEvent?.Invoke();
                 }
             }

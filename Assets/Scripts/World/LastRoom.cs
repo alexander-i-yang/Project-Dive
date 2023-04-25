@@ -14,7 +14,6 @@ namespace World
 
         private void OnEndCutscene()
         {
-            print("SWITCHIN TIME");
             SwitchCamera();
         }
     }

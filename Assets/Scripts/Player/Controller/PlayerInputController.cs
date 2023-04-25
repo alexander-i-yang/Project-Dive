@@ -30,6 +30,11 @@ namespace Player
             inputActions.Disable();
         }
 
+        public bool AnyKeyPressed()
+        {
+            return MovementStarted() || DiveStarted() || JumpStarted();
+        }
+
         public int GetMovementInput()
         {
             if (Game.Instance.FakeControlsArrows != -2)

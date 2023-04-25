@@ -46,7 +46,6 @@ namespace Mechanics
                 PlayerCore.Actor.SmolBounce(bouncySurfaceNeutralBounceHeight);
                 onBounce.Invoke();
             }
-            print(PlayerCore.Actor.velocityY);
             PlayerSM.RefreshAbilities();
             PlayerSM.Transition<PlayerStateMachine.Airborne>();
         }

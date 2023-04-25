@@ -10,7 +10,7 @@ namespace Mechanics {
 
         public override bool PlayerCollide(PlayerActor p, Vector2 direction) {
             if (direction.y > 0) {
-                if (EndCutsceneManager.IsBeegBouncing)
+                /*if (EndCutsceneManager.IsBeegBouncing)
                 {
                     Destroy(gameObject);
                     return false;
@@ -18,7 +18,8 @@ namespace Mechanics {
                 else
                 {
                     p.BonkHead();
-                }
+                }*/
+                p.BonkHead();
             }
             return true;
         }

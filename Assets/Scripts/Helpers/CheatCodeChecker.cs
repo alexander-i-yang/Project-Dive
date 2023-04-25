@@ -38,6 +38,10 @@ namespace Helpers
                 index++;
                 _keyTimer = GameTimer.StartNewTimer(keyDelay);
             }
+            else if (PlayerCore.Input.AnyKeyPressed())
+            {
+                index = 0;
+            }
 
             if (!GameTimer.TimerFinished(_keyTimer))
             {

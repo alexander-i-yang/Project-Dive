@@ -194,14 +194,13 @@ GameObject:
   - component: {fileID: 6027183772539599460}
   - component: {fileID: 4260289797547111658}
   - component: {fileID: 4758097863643775347}
-  - component: {fileID: 7955471042822166657}
   m_Layer: 5
   m_Name: Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6064135688855818820
 RectTransform:
   m_ObjectHideFlags: 0
@@ -316,7 +315,7 @@ MonoBehaviour:
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7955471042822166657}
+      - m_Target: {fileID: 2733725475290079084}
         m_TargetAssemblyTypeName: UI.DevConsole, Assembly-CSharp
         m_MethodName: ProcessCommand
         m_Mode: 0
@@ -342,18 +341,6 @@ MonoBehaviour:
   m_CaretWidth: 1
   m_ReadOnly: 0
   m_ShouldActivateOnSelect: 1
---- !u!114 &7955471042822166657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4434176441624621615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1a1b839c2494b7e9c332a4e5341eded, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4949453757345166380
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +761,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1780830736126764640}
+  - component: {fileID: 2733725475290079084}
   m_Layer: 5
   m_Name: CmdLine
   m_TagString: Untagged
@@ -802,6 +790,19 @@ RectTransform:
   m_AnchoredPosition: {x: -770, y: -412}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2733725475290079084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8077567222974586980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1a1b839c2494b7e9c332a4e5341eded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objToShow: {fileID: 4434176441624621615}
 --- !u!1 &8907927715260634326
 GameObject:
   m_ObjectHideFlags: 0

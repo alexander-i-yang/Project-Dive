@@ -10756,7 +10756,7 @@ MonoBehaviour:
   maxAcceleration: 1600
   maxAirAcceleration: 1200
   maxDeceleration: 800
-  cornerboostTimer: 0.08
+  cornerboostTimer: 0.12
   cornerboostMultiplier: 1.05
   jumpHeight: 28
   doubleJumpHeight: 16
@@ -10822,6 +10822,8 @@ MonoBehaviour:
   OnLand:
     m_PersistentCalls:
       m_Calls: []
+  beegVelocities: c8000000fa0000005e010000b0040000
+  beegDiveHeights: c8000000fa0000005e010000b0040000
 --- !u!114 &7904916651983550451
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -42,7 +42,7 @@ namespace Mechanics {
             return true;
         }
 
-        public void Break() {
+        public virtual void Break() {
             gameObject.SetActive(false);
             var particles = Instantiate(_particles, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
             var particlesShape = particles.shape;
@@ -56,7 +56,7 @@ namespace Mechanics {
             gameObject.SetActive(true);
         }
         
-        public bool CanReset()
+        public virtual bool CanReset()
         {
             return gameObject != null;
         }

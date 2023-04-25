@@ -16,6 +16,7 @@ namespace UI
         FILLING,
         FILLED,
         HIDDEN,
+        FINISHED,
     }
 
     public class FireflyIndicatorController : MonoBehaviour
@@ -111,9 +112,13 @@ namespace UI
             }
         }
 
-        public void SpecialFinish()
+        public void SpecialFinish(float delayTime)
         {
-            foreach (var ind in _indicators) ind.SpecialFinish();
+            _state = FICState.FINISHED;
+            StartCoroutine(Helper.DelayAction(delayTime / 2, () =>
+            {
+                foreach (var ind in _indicators) ind.SpecialFinish();
+            }));
         }
 
         public void RunFinishRoutine(float delay)
@@ -144,6 +149,8 @@ namespace UI
         
         public void Hide()
         {
+            print(_state);
+            if (_state == FICState.FINISHED) return;
             _state = FICState.HIDDEN;
             if (_showInnerRoutine != null) StopCoroutine(_showInnerRoutine);
             if (_finishRoutine != null) StopCoroutine(_finishRoutine);
