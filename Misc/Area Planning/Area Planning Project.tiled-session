@@ -85,11 +85,11 @@
             "expandedObjectLayers": [
                 7
             ],
-            "scale": 3,
+            "scale": 5.5,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 291.16666666666663,
-                "y": 225.16666666666666
+                "x": 240.63636363636365,
+                "y": 216.27272727272728
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Bricks.tsx": {
@@ -311,8 +311,8 @@
             "scale": 4,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 126.125,
-                "y": 71.375
+                "x": 125.875,
+                "y": 71.125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Mineshaft.tmx": {
