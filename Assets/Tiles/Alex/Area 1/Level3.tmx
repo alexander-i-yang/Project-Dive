@@ -11,6 +11,7 @@
  <tileset firstgid="259" source="../../Semisolid.tsx"/>
  <tileset firstgid="295" source="../../Doors.tsx"/>
  <tileset firstgid="296" source="../../Stalagtite.tsx"/>
+ <tileset firstgid="304" source="../../Breakable.tsx"/>
  <layer id="5" name="Lava" width="32" height="18">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

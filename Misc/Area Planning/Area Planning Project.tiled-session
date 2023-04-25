@@ -328,10 +328,10 @@
                 4
             ],
             "scale": 3,
-            "selectedLayer": 4,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 127.5,
-                "y": 95.83333333333334
+                "x": 127.16666666666666,
+                "y": 95.5
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Sleep.tmx": {

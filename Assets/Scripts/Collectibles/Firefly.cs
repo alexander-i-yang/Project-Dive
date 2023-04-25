@@ -20,7 +20,6 @@ namespace Collectibles {
 
         private bool _moving = false;
         private bool _collected = false;
-        [SerializeField] private float graceTouchMultipier;
 
         public override string ID => "Firefly";
 
@@ -33,6 +32,9 @@ namespace Collectibles {
         
         public delegate void CollectAnimFinish(int quantity);
         public static event CollectAnimFinish OnCollectAnimFinish;
+
+        [SerializeField] private float timeTolerance;
+        private GameTimer _movementTimer;
     
         private void Awake()
         {
@@ -62,51 +64,52 @@ namespace Collectibles {
             return ret;
         }
 
+        void FixedUpdate()
+        {
+            GameTimer.FixedUpdate(_movementTimer);
+        }
+
         public override void OnTouched(Collector collector)
         {
-            if (!_moving)
+            bool shouldTouch = !_moving;
+            
+            if (GameTimer.GetTimerState(_movementTimer) == TimerState.Finished)
             {
-                _moving = true;
-                FilterLogger.Log(this, $"{gameObject.name} Touched {collector}");
-                _coordInd++;
-                if (_coordInd < _coords.Count)
-                {
-                    _animator.EndPos = _coords[_coordInd];
-                    _animator.PlayAnimation(OnTouchAnimFinish);
-                    // _particleSystem.emission.rateOverTime = ;
-                    /*StartCoroutine(Helper.DelayAction(
-                        _animator.GetAnimSpeed() * graceTouchMultipier, 
-                        () =>
-                        {
-                            print("Not moving");
-                            _moving = false;
-                        }
-                    ));*/
-                }
-                else
-                {
-                    collector.OnCollectFinished(this);
-                    var pInventory = collector.GetComponent<PlayerInventory>();
-                    _collected = true;
-                    _animatorEnd.PlayAnimation(() => OnFinishCollected(pInventory));
-                }
+                shouldTouch = true;
+            }
+
+            if (!shouldTouch) return;
+            
+            _moving = true;
+            _movementTimer = GameTimer.StartNewTimer(1/_animator.GetAnimSpeed() - timeTolerance);
+            FilterLogger.Log(this, $"{gameObject.name} Touched {collector}");
+            _coordInd++;
+            if (_coordInd < _coords.Count)
+            {
+                _animator.EndPos = _coords[_coordInd];
+                _animator.PlayAnimation(OnTouchAnimFinish);
+                // _particleSystem.emission.rateOverTime = ;
+                /*StartCoroutine(Helper.DelayAction(
+                    _animator.GetAnimSpeed() * graceTouchMultipier, 
+                    () =>
+                    {
+                        print("Not moving");
+                        _moving = false;
+                    }
+                ));*/
+            }
+            else
+            {
+                collector.OnCollectFinished(this);
+                var pInventory = collector.GetComponent<PlayerInventory>();
+                _collected = true;
+                _animatorEnd.PlayAnimation(() => OnFinishCollected(pInventory));
             }
         }
 
         private void OnTouchAnimFinish()
         {
             _moving = false;
-            
-            /*
-            Collider2D[] hits = new Collider2D[0];
-            ContactFilter2D filter = new ContactFilter2D();
-            filter.SetLayerMask(LayerMask.NameToLayer("Interactable"));
-            GetComponent<Collider2D>().OverlapCollider(filter, hits);
-
-            foreach (var hit in hits)
-            {
-                print(hit);
-            }*/
         }
 
         private void OnFinishCollected(PlayerInventory p)
