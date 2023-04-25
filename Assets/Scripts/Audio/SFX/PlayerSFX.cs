@@ -9,6 +9,7 @@ public class PlayerSFX : MonoBehaviour
 {
     [SerializeField] private StudioEventEmitter diveStartSFX;
     [SerializeField] private StudioEventEmitter diveLoopSFX;
+    [SerializeField] private StudioEventEmitter dogoLoopSFX;
 
     public void DiveStart()
     {
@@ -18,12 +19,21 @@ public class PlayerSFX : MonoBehaviour
 
     public void OnPlayerStateChange(PlayerStateMachine sm)
     {
-        if (!sm.IsOnState<PlayerStateMachine.Diving>())
+        if (!sm.IsOnState<PlayerStateMachine.Dogoing>())
         {
             if (diveLoopSFX.IsPlaying())
             {
                 diveLoopSFX.Stop();
             }
         }
+        /*if (sm.IsOnState<PlayerStateMachine.Dogoing>())
+        {
+            dogoLoopSFX.Play();
+        }
+        else
+        {
+            if (dogoLoopSFX.IsPlaying()) dogoLoopSFX.Stop();
+        }*/
+        
     }
 }

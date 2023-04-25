@@ -9,7 +9,7 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
-                PlayerAnim.Play(PlayerAnimations.DOGOING);
+                PlayAnimation(PlayerAnimations.DOGOING);
                 //MySM._drillEmitter.SetParameter("PlayerGrounded", 1);
                 //MySM._drillEmitter.Play();
                 i.oldVelocity = Actor.Dogo();

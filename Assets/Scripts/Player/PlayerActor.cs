@@ -26,11 +26,11 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     public int Facing => _sprite.flipX ? -1 : 1;    //-1 is facing left, 1 is facing right
 
     [Foldout("Movement Events", true)]
-    public UnityEvent OnJumpFromGround;
-    public UnityEvent OnDoubleJump;
+    public PlayerEvent OnJumpFromGround;
+    public PlayerEvent OnDoubleJump;
     public UnityEvent OnDiveStart;
-    public UnityEvent OnDogo;
-    public UnityEvent OnLand;
+    public PlayerEvent OnDogo;
+    public PlayerEvent OnLand;
     
     private Func<Vector2, Vector2> _deathRecoilFunc;
 
@@ -57,7 +57,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     public void Land()
     {
-        OnLand?.Invoke();
+        OnLand?.Invoke(transform.position + Vector3.down * 5.5f);
         velocityY = 0;
         _beegVelocityInd = 0;
     }
@@ -74,6 +74,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
         velocityY = GetJumpSpeedFromHeight(jumpHeight);
     }
 
+    [Foldout("Beeg Velocity Data")]
     [SerializeField] private int[] beegVelocities = {200, 250, 350, 1200};
     [SerializeField] private int[] beegDiveHeights = {200, 250, 350, 1200};
     private int _beegVelocityInd = 0;
@@ -136,14 +137,14 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
             velocityX = 0;
         }
 
-        OnDoubleJump?.Invoke();
+        OnDoubleJump?.Invoke(transform.position);
     }
 
     public void JumpFromGround(int jumpHeight)
     {
         Bounce(jumpHeight);
 
-        OnJumpFromGround?.Invoke();
+        OnJumpFromGround?.Invoke(transform.position);
     }
 
     public void JumpCut()
@@ -198,7 +199,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     #region Dogo
     public float Dogo() {
-        OnDogo?.Invoke();
+        OnDogo?.Invoke(transform.position);
         float v = velocityX;
         velocityX = 0;
         return v;
@@ -395,6 +396,10 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     #if UNITY_EDITOR
     private void OnDrawGizmosSelected() {
         Handles.Label(transform.position, $"Velocity: <{velocityX}, {velocityY}>");
+        foreach (var h in beegDiveHeights)
+        {
+            Handles.DrawLine(new Vector3(600, h), new Vector3(700, h));
+        }
     }
     #endif
 

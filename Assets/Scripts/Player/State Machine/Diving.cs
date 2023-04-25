@@ -10,9 +10,7 @@ namespace Player
         {
             public override void Enter(PlayerStateInput i)
             {
-                // MySM._drillEmitter.SetParameter("PlayerGrounded", 0);
-                //MySM._drillEmitter.Play();
-                PlayerAnim.Play(PlayerAnimations.DIVING);
+                PlayAnimation(PlayerAnimations.DIVING);
                 Actor.Dive();
                 Input.canDive = false;
                 Input.canJumpCut = false;

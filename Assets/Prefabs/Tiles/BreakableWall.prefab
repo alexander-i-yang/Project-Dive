@@ -51,7 +51,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_HasRenderer: 0
   m_UseRendererSilhouette: 1
-  m_CastsShadows: 0
+  m_CastsShadows: 1
   m_SelfShadows: 0
   m_ApplyToSortingLayers: 00000000a39a746bf9381fb1af9643f6ffddffe4
   m_ShapePath:

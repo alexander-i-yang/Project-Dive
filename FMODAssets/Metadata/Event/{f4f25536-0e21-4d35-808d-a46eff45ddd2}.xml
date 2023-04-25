@@ -28,6 +28,7 @@
 		<relationship name="groupTracks">
 			<destination>{04d69a82-605e-4f58-bb75-8d7d49b5222d}</destination>
 			<destination>{1ed386a9-5c23-4795-b9f4-d7935345c4dc}</destination>
+			<destination>{9937e7c5-8daa-46d1-8bb4-7719e1053c6e}</destination>
 		</relationship>
 		<relationship name="timeline">
 			<destination>{58204220-a592-4140-b318-a077b15bfcae}</destination>
@@ -84,6 +85,11 @@
 			<destination>{4ed0b26c-cba6-4ce5-93d5-b8b33794399b}</destination>
 		</relationship>
 	</object>
+	<object class="GroupTrack" id="{9937e7c5-8daa-46d1-8bb4-7719e1053c6e}">
+		<relationship name="mixerGroup">
+			<destination>{1e743854-649f-40e9-9ad4-d71602ff3ddc}</destination>
+		</relationship>
+	</object>
 	<object class="Timeline" id="{58204220-a592-4140-b318-a077b15bfcae}">
 		<relationship name="modules">
 			<destination>{f31d6a56-481e-4a1d-b2e6-0086928c7e71}</destination>
@@ -91,6 +97,12 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{fe78c378-58eb-454a-9766-546889aaea46}">
+		<property name="pitch">
+			<value>1.20000005</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{bfa47222-4565-44a5-aea2-205564d9d156}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{966aa691-197e-4874-8658-81791091ec0a}</destination>
 		</relationship>
@@ -180,6 +192,34 @@
 			<destination>{fe78c378-58eb-454a-9766-546889aaea46}</destination>
 		</relationship>
 	</object>
+	<object class="EventMixerGroup" id="{1e743854-649f-40e9-9ad4-d71602ff3ddc}">
+		<property name="volume">
+			<value>-19.5</value>
+		</property>
+		<property name="name">
+			<value>Audio 2</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{e9f23ca8-9dcd-4f76-86f1-6d7dcfb47f31}</destination>
+		</relationship>
+		<relationship name="effectChain">
+			<destination>{0feed1e2-e206-41db-abf7-dea4f49acbae}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{07251d25-6fff-41e7-8e6e-48ccf55c13d8}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{fe78c378-58eb-454a-9766-546889aaea46}</destination>
+		</relationship>
+	</object>
+	<object class="RandomizerModulator" id="{bfa47222-4565-44a5-aea2-205564d9d156}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>5</value>
+		</property>
+	</object>
 	<object class="MixerBusEffectChain" id="{966aa691-197e-4874-8658-81791091ec0a}">
 		<relationship name="effects">
 			<destination>{7ffc8d6f-9546-45c7-849c-a1382584c680}</destination>
@@ -218,6 +258,27 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{6675a956-a95e-45f0-8e39-803a3c284980}" />
+	<object class="ADSRModulator" id="{e9f23ca8-9dcd-4f76-86f1-6d7dcfb47f31}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="initialValue">
+			<value>-20.0634918</value>
+		</property>
+		<property name="attackTime">
+			<value>147.43602</value>
+		</property>
+		<property name="finalValue">
+			<value>-80</value>
+		</property>
+	</object>
+	<object class="MixerBusEffectChain" id="{0feed1e2-e206-41db-abf7-dea4f49acbae}">
+		<relationship name="effects">
+			<destination>{2b5f99ab-07ad-41d3-9d69-257b94f7a7a7}</destination>
+			<destination>{8d940027-6705-4694-be72-74f0b98f97fc}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{07251d25-6fff-41e7-8e6e-48ccf55c13d8}" />
 	<object class="MixerBusFader" id="{7ffc8d6f-9546-45c7-849c-a1382584c680}" />
 	<object class="AutomationCurve" id="{89b8412d-d530-49b9-949c-5e74df30f5eb}">
 		<relationship name="parameter">
@@ -265,6 +326,15 @@
 		<relationship name="automators">
 			<destination>{ce7edd2b-41f5-4198-9acf-33354e4025e4}</destination>
 		</relationship>
+	</object>
+	<object class="MixerBusFader" id="{2b5f99ab-07ad-41d3-9d69-257b94f7a7a7}" />
+	<object class="ThreeEQEffect" id="{8d940027-6705-4694-be72-74f0b98f97fc}">
+		<property name="lowCrossover">
+			<value>9000</value>
+		</property>
+		<property name="highCrossover">
+			<value>1300</value>
+		</property>
 	</object>
 	<object class="AutomationPoint" id="{e829c9eb-3171-4bef-92f1-4d77621c6408}">
 		<property name="position">

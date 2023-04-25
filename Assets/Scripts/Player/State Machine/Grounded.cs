@@ -37,7 +37,7 @@ namespace Player
             public override void MoveX(int moveDirection)
             {
                 UpdateSpriteFacing(moveDirection);
-                PlayerAnim.Animator.SetBool("Running", moveDirection != 0);
+                AnimSetRunning(moveDirection != 0);
                 int acceleration = moveDirection == 0 ? PlayerCore.MaxAcceleration : PlayerCore.MaxDeceleration;
                 Actor.UpdateMovementX(moveDirection, acceleration);
             }

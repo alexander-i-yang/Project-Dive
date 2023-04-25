@@ -11,6 +11,8 @@ namespace Player
 
         private System.Action PauseAction;
 
+        public bool HasPutInput = false;
+
         private void OnEnable()
         {
             if (controls == null)

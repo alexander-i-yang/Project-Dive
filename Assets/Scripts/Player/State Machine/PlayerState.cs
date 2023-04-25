@@ -11,11 +11,21 @@ namespace Player
         {
             public PlayerActor Actor => PlayerCore.Actor;
             public PlayerSpawnManager SpawnManager => PlayerCore.SpawnManager;
-            public PlayerAnimationStateManager PlayerAnim => MySM._playerAnim;
+            // public PlayerAnimationStateManager PlayerAnim => MySM._playerAnim;
 
             public virtual void JumpPressed()
             {
                 Input.jumpBufferTimer = GameTimer.StartNewTimer(PlayerCore.JumpBufferTime, "Jump Buffer Timer");
+            }
+
+            protected void PlayAnimation(PlayerAnimations p)
+            {
+                if (MySM._hasInputted) MySM._playerAnim.Play(p);
+            }
+
+            protected void AnimSetRunning(bool e)
+            {
+                if (MySM._hasInputted) MySM._playerAnim.Animator.SetBool("Running", e);
             }
 
             public virtual void JumpReleased() { }
@@ -42,7 +52,7 @@ namespace Player
                 Input.jumpedFromGround = true;
                 Input.canJumpCut = true;
                 GameTimer.Clear(Input.jumpBufferTimer);
-                PlayerAnim.Play(PlayerAnimations.JUMP_INIT);
+                PlayAnimation(PlayerAnimations.JUMP_INIT);
                 Actor.JumpFromGround(PlayerCore.JumpHeight);
                 SetGrounded(false, true); 
             }

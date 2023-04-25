@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly Real.tmx",
+    "activeFile": "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly.tmx",
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex",
@@ -39,19 +39,19 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 3,
+            "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 99.49999999999999,
-                "y": 79.16666666666667
+                "x": 125.375,
+                "y": 82.625
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/AboveJonathan2.tmx": {
             "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 89.83333333333331,
-                "y": 121.16666666666664
+                "x": 106.83333333333331,
+                "y": 429.5
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Area 1 Intro.tmx": {
@@ -85,11 +85,11 @@
             "expandedObjectLayers": [
                 7
             ],
-            "scale": 5.5,
+            "scale": 23,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 240.63636363636365,
-                "y": 216.27272727272728
+                "x": 38.45652173913044,
+                "y": 24.23913043478261
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Bricks.tsx": {
@@ -154,10 +154,10 @@
                 5
             ],
             "scale": 4,
-            "selectedLayer": 0,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 127.625,
-                "y": 95.375
+                "x": 127.375,
+                "y": 95.125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty.tmx": {
@@ -240,8 +240,8 @@
             "scale": 4,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 83.375,
-                "y": 90.625
+                "x": 83.125,
+                "y": 90.375
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly.tmx": {
@@ -251,8 +251,8 @@
             "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 128.5,
-                "y": 25.16666666666667
+                "x": 127.83333333333331,
+                "y": 108.5
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Idk.tmx": {
@@ -297,11 +297,14 @@
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/LastRoom.tmx": {
+            "expandedObjectLayers": [
+                5
+            ],
             "scale": 4,
-            "selectedLayer": 5,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 144.375,
-                "y": 91.625
+                "x": 144.125,
+                "y": 2359.375
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx": {
@@ -311,8 +314,8 @@
             "scale": 4,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 125.875,
-                "y": 71.125
+                "x": 125.625,
+                "y": 39.375
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Mineshaft.tmx": {
@@ -330,8 +333,8 @@
             "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 127.16666666666666,
-                "y": 95.5
+                "x": 125.33333333333331,
+                "y": 196.16666666666666
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Sleep.tmx": {
@@ -382,8 +385,8 @@
             "scale": 4.3677734374999995,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 125.80780753923894,
-                "y": 69.71515449626617
+                "x": 125.57885793498188,
+                "y": 69.48620489200911
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Hub.tmx": {
@@ -511,8 +514,8 @@
             "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 128,
-                "y": 72
+                "x": 130.875,
+                "y": 75.875
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Joyce_Li/Joyce_room.tmx": {
@@ -863,27 +866,28 @@
     "map.tileWidth": 8,
     "map.width": 32,
     "openFiles": [
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/TeachMushrooms.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty End.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly Real.tmx"
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Pit.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/LastRoom.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly Real.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly.tmx"
     ],
     "project": "Area Planning Project.tiled-project",
     "property.type": "float",
     "recentFiles": [
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jonathan_Russell/Jonathan_TheRoom.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Cave Intro.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Pit.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/LastRoom.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly Real.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/TeachMushrooms.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty End.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly Real.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/LastRoom.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Gate 2.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Truly Empty.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Sleep.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Pit.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/JacksRoomFlipped.tmx"
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Gate 2.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

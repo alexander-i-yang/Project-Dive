@@ -141,13 +141,13 @@ namespace Collectibles {
         public void Reset()
         {
             if (_collected) return;
-            foreach (var p in _particleSystems) p.Pause();
+            foreach (var p in _particleSystems) if (p != null) p.Pause();
             transform.position = _startPos;
             _coordInd = 0;
             _moving = false;
             _animator.StopAnimation();
             _animatorEnd.StopAnimation();
-            foreach (var p in _particleSystems) p.Play();
+            foreach (var p in _particleSystems) if (p != null) p?.Play();
         }
 
         public bool CanReset()

@@ -25,6 +25,8 @@ namespace Player
 
         private PlayerScreenShakeActivator _screenshakeActivator;
 
+        private bool _hasInputted;
+
         #region Overrides
         protected override void SetInitialState() 
         {
@@ -62,6 +64,8 @@ namespace Player
         protected override void Update()
         {
             base.Update();
+            
+            if (!_hasInputted && PlayerCore.Input.AnyKeyPressed()) _hasInputted = true;
 
             if (PlayerCore.Input.JumpStarted())
             {

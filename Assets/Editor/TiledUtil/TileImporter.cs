@@ -233,6 +233,7 @@ namespace TiledUtil {
             LIL.SetNineSliceSprite(g, spritePoints);
             LIL.SetEdgeCollider2DPoints(g, colliderPoints);
             LIL.AddShadowCast(g, colliderPoints.ToVector3());
+            LIL.SetLayer(g, "Ground");
             g.GetRequiredComponent<SpriteRenderer>().SetSortingLayer("Interactable");
             AddWaterfalCollision(g, colliderPoints);
         }

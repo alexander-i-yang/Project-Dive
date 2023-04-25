@@ -29,7 +29,7 @@ namespace Helpers.Animation
             _animator = GetComponentInChildren<Animator>(includeInactive: true);
         }
 
-        public void Play(T newAnimation)
+        public virtual void Play(T newAnimation)
         {
             string newStateStr = GetAnimationStr(newAnimation);
 
