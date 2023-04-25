@@ -3,12 +3,12 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly.tmx",
+    "activeFile": "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Above Jonathan.tmx",
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1"
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -42,8 +42,8 @@
             "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 125.375,
-                "y": 82.625
+                "x": 134.375,
+                "y": 72.125
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/AboveJonathan2.tmx": {
@@ -871,23 +871,26 @@
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/LastRoom.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly Real.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly.tmx"
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty End.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Above Jonathan.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/AboveJonathan2.tmx"
     ],
     "project": "Area Planning Project.tiled-project",
     "property.type": "float",
     "recentFiles": [
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jonathan_Russell/Jonathan_TheRoom.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Cave Intro.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Pit.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Big Hub.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/LastRoom.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly Real.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/TeachMushrooms.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Tall room 2.tmx",
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Empty End.tmx",
-        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Gate 2.tmx"
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/AboveJonathan2.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Above Jonathan.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Jonathan_Russell/Jonathan_TheRoom.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Cave Intro.tmx",
+        "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/TeachMushrooms.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

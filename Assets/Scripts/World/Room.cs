@@ -197,7 +197,7 @@ namespace World {
         
         public void SetRoomGridEnabled(bool setActive)
         {
-            if (!EndCutsceneManager.IsEndCutscene)
+            if (!EndCutsceneManager.IsEndCutscene || _endCutsceneManager == null)
             {
                 _grid.SetActive(setActive);
             }

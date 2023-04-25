@@ -1,5 +1,6 @@
 using Helpers;
 using UnityEngine;
+using UnityEngine.Events;
 using World;
 
 namespace VFX.FireflyParticlesEnd
@@ -13,6 +14,8 @@ namespace VFX.FireflyParticlesEnd
 
         [SerializeField] private Transform follow;
         [SerializeField] private Vector3 offset;
+
+        [SerializeField] private UnityEvent onEmit;
 
         void Awake()
         {
@@ -47,6 +50,7 @@ namespace VFX.FireflyParticlesEnd
                     }
                     
                     p.Emit(numToEmit);
+                    onEmit.Invoke();
                     var e = p.emission;
                     e.rateOverTime = setEmission;
                 })

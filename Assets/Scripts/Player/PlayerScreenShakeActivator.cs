@@ -63,10 +63,10 @@ namespace Player
                     );
                 }
                 // print("SC on");
-                base.ScreenShakeContinuousOn(
+                /*base.ScreenShakeContinuousOn(
                     r.VCam,
                     CurShake
-                );
+                )*/;
             }
         }
     }
