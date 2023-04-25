@@ -240,8 +240,8 @@
             "scale": 4,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 83.625,
-                "y": 90.875
+                "x": 83.375,
+                "y": 90.625
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/How To Fly.tmx": {
@@ -298,10 +298,10 @@
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/LastRoom.tmx": {
             "scale": 4,
-            "selectedLayer": 1,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 99.625,
-                "y": 123.375
+                "x": 144.375,
+                "y": 91.625
             }
         },
         "C:/Users/uncle/Unity/Dive/Assets/Tiles/Alex/Area 1/Level3.tmx": {

@@ -39,13 +39,13 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     private void OnEnable()
     {
         Room.RoomTransitionEvent += OnRoomTransition;
-        // EndCutsceneManager.BeegBounceStartEvent += BeegBounceStart;
+        EndCutsceneManager.EndCutsceneEvent += OnEndCutscene;
     }
 
     private void OnDisable()
     {
         Room.RoomTransitionEvent -= OnRoomTransition;
-        // EndCutsceneManager.BeegBounceStartEvent += BeegBounceStart;
+        EndCutsceneManager.EndCutsceneEvent -= OnEndCutscene;
     }
 
     #region Movement
@@ -77,43 +77,53 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     [SerializeField] private int[] beegVelocities = {200, 250, 350, 1200};
     [SerializeField] private int[] beegDiveHeights = {200, 250, 350, 1200};
     private int _beegVelocityInd = 0;
+    public int BeegVInd => _beegVelocityInd;
     public bool IsBeegBouncing => _beegVelocityInd != 0;
+
+    private int CalcBeegVInd(float divePosY)
+    {
+        int ret = 0;
+        for (int i = 0; i < beegDiveHeights.Length; ++i)
+        {
+            int startHeight = -3000;
+            if (i >= 1) startHeight = beegDiveHeights[i - 1];
+            int endHeight = beegDiveHeights[i];
+
+            if (divePosY >= startHeight && divePosY <= endHeight)
+            {
+                ret = i;
+            }
+        }
+        return ret;
+    }
 
     public void BeegBounce(int jumpHeight)
     {
         if (!EndCutsceneManager.IsEndCutscene)
         {
-            for (int i = 0; i < beegDiveHeights.Length; ++i)
-            {
-                int startHeight = -3000;
-                if (i >= 1) startHeight = beegDiveHeights[i - 1];
-                int endHeight = beegDiveHeights[i];
-
-                if (_divePosY >= startHeight && _divePosY <= endHeight)
-                {
-                    _beegVelocityInd = i;
-                }
-            }
-            
-            print(_beegVelocityInd);
-            
+            _beegVelocityInd = CalcBeegVInd(_divePosY);
             velocityY = beegVelocities[_beegVelocityInd];
-            if (++_beegVelocityInd == beegVelocities.Length)
-            {
-                EndCutsceneManager.StartCutscene();
-                StartCoroutine(Helper.DelayAction(0.5f, () =>
-                {
-                    transform.position = new Vector3(720, 2656, 0);
-                    velocityY = 0;
-                }));
-            }
         }
+    }
+
+    public bool ShouldEndCutscene()
+    {
+        return _beegVelocityInd + 1 == beegVelocities.Length;
     }
 
     public void SmolBounce(int jumpHeight)
     {
         _beegVelocityInd = 0;
         velocityY = -0.25f * velocityY + GetJumpSpeedFromHeight(jumpHeight);
+    }
+
+    private void OnEndCutscene()
+    {
+        StartCoroutine(Helper.DelayAction(0.25f, () =>
+        {
+            transform.position = new Vector3(720, 2656, 0);
+            velocityY = 0;
+        }));
     }
 
     public void DoubleJump(int jumpHeight, int moveDirection = 0)

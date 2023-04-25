@@ -5,13 +5,13 @@ using Core;
 using World;
 
 public class StartMenuUI : MonoBehaviour {
-    [SerializeField] private string gameSceneName;
+    [SerializeField] private MyScenes sceneName;
     [SerializeField] private FmodEventStopper audioStopper;
     [SerializeField] private LoadSceneManager sceneManager;
     
     public void OnStartButtonPress() {
         audioStopper.Stop();
-        sceneManager.LoadSceneAsync(MyScenes.Area1Scene);
+        sceneManager.LoadSceneAsync(sceneName);
         // sceneManager.SwitchScene(MyScenes.Area1Scene);
     }
 

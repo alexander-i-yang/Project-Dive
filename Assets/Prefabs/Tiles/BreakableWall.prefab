@@ -51,21 +51,21 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_HasRenderer: 0
   m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
+  m_CastsShadows: 0
   m_SelfShadows: 0
   m_ApplyToSortingLayers: 00000000a39a746bf9381fb1af9643f6ffddffe4
   m_ShapePath:
-  - {x: 12, y: -4, z: 0}
-  - {x: 12, y: -12, z: 0}
-  - {x: -12, y: -12, z: 0}
-  - {x: -12, y: -4, z: 0}
-  - {x: -20, y: -4, z: 0}
-  - {x: -20, y: 12, z: 0}
-  - {x: 20, y: 12, z: 0}
-  - {x: 20, y: -4, z: 0}
-  m_ShapePathHash: 195129701
+  - {x: 28, y: -4, z: 0}
+  - {x: 28, y: -12, z: 0}
+  - {x: -28, y: -12, z: 0}
+  - {x: -28, y: -4, z: 0}
+  - {x: -36, y: -4, z: 0}
+  - {x: -36, y: 12, z: 0}
+  - {x: 36, y: 12, z: 0}
+  - {x: 36, y: -4, z: 0}
+  m_ShapePathHash: -1251905179
   m_Mesh: {fileID: 0}
-  m_InstanceId: 889430
+  m_InstanceId: 598946
 --- !u!68 &8085518301335351418
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -82,15 +82,15 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -20, y: 12}
-  - {x: 20, y: 12}
-  - {x: 20, y: -4}
-  - {x: 12, y: -4}
-  - {x: 12, y: -12}
-  - {x: -12, y: -12}
-  - {x: -12, y: -4}
-  - {x: -20, y: -4}
-  - {x: -20, y: 12}
+  - {x: -36, y: 12}
+  - {x: 36, y: 12}
+  - {x: 36, y: -4}
+  - {x: 28, y: -4}
+  - {x: 28, y: -12}
+  - {x: -28, y: -12}
+  - {x: -28, y: -4}
+  - {x: -36, y: -4}
+  - {x: -36, y: 12}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0

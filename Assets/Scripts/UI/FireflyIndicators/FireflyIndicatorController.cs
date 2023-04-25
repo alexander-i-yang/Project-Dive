@@ -149,7 +149,6 @@ namespace UI
         
         public void Hide()
         {
-            print(_state);
             if (_state == FICState.FINISHED) return;
             _state = FICState.HIDDEN;
             if (_showInnerRoutine != null) StopCoroutine(_showInnerRoutine);
