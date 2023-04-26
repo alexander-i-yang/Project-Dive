@@ -186,9 +186,9 @@ namespace Player
             return LogLevel.Warning;
         }
 
-        public void ActivateLastVCam(CinemachineVirtualCamera lastVCam)
+        public void ActivateLastVCam(CinemachineVirtualCamera lastVCam, bool e)
         {
-            lastVCam.gameObject.SetActive(true);
+            lastVCam.gameObject.SetActive(e);
             LastVCam = lastVCam;
         }
     }

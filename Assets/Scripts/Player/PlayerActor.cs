@@ -120,7 +120,7 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
 
     private void OnEndCutscene()
     {
-        StartCoroutine(Helper.DelayAction(0.25f, () =>
+        StartCoroutine(Helper.DelayAction(1f, () =>
         {
             transform.position = new Vector3(720, 2656, 0);
             velocityY = 0;
@@ -380,20 +380,8 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     {
         return Mathf.Sqrt(-2f * GravityUp * jumpHeight);
     }
-    
-    public void BeegBounceStart()
-    {
-        // GravityDown = 100;
-        // PlayerCore.DiveDeceleration = 0;
-        PlayerCore.DiveDeceleration = 0;
-        MaxFall = -10000000;
-        // foreach (Room room in RoomList.Rooms)
-        // {
-        //     room.VCam.gameObject.SetActive(false);
-        // }
-    }
-    
-    #if UNITY_EDITOR
+
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected() {
         Handles.Label(transform.position, $"Velocity: <{velocityX}, {velocityY}>");
         foreach (var h in beegDiveHeights)
@@ -406,17 +394,5 @@ public class PlayerActor : Actor, IFilterLoggerTarget {
     public LogLevel GetLogLevel()
     {
         return LogLevel.Error;
-    }
-    
-    public override void Fall() {
-        /*if (EndCutsceneManager.IsBeegBouncing)
-        {
-            velocityY += EffectiveGravity() * Game.Instance.FixedDeltaTime;
-        }
-        else
-        {
-            
-        }*/
-        base.Fall();
     }
 }

@@ -1,7 +1,11 @@
+using Helpers;
+using UnityEngine;
+
 namespace World
 {
     public class LastRoom : Room
     {
+        [SerializeField] private float delaySwitch = 0.5f;
         private void OnEnable()
         {
             EndCutsceneManager.EndCutsceneEvent += OnEndCutscene;
@@ -14,7 +18,7 @@ namespace World
 
         private void OnEndCutscene()
         {
-            SwitchCamera();
+            StartCoroutine(Helper.DelayAction(delaySwitch, SwitchCamera));
         }
     }
 }

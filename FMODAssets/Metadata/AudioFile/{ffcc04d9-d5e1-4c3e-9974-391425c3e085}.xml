@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{ffcc04d9-d5e1-4c3e-9974-391425c3e085}">
+		<property name="assetPath">
+			<value>DiveEnding.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>101.03421768707483</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5f6f5d71-610b-462e-a1fd-92ec1c44a98a}</destination>
+		</relationship>
+	</object>
+</objects>

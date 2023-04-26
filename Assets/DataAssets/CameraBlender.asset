@@ -75,7 +75,7 @@ MonoBehaviour:
     m_To: Last_Room
     m_Blend:
       m_Style: 4
-      m_Time: 12.8
+      m_Time: 12
       m_CustomCurve:
         serializedVersion: 2
         m_Curve:
