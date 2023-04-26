@@ -156,20 +156,22 @@ namespace World {
 
         private IEnumerator TransitionRoutine()
         {
-            if (!EndCutsceneManager.IsEndCutscene)
+            if (!EndCutsceneManager.IsEndCutscene && !EndCutsceneManager.IsBeegBouncing)
             {
                 SwitchCamera();
             }
             // SwitchCamera();
             // Door curDoor = Helper.OnComponent<Door>(_player.transform.position, LayerMask.GetMask("Default"));
             // print(curDoor);
-            if (StopTime) Time.timeScale = 0f;
+            bool shouldStopTime = StopTime && !EndCutsceneManager.IsBeegBouncing;
+            
+            if (shouldStopTime) Time.timeScale = 0f;
             /*
              * This is kinda "cheating". Instead of waiting for the camera to be done switching,
              * we're just waiting for the same amount of time as the blend time between cameras.
              */
             yield return new WaitForSecondsRealtime(_cmBrain.m_DefaultBlend.BlendTime);
-            if (StopTime) Time.timeScale = 1f;
+            if (shouldStopTime) Time.timeScale = 1f;
             _transitionRoutine = null;
             RoomTransitionEvent?.Invoke(this);
         }

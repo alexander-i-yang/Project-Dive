@@ -1,3 +1,4 @@
+using Cinemachine;
 using Player;
 using UnityEngine;
 
@@ -5,15 +6,15 @@ namespace World
 {
     public class EndCutsceneManager : MonoBehaviour
     {
-        // public static bool IsBeegBouncing = false;
+        public static bool IsBeegBouncing => PlayerCore.Actor.IsBeegBouncing;
         public static bool IsEndCutscene = false;
-        // public delegate void OnBeegBounce();
-        // public static event OnBeegBounce BeegBounceStartEvent;
-        
+
         public delegate void OnEndCutscene();
         public static event OnEndCutscene EndCutsceneEvent;
 
         [SerializeField] public Room[] roomsToEnable;
+
+        [SerializeField] private CinemachineVirtualCamera lastVCam;
         
 
         //Called in Unity Event
@@ -28,7 +29,10 @@ namespace World
             foreach (var r in roomsToEnable)
             {
                 r.SetRoomGridEnabled(true);
+                r.VCam.gameObject.SetActive(false);
             }
+
+            PlayerCore.SpawnManager.ActivateLastVCam(lastVCam);
         }
 
         public static void StartCutscene()

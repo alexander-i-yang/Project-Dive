@@ -19,7 +19,16 @@ namespace Player
         private Room _prevRoom;
         private Spawn _currentSpawnPoint;
         public Room CurrentRoom => _currentRoom;
-        public CinemachineVirtualCamera CurrentVCam => _currentRoom.VCam;
+        public CinemachineVirtualCamera CurrentVCam
+        {
+            get
+            {
+                if (EndCutsceneManager.IsBeegBouncing) return LastVCam;
+                else return _currentRoom.VCam;
+            }
+        }
+
+        public CinemachineVirtualCamera LastVCam { get; private set; }
 
         private SpriteRenderer _spriteR;
         [SerializeField] private float spawnAnimationTime = .5f;
@@ -175,6 +184,12 @@ namespace Player
         public LogLevel GetLogLevel()
         {
             return LogLevel.Warning;
+        }
+
+        public void ActivateLastVCam(CinemachineVirtualCamera lastVCam)
+        {
+            lastVCam.gameObject.SetActive(true);
+            LastVCam = lastVCam;
         }
     }
 }
