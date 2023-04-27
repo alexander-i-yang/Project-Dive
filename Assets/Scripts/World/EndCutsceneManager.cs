@@ -58,5 +58,11 @@ namespace World
             PlayerCore.SpawnManager.ActivateLastVCam(preCutsceneCam, true);
             print(preCutsceneCam.gameObject.activeSelf);
         }
+        
+        //Called in Unity Event
+        public void OnRestart()
+        {
+            IsEndCutscene = false;
+        }
     }
 }
