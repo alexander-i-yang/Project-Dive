@@ -1,0 +1,14 @@
+{
+  "name": "com.mystabox.alexs-starter-kit",
+  "version": "1.0.0",
+  "description": "A small core library of scripts to help Alex make games faster.",
+  "displayName": "Alex's Starter Kit",
+  "unity": "2021.3",
+  "hideInEditor": false,
+  "licensesUrl": "https://github.com/alexander-i-yang/alexs-starter-kit/blob/main/LICENSE",
+  "dependencies": {
+    "com.domybest.mybox": "1.7.0",
+    "com.unity.cinemachine": "2.8.9",
+    "com.unity.render-pipelines.universal": "12.1.8"
+  }
+}

@@ -1,7 +1,4 @@
-﻿using System;
-using Cinemachine;
-using MyBox;
-using VFX;
+﻿using ASK.ScreenShake;
 using World;
 
 namespace Player

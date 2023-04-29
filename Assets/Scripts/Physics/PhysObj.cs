@@ -1,9 +1,7 @@
-﻿using Core;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Helpers;
-using Mechanics;
+using ASK.Core;
+using ASK.Helpers;
 using UnityEngine;
 
 namespace Phys {

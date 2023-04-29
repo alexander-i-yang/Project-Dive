@@ -1,9 +1,6 @@
-﻿using Core;
-
-using System;
-
+﻿using System;
+using ASK.Core;
 using MyBox;
-
 using UnityEngine;
 
 namespace Phys {

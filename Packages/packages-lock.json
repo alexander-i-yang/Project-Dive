@@ -25,6 +25,16 @@
       "dependencies": {},
       "hash": "ab8159a3f352235d2eb7f1c604d2a199700a643a"
     },
+    "com.mystabox.alexs-starter-kit": {
+      "version": "file:Alex's Starter Kit",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.domybest.mybox": "1.7.0",
+        "com.unity.cinemachine": "2.8.9",
+        "com.unity.render-pipelines.universal": "12.1.8"
+      }
+    },
     "com.unity.2d.animation": {
       "version": "7.0.9",
       "depth": 0,

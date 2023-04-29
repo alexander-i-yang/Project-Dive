@@ -1,8 +1,5 @@
-﻿using System;
-using Helpers;
-using Mechanics.MovingBlocks;
+﻿using Mechanics.MovingBlocks;
 using Phys;
-using UnityEditor;
 using UnityEngine;
 
 namespace Mechanics {

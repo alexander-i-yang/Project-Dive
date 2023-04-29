@@ -1,16 +1,13 @@
-using System.Collections.Generic;
-
+using ASK.Animation;
+using ASK.Core;
 using UnityEngine;
-
-using Core;
-using Helpers;
-using Helpers.Animation;
+using ASK.Helpers;
 
 namespace Collectibles
 {
     public class FireflyAnimatorEnd : FireflyAnimator
     {
-        protected Camera _camera => Game.Instance.MainCamera;
+        protected Camera _camera => Game.Instance.CamController.MainCamera;
         private Vector3 _offScreenPoint => new Vector3(1, 1, _camera.nearClipPlane);
         
         public override CubicCurve2D GetCurve()

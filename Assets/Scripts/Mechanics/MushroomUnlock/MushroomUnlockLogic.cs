@@ -1,13 +1,8 @@
-using System;
 using System.Collections;
-using Core;
-using Helpers;
-using MyBox;
-using UnityEditor;
+using ASK.Core;
+using ASK.Helpers;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.Serialization;
 
 namespace Mechanics
 {

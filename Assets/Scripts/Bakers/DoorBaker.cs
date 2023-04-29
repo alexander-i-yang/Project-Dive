@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using ASK.Core;
+using UnityEditor;
 using UnityEngine;
 using World;
 
@@ -34,7 +35,7 @@ namespace Bakers
 
             foreach (var door in FindObjectsOfType<Door>())
             {
-                door.CalcTransitionRooms(Core.Game.Instance.ScreenSize, RoomLayerMask);
+                door.CalcTransitionRooms(Game.Instance.ScreenSize, RoomLayerMask);
             }
         }
     }

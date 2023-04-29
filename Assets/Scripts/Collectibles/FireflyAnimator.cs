@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-
+﻿using ASK.Animation;
 using UnityEngine;
-
-using Core;
-using Helpers;
-using Helpers.Animation;
+using ASK.Helpers;
 
 namespace Collectibles
 {

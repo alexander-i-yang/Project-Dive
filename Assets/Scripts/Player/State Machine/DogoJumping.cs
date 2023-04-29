@@ -1,10 +1,7 @@
-﻿using Core;
-using Helpers;
-using System;
+﻿using ASK.Helpers;
 using System.Collections;
-
+using ASK.Core;
 using Mechanics;
-using UnityEngine;
 
 namespace Player
 {

@@ -1,14 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-using MyBox;
-
-using Core;
-using Helpers;
+using ASK.Helpers;
 using UI;
-using UnityEngine.Serialization;
-using VFX;
 
 namespace Mechanics
 {

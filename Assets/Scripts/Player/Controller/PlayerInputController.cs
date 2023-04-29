@@ -1,4 +1,4 @@
-using Core;
+using ASK.Core;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -70,19 +70,19 @@ namespace Player
         
         public bool GetJumpInput()
         {
-            if (!Game.Instance.FakeControlsZ.Disabled) return Game.Instance.FakeControlsZ.Value;
+            // if (!Game.Instance.FakeControlsZ.Disabled) return Game.Instance.FakeControlsZ.Value;
             return inputActions.Jump.IsPressed();
         }
 
         public bool JumpStarted()
         {
-            if (!Game.Instance.FakeControlsZ.Disabled) return Game.Instance.FakeControlsZ.WasPressedThisFrame();
+            // if (!Game.Instance.FakeControlsZ.Disabled) return Game.Instance.FakeControlsZ.WasPressedThisFrame();
             return inputActions.Jump.WasPressedThisFrame();
         }
 
         public bool JumpFinished()
         {
-            if (!Game.Instance.FakeControlsZ.Disabled) return Game.Instance.FakeControlsZ.WasReleasedThisFrame();
+            // if (!Game.Instance.FakeControlsZ.Disabled) return Game.Instance.FakeControlsZ.WasReleasedThisFrame();
             return inputActions.Jump.WasReleasedThisFrame();
         }
 

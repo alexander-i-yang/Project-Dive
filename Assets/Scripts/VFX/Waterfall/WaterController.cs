@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Core;
+using ASK.Core;
 using UnityEngine;
 using UnityEngine.Serialization;
-using VFX;
 
 public class WaterController : MonoBehaviour
 {

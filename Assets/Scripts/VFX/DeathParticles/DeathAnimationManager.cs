@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Helpers;
-using Helpers.Animation;
+using ASK.Helpers;
+using ASK.Helpers.Animation;
 using MyBox;
 using Player;
 using UnityEngine;

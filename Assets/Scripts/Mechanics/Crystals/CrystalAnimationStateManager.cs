@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Helpers.Animation;
+using ASK.Helpers.Animation;
 
 namespace Mechanics
 {
